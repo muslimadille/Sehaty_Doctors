@@ -1,0 +1,159 @@
+<resources>
+    <string name="app_name">sehaty</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="contact_us">إتصل بنا</string>
+    <string name="about_us">عن التطبيق</string>
+    <string name="prefrances">المفضلة</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="more_title">المزيد</string>
+    <string name="settings_title">الإعدادات</string>
+    <string name="appoint_now_txt">أحجز الآن</string>
+    <string name="register_txt">تسجيل الدخول</string>
+    <string name="search_item">أبحث</string>
+    <string name="offers_item">العروض</string>
+    <string name="date_item">المواعيد</string>
+    <string name="settings">الاعدادات</string>
+    <string name="edite_password">تعديل كلمة الرور</string>
+
+    <string name="search">البحث</string>
+
+    <string name="search_by_name">ابحث بأسم الدكتور</string>
+    <string name="search_by_spicialist">بحث حسب التخصص</string>
+    <string name="pharmacy_search">بحث عن الصيدليات</string>
+    <string name="flag_txt">لأن صحتك تهمنا</string>
+    <string name="labs_search">بحث عن المختبرات</string>
+    <string name="registration_title">سجل الآن</string>
+    <string name="full_name">الأسم بالكامل</string>
+    <string name="add_message">أضف رسالة</string>
+
+    <string name="mobile_number">رقم الجوال</string>
+    <string name="e_mail">البريد الإلكتروني</string>
+    <string name="e_mail_or_mobile"> البريد الإلكتروني أو رقم الجوال</string>
+
+    <string name="password">رمز الدخول</string>
+    <string name="date_of_birth">تاريخ الميلاد</string>
+    <string name="gender">الجنس</string>
+    <string name="female">أنثى</string>
+    <string name="male">ذكر</string>
+    <string name="save">سجل الآن</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="forget_password">هل نسيت كلمة المرور؟</string>
+    <string name="rouls_conditions">الشروط والقوانين</string>
+    <string name="new_acount">إنشاء حساب جديد</string>
+    <string name="login_facebook">الدخول عن طريق الفيسبوك</string>
+    <string name="login_twitter">الدخول عن طريق تويتر</string>
+    <string name="login_google">الدخول عن طريق جوجل</string>
+    <string name="fav_doc">الأطباء</string>
+    <string name="fav_offers">العروض</string>
+
+
+    <string name="or">أو</string>
+    <string name="title_activity_settings" translatable="false">الاعدادات</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title" translatable="false">Sync email periodically</string>
+    <string name="attachment_title" translatable="false">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
+    <string name="how_it_work">كيف يعمل التطبيق</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="change_password">تعديل كلمة المرور</string>
+    <string name="edit_profile">تعديل بيانات الحساب</string>
+    <string name="appointments">مواعيدي</string>
+    <string name="favorites">المفضلة</string>
+
+    <string name="no_offers">لا يوجد لديك عروض</string>
+    <string name="no_appointments">لا يوجد لديك حجوزات</string>
+    <string name="chose_doctor">اختر الدكتور</string>
+    <string name="no_search_results">لا يوجد نتائج</string>
+    <string name="select_reagon">أختر المنطقة</string>
+    <string name="cost">التكلفة:</string>
+    <string name="waiting">مدة الإنتظار:</string>
+    <string name="book_now">احجز الان</string>
+    <string name="chose_specialty">أختر التخصص</string>
+    <string name="progress_txt">الرجاء الإنتظار</string>
+
+    <string name="no_internet">لا يوجد إتصال بشبكة الإنترنت</string>
+    <string name="exit">خروج</string>
+    <string name="dismiss">إخفاء</string>
+    <string name="search_doctor_hint">ابحث باسم الدكتور</string>
+    <string name="doctor">دكتور:</string>
+    <string name="doctorah">دكتورة:</string>
+    <string name="lab_search_hint">ابحث باسم المختبر</string>
+    <string name="discount">خصم</string>
+
+
+
+    <string name="doctors_list">قائمة الأطباء</string>
+    <string name="visitors">زائر</string>
+    <string name="profile">بيانات الدكتور</string>
+    <string name="waiting_time">مدة الإنتظار</string>
+    <string name="cost_amount">سعر الكشف</string>
+    <string name="date_hint">الدخول في ميعاد الحجز المحدد</string>
+    <string name="booking_hint">احجز الآن وسيتم أرسالتفاصيل العنوان بالكامل ورقم العيادة</string>
+    <string name="rating">التقييم العام من</string>
+    <string name="seen">مشاهدة</string>
+    <string name="doctor_info">معلومات عن الدكتور</string>
+    <string name="more">المزيد</string>
+    <string name="less">أقل</string>
+    <string name="booking_dates">مواعيد الحجز</string>
+    <string name="booking_order">طلب الحجز</string>
+    <string name="booking_check">انا أقوم بالحجز لمريض أخر</string>
+    <string name="language_setting">ضبط اللغة</string>
+    <string name="lang_btn">حفظ</string>
+    <string name="ratings">التقييمات</string>
+    <string name="thanks">شكراً</string>
+    <string name="done">تم حجزك بنجاح</string>
+    <string name="derham">دينار</string>
+    <string name="price">السعر</string>
+
+    <string name="building_num">مبنى رقم:</string>
+    <string name="Apartment_num">شقة رقم:</string>
+    <string name="help">طلب المساعدة</string>
+    <string name="cancel">إلغاء</string>
+    <string name="map">الخريطة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="please_enter_new_password">ادخل كلمة المرور الجديدة</string>
+    <string name="edit_password">نعديل كلمة المرور</string>
+    <string name="save_btn">حفظ</string>
+    <string name="contactus_txt">نحن سعداء لتلقي إستفساراتكم وإقتراحاتكم</string>
+    <string name="formorcontact">للمزيد اتصل ب</string>
+    <string name="send_message">إرسال</string>
+    <string name="cu">إتصل بنا</string>
+    <string name="by_gategory">ابحث حسب الفئة</string>
+    <string name="show_all">شاهد الكل</string>
+    <string name="most_viewed">الأكثر طلباً</string>
+    <string name="offer_details">بيانات العرض</string>
+    <string name="info">معلومات</string>
+    <string name="offer_provider_data">بيانات مقدم الخدمة</string>
+    <string name="all_categoris_title">ابحث حسب الفئة</string>
+    <string name="pharmacy_offers_title">عروض الصيدليات</string>
+    <string name="pharmacy">صيدلية: </string>
+    <string name="type">الصنف: </string>
+
+
+    <string name="labs_lists">قائمة المختبرات</string>
+    <string name="search_by_reagon">بحث حسب المنطقة</string>
+    <string name="search_for_labs">البحث عن مختبر</string>
+    <string name="search_by_nam_labs">ابحث باسم المختبر</string>
+    <string name="address">العنوان:</string>
+    <string name="laboratory_details">بيانات المختبر</string>
+    <string name="test_typs">اختر نوع االتحليل</string>
+    <string name="avilable_dates">المواعيد المتاحة</string>
+    <string name="to">إلى</string>
+    <string name="pay_cash_in_clinic">الدفع نقداً في العيادة</string>
+    <string name="laboratory">Laboratory</string>
+
+
+</resources>

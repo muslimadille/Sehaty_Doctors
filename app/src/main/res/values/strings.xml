@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">seha khanah doctors</string>
+    <string name="settings">settings</string>
+    <string name="edite_password">Edit Password</string>
+    <string name="contact_us">contact us</string>
+    <string name="about_us">about us</string>
+    <string name="search">Search</string>
+
+    <string name="prefrances">favorites</string>
+    <string name="log_out">log out</string>
+    <string name="more_title">more</string>
+    <string name="settings_title">settings</string>
+    <string name="appoint_now_txt">book now</string>
+    <string name="register_txt">log in</string>
+    <string name="search_item">Sechual</string>
+    <string name="offers_item">offers</string>
+    <string name="date_item">appointments</string>
+    <string name="search_by_name">search by name</string>
+    <string name="search_by_spicialist">search by specialty</string>
+    <string name="pharmacy_search">search for pharmacies</string>
+    <string name="labs_search">Search for laboratories</string>
+    <string name="registration_title">register now</string>
+    <string name="full_name">full name</string>
+    <string name="add_message">add message</string>
+    <string name="flag_txt">We care about your health</string>
+
+
+    <string name="mobile_number">mobile number</string>
+    <string name="e_mail">e-mail</string>
+    <string name="password">password</string>
+    <string name="date_of_birth">date of birth</string>
+    <string name="gender">gender</string>
+    <string name="female">female</string>
+    <string name="male">male</string>
+    <string name="save">register now</string>
+    <string name="e_mail_or_mobile">e-mail or mobile number</string>
+    <string name="login">login</string>
+    <string name="forget_password">did you forget password?</string>
+    <string name="rouls_conditions">terms and conditions</string>
+    <string name="new_acount">create new account</string>
+    <string name="login_facebook">login with facebook</string>
+    <string name="login_twitter">login with twitter</string>
+    <string name="login_google">login with google</string>
+    <string name="or">OR</string>
+    <string name="how_it_work">How the app works</string>
+    <string name="change_language">change language</string>
+    <string name="change_password">Edit your password</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="appointments">Appointments</string>
+    <string name="favorites">favorites</string>
+    <string name="fav_doc">Doctors</string>
+    <string name="fav_offers">Offers</string>
+
+    <string name="no_offers">there is no offers</string>
+    <string name="no_appointments">there is no appointments</string>
+    <string name="chose_doctor">Chose Doctor</string>
+    <string name="no_search_results">no results</string>
+    <string name="select_reagon">Chose region</string>
+    <string name="cost">cost:</string>
+    <string name="waiting">waiting time:</string>
+    <string name="book_now">book now</string>
+    <string name="chose_specialty">chose specialty</string>
+    <string name="progress_txt">please wait</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="exit">Exit</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="search_doctor_hint">search by doctor name</string>
+    <string name="doctor">Doctor:</string>
+    <string name="doctorah">Doctor</string>
+    <string name="lab_search_hint">Seach for labs</string>
+    <string name="doctors_list">Doctors List</string>
+    <string name="visitors">Visitor</string>
+    <string name="profile">Doctor Profile</string>
+    <string name="waiting_time">waiting time</string>
+    <string name="cost_amount">Cost</string>
+    <string name="discount">Discount</string>
+
+    <string name="date_hint">Entering the specified reservation time</string>
+    <string name="booking_hint">Book now and the details will be sent in full address and clinic number</string>
+    <string name="rating">Overall rating from</string>
+    <string name="seen">seen</string>
+    <string name="doctor_info">About doctor</string>
+    <string name="more">more</string>
+    <string name="less">less</string>
+    <string name="booking_dates">Booking Dates</string>
+    <string name="booking_order">Booking Order</string>
+    <string name="booking_check">i am booking for another patient</string>
+    <string name="language_setting">ضبط اللغة</string>
+    <string name="lang_btn">Save</string>
+    <string name="ratings">Ratings</string>
+    <string name="thanks">Thanks</string>
+    <string name="done">Success</string>
+    <string name="derham">IQD</string>
+    <string name="price">price</string>
+
+    <string name="building_num">Building num:</string>
+    <string name="Apartment_num">Apartment num:</string>
+    <string name="help">help</string>
+    <string name="cancel">cancel</string>
+    <string name="map">map</string>
+    <string name="new_password">new password</string>
+    <string name="old_password">old password</string>
+    <string name="please_enter_new_password">please enter new password</string>
+    <string name="edit_password">edit password</string>
+    <string name="save_btn">save</string>
+    <string name="contactus_txt">We are happy to receive your inquiries and suggestions.</string>
+    <string name="formorcontact">for more connect</string>
+    <string name="send_message">Send</string>
+    <string name="cu">contact us</string>
+    <string name="by_gategory">Search by category</string>
+    <string name="show_all">Show All</string>
+    <string name="most_viewed">most ordered</string>
+    <string name="offer_details">Offer Details</string>
+    <string name="info">Information</string>
+    <string name="offer_provider_data">Service Provider Info</string>
+    <string name="all_categoris_title">Search by category</string>
+    <string name="pharmacy_offers_title">Pharmacy offers</string>
+    <string name="pharmacy">Pharmacy: </string>
+    <string name="type">type: </string>
+
+
+    <string name="labs_lists">Labs lists</string>
+    <string name="search_by_reagon">Search by region</string>
+    <string name="search_for_labs">Search for labs</string>
+    <string name="search_by_nam_labs">Search by name</string>
+    <string name="address">Address: </string>
+    <string name="laboratory_details">Laboratory Details</string>
+    <string name="test_typs">Select Test Type</string>
+    <string name="avilable_dates">Available Dates</string>
+    <string name="to">to</string>
+    <string name="pay_cash_in_clinic">Pay cash in clinic</string>
+    <string name="laboratory">Laboratory</string>
+
+
+</resources>
