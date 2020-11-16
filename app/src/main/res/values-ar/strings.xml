@@ -46,25 +46,7 @@
     <string name="login_google">الدخول عن طريق جوجل</string>
     <string name="fav_doc">الأطباء</string>
     <string name="fav_offers">العروض</string>
-
-
     <string name="or">أو</string>
-    <string name="title_activity_settings" translatable="false">الاعدادات</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header" translatable="false">Messages</string>
-    <string name="sync_header" translatable="false">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title" translatable="false">Your signature</string>
-    <string name="reply_title" translatable="false">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title" translatable="false">Sync email periodically</string>
-    <string name="attachment_title" translatable="false">Download incoming attachments</string>
-    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
     <string name="how_it_work">كيف يعمل التطبيق</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="change_password">تعديل كلمة المرور</string>
@@ -96,7 +78,7 @@
 
     <string name="doctors_list">قائمة الأطباء</string>
     <string name="visitors">زائر</string>
-    <string name="profile">بيانات الدكتور</string>
+    <string name="profile">الصحفحة الشخصية</string>
     <string name="waiting_time">مدة الإنتظار</string>
     <string name="cost_amount">سعر الكشف</string>
     <string name="date_hint">الدخول في ميعاد الحجز المحدد</string>
@@ -154,6 +136,9 @@
     <string name="to">إلى</string>
     <string name="pay_cash_in_clinic">الدفع نقداً في العيادة</string>
     <string name="laboratory">Laboratory</string>
+    <string name="schedule_summery">المواعيد</string>
+    <string name="dont_have_account">ليس لديك حساب؟</string>
+    <string name="terms_header">بتسجيل حساب فأنت توافق على الشروط والأحكام</string>
 
 
 </resources>

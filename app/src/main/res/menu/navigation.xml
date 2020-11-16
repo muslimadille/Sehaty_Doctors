@@ -9,12 +9,12 @@
         android:id="@+id/navigation_offers"
         android:icon="@drawable/bottom_nav_offers"
         android:enabled="true"
-        android:title="@string/offers_item" />
+        android:title="@string/profile" />
     <item
         android:id="@+id/navigation_appointment"
         android:enabled="true"
-        android:icon="@drawable/bottom_nav_appointment"
-        android:title="@string/date_item" />
+        android:icon="@drawable/bottom_nav_offers"
+        android:title="@string/offers_item" />
     <item
         android:id="@+id/navigation_extras"
         android:enabled="true"

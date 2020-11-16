@@ -131,6 +131,11 @@
     <string name="to">to</string>
     <string name="pay_cash_in_clinic">Pay cash in clinic</string>
     <string name="laboratory">Laboratory</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="schedule_summery">Schedule Summery</string>
+    <string name="dont_have_account">Do not have an account? </string>
+    <string name="terms_header">By create an account, you agree to the terms and conditions</string>
 
 
 </resources>
