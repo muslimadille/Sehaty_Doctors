@@ -7,7 +7,7 @@
         android:title="@string/search_item" />
     <item
         android:id="@+id/navigation_offers"
-        android:icon="@drawable/bottom_nav_offers"
+        android:icon="@drawable/doctor_ic"
         android:enabled="true"
         android:title="@string/profile" />
     <item

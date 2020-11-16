@@ -20,18 +20,12 @@ class OffersFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-
-
     }
-
-
 
     var mContext: MainActivity? = null
     override fun onAttach(context: Context) {

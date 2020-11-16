@@ -33,10 +33,12 @@
             android:layout_height="wrap_content"
             app:tabIndicatorHeight="2dp"
             android:layout_gravity="fill"
+            app:tabTextColor="@color/blue"
             app:tabGravity="fill"
             app:tabMode="fixed">
 
         </com.google.android.material.tabs.TabLayout>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
@@ -48,12 +50,15 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="add"
-        android:src="@drawable/ic_add"
+        android:layout_alignParentEnd="true"
+        app:tint="@color/white"
+        android:backgroundTint="@color/blue"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:background="@color/blue"
+        android:src="@drawable/ic_add_wigt_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
-        app:layout_constraintStart_toStartOf="parent" />
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

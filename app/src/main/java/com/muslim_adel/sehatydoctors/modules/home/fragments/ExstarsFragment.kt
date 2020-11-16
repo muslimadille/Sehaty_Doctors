@@ -20,8 +20,6 @@ class ExstarsFragment : Fragment() {
 
     }
 
-
-
     var mContext: MainActivity? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)

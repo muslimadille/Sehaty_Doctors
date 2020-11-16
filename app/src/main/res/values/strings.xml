@@ -16,6 +16,8 @@
     <string name="search_item">Sechual</string>
     <string name="offers_item">offers</string>
     <string name="date_item">appointments</string>
+    <string name="appointments_manage">Manage Dates</string>
+
     <string name="search_by_name">search by name</string>
     <string name="search_by_spicialist">search by specialty</string>
     <string name="pharmacy_search">search for pharmacies</string>
@@ -47,7 +49,7 @@
     <string name="change_language">change language</string>
     <string name="change_password">Edit your password</string>
     <string name="edit_profile">Edit profile</string>
-    <string name="appointments">Appointments</string>
+    <string name="appointments">Dates</string>
     <string name="favorites">favorites</string>
     <string name="fav_doc">Doctors</string>
     <string name="fav_offers">Offers</string>
@@ -71,7 +73,7 @@
     <string name="lab_search_hint">Seach for labs</string>
     <string name="doctors_list">Doctors List</string>
     <string name="visitors">Visitor</string>
-    <string name="profile">Doctor Profile</string>
+    <string name="profile">My Profile</string>
     <string name="waiting_time">waiting time</string>
     <string name="cost_amount">Cost</string>
     <string name="discount">Discount</string>
@@ -136,6 +138,8 @@
     <string name="schedule_summery">Schedule Summery</string>
     <string name="dont_have_account">Do not have an account? </string>
     <string name="terms_header">By create an account, you agree to the terms and conditions</string>
+    <string name="pationts_list">Patients List</string>
+    <string name="help_center">Help Center</string>
 
 
 </resources>

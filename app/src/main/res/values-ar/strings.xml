@@ -11,6 +11,8 @@
     <string name="appoint_now_txt">أحجز الآن</string>
     <string name="register_txt">تسجيل الدخول</string>
     <string name="search_item">أبحث</string>
+    <string name="appointments_manage">إدارة المواعيد</string>
+
     <string name="offers_item">العروض</string>
     <string name="date_item">المواعيد</string>
     <string name="settings">الاعدادات</string>
@@ -78,7 +80,7 @@
 
     <string name="doctors_list">قائمة الأطباء</string>
     <string name="visitors">زائر</string>
-    <string name="profile">الصحفحة الشخصية</string>
+    <string name="profile">صفحتي</string>
     <string name="waiting_time">مدة الإنتظار</string>
     <string name="cost_amount">سعر الكشف</string>
     <string name="date_hint">الدخول في ميعاد الحجز المحدد</string>
@@ -139,6 +141,8 @@
     <string name="schedule_summery">المواعيد</string>
     <string name="dont_have_account">ليس لديك حساب؟</string>
     <string name="terms_header">بتسجيل حساب فأنت توافق على الشروط والأحكام</string>
+    <string name="pationts_list">قائمة المرضى</string>
+    <string name="help_center">مركز المساعدة</string>
 
 
 </resources>
