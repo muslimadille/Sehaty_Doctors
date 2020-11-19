@@ -32,6 +32,13 @@ object Q {
     const val ALL_LABS_API = "laboratories"
     const val LABS_SEARCH_API = "laboratory/search"
     const val GET_LAB_BY_ID_API="laboratory/show"
+    /**------------------doctor---------------------------------*/
+    const val GET_ALL_DAYS_API="doctor/dashboard/days"
+    const val GET_ALL_RESERVATIONS_API="doctor/dashboard/reservations"
+
+
+
+
 
 
 

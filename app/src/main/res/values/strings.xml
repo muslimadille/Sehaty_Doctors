@@ -140,6 +140,14 @@
     <string name="terms_header">By create an account, you agree to the terms and conditions</string>
     <string name="pationts_list">Patients List</string>
     <string name="help_center">Help Center</string>
+    <string name="show_dates_hint">Show Dates</string>
+    <string name="examination">Examination</string>
+    <string name="arrive">Get to the clinic</string>
+    <string name="did_not_come">Did not come</string>
+    <string name="am">Am</string>
+    <string name="pm">Pm</string>
+
+
 
 
 </resources>

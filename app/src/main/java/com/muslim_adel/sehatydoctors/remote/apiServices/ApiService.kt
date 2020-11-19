@@ -1,5 +1,7 @@
 package com.muslim_adel.sehatydoctors.remote.apiServices
 import com.muslim_adel.sehatydoctors.remote.objects.*
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.DaysModel
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
 import com.muslim_adel.sehatydoctors.utiles.Q
 import retrofit2.Call
 import retrofit2.http.*
@@ -96,5 +98,10 @@ interface ApiService {
     fun fitchLabsByRegionList(@Query("area_id")area_id:Int):Call<BaseResponce<LabsSearch>>
     @GET
     fun fitchLabById(@Url url:String):Call<BaseResponce<Laboratory>>
+    /**---------------------------------------------doctor----------------------------------------------------*/
+    @GET(Q.GET_ALL_DAYS_API)
+    fun fitchAllDaysList():Call<BaseResponce<List<DaysModel>>>
+    @GET(Q.GET_ALL_RESERVATIONS_API)
+    fun fitchAllReservationsList():Call<BaseResponce<List<ReservationModel>>>
 
 }

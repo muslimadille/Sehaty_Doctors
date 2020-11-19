@@ -5,13 +5,14 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.muslim_adel.sehatydoctors.R
+import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
 import com.muslim_adel.sehatydoctors.modules.home.fragments.ExstarsFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.HomeFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.OffersFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     var navK=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

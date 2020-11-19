@@ -143,6 +143,12 @@
     <string name="terms_header">بتسجيل حساب فأنت توافق على الشروط والأحكام</string>
     <string name="pationts_list">قائمة المرضى</string>
     <string name="help_center">مركز المساعدة</string>
+    <string name="show_dates_hint">عرض الحجوزات</string>
+    <string name="examination">كشف</string>
+    <string name="arrive">وصل للعيادة</string>
+    <string name="did_not_come">لم يحضر</string>
+    <string name="am">ص</string>
+    <string name="pm">م</string>
 
 
 </resources>
