@@ -147,7 +147,17 @@
     <string name="am">Am</string>
     <string name="pm">Pm</string>
 
+    <string name="sat">Sat</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tus">Tus</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="book">Reservation</string>
 
+    <string name="doc_info">Doctor Info</string>
+    <string name="clinic_info">Clinic Info</string>
 
 
 </resources>

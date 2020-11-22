@@ -103,5 +103,7 @@ interface ApiService {
     fun fitchAllDaysList():Call<BaseResponce<List<DaysModel>>>
     @GET(Q.GET_ALL_RESERVATIONS_API)
     fun fitchAllReservationsList():Call<BaseResponce<List<ReservationModel>>>
+    @GET(Q.GET_DOCTOR_OFFERS_API)
+    fun fitchDoctorOffersList():Call<BaseResponce<List<Offer>>>
 
 }

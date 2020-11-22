@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".modules.profile.ClinicInfoFragment">
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <androidx.cardview.widget.CardView
+               android:id="@+id/edit_profile_btn"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardCornerRadius="8dp"
+               app:cardElevation="3dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginBottom="5dp"
+               android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="15dp"
+                   android:layout_marginBottom="5dp"
+                   >
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical"
+                       android:layout_marginStart="10dp"
+                       >
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_weight="1"
+                           android:src="@drawable/ic_info"/>
+                       <View
+                           android:layout_width="match_parent"
+                           android:layout_height="1dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_marginStart="5dp"
+                           android:background="@color/red"/>
+                   </LinearLayout>
+                   <TextView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:layout_height="match_parent"
+                       android:text="اسم ورقم العيادة"
+                       android:textSize="14sp"
+                       />
+                   <ImageView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       tools:replace="android:supportsRtl"
+                       android:layout_width="20dp"
+                       android:layout_height="match_parent"
+                       android:src="@drawable/arrow"/>
+
+
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+           <androidx.cardview.widget.CardView
+               android:id="@+id/clicnic_img_btn"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardCornerRadius="8dp"
+               app:cardElevation="3dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginBottom="5dp"
+               android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="15dp"
+                   android:layout_marginBottom="5dp"
+                   >
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical"
+                       android:layout_marginStart="10dp"
+                       >
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_weight="1"
+                           android:src="@drawable/img_blue"/>
+                       <View
+                           android:layout_width="match_parent"
+                           android:layout_height="1dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_marginStart="5dp"
+                           android:background="@color/red"/>
+                   </LinearLayout>
+                   <TextView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:layout_height="match_parent"
+                       android:text="صورة العيادة"
+                       android:textSize="14sp"
+                       />
+                   <ImageView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       tools:replace="android:supportsRtl"
+                       android:layout_width="20dp"
+                       android:layout_height="match_parent"
+                       android:src="@drawable/arrow"/>
+
+
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+           <androidx.cardview.widget.CardView
+               android:id="@+id/clinic_price_btn"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardCornerRadius="8dp"
+               app:cardElevation="3dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginBottom="5dp"
+               android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="15dp"
+                   android:layout_marginBottom="5dp"
+                   >
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical"
+                       android:layout_marginStart="10dp"
+                       >
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_weight="1"
+                           android:src="@drawable/ic_baseline_monetization_on_24"/>
+                       <View
+                           android:layout_width="match_parent"
+                           android:layout_height="1dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_marginStart="5dp"
+                           android:background="@color/red"/>
+                   </LinearLayout>
+                   <TextView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:layout_height="match_parent"
+                       android:text="الكشف"
+                       android:textSize="14sp"
+                       />
+                   <ImageView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       tools:replace="android:supportsRtl"
+                       android:layout_width="20dp"
+                       android:layout_height="match_parent"
+                       android:src="@drawable/arrow"/>
+
+
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+           <androidx.cardview.widget.CardView
+               android:id="@+id/clinic_address_btn"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardCornerRadius="8dp"
+               app:cardElevation="3dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginBottom="5dp"
+               android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="15dp"
+                   android:layout_marginBottom="5dp"
+                   >
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical"
+                       android:layout_marginStart="10dp"
+                       >
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="0dp"
+                           android:layout_weight="1"
+                           android:src="@drawable/ic_location"/>
+                       <View
+                           android:layout_width="match_parent"
+                           android:layout_height="1dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_marginStart="5dp"
+                           android:background="@color/red"/>
+                   </LinearLayout>
+                   <TextView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                       android:layout_height="match_parent"
+                       android:text="عنوان العيادة"
+                       android:textSize="14sp"
+                       />
+                   <ImageView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="5dp"
+                       tools:replace="android:supportsRtl"
+                       android:layout_width="20dp"
+                       android:layout_height="match_parent"
+                       android:src="@drawable/arrow"/>
+
+
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+       </LinearLayout>
+   </ScrollView>
+
+
+
+
+
+
+</LinearLayout>

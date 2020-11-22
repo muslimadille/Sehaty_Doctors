@@ -150,5 +150,19 @@
     <string name="am">ص</string>
     <string name="pm">م</string>
 
+    <string name="sat">السبت</string>
+    <string name="sun">الأحد</string>
+    <string name="mon">الإثنين</string>
+    <string name="tus">الثلاثاء</string>
+    <string name="wed">الأربعاء</string>
+    <string name="thu">الخميس</string>
+    <string name="fri">الجمعة</string>
+    <string name="book">حجز</string>
+
+    <string name="doc_info">بيانات الطبيب</string>
+    <string name="clinic_info">بيانات العيادة</string>
+
+
+
 
 </resources>

@@ -35,6 +35,9 @@ object Q {
     /**------------------doctor---------------------------------*/
     const val GET_ALL_DAYS_API="doctor/dashboard/days"
     const val GET_ALL_RESERVATIONS_API="doctor/dashboard/reservations"
+    const val GET_DOCTOR_OFFERS_API="doctor/dashboard/offers"
+
+
 
 
 

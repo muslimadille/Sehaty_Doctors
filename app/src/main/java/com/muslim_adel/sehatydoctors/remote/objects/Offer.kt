@@ -37,11 +37,13 @@ data class Offer (
     var date_from:String,
     @SerializedName("date_to")
     var date_to:  String,
-    @SerializedName("booking_num")
-    var booking_num:Int,
+   /* @SerializedName("booking_num")
+    var booking_num:Int,*/
     @SerializedName("doctor_id")
     var doctor_id: Long,
-    @SerializedName("doctor")
+    @SerializedName("active")
+    var active: Int
+    /*@SerializedName("doctor")
     var doctor:Doctor,
     @SerializedName("rating")
     var rating:Int,
@@ -50,7 +52,7 @@ data class Offer (
     @SerializedName("dates")
     var dates:  List<Date>,
     @SerializedName("ratings")
-    var ratings:  List<Rates>
+    var ratings:  List<Rates>*/
 
 
 

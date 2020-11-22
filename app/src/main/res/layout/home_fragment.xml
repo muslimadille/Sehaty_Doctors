@@ -46,19 +46,5 @@
             />
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        app:tint="@color/white"
-        android:backgroundTint="@color/blue"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:background="@color/blue"
-        android:src="@drawable/ic_add_wigt_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

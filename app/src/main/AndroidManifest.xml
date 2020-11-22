@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.registration.SelectUserActivity"></activity>
+        <activity android:name=".modules.offers.OfferDetailsActivity"></activity>
+        <activity android:name=".modules.home.schedual.AddNewReservationActivity" />
+        <activity android:name=".modules.registration.SelectUserActivity" />
         <activity android:name=".modules.registration.RegisterationActivity" />
         <activity android:name=".modules.registration.LoginActivity" />
         <activity android:name=".modules.introwizerd.IntroWizardActivity" />
@@ -23,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.home.MainActivity"></activity>
+        <activity android:name=".modules.home.MainActivity" />
     </application>
 
 </manifest>
