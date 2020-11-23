@@ -1,8 +1,8 @@
-package com.muslim_adel.sehatydoctors.remote.objects
+package com.muslim_adel.sehatydoctors.remote.objects.doctor
 
 import com.google.gson.annotations.SerializedName
 
-data class Doctor(
+data class DoctorProfileModel (
     @SerializedName("id")
     var id: Long,
     @SerializedName("featured")
@@ -72,7 +72,7 @@ data class Doctor(
     @SerializedName("profissionalTitleID")
     var profissionalTitleID: String,
     @SerializedName("sub_specialties")
-    var sub_specialties: String,
-
-
+    var sub_specialties: ArrayList<SubSpiecialityModel>,
+    @SerializedName("email")
+    var email: String,
 )

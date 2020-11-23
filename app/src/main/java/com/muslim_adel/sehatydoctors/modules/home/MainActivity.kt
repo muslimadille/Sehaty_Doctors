@@ -10,9 +10,11 @@ import com.muslim_adel.sehatydoctors.modules.home.fragments.ExstarsFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.HomeFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.OffersFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.ProfileFragment
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
+    var doctorProfileModel: DoctorProfileModel? =null
     var navK=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

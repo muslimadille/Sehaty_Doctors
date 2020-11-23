@@ -2,29 +2,48 @@ package com.muslim_adel.sehatydoctors.modules.home.fragments
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.setPadding
 import androidx.fragment.app.FragmentActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.CustomTabLayout
+import com.muslim_adel.sehatydoctors.modules.base.GlideObject
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsManageFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.TabsAdapter
 import com.muslim_adel.sehatydoctors.modules.profile.ClinicInfoFragment
 import com.muslim_adel.sehatydoctors.modules.profile.DoctorInfoFragment
+import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
+import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
+import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
+import com.muslim_adel.sehatydoctors.remote.objects.Offer
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
+import kotlinx.android.synthetic.main.fragment_offers.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.viewPager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.lang.Error
 
 
 class ProfileFragment : Fragment() {
     val listFragments = ArrayList<Fragment>()
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +59,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ObserveDoctorProfile()
         addFragment()
         setupViewPager()
     }
@@ -85,5 +105,87 @@ class ProfileFragment : Fragment() {
         listFragments.add(DoctorInfoFragment())
         listFragments.add(ClinicInfoFragment())
 
+    }
+    private  fun setProfileData(profileModel:DoctorProfileModel){
+        var img= view?.findViewById<ImageView>(R.id.doctor_img)
+        if(profileModel.featured!=""||profileModel.featured!=null){doctor_img?.setPadding(1,1,1,1)}
+        Glide.with(mContext!!).applyDefaultRequestOptions(
+            RequestOptions()
+                .placeholder(R.drawable.ic_camera_24)
+                .error(R.drawable.ic_camera_24))
+            .load(if (profileModel.featured!=null)profileModel.featured else "")
+            .centerCrop()
+            .into(img!!)
+        doctor_name_txt.text= "${ profileModel.firstName_ar } ${profileModel.lastName_ar}"
+        doctor_spieciality_txt.text=profileModel.profissionalTitle_ar
+
+    }
+    private fun ObserveDoctorProfile(){
+        onObserveStart()
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).fitchDoctorProfile()
+            .enqueue(object : Callback<BaseResponce<DoctorProfileModel>> {
+                override fun onFailure(call: Call<BaseResponce<DoctorProfileModel>>, t: Throwable) {
+                    alertNetwork(false)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<DoctorProfileModel>>,
+                    response: Response<BaseResponce<DoctorProfileModel>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                mContext!!.doctorProfileModel=it
+                                onObserveSuccess()
+                                setProfileData(it)
+                            }
+                        } else {
+                            onObservefaled()
+                        }
+
+                    } else {
+                        onObservefaled()
+                    }
+
+                }
+
+
+            })
+    }
+    private fun onObserveStart() {
+        doc_profile_progrss_lay?.visibility = View.VISIBLE
+        doc_profil_lay?.visibility = View.GONE
+        doc_profile_no_search_lay?.visibility = View.GONE
+    }
+
+    private fun onObserveSuccess() {
+        doc_profile_progrss_lay?.visibility = View.GONE
+        doc_profile_no_search_lay?.visibility = View.GONE
+
+        doc_profil_lay?.visibility = View.VISIBLE
+    }
+
+    private fun onObservefaled() {
+        doc_profile_no_search_lay?.visibility = View.VISIBLE
+        doc_profile_progrss_lay?.visibility = View.GONE
+        doc_profil_lay?.visibility = View.GONE
+    }
+    open fun alertNetwork(isExit: Boolean = false) {
+        val alertBuilder = AlertDialog.Builder(mContext!!)
+        //alertBuilder.setTitle(R.string.error)
+        alertBuilder.setMessage(R.string.no_internet)
+        if (isExit) {
+            alertBuilder.setPositiveButton(R.string.exit) { dialog: DialogInterface, _: Int -> mContext!!.finish() }
+        } else {
+            alertBuilder.setPositiveButton(R.string.dismiss) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
+        }
+        try {
+            if(!mContext!!.isFinishing){
+                alertBuilder.show()
+            }
+
+        }catch (e: Error){}
     }
 }

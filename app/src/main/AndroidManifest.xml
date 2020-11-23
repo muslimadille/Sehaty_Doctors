@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.offers.OfferDetailsActivity"></activity>
+        <activity android:name=".modules.profile.DoctorInfoDetailsActivity"></activity>
+        <activity android:name=".modules.offers.OfferDetailsActivity" />
         <activity android:name=".modules.home.schedual.AddNewReservationActivity" />
         <activity android:name=".modules.registration.SelectUserActivity" />
         <activity android:name=".modules.registration.RegisterationActivity" />

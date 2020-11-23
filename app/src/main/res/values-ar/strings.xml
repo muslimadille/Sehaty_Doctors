@@ -161,6 +161,13 @@
 
     <string name="doc_info">بيانات الطبيب</string>
     <string name="clinic_info">بيانات العيادة</string>
+    <string name="contacts">بيانات الإتصال</string>
+    <string name="abuot_doc">عن الدكتور</string>
+    <string name="spiciality_info">معلومات التخصص</string>
+    <string name="about_doc_title">معلومات عن الطبيب</string>
+    <string name="doc_contacts_title">بيانات الإتصال</string>
+    <string name="doc_prof_details_title">معلومات التخصص</string>
+
 
 
 

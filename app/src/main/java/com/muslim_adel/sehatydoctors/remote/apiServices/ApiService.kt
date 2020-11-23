@@ -1,6 +1,7 @@
 package com.muslim_adel.sehatydoctors.remote.apiServices
 import com.muslim_adel.sehatydoctors.remote.objects.*
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DaysModel
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
 import com.muslim_adel.sehatydoctors.utiles.Q
 import retrofit2.Call
@@ -106,4 +107,6 @@ interface ApiService {
     @GET(Q.GET_DOCTOR_OFFERS_API)
     fun fitchDoctorOffersList():Call<BaseResponce<List<Offer>>>
 
+    @GET(Q.GET_DOCTOR_PROFILE_API)
+    fun fitchDoctorProfile():Call<BaseResponce<DoctorProfileModel>>
 }

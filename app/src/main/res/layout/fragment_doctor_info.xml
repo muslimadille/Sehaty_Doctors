@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".modules.profile.ClinicInfoFragment">
     <androidx.cardview.widget.CardView
-        android:id="@+id/edit_profile_btn"
+        android:id="@+id/about_doc_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:layout_height="match_parent"
-                android:text=" عن الدكتور"
+                android:text="@string/abuot_doc"
                 android:textSize="14sp"
                 />
             <ImageView
@@ -65,7 +65,7 @@
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:id="@+id/clicnic_img_btn"
+        android:id="@+id/contacts_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
@@ -106,7 +106,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:layout_height="match_parent"
-                android:text="التخصصات الطبية"
+                android:text="@string/contacts"
                 android:textSize="14sp"
                 />
             <ImageView
@@ -123,7 +123,7 @@
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:id="@+id/clinic_price_btn"
+        android:id="@+id/sp_info_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
@@ -164,7 +164,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:layout_height="match_parent"
-                android:text="المؤهلات الطبية"
+                android:text="@string/spiciality_info"
                 android:textSize="14sp"
                 />
             <ImageView

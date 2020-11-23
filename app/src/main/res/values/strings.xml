@@ -158,6 +158,15 @@
 
     <string name="doc_info">Doctor Info</string>
     <string name="clinic_info">Clinic Info</string>
+    <string name="contacts">Contacts Info</string>
+    <string name="abuot_doc">About Doctor</string>
+    <string name="spiciality_info">Speciality Info</string>
+    <string name="about_doc_title">About Doctor</string>
+    <string name="doc_contacts_title">Contacts</string>
+    <string name="doc_prof_details_title">Specialty information</string>
+
+
+
 
 
 </resources>
