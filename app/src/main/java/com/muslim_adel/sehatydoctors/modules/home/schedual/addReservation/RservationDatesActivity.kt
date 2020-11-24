@@ -1,6 +1,5 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual
+package com.muslim_adel.sehatydoctors.modules.home.schedual.addReservation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
