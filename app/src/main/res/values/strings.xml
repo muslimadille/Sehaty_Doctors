@@ -130,7 +130,7 @@
     <string name="laboratory_details">Laboratory Details</string>
     <string name="test_typs">Select Test Type</string>
     <string name="avilable_dates">Available Dates</string>
-    <string name="to">to</string>
+    <string name="to">to: </string>
     <string name="pay_cash_in_clinic">Pay cash in clinic</string>
     <string name="laboratory">Laboratory</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -164,9 +164,8 @@
     <string name="about_doc_title">About Doctor</string>
     <string name="doc_contacts_title">Contacts</string>
     <string name="doc_prof_details_title">Specialty information</string>
-
-
-
+    <string name="av_dates_title">Dates</string>
+    <string name="from">from:</string>
 
 
 </resources>

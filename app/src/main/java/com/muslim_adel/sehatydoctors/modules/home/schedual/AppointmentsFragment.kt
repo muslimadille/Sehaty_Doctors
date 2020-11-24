@@ -6,6 +6,7 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
+import com.muslim_adel.sehatydoctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_appointments.*
 import kotlinx.android.synthetic.main.no_search_layout.*
 import retrofit2.Call
@@ -75,6 +77,7 @@ class AppointmentsFragment : Fragment() {
         initRVAdapter()
         appointmentsObserver()
         pickDate()
+        onAddNewResrvationClicked()
     }
 
     private fun appointmentsObserver() {
@@ -247,6 +250,14 @@ class AppointmentsFragment : Fragment() {
                 }, year, month, day
             )
             dpd.show()
+
+        }
+    }
+    private fun onAddNewResrvationClicked(){
+        add_date_btn.setOnClickListener{
+            val intent = Intent(mContext, RservationDatesActivity::class.java)
+            intent.putExtra("doc_id",mContext!!.preferences!!.getInteger(Q.USER_ID,0))
+            mContext!!.startActivity(intent)
 
         }
     }
