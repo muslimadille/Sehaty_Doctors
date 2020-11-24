@@ -35,38 +35,11 @@ class ReservationTimesAdapter(
             if(time.status=="1"){
                 holder.time_txt.text = time.time
                 holder.time_txt.setOnClickListener {
-                   /* val intent = Intent(mContext, BookingActivity::class.java)
-                    intent.putExtra("date_id",mContext.date_id)
-                    intent.putExtra("firstName_ar",mContext.firstName_ar)
-                    intent.putExtra("firstName_en",mContext.firstName_en)
-                    intent.putExtra("lastName_ar",mContext.lastName_ar)
-                    intent.putExtra("lastName_en",mContext.lastName_en)
-                    intent.putExtra("featured",mContext.featured)
-                    intent.putExtra("doctor_id",mContext.doctor_id)
-                    intent.putExtra("phonenumber",mContext.phonenumber)
-                    intent.putExtra("price",mContext.price)
-                    intent.putExtra("profissionalTitle_ar",mContext.profissionalTitle_ar)
-                    intent.putExtra("profissionalTitle_en",mContext.profissionalTitle_en)
-                    intent.putExtra("streetName_ar",mContext.streetName_ar)
-                    intent.putExtra("streetName_en",mContext.streetName_en)
-                    intent.putExtra("datename",mContext.datename)
-                    intent.putExtra("timename",time.time)
-                    intent.putExtra("apartmentNum_ar",mContext.apartmentNum_ar)
-                    intent.putExtra("apartmentNum_en",mContext.apartmentNum_en)
-                    intent.putExtra("landmark_ar",mContext.landmark_ar)
-                    intent.putExtra("landmark_en",mContext.landmark_en)
-                    intent.putExtra("buildingNum_ar",mContext.buildingNum_ar)
-                    intent.putExtra("role",mContext.role)
-                    intent.putExtra("buildingNum_en",mContext.buildingNum_en)
-                    intent.putExtra("offer_id",mContext.id)
-                    if(mContext.key==1){
-                        intent.putExtra("key",1)
-                    }else{
-                        intent.putExtra("key",0)
-                    }
-
-                    mContext.startActivity(intent)*/
-                }
+                    val intent = Intent(mContext, AddNewReservationActivity::class.java)
+                    intent.putExtra("selected_date",mContext.selecteddate)
+                     intent.putExtra("date_name",mContext.datename)
+                     intent.putExtra("selected_time",time.time)
+                    mContext.startActivity(intent)}
             }else return
         }else{
             val time = list[position]

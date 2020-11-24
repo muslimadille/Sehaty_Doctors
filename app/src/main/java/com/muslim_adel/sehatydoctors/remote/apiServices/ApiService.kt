@@ -39,8 +39,6 @@ interface ApiService {
     fun sendBook(@Query("name") name:String,
                  @Query("email") email:String,
                  @Query("phonenumber") phonenumber: String,
-                 @Query("doctor_id") doctor_id:Int,
-                 @Query("checkbox") checkbox:Int,
                  @Query("booking_date") booking_date:String): Call<BaseResponce<Booking>>
 
     @POST(Q.OFFER_BOOKING_API)

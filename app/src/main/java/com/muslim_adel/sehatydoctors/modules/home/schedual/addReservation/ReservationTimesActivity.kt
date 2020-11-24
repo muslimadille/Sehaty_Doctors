@@ -24,8 +24,9 @@ class ReservationTimesActivity : BaseActivity() {
     private lateinit var apiClient: ApiClient
     private var timesList: MutableList<Times> = ArrayList()
     private var doctorDatesListAddapter: ReservationTimesAdapter? = null
-    private var datename=""
+    var datename=""
     var selecteddate=""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

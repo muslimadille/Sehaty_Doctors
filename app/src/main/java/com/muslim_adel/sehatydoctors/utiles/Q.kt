@@ -14,7 +14,7 @@ object Q {
     const val DOCTORS_DATES_API = "dates"
     const val DOCTORS_RATES_API = "ratings"
     const val DOCTOR_BY_ID_API="doctor/show"
-    const val BOOKING_API = "reservation"
+    const val BOOKING_API = "doctor/dashboard/reservations/add"
     const val GET_BOOKING_API="user/booking"
     const val BOOKING_CANCEL_API="user/booking/cancle"
     const val ABOUT_US_API="admin/aboutUs"
