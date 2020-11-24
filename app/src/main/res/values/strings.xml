@@ -166,6 +166,9 @@
     <string name="doc_prof_details_title">Specialty information</string>
     <string name="av_dates_title">Dates</string>
     <string name="from">from:</string>
+    <string name="doctor_type">Doctor</string>
+    <string name="lab_type">Laboratory</string>
+    <string name="pharm_type">Pharmacy</string>
 
 
 </resources>

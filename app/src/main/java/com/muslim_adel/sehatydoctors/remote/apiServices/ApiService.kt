@@ -10,6 +10,10 @@ import retrofit2.http.*
 interface ApiService {
     @POST(Q.LOGIN_API)
     fun login(@Query("email")email:String, @Query("password")password:String): Call<LoginResponce>
+    @POST(Q.LAB_LOGIN_API)
+    fun labLogin(@Query("email")email:String, @Query("password")password:String): Call<BaseResponce<Laboratory>>
+    @POST(Q.PARMACY_LOGIN_API)
+    fun pharmLogin(@Query("email")email:String, @Query("password")password:String): Call<LoginResponce>
 
     @POST(Q.REGISTER_API)
     @FormUrlEncoded

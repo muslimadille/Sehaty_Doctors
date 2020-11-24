@@ -7,6 +7,9 @@ object Q {
     /**..................api......................................***/
     const val BASE_URL = "https://laravelapi.sehakhanah.com/api/"
     const val LOGIN_API = "doctor/login"
+    const val PARMACY_LOGIN_API = "pharmacy/login"
+    const val LAB_LOGIN_API = "laboratory/login"
+
     const val REGISTER_API = "register"
     const val SPECIALTY_LIST_API = "specialties"
     const val REAGONS_LIST_API = "areas"

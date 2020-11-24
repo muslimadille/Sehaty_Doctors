@@ -11,6 +11,9 @@ class SelectUserActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_user)
+        onDoctorClicked()
+        onLabClicked()
+        onPharmacyClicked()
     }
     fun onDoctorClicked(){
         doctor_btn.setOnClickListener {

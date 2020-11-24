@@ -169,6 +169,9 @@
     <string name="doc_prof_details_title">معلومات التخصص</string>
     <string name="av_dates_title">مواعيد الحجز</string>
     <string name="from">من: </string>
+    <string name="doctor_type">طبيب</string>
+    <string name="lab_type">مختبر</string>
+    <string name="pharm_type">صيدلية</string>
 
 
 </resources>

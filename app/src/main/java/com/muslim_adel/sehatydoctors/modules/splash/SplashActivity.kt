@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
+import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.modules.introwizerd.IntroWizardActivity
 import com.muslim_adel.sehatydoctors.modules.registration.LoginActivity
+import com.muslim_adel.sehatydoctors.modules.registration.SelectUserActivity
 import com.muslim_adel.sehatydoctors.utiles.Q
 import java.util.*
 
@@ -19,6 +21,8 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        isLogin=preferences!!.getBoolean(Q.IS_LOGIN,false)
+        isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME,true)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME, Q.FIRST_TIME)
         if (isFristTime) {
             preferences!!.putString("language", "Arabic")
@@ -51,9 +55,15 @@ class SplashActivity : BaseActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                if(isLogin){
+                    val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    val intent = Intent(this@SplashActivity, SelectUserActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }, 2000)
 

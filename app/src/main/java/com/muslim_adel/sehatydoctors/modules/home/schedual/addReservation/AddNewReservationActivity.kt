@@ -37,7 +37,6 @@ class AddNewReservationActivity : BaseActivity() {
         selected_time=intent.getStringExtra("selected_time")!!
 
 
-
     }
     private fun setProfilrData(){
         getIntentValues()

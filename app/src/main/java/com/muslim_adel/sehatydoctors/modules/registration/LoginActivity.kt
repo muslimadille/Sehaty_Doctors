@@ -24,66 +24,10 @@ class LoginActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        registration_btn.setOnClickListener {
-            val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
-            startActivity(intent)
 
-        }
-        Login_btn.setOnClickListener {
+        onloginclicked()
+        onregisterclicked()
 
-            if (username.text.isNotEmpty() && login_password.text.isNotEmpty()) {
-                onObserveStart()
-                apiClient = ApiClient()
-                sessionManager = SessionManager(this)
-                apiClient.getApiService(this)
-                    .login(username.text.toString(), login_password.text.toString())
-                    .enqueue(object : Callback<LoginResponce> {
-                        override fun onFailure(call: Call<LoginResponce>, t: Throwable) {
-                            alertNetwork(true)
-                        }
-
-                        override fun onResponse(
-                            call: Call<LoginResponce>,
-                            response: Response<LoginResponce>
-                        ) {
-                            val loginResponse = response.body()
-                            if (loginResponse!!.success) {
-                                if (loginResponse?.data!!.status == 200 && loginResponse.data.user != null) {
-                                    username.text.clear()
-                                    login_password.text.clear()
-                                    sessionManager.saveAuthToken(loginResponse.data.token)
-                                    preferences!!.putBoolean(Q.IS_FIRST_TIME, false)
-                                    preferences!!.putBoolean(Q.IS_LOGIN, true)
-                                    preferences!!.putInteger(
-                                        Q.USER_ID,
-                                        loginResponse.data.user.id.toInt()
-                                    )
-
-                                    preferences!!.commit()
-                                    onObserveSuccess()
-                                    val intent =
-                                        Intent(this@LoginActivity, MainActivity::class.java)
-                                    startActivity(intent)
-                                    finish()
-                                }
-                            } else {
-                                onObservefaled()
-                                username.text.clear()
-                                login_password.text.clear()
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "كلمة المرور او البريد الالكتروني غير صحيح ",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-
-                        }
-
-
-                    })
-            }
-
-        }
     }
 
     private fun onObserveStart() {
@@ -96,6 +40,71 @@ class LoginActivity : BaseActivity() {
 
     private fun onObservefaled() {
         login_progrss_lay.visibility = View.GONE
+    }
+    private fun onloginclicked(){
+        Login_btn.setOnClickListener {
+            dctorLogin()
+        }
+    }
+    private fun onregisterclicked(){
+        registration_btn.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
+            startActivity(intent)
+
+        }
+    }
+    private fun dctorLogin(){
+        if (username.text.isNotEmpty() && login_password.text.isNotEmpty()) {
+            onObserveStart()
+            apiClient = ApiClient()
+            sessionManager = SessionManager(this)
+            apiClient.getApiService(this)
+                .login(username.text.toString(), login_password.text.toString())
+                .enqueue(object : Callback<LoginResponce> {
+                    override fun onFailure(call: Call<LoginResponce>, t: Throwable) {
+                        alertNetwork(true)
+                    }
+
+                    override fun onResponse(
+                        call: Call<LoginResponce>,
+                        response: Response<LoginResponce>
+                    ) {
+                        val loginResponse = response.body()
+                        if (loginResponse!!.success) {
+                            if (loginResponse?.data!!.status == 200 && loginResponse.data.user != null) {
+                                username.text.clear()
+                                login_password.text.clear()
+                                sessionManager.saveAuthToken(loginResponse.data.token)
+                                preferences!!.putBoolean(Q.IS_FIRST_TIME, false)
+                                preferences!!.putBoolean(Q.IS_LOGIN, true)
+                                preferences!!.putInteger(
+                                    Q.USER_ID,
+                                    loginResponse.data.user.id.toInt()
+                                )
+
+                                preferences!!.commit()
+                                onObserveSuccess()
+                                val intent =
+                                    Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                        } else {
+                            onObservefaled()
+                            username.text.clear()
+                            login_password.text.clear()
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "كلمة المرور او البريد الالكتروني غير صحيح ",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
+
+
+                })
+        }
     }
 
 }
