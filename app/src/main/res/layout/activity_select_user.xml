@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    android:background="@drawable/bg"
     tools:context=".modules.registration.SelectUserActivity">
     <ScrollView
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="2dp"
+                    app:cardCornerRadius="8dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
@@ -75,7 +75,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/lab_btn"
-                    cardCornerRadius="2dp"
+                    app:cardCornerRadius="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
@@ -121,7 +121,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/pharmacy_btn"
-                    cardCornerRadius="2dp"
+                    app:cardCornerRadius="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
@@ -186,7 +186,7 @@
                 android:layout_marginTop="160dp"
                 android:gravity="center"
                 android:text="اختر نوع الحساب"
-                android:textColor="@color/gray"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"

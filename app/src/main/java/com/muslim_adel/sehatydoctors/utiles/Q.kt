@@ -40,8 +40,16 @@ object Q {
     const val GET_ALL_RESERVATIONS_API="doctor/dashboard/reservations"
     const val GET_DOCTOR_OFFERS_API="doctor/dashboard/offers"
     const val GET_DOCTOR_PROFILE_API="doctor/dashboard/profile"
-    /**------------------doctor---------------------------------*/
+    /**------------------pharmacy---------------------------------*/
     const val GET_PHARMACY_OFFERS_API="pharmacy/dashboard/offers"
+    const val GET_PHARM_BY_ID_API="pharmacy/offer/show"
+    /**------------------labs---------------------------------*/
+    const val GET_ALL_LAB_RESERVATIONS_API="laboratory/dashboard/reservations"
+    const val SEND_LAB_RESERVATIONS_API="laboratory/dashboard/reservations/add"
+
+
+
+
 
 
 

@@ -9,10 +9,7 @@ import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.Date
-import com.muslim_adel.sehatydoctors.remote.objects.Dates
-import com.muslim_adel.sehatydoctors.remote.objects.Times
+import com.muslim_adel.sehatydoctors.remote.objects.*
 import com.muslim_adel.sehatydoctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_reservation_times.*
 import retrofit2.Call
@@ -31,8 +28,17 @@ class ReservationTimesActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reservation_times)
+        when(preferences!!.getString(Q.USER_TYPE,"")){
+            Q.USER_DOCTOR->{
+                doctorDateObserver()
+            }
+            Q.USER_LAB->{
+                labObserver()
+            }
+            Q.USER_PHARM->{}
+
+        }
         initRVAdapter()
-        doctorDateObserver()
     }
     private fun initRVAdapter() {
         doctorDatesListAddapter = ReservationTimesAdapter(this, timesList)
@@ -95,6 +101,66 @@ class ReservationTimesActivity : BaseActivity() {
 
                     } else {
                         Toast.makeText(this@ReservationTimesActivity, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
+    private fun labObserver() {
+        var dateId=intent.getIntExtra("date_id",0)
+        var doctor_id=preferences!!.getInteger(Q.USER_ID,0)
+        val url = Q.GET_LAB_BY_ID_API +"/${doctor_id}"
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).fitchLabById(url)
+            .enqueue(object : Callback<BaseResponce<Laboratory>> {
+                override fun onFailure(call: Call<BaseResponce<Laboratory>>, t: Throwable) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<Laboratory>>,
+                    response: Response<BaseResponce<Laboratory>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+
+
+                                it.dates.forEach {date:Date ->
+                                    if(date.id==dateId){
+                                        if (preferences!!.getString("language","")=="Arabic"){
+                                            datename=date.day_ar+" "+date.date
+                                            day_name.text=date.day_ar+" "+date.date
+                                            selecteddate=date.date
+                                        }else{
+                                            datename=date.day_en+" "+date.date
+                                            day_name.text=date.day_en+" "+date.date
+                                            selecteddate=date.date
+                                        }
+
+                                        date.times.forEach {time:Times->
+                                            if(time.status=="1"){
+                                                timesList.add(time)
+                                            }
+                                        }
+                                        doctorDatesListAddapter!!.notifyDataSetChanged()
+                                    }
+                                }
+                                doctorDatesListAddapter!!.notifyDataSetChanged()
+                                Toast.makeText(this@ReservationTimesActivity, "success", Toast.LENGTH_SHORT).show()
+
+                            }
+                        } else {
+                            Toast.makeText(this@ReservationTimesActivity, "faid", Toast.LENGTH_SHORT).show()
+
+                        }
+
+                    } else {
+                        Toast.makeText(this@ReservationTimesActivity, "connect faid", Toast.LENGTH_SHORT).show()
+
                     }
 
                 }

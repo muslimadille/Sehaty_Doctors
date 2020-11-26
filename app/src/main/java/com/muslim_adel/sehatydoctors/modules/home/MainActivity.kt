@@ -11,6 +11,7 @@ import com.muslim_adel.sehatydoctors.modules.home.fragments.ExstarsFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.HomeFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.OffersFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.ProfileFragment
+import com.muslim_adel.sehatydoctors.modules.profile.pharmacy.PharmacyProfileFragment
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
 import com.muslim_adel.sehatydoctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_main.*
@@ -146,7 +147,7 @@ class MainActivity : BaseActivity() {
         val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_offers -> {
-                    val fragment = ProfileFragment()
+                    val fragment = PharmacyProfileFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
                         .commit()
                     return@OnNavigationItemSelectedListener true
@@ -171,13 +172,13 @@ class MainActivity : BaseActivity() {
 
         when (navK) {
 
-            1 -> {
+            0 -> {
                 bottomNavigationView.selectedItemId = R.id.navigation_offers
             }
-            2 -> {
+            1 -> {
                 bottomNavigationView.selectedItemId = R.id.navigation_appointment
             }
-            3 -> {
+            2 -> {
                 bottomNavigationView.selectedItemId = R.id.navigation_extras
             }
         }

@@ -52,12 +52,19 @@ class AddNewReservationActivity : BaseActivity() {
     }
     private fun onBookingClicked(){
         booking_btn.setOnClickListener {
-           // if(key==1){
-               // offerDateObserver()
+            when(preferences!!.getString(Q.USER_TYPE,"")){
+                Q.USER_DOCTOR->{
+                    doctorDateObserver()
+                }
+                Q.USER_LAB->{
+                    labDateObserver()
+                }
+                Q.USER_PHARM->{}
 
-           // }else{
-                doctorDateObserver()
-           // }
+            }
+
+
+
         }
     }
     private fun doctorDateObserver() {
@@ -70,6 +77,48 @@ class AddNewReservationActivity : BaseActivity() {
             apiClient = ApiClient()
             sessionManager = SessionManager(this)
             apiClient.getApiService(this).sendBook(name,email,phone,booking_date)
+                .enqueue(object : Callback<BaseResponce<Booking>> {
+                    override fun onFailure(call: Call<BaseResponce<Booking>>, t: Throwable) {
+                        alertNetwork(true)
+                    }
+
+                    override fun onResponse(
+                        call: Call<BaseResponce<Booking>>,
+                        response: Response<BaseResponce<Booking>>
+                    ) {
+                        if (response!!.isSuccessful) {
+                            if (response.body()!!.success) {
+                                Toast.makeText(this@AddNewReservationActivity, "SUCCESS", Toast.LENGTH_SHORT).show()
+                                intent= Intent(this@AddNewReservationActivity,MainActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                Toast.makeText(this@AddNewReservationActivity, "faild", Toast.LENGTH_SHORT).show()
+                            }
+
+
+                        } else {
+                            Toast.makeText(this@AddNewReservationActivity, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+
+
+                })
+        }else{
+            Toast.makeText(this, "الرجاء أدخل بيانات صحيحة", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+    private fun labDateObserver() {
+        var booking_date="${selected_date} ${selected_time}"
+        var name=username.text.toString()
+        var phone=phone_num.text.toString()
+        var email=mail_txt.text.toString()
+
+        if(!name.isInt()&&name.isNotEmpty()&&phone.isInt()&&phone.length==10){
+            apiClient = ApiClient()
+            sessionManager = SessionManager(this)
+            apiClient.getApiService(this).sendLabBook(name,email,phone,booking_date)
                 .enqueue(object : Callback<BaseResponce<Booking>> {
                     override fun onFailure(call: Call<BaseResponce<Booking>>, t: Throwable) {
                         alertNetwork(true)

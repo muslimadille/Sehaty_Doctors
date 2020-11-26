@@ -70,11 +70,22 @@ class AppointmentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        when(mContext!!.preferences!!.getString(Q.USER_TYPE,"")){
+            Q.USER_DOCTOR->{
+                appointmentsObserver()
+                onAddNewResrvationClicked()
+            }
+            Q.USER_LAB->{
+                labAppointmentsObserver()
+                onAddNewResrvationClicked()
+            }
+            Q.USER_PHARM->{}
+
+        }
+
         calenderHandeler()
         initRVAdapter()
-        appointmentsObserver()
         pickDate()
-        onAddNewResrvationClicked()
     }
 
     private fun appointmentsObserver() {
@@ -82,6 +93,59 @@ class AppointmentsFragment : Fragment() {
         sessionManager = SessionManager(mContext!!)
         onObserveStart()
         apiClient.getApiService(mContext!!).fitchAllReservationsList()
+            .enqueue(object : Callback<BaseResponce<List<ReservationModel>>> {
+                override fun onFailure(call: Call<BaseResponce<List<ReservationModel>>>, t: Throwable) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<ReservationModel>>>,
+                    response: Response<BaseResponce<List<ReservationModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    onObserveSuccess()
+                                    allReservationsList.addAll(it)
+                                    var cd="$currentyear-$currentmonth-$currentday"
+                                    it.forEach { reservation:ReservationModel->
+                                        if(reservation.booking_date.contains(cd)){
+                                            reservation.date=reservation.booking_date.split(" ")[0]
+                                            reservation.time=reservation.booking_date.split(" ")[1]
+                                            filteredReservationsList.add(reservation)
+                                        }
+
+                                    }
+                                    if(filteredReservationsList.isEmpty()){
+                                        onObservefaled()
+                                    }else{
+                                        onObserveSuccess()
+                                    }
+
+                                } else {
+                                    onObservefaled()
+                                }
+
+                            }
+                        } else {
+                            onObservefaled()
+                        }
+
+                    } else {
+                        onObservefaled()
+                    }
+
+                }
+
+
+            })
+    }
+    private fun labAppointmentsObserver() {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        onObserveStart()
+        apiClient.getApiService(mContext!!).fitchAllLabReservationsList()
             .enqueue(object : Callback<BaseResponce<List<ReservationModel>>> {
                 override fun onFailure(call: Call<BaseResponce<List<ReservationModel>>>, t: Throwable) {
                     alertNetwork(true)

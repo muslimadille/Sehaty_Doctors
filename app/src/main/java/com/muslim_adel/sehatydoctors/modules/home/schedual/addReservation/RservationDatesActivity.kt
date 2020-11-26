@@ -11,6 +11,7 @@ import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
 import com.muslim_adel.sehatydoctors.remote.objects.Date
 import com.muslim_adel.sehatydoctors.remote.objects.Dates
+import com.muslim_adel.sehatydoctors.remote.objects.Laboratory
 import com.muslim_adel.sehatydoctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_rservation_dates.*
 import retrofit2.Call
@@ -28,8 +29,19 @@ class RservationDatesActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rservation_dates)
+
+        when(preferences!!.getString(Q.USER_TYPE,"")){
+            Q.USER_DOCTOR->{
+                doctorDateObserver()
+            }
+            Q.USER_LAB->{
+                labObserver()
+            }
+            Q.USER_PHARM->{}
+
+        }
         initRVAdapter()
-        doctorDateObserver()
+
     }
     private fun initRVAdapter() {
         val layoutManager= LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -78,6 +90,50 @@ class RservationDatesActivity : BaseActivity() {
 
                     } else {
                         Toast.makeText(this@RservationDatesActivity, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
+    private fun labObserver() {
+        docId=intent.getIntExtra("doc_id",0)
+        val url = Q.GET_LAB_BY_ID_API +"/${docId}"
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).fitchLabById(url)
+            .enqueue(object : Callback<BaseResponce<Laboratory>> {
+                override fun onFailure(call: Call<BaseResponce<Laboratory>>, t: Throwable) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<Laboratory>>,
+                    response: Response<BaseResponce<Laboratory>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+
+
+                                it.dates.forEach {date:Date ->
+                                    if(date.status==1){
+                                        doctorDatesList.add(date)
+                                    }
+                                }
+                                doctorDatesListAddapter!!.notifyDataSetChanged()
+                                Toast.makeText(this@RservationDatesActivity, "success", Toast.LENGTH_SHORT).show()
+
+                            }
+                        } else {
+                            Toast.makeText(this@RservationDatesActivity, "faid", Toast.LENGTH_SHORT).show()
+
+                        }
+
+                    } else {
+                        Toast.makeText(this@RservationDatesActivity, "connect faid", Toast.LENGTH_SHORT).show()
+
                     }
 
                 }

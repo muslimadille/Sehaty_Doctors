@@ -44,6 +44,11 @@ interface ApiService {
                  @Query("email") email:String,
                  @Query("phonenumber") phonenumber: String,
                  @Query("booking_date") booking_date:String): Call<BaseResponce<Booking>>
+    @POST(Q.SEND_LAB_RESERVATIONS_API)
+    fun sendLabBook(@Query("name") name:String,
+                 @Query("email") email:String,
+                 @Query("phonenumber") phonenumber: String,
+                 @Query("booking_date") booking_date:String): Call<BaseResponce<Booking>>
 
     @POST(Q.OFFER_BOOKING_API)
     fun sendOfferBook(@Query("name") name:String,
@@ -114,5 +119,11 @@ interface ApiService {
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)
     fun fitchPharmacyOffersList():Call<BaseResponce<List<PharmacyOffer>>>
+    @GET
+    fun fitchPharmacyById(@Url url:String):Call<BaseResponce<PharmacyOffer>>
+    /**---------------------------------------------labs----------------------------------------------------*/
+    @GET(Q.GET_ALL_LAB_RESERVATIONS_API)
+    fun fitchAllLabReservationsList():Call<BaseResponce<List<ReservationModel>>>
+
 
 }
