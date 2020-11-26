@@ -111,4 +111,8 @@ interface ApiService {
 
     @GET(Q.GET_DOCTOR_PROFILE_API)
     fun fitchDoctorProfile():Call<BaseResponce<DoctorProfileModel>>
+    /**---------------------------------------------pharmacy----------------------------------------------------*/
+    @GET(Q.GET_PHARMACY_OFFERS_API)
+    fun fitchPharmacyOffersList():Call<BaseResponce<List<PharmacyOffer>>>
+
 }

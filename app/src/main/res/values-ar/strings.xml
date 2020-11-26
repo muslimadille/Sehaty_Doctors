@@ -19,6 +19,10 @@
     <string name="edite_password">تعديل كلمة الرور</string>
 
     <string name="search">البحث</string>
+    <string name="Shift">صيدلية خافرة</string>
+    <string name="go_to_location">الذهاب للموقع</string>
+
+
 
     <string name="search_by_name">ابحث بأسم الدكتور</string>
     <string name="search_by_spicialist">بحث حسب التخصص</string>

@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.modules.offers.OffersListAdapter
+import com.muslim_adel.sehatydoctors.modules.pharmacyOffers.PharmacyOffersAdapter
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
 import com.muslim_adel.sehatydoctors.remote.objects.Offer
+import com.muslim_adel.sehatydoctors.remote.objects.PharmacyOffer
 import com.muslim_adel.sehatydoctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_offers.*
 import retrofit2.Call
@@ -28,7 +30,11 @@ import java.lang.Error
 
 class OffersFragment : Fragment() {
     private var offersList: MutableList<Offer> = ArrayList()
+    private var pharmacyOffersList: MutableList<PharmacyOffer> = ArrayList()
+
     private var offersListAddapter: OffersListAdapter? = null
+    private var pharmacyOffersListAddapter: PharmacyOffersAdapter? = null
+
     private var key=0
     private var title=""
 
@@ -45,10 +51,21 @@ class OffersFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-        offersObserver()
-        initRVAdapter()
+        when(mContext!!.preferences!!.getString(Q.USER_TYPE,"")){
+            Q.USER_DOCTOR->{
+                offersObserver()
+                initRVAdapter()
+            }
+            Q.USER_PHARM->{
+                initRVAdapter()
+                pharmacyOffersObserver()
+            }
+            Q.USER_LAB->{}
+
+
+        }
+
     }
 
     var mContext: MainActivity? = null
@@ -100,28 +117,69 @@ class OffersFragment : Fragment() {
 
             })
     }
+    private fun pharmacyOffersObserver() {
+        onObserveStart()
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).fitchPharmacyOffersList()
+            .enqueue(object : Callback<BaseResponce<List<PharmacyOffer>>> {
+                override fun onFailure(call: Call<BaseResponce<List<PharmacyOffer>>>, t: Throwable) {
+                    alertNetwork(false)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<PharmacyOffer>>>,
+                    response: Response<BaseResponce<List<PharmacyOffer>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    pharmacyOffersList.addAll(it)
+                                    pharmacyOffersListAddapter!!.notifyDataSetChanged()
+                                    onObserveSuccess()
+                                } else {
+                                    onObservefaled()
+                                }
+
+                            }
+                        } else {
+                            onObservefaled()
+                        }
+
+                    } else {
+                        onObservefaled()
+                    }
+
+                }
+
+
+            })
+    }
     private fun initRVAdapter() {
-        val layoutManager = LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
+
         val offersLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
         category_offers_rv.layoutManager = offersLayoutManager
         offersListAddapter = OffersListAdapter(mContext!!, offersList)
         category_offers_rv.adapter = offersListAddapter
 
-    }
+        val pharmacyOffersLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+        category_offers_rv.layoutManager = pharmacyOffersLayoutManager
+        pharmacyOffersListAddapter = PharmacyOffersAdapter(mContext!!, pharmacyOffersList)
+        category_offers_rv.adapter = pharmacyOffersListAddapter
 
+    }
     private fun onObserveStart() {
         progrss_lay?.visibility = View.VISIBLE
         category_offers_rv?.visibility = View.GONE
         no_search_lay?.visibility = View.GONE
     }
-
     private fun onObserveSuccess() {
         progrss_lay?.visibility = View.GONE
         no_search_lay?.visibility = View.GONE
 
         category_offers_rv?.visibility = View.VISIBLE
     }
-
     private fun onObservefaled() {
         no_search_lay?.visibility = View.VISIBLE
         progrss_lay?.visibility = View.GONE

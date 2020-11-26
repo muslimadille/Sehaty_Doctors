@@ -48,5 +48,7 @@ data class Pharmacy (
     @SerializedName("lat")
     var lat: Double,
     @SerializedName("lng")
-    var lng: Double
+    var lng: Double,
+    @SerializedName("shift")
+    var shift: Int
 )

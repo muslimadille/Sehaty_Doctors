@@ -6,6 +6,9 @@
     <string name="contact_us">contact us</string>
     <string name="about_us">about us</string>
     <string name="search">Search</string>
+    <string name="Shift">24 Hours </string>
+    <string name="go_to_location">Go To Location</string>
+
 
     <string name="prefrances">favorites</string>
     <string name="log_out">log out</string>
