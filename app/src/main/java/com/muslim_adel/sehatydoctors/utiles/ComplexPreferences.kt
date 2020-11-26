@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 
 class ComplexPreferences @SuppressLint("CommitPrefEdits") constructor(context: Context, namePreferences: String?, mode: Int) {
 
@@ -27,12 +28,16 @@ class ComplexPreferences @SuppressLint("CommitPrefEdits") constructor(context: C
     companion object {
         private var complexPreferences: ComplexPreferences? = null
 
-        fun getComplexPreferences(context: Context,
-                                  namePreferences: String, mode: Int): ComplexPreferences {
+        fun getComplexPreferences(
+            context: Context?,
+            namePreferences: String, mode: Int): ComplexPreferences {
 
             if (complexPreferences == null) {
-                complexPreferences = ComplexPreferences(context,
-                    namePreferences, mode)
+                complexPreferences = context?.let {
+                    ComplexPreferences(
+                        it,
+                        namePreferences, mode)
+                }
             }
 
             complexPreferences.let { return it!! }

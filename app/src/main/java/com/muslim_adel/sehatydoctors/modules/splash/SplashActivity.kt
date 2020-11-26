@@ -24,11 +24,7 @@ class SplashActivity : BaseActivity() {
         isLogin=preferences!!.getBoolean(Q.IS_LOGIN,false)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME,true)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME, Q.FIRST_TIME)
-        if (isFristTime) {
-            preferences!!.putString("language", "Arabic")
-            preferences!!.commit()
-
-        }
+        
         setLocalization()
         handelSpalash()
 
@@ -51,7 +47,7 @@ class SplashActivity : BaseActivity() {
             if (isFristTime) {
                 preferences!!.putString("language", "Arabic")
                 preferences!!.commit()
-                val intent = Intent(this@SplashActivity, IntroWizardActivity::class.java)
+                val intent = Intent(this@SplashActivity, SelectUserActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {

@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.muslim_adel.sehatydoctors.R
+import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.remote.objects.Offer
 import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
 import com.muslim_adel.sehatydoctors.utiles.Q
@@ -26,7 +26,7 @@ class OffersListAdapter(
 ) : RecyclerView.Adapter<OffersListAdapter.ViewHolder>() {
     var preferences: ComplexPreferences? = null
     init {
-        preferences = ComplexPreferences.getComplexPreferences(mContext, Q.PREF_FILE, Q.MODE_PRIVATE)
+        preferences = ComplexPreferences.getComplexPreferences(mContext as MainActivity, Q.PREF_FILE, Q.MODE_PRIVATE)
     }
 
 

@@ -32,7 +32,7 @@ class SelectUserActivity : BaseActivity() {
     fun onPharmacyClicked(){
         pharmacy_btn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
-            intent.putExtra("key",2)
+            intent.putExtra("key",3)
             startActivity(intent)
         }
     }

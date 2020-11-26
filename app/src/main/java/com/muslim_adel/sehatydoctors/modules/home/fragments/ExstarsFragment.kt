@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.profile.settings.ChangeLanguageActivity
+import com.muslim_adel.sehatydoctors.modules.profile.settings.ContactUsActivity
 import com.muslim_adel.sehatydoctors.modules.splash.SplashActivity
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.utiles.Q
@@ -25,6 +27,8 @@ class ExstarsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         sessionManager = SessionManager(mContext!!)
         onLogoutClicked()
+        onChangeLanguageClicked()
+        onContactUsClicked()
 
 
     }
@@ -53,6 +57,18 @@ class ExstarsFragment : Fragment() {
             val intent = Intent(mContext, SplashActivity::class.java)
             startActivity(intent)
             mContext!!.finish()
+        }
+    }
+    private  fun onChangeLanguageClicked(){
+        stn_language_btn.setOnClickListener {
+            val intent = Intent(mContext, ChangeLanguageActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    private fun onContactUsClicked(){
+        help_btn.setOnClickListener {
+            val intent = Intent(context, ContactUsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -78,6 +78,14 @@ object Q {
     var USER_ID="user_id"
     var USER_GENDER="gender_id"
     var USER_BIRTH="USER_BIRTH"
+    var USER_TYPE="user_type"
+    var USER_DOCTOR="user_doctor"
+    var USER_LAB="user_lab"
+    var USER_PHARM="user_pharm"
+
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 package com.muslim_adel.sehatydoctors.modules.home.fragments
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +11,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.CustomTabLayout
+import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsFragment
-import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsManageFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.TabsAdapter
 import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
 import com.muslim_adel.sehatydoctors.utiles.Q
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.layout.home_fragment, container, false)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        preferences = ComplexPreferences.getComplexPreferences(context as FragmentActivity, Q.PREF_FILE, Q.MODE_PRIVATE)
+        preferences = ComplexPreferences.getComplexPreferences(mContext, Q.PREF_FILE, Q.MODE_PRIVATE)
         addFragment()
         setupViewPager()
 
@@ -43,10 +43,10 @@ class HomeFragment : Fragment() {
                     tab.text =getString(R.string.appointments)
 
                 }
-                1 -> {
+               /* 1 -> {
                     tab.text = getString(R.string.appointments_manage)
 
-                }
+                }*/
 
             }
             viewPager.setCurrentItem(tab.position, true)
@@ -60,8 +60,17 @@ class HomeFragment : Fragment() {
 
     fun addFragment() {
         listFragments.add(AppointmentsFragment())
-        listFragments.add(AppointmentsManageFragment())
+        //listFragments.add(AppointmentsManageFragment())
 
+    }
+    var mContext: MainActivity? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context as MainActivity
+    }
+    override fun onDetach() {
+        super.onDetach()
+        mContext = context as MainActivity
     }
 
 

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -194,7 +195,7 @@ class AppointmentsFragment : Fragment() {
         currentmonth = monthformat.format(Date()).toInt()
         currentday = dayformat.format(Date()).toInt()
         var dayName=""
-        when (calendar.get(Calendar.DAY_OF_WEEK)){
+        when (calendar.get(Calendar.DAY_OF_WEEK+1)){
             1->{dayName=mContext!!.getString(R.string.sat)}
             2->{dayName=mContext!!.getString(R.string.sun)}
             3->{dayName=mContext!!.getString(R.string.mon)}
