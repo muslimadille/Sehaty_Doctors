@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
     var navK=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(preferences!!.getString(Q.USER_TYPE,"")!=Q.USER_PHARM){
+        if(preferences!!.getString(Q.USER_TYPE,"")==Q.USER_DOCTOR){
             setContentView(R.layout.activity_main)
             if (savedInstanceState == null) {
                 val fragment = HomeFragment()
@@ -28,7 +28,7 @@ class MainActivity : BaseActivity() {
                     .commit()
             }
             initBottomNavigation()
-        }else{
+        }else if (preferences!!.getString(Q.USER_TYPE,"")==Q.USER_PHARM){
             setContentView(R.layout.activity_main2)
             if (savedInstanceState == null) {
                 val fragment = HomeFragment()
@@ -37,6 +37,14 @@ class MainActivity : BaseActivity() {
             }
             initPharmacyBottomNavigation()
         }
+        else if (preferences!!.getString(Q.USER_TYPE,"")==Q.USER_LAB){
+            setContentView(R.layout.activity_main3)
+            if (savedInstanceState == null) {
+                val fragment = HomeFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                    .commit()
+            }
+            initLabBottomNavigation()        }
 
 
     }
@@ -87,6 +95,48 @@ class MainActivity : BaseActivity() {
                 bottomNavigationView.selectedItemId = R.id.navigation_appointment
             }
             3 -> {
+                bottomNavigationView.selectedItemId = R.id.navigation_extras
+            }
+        }
+    }
+    private fun initLabBottomNavigation(){
+
+        val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
+
+                    val fragment = HomeFragment()
+                    supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                        .commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_offers -> {
+                    val fragment = ProfileFragment()
+                    supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                        .commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+
+                R.id.navigation_extras->{
+                    val fragment = ExstarsFragment()
+                    supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                        .commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+            }
+            false
+        }
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        when (navK) {
+            0 -> {
+                bottomNavigationView.selectedItemId = R.id.navigation_home
+            }
+            1 -> {
+                bottomNavigationView.selectedItemId = R.id.navigation_offers
+            }
+
+            2 -> {
                 bottomNavigationView.selectedItemId = R.id.navigation_extras
             }
         }
