@@ -172,6 +172,8 @@
     <string name="doctor_type">Doctor</string>
     <string name="lab_type">Laboratory</string>
     <string name="pharm_type">Pharmacy</string>
+    <string name="clinic_services">Clinic Services</string>
+    <string name="Newly_joined">Newly joined</string>
 
 
 </resources>

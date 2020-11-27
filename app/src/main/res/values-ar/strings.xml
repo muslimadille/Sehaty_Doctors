@@ -103,7 +103,7 @@
     <string name="thanks">شكراً</string>
     <string name="done">تم حجزك بنجاح</string>
     <string name="derham">دينار</string>
-    <string name="price">السعر</string>
+    <string name="price">سعرالكشف</string>
 
     <string name="building_num">مبنى رقم:</string>
     <string name="Apartment_num">شقة رقم:</string>
@@ -176,6 +176,8 @@
     <string name="doctor_type">طبيب</string>
     <string name="lab_type">مختبر</string>
     <string name="pharm_type">صيدلية</string>
+    <string name="clinic_services">خدمات العيادة</string>
+    <string name="Newly_joined">منضم حديثا</string>
 
 
 </resources>

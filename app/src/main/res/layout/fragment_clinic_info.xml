@@ -55,7 +55,7 @@
                        android:layout_weight="1"
                        android:gravity="center_vertical"
                        android:layout_height="match_parent"
-                       android:text="اسم ورقم العيادة"
+                       android:text="@string/clinic_services"
                        android:textSize="14sp"
                        />
                    <ImageView
@@ -72,6 +72,7 @@
 
            </androidx.cardview.widget.CardView>
            <androidx.cardview.widget.CardView
+               android:visibility="gone"
                android:id="@+id/clicnic_img_btn"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
@@ -164,16 +165,32 @@
                            android:layout_marginStart="5dp"
                            android:background="@color/red"/>
                    </LinearLayout>
-                   <TextView
-                       android:layout_marginStart="10dp"
-                       android:layout_marginEnd="5dp"
+                   <LinearLayout
                        android:layout_width="0dp"
                        android:layout_weight="1"
-                       android:gravity="center_vertical"
-                       android:layout_height="match_parent"
-                       android:text="الكشف"
-                       android:textSize="14sp"
-                       />
+                       android:layout_height="match_parent">
+                       <TextView
+                           android:layout_marginStart="10dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_width="wrap_content"
+                           android:gravity="center_vertical"
+                           android:textStyle="bold"
+                           android:layout_height="match_parent"
+                           android:text="@string/price"
+                           android:textSize="14sp"
+                           />
+                       <TextView
+                           android:id="@+id/clinic_price_txt"
+                           android:layout_marginStart="10dp"
+                           android:layout_marginEnd="5dp"
+                           android:layout_width="0dp"
+                           android:layout_weight="1"
+                           android:gravity="center_vertical"
+                           android:layout_height="match_parent"
+                           android:text="@string/price"
+                           android:textSize="14sp"
+                           />
+                   </LinearLayout>
                    <ImageView
                        android:layout_marginStart="10dp"
                        android:layout_marginEnd="5dp"
@@ -229,7 +246,7 @@
                        android:layout_weight="1"
                        android:gravity="center_vertical"
                        android:layout_height="match_parent"
-                       android:text="عنوان العيادة"
+                       android:text="@string/address"
                        android:textSize="14sp"
                        />
                    <ImageView
