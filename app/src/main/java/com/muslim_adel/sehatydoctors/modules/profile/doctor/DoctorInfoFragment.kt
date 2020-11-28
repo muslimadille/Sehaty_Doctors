@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile
+package com.muslim_adel.sehatydoctors.modules.profile.doctor
 
 import android.app.Activity
 import android.content.Context
@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.profile.doctor.DoctorInfoDetailsActivity
 import kotlinx.android.synthetic.main.fragment_doctor_info.*
 
 // TODO: Rename parameter arguments, choose names that match

@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.profile.settings.ChangeLanguageActivity
-import com.muslim_adel.sehatydoctors.modules.profile.settings.ContactUsActivity
+import com.muslim_adel.sehatydoctors.modules.settings.ChangeLanguageActivity
+import com.muslim_adel.sehatydoctors.modules.settings.ContactUsActivity
 import com.muslim_adel.sehatydoctors.modules.splash.SplashActivity
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.utiles.Q

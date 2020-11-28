@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".modules.profile.ClinicInfoFragment">
+    tools:context=".modules.profile.doctor.ClinicInfoFragment">
    <ScrollView
        android:layout_width="match_parent"
        android:layout_height="wrap_content">

@@ -43,6 +43,7 @@
     <string name="female">أنثى</string>
     <string name="male">ذكر</string>
     <string name="save">سجل الآن</string>
+    <string name="save_profile">حفظ</string>
     <string name="login">تسجيل دخول</string>
     <string name="forget_password">هل نسيت كلمة المرور؟</string>
     <string name="rouls_conditions">الشروط والقوانين</string>
@@ -191,12 +192,20 @@
     <string name="device_name_english">اسم الجهاز(English)</string>
     <string name="date_from">تاريخ البدية</string>
     <string name="date_to">تاريخ الإنتهاء</string>
-
     <string name="select_category">اختر التصنيف</string>
     <string name="select_sub_category">اختر التصنيف الفرعي</string>
     <string name="select_service">اختر الخدمة</string>
     <string name="select_sub_service">اختر الخدمة الفرعية</string>
     <string name="select_unit">اختر الوحدة</string>
-
+    <string name="first_name_arabic">الأسم الأول(arabic)</string>
+    <string name="first_name_english">الأسم الأول(english)</string>
+    <string name="last_name_arabic"> الأسم الأخير(arabic)</string>
+    <string name="last_name_english">الأسم الأخير(english)</string>
+    <string name="number_of_days">عدد الأيام</string>
+    <string name="about_doctor_arabic">عن الطبيب(arabic)</string>
+    <string name="about_doctor_english">عن الطبيب(english)</string>
+    <string name="profional_title_arabic">اسم التخصص(arabic)</string>
+    <string name="professional_title_english"> اسم التخصص(english)</string>
+    <string name="profile_image">الصورة الشخصية</string>
 
 </resources>

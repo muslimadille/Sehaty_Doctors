@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile
+package com.muslim_adel.sehatydoctors.modules.profile.doctor
 
 import androidx.appcompat.app. AppCompatActivity
 import android.os.Bundle

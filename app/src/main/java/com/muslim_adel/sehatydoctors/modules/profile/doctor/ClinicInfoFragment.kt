@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile
+package com.muslim_adel.sehatydoctors.modules.profile.doctor
 
 import android.app.Activity
 import android.content.Context

@@ -39,6 +39,8 @@
     <string name="female">female</string>
     <string name="male">male</string>
     <string name="save">register now</string>
+    <string name="save_profile">save now</string>
+
     <string name="e_mail_or_mobile">e-mail or mobile number</string>
     <string name="login">login</string>
     <string name="forget_password">did you forget password?</string>
@@ -193,7 +195,16 @@
     <string name="select_service">Select Service</string>
     <string name="select_sub_service">Select Sub service</string>
     <string name="select_unit">Select Unit</string>
-
+    <string name="first_name_arabic">first name (arabic)</string>
+    <string name="first_name_english">first name (english)</string>
+    <string name="last_name_arabic">last name (arabic)</string>
+    <string name="last_name_english">last name (english)</string>
+    <string name="number_of_days">number of days</string>
+    <string name="about_doctor_arabic">about doctor (arabic)</string>
+    <string name="about_doctor_english">about doctor (english)</string>
+    <string name="profional_title_arabic">professional title (arabic)</string>
+    <string name="professional_title_english">professional title (english)</string>
+    <string name="profile_image">profile image</string>
 
 
 </resources>

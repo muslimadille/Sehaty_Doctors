@@ -564,7 +564,7 @@ class AddDpctorOfferActivity : BaseActivity() {
 
     }
     private fun validator(){
-        
+
     }
 
 }

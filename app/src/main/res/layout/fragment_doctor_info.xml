@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".modules.profile.ClinicInfoFragment">
+    tools:context=".modules.profile.doctor.ClinicInfoFragment">
     <androidx.cardview.widget.CardView
         android:id="@+id/about_doc_btn"
         android:layout_width="match_parent"

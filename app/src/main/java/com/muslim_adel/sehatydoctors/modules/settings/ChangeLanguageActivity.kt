@@ -1,7 +1,6 @@
-package com.muslim_adel.sehatydoctors.modules.profile.settings
+package com.muslim_adel.sehatydoctors.modules.settings
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.BaseActivity

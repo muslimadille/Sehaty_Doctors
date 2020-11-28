@@ -163,15 +163,26 @@ class OffersFragment : Fragment() {
     }
     private fun initRVAdapter() {
 
-        val offersLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
-        category_offers_rv.layoutManager = offersLayoutManager
-        offersListAddapter = OffersListAdapter(mContext!!, offersList)
-        category_offers_rv.adapter = offersListAddapter
+        when(mContext!!.preferences!!.getString(Q.USER_TYPE,"")){
+            Q.USER_DOCTOR->{
+                val offersLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+                category_offers_rv.layoutManager = offersLayoutManager
+                offersListAddapter = OffersListAdapter(mContext!!, offersList)
+                category_offers_rv.adapter = offersListAddapter
+            }
+            Q.USER_PHARM->{
+                val pharmacyOffersLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+                category_offers_rv.layoutManager = pharmacyOffersLayoutManager
+                pharmacyOffersListAddapter = PharmacyOffersAdapter(mContext!!, pharmacyOffersList)
+                category_offers_rv.adapter = pharmacyOffersListAddapter
+            }
+            Q.USER_LAB->{}
 
-        val pharmacyOffersLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
-        category_offers_rv.layoutManager = pharmacyOffersLayoutManager
-        pharmacyOffersListAddapter = PharmacyOffersAdapter(mContext!!, pharmacyOffersList)
-        category_offers_rv.adapter = pharmacyOffersListAddapter
+
+        }
+
+
+
 
     }
     private fun onObserveStart() {
@@ -180,10 +191,9 @@ class OffersFragment : Fragment() {
         no_search_lay?.visibility = View.GONE
     }
     private fun onObserveSuccess() {
+        category_offers_rv?.visibility = View.VISIBLE
         progrss_lay?.visibility = View.GONE
         no_search_lay?.visibility = View.GONE
-
-        category_offers_rv?.visibility = View.VISIBLE
     }
     private fun onObservefaled() {
         no_search_lay?.visibility = View.VISIBLE

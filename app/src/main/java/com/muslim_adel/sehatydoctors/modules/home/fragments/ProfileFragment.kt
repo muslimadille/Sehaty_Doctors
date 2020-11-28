@@ -3,6 +3,7 @@ package com.muslim_adel.sehatydoctors.modules.home.fragments
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.setPadding
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -18,22 +18,16 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.CustomTabLayout
-import com.muslim_adel.sehatydoctors.modules.base.GlideObject
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsFragment
-import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsManageFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.TabsAdapter
-import com.muslim_adel.sehatydoctors.modules.profile.ClinicInfoFragment
-import com.muslim_adel.sehatydoctors.modules.profile.DoctorInfoFragment
+import com.muslim_adel.sehatydoctors.modules.profile.doctor.ClinicInfoFragment
+import com.muslim_adel.sehatydoctors.modules.profile.doctor.DoctorEditProfileActivity
+import com.muslim_adel.sehatydoctors.modules.profile.doctor.DoctorInfoFragment
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.Offer
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
-import kotlinx.android.synthetic.main.fragment_offers.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.home_fragment.*
-import kotlinx.android.synthetic.main.home_fragment.viewPager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,6 +56,7 @@ class ProfileFragment : Fragment() {
         ObserveDoctorProfile()
         addFragment()
         setupViewPager()
+        onEditProfileClicked()
     }
     
     var mContext: MainActivity? = null
@@ -193,5 +188,11 @@ class ProfileFragment : Fragment() {
             }
 
         }catch (e: Error){}
+    }
+    private fun onEditProfileClicked(){
+        edit_doc_profile_btn.setOnClickListener {
+            mContext!!.intent= Intent(mContext,DoctorEditProfileActivity::class.java)
+            mContext!!.startActivity(mContext!!.intent)
+        }
     }
 }
