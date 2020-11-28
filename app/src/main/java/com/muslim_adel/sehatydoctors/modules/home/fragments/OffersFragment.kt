@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.offers.AddDpctorOfferActivity
 import com.muslim_adel.sehatydoctors.modules.offers.AddNewOfferActivity
 import com.muslim_adel.sehatydoctors.modules.offers.OffersListAdapter
 import com.muslim_adel.sehatydoctors.modules.pharmacyOffers.PharmacyOffersAdapter
@@ -58,6 +59,7 @@ class OffersFragment : Fragment() {
             Q.USER_DOCTOR->{
                 offersObserver()
                 initRVAdapter()
+                onAddDocOfferPressed()
             }
             Q.USER_PHARM->{
                 initRVAdapter()
@@ -207,6 +209,12 @@ class OffersFragment : Fragment() {
     private fun onAddPharmOfferPressed(){
         add_offer_btn.setOnClickListener {
             mContext!!.intent= Intent(mContext, AddNewOfferActivity::class.java)
+            mContext!!.startActivity(mContext!!.intent)
+        }
+    }
+    private fun onAddDocOfferPressed(){
+        add_offer_btn.setOnClickListener {
+            mContext!!.intent= Intent(mContext, AddDpctorOfferActivity::class.java)
             mContext!!.startActivity(mContext!!.intent)
         }
     }

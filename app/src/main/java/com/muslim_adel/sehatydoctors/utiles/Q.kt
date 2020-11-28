@@ -40,6 +40,17 @@ object Q {
     const val GET_ALL_RESERVATIONS_API="doctor/dashboard/reservations"
     const val GET_DOCTOR_OFFERS_API="doctor/dashboard/offers"
     const val GET_DOCTOR_PROFILE_API="doctor/dashboard/profile"
+    const val POST_DOC_OFFER_API="doctor/dashboard/offer/add"
+    const val DOC_OFFER_CATEGORIES_API="doctor/dashboard/offer/categories"
+    const val DOC_OFFER_SUB_CATEGORIES_API="doctor/dashboard/offer/sub-categories/"
+    const val DOC_OFFER_SERVICE_API="doctor/dashboard/offer/services/"
+    const val DOC_OFFER_SUB_SERVICE_API="doctor/dashboard/offer/sub-services/"
+    const val DOC_OFFER_UNITS_API="doctor/dashboard/offer/unit/"
+
+
+
+
+
     /**------------------pharmacy---------------------------------*/
     const val GET_PHARMACY_OFFERS_API="pharmacy/dashboard/offers"
     const val GET_PHARM_BY_ID_API="pharmacy/offer/show"

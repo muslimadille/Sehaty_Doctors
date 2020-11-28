@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.muslim_adel.sehatydoctors.R
@@ -22,6 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AddNewOfferActivity : BaseActivity() {
+
     private  val REQUEST_CODE = 13
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
@@ -151,6 +153,7 @@ class AddNewOfferActivity : BaseActivity() {
         private val IMAGE_CHOOSE = 1000;
         private val PERMISSION_CODE = 1001;
     }
+
 
 
 

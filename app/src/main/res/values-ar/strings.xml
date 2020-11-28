@@ -184,6 +184,19 @@
     <string name="offer_title_english">عنوان العرض (English)</string>
     <string name="offer_image">صورة العرض</string>
     <string name="add_offer">إضافة العرض</string>
+    <string name="unit_num">عدد الوحدات</string>
+    <string name="description_english">الوصف(English)</string>
+    <string name="description_arabic">الوصف(Arabic)</string>
+    <string name="device_name">اسم الجهاز(Arabic)</string>
+    <string name="device_name_english">اسم الجهاز(English)</string>
+    <string name="date_from">تاريخ البدية</string>
+    <string name="date_to">تاريخ الإنتهاء</string>
+
+    <string name="select_category">اختر التصنيف</string>
+    <string name="select_sub_category">اختر التصنيف الفرعي</string>
+    <string name="select_service">اختر الخدمة</string>
+    <string name="select_sub_service">اختر الخدمة الفرعية</string>
+    <string name="select_unit">اختر الوحدة</string>
 
 
 </resources>

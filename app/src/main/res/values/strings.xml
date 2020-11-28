@@ -180,6 +180,20 @@
     <string name="offer_title_english">Offer Title (English)</string>
     <string name="offer_image">Offer Image</string>
     <string name="add_offer">Add Offer</string>
+    <string name="unit_num">Units Number</string>
+    <string name="description_english">Description(English)</string>
+    <string name="description_arabic">Description(Arabic)</string>
+    <string name="device_name">Device Name(Arabic)</string>
+    <string name="device_name_english">Device Name(English)</string>
+    <string name="date_from">Date From</string>
+    <string name="date_to">Date To</string>
+
+    <string name="select_category">Select Category</string>
+    <string name="select_sub_category">Select Sub Category</string>
+    <string name="select_service">Select Service</string>
+    <string name="select_sub_service">Select Sub service</string>
+    <string name="select_unit">Select Unit</string>
+
 
 
 </resources>
