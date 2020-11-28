@@ -233,7 +233,7 @@
                                 android:padding="2dp"
                                 app:cardElevation="3dp">
                                 <ImageView
-                                    android:id="@+id/time_txt"
+                                    android:id="@+id/offer_img"
                                     android:layout_width="match_parent"
                                     android:layout_height="200dp"
                                     android:src="@drawable/ic__no_image_24"/>
