@@ -178,6 +178,8 @@
     <string name="pharm_type">صيدلية</string>
     <string name="clinic_services">خدمات العيادة</string>
     <string name="Newly_joined">منضم حديثا</string>
+    <string name="phone_number">رقم الجوال</string>
+    <string name="select_user_type">اختر نوع الحساب</string>
 
 
 </resources>

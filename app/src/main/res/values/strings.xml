@@ -91,7 +91,7 @@
     <string name="booking_dates">Booking Dates</string>
     <string name="booking_order">Booking Order</string>
     <string name="booking_check">i am booking for another patient</string>
-    <string name="language_setting">ضبط اللغة</string>
+    <string name="language_setting">Language Settings</string>
     <string name="lang_btn">Save</string>
     <string name="ratings">Ratings</string>
     <string name="thanks">Thanks</string>
@@ -174,6 +174,8 @@
     <string name="pharm_type">Pharmacy</string>
     <string name="clinic_services">Clinic Services</string>
     <string name="Newly_joined">Newly joined</string>
+    <string name="phone_number">Phone number</string>
+    <string name="select_user_type">Select User Type</string>
 
 
 </resources>

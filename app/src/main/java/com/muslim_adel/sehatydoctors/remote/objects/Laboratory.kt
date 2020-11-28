@@ -68,6 +68,10 @@ class Laboratory (
     @SerializedName("dates")
     var dates: ArrayList<Date>,
     @SerializedName("visitor_num")
-    var visitor_num: Int
+    var visitor_num: Int,
+    @SerializedName("phonenumber")
+    var phonenumber:  String,
+    @SerializedName("email")
+    var email:String,
 
 )

@@ -11,6 +11,7 @@ import com.muslim_adel.sehatydoctors.modules.home.fragments.ExstarsFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.HomeFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.OffersFragment
 import com.muslim_adel.sehatydoctors.modules.home.fragments.ProfileFragment
+import com.muslim_adel.sehatydoctors.modules.profile.labs.LabProfileFragment
 import com.muslim_adel.sehatydoctors.modules.profile.pharmacy.PharmacyProfileFragment
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
 import com.muslim_adel.sehatydoctors.utiles.Q
@@ -112,7 +113,7 @@ class MainActivity : BaseActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_offers -> {
-                    val fragment = ProfileFragment()
+                    val fragment = LabProfileFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
                         .commit()
                     return@OnNavigationItemSelectedListener true

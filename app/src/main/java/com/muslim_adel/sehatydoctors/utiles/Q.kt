@@ -46,6 +46,8 @@ object Q {
     /**------------------labs---------------------------------*/
     const val GET_ALL_LAB_RESERVATIONS_API="laboratory/dashboard/reservations"
     const val SEND_LAB_RESERVATIONS_API="laboratory/dashboard/reservations/add"
+    const val GET_LAB_PROFILE_API="laboratory/dashboard/profile"
+
 
 
 

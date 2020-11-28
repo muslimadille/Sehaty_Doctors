@@ -124,6 +124,8 @@ interface ApiService {
     /**---------------------------------------------labs----------------------------------------------------*/
     @GET(Q.GET_ALL_LAB_RESERVATIONS_API)
     fun fitchAllLabReservationsList():Call<BaseResponce<List<ReservationModel>>>
+    @GET(Q.GET_LAB_PROFILE_API)
+    fun fitchLabProfile():Call<BaseResponce<Laboratory>>
 
 
 }
