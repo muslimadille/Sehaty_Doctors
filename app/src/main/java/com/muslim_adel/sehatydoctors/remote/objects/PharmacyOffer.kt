@@ -14,8 +14,11 @@ data class PharmacyOffer (
     @SerializedName("featured")
     var featured: String,
     @SerializedName("pharmacy_id")
-    var pharmacy_id: String,
+    var pharmacy_id: Int,
     @SerializedName("pharmacy")
-    var pharmacy: Pharmacy
+    var pharmacy: Pharmacy,
+    @SerializedName("active")
+    var active: Int,
+
 
 )

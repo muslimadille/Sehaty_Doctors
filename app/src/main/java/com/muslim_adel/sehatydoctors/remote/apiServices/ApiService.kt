@@ -116,11 +116,17 @@ interface ApiService {
 
     @GET(Q.GET_DOCTOR_PROFILE_API)
     fun fitchDoctorProfile():Call<BaseResponce<DoctorProfileModel>>
+
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)
     fun fitchPharmacyOffersList():Call<BaseResponce<List<PharmacyOffer>>>
     @GET
     fun fitchPharmacyById(@Url url:String):Call<BaseResponce<PharmacyOffer>>
+    @POST(Q.POST_PHARM_OFFER_API)
+    fun addPharmOffer(@Query("title_ar") title_ar:String,
+                       @Query("title_en") title_en:String,
+                       @Query("price") price: String,
+                       @Query("featured") booking_date:String): Call<BaseResponce<PharmAddOfferModel>>
     /**---------------------------------------------labs----------------------------------------------------*/
     @GET(Q.GET_ALL_LAB_RESERVATIONS_API)
     fun fitchAllLabReservationsList():Call<BaseResponce<List<ReservationModel>>>

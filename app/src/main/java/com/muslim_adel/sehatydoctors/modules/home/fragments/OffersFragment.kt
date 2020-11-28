@@ -3,6 +3,7 @@ package com.muslim_adel.sehatydoctors.modules.home.fragments
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.offers.AddNewOfferActivity
 import com.muslim_adel.sehatydoctors.modules.offers.OffersListAdapter
 import com.muslim_adel.sehatydoctors.modules.pharmacyOffers.PharmacyOffersAdapter
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
@@ -60,6 +62,7 @@ class OffersFragment : Fragment() {
             Q.USER_PHARM->{
                 initRVAdapter()
                 pharmacyOffersObserver()
+                onAddPharmOfferPressed()
             }
             Q.USER_LAB->{}
 
@@ -200,6 +203,12 @@ class OffersFragment : Fragment() {
             }
 
         }catch (e: Error){}
+    }
+    private fun onAddPharmOfferPressed(){
+        add_offer_btn.setOnClickListener {
+            mContext!!.intent= Intent(mContext, AddNewOfferActivity::class.java)
+            mContext!!.startActivity(mContext!!.intent)
+        }
     }
 
 

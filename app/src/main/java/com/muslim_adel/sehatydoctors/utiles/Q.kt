@@ -43,6 +43,8 @@ object Q {
     /**------------------pharmacy---------------------------------*/
     const val GET_PHARMACY_OFFERS_API="pharmacy/dashboard/offers"
     const val GET_PHARM_BY_ID_API="pharmacy/offer/show"
+    const val POST_PHARM_OFFER_API="pharmacy/dashboard/offer/add"
+
     /**------------------labs---------------------------------*/
     const val GET_ALL_LAB_RESERVATIONS_API="laboratory/dashboard/reservations"
     const val SEND_LAB_RESERVATIONS_API="laboratory/dashboard/reservations/add"

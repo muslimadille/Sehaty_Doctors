@@ -176,6 +176,10 @@
     <string name="Newly_joined">Newly joined</string>
     <string name="phone_number">Phone number</string>
     <string name="select_user_type">Select User Type</string>
+    <string name="offer_title_arabic">Offer Title (Arabic)</string>
+    <string name="offer_title_english">Offer Title (English)</string>
+    <string name="offer_image">Offer Image</string>
+    <string name="add_offer">Add Offer</string>
 
 
 </resources>

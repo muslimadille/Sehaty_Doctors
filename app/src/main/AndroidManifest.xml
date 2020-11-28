@@ -3,6 +3,8 @@
     package="com.muslim_adel.sehatydoctors">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".modules.base.App"
@@ -12,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.pharmacyOffers.PharmacyDetailsActivity"></activity>
+        <activity android:name=".modules.offers.AddNewOfferActivity"></activity>
+        <activity android:name=".modules.pharmacyOffers.PharmacyDetailsActivity" />
         <activity android:name=".modules.profile.settings.ContactUsActivity" />
         <activity android:name=".modules.profile.settings.ChangeLanguageActivity" />
         <activity android:name=".modules.home.schedual.addReservation.ReservationTimesActivity" />

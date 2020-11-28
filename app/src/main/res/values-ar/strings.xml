@@ -180,6 +180,10 @@
     <string name="Newly_joined">منضم حديثا</string>
     <string name="phone_number">رقم الجوال</string>
     <string name="select_user_type">اختر نوع الحساب</string>
+    <string name="offer_title_arabic">عنوان العرض(عربي)</string>
+    <string name="offer_title_english">عنوان العرض (English)</string>
+    <string name="offer_image">صورة العرض</string>
+    <string name="add_offer">إضافة العرض</string>
 
 
 </resources>
