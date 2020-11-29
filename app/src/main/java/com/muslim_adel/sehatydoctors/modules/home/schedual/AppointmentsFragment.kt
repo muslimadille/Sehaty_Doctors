@@ -259,14 +259,14 @@ class AppointmentsFragment : Fragment() {
         currentmonth = monthformat.format(Date()).toInt()
         currentday = dayformat.format(Date()).toInt()
         var dayName=""
-        when (calendar.get(Calendar.DAY_OF_WEEK+1)){
-            1->{dayName=mContext!!.getString(R.string.sat)}
-            2->{dayName=mContext!!.getString(R.string.sun)}
-            3->{dayName=mContext!!.getString(R.string.mon)}
-            4->{dayName=mContext!!.getString(R.string.tus)}
-            5->{dayName=mContext!!.getString(R.string.wed)}
-            6->{dayName=mContext!!.getString(R.string.thu)}
-            7->{dayName=mContext!!.getString(R.string.fri)}
+        when (calendar.get(Calendar.DAY_OF_WEEK)){
+            1->{dayName=mContext!!.getString(R.string.sun)}
+            2->{dayName=mContext!!.getString(R.string.mon)}
+            3->{dayName=mContext!!.getString(R.string.tus)}
+            4->{dayName=mContext!!.getString(R.string.wed)}
+            5->{dayName=mContext!!.getString(R.string.thu)}
+            6->{dayName=mContext!!.getString(R.string.fri)}
+            7->{dayName=mContext!!.getString(R.string.sat)}
         }
         dates_page_date_txt.text="$dayName ${currentDate.split(" ")[0]}"
 

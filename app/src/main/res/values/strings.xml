@@ -205,6 +205,8 @@
     <string name="profional_title_arabic">professional title (arabic)</string>
     <string name="professional_title_english">professional title (english)</string>
     <string name="profile_image">profile image</string>
+    <string name="laboratory_name_arabic">laboratory name (arabic)</string>
+    <string name="laboratory_name_english">laboratory name (english)</string>
 
 
 </resources>

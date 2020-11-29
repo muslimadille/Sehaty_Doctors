@@ -57,6 +57,7 @@ class LabProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         labObserver()
         navToMap()
+        onEditClicked()
 
     }
 
@@ -166,6 +167,12 @@ class LabProfileFragment : Fragment() {
         }
         if (!mContext!!.isFinishing){
             alertBuilder.show()
+        }
+    }
+    private fun onEditClicked(){
+        lab_edit_profile_btn.setOnClickListener {
+            mContext!!.intent=Intent(mContext,LabEditProfileActivity::class.java)
+            mContext!!.startActivity(mContext!!.intent)
         }
     }
 }

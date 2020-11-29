@@ -67,7 +67,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/descound_txt"
                         app:layout_constraintHorizontal_bias="0.05"
@@ -79,9 +79,10 @@
                             app:cardElevation="5dp"
                             app:cardCornerRadius="8dp"
                             android:layout_margin="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:padding="15dp"
                             android:background="@color/white">
                             <TextView
                                 android:paddingTop="5dp"
@@ -94,6 +95,22 @@
                                 android:textColor="@color/blue"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
+
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/lab_edit_profile_btn"
+                            app:cardElevation="5dp"
+                            app:cardCornerRadius="8dp"
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:background="@color/white">
+                            <ImageView
+                                android:padding="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/edit_blue"/>
 
                         </androidx.cardview.widget.CardView>
 
