@@ -207,6 +207,8 @@
     <string name="profile_image">profile image</string>
     <string name="laboratory_name_arabic">laboratory name (arabic)</string>
     <string name="laboratory_name_english">laboratory name (english)</string>
+    <string name="pharmacy_name_arabic">pharmacy name (arabic)</string>
+    <string name="pharmacy_name_english">pharmacy name (english)</string>
 
 
 </resources>

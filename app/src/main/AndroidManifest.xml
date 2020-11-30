@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.profile.labs.LabEditProfileActivity"></activity>
+        <activity android:name=".modules.profile.pharmacy.PharmacyEditProfileActivity"></activity>
+        <activity android:name=".modules.profile.labs.LabEditProfileActivity" />
         <activity android:name=".modules.profile.doctor.DoctorEditProfileActivity" />
         <activity android:name=".modules.offers.AddDpctorOfferActivity" />
         <activity android:name=".modules.offers.AddNewOfferActivity" />

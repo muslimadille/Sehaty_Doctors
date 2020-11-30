@@ -14,8 +14,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
@@ -24,6 +22,10 @@ import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
 import com.muslim_adel.sehatydoctors.remote.objects.PharmacyOffer
 import com.muslim_adel.sehatydoctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_pharmacy_profile.*
+import kotlinx.android.synthetic.main.fragment_pharmacy_profile.lab_location_btn
+import kotlinx.android.synthetic.main.fragment_pharmacy_profile.pharm_details_lay
+import kotlinx.android.synthetic.main.fragment_pharmacy_profile.pharm_pager_Slider
+import kotlinx.android.synthetic.main.fragment_pharmacy_profile.pharm_progrss_lay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,6 +56,7 @@ class PharmacyProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         labObserver()
         navToMap()
+        onEditClicked()
     }
 
 
@@ -78,7 +81,6 @@ class PharmacyProfileFragment : Fragment() {
             address!!.text=pharm.pharmacy.buildingNum_en+"-"+pharm.pharmacy.streetName_en
             pharm_info_txt.text=pharm.pharmacy.about_en
             pharm_doc_name.text=pharm.pharmacy.firstName_en+" "+pharm.pharmacy.lastName_en
-
 
         }
 
@@ -173,6 +175,12 @@ class PharmacyProfileFragment : Fragment() {
         }
         if (!mContext!!.isFinishing){
             alertBuilder.show()
+        }
+    }
+    private fun onEditClicked(){
+        pharm_edit_profile_btn.setOnClickListener {
+            mContext!!.intent=Intent(mContext, PharmacyEditProfileActivity::class.java)
+            mContext!!.startActivity(mContext!!.intent)
         }
     }
 }
