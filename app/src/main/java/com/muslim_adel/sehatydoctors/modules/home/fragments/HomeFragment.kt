@@ -13,6 +13,7 @@ import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.CustomTabLayout
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsFragment
+import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsManageFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.TabsAdapter
 import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
 import com.muslim_adel.sehatydoctors.utiles.Q
@@ -43,10 +44,10 @@ class HomeFragment : Fragment() {
                     tab.text =getString(R.string.appointments)
 
                 }
-               /* 1 -> {
+                1 -> {
                     tab.text = getString(R.string.appointments_manage)
 
-                }*/
+                }
 
             }
             viewPager.setCurrentItem(tab.position, true)
@@ -60,7 +61,7 @@ class HomeFragment : Fragment() {
 
     fun addFragment() {
         listFragments.add(AppointmentsFragment())
-        //listFragments.add(AppointmentsManageFragment())
+        listFragments.add(AppointmentsManageFragment())
 
     }
     var mContext: MainActivity? = null

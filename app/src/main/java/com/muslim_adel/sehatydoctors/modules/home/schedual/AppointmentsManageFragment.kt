@@ -1,33 +1,48 @@
 package com.muslim_adel.sehatydoctors.modules.home.schedual
 
+import android.app.Activity
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.muslim_adel.sehatydoctors.R
+import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.profile.doctor.WorkingDatesAdapter
+import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
+import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
+import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.WorkingDatesModel
+import kotlinx.android.synthetic.main.fragment_appointments.*
+import kotlinx.android.synthetic.main.fragment_appointments.all_days_rv
+import kotlinx.android.synthetic.main.fragment_appointments_manage.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AppointmentsManageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AppointmentsManageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var workingHoursList: MutableList<WorkingDatesModel> = ArrayList()
+    private var workingHoursAddapter: WorkingDatesAdapter? = null
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        workingDatesObserver()
+        initRVAdapter()
     }
 
     override fun onCreateView(
@@ -37,24 +52,83 @@ class AppointmentsManageFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_appointments_manage, container, false)
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AppointmentsManageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AppointmentsManageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun workingDatesObserver() {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).doctorWorkingDates()
+            .enqueue(object : Callback<BaseResponce<List<WorkingDatesModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
                 }
-            }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    response: Response<BaseResponce<List<WorkingDatesModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date:WorkingDatesModel->
+                                        if(date.status==1){
+                                            workingHoursList.add(date)
+                                        }
+
+
+                                    }
+                                    workingHoursAddapter!!.notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
     }
+    var mContext: MainActivity? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context as MainActivity
+    }
+
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        mContext = activity as MainActivity
+
+    }
+    fun alertNetwork(isExit: Boolean = true) {
+        val alertBuilder = AlertDialog.Builder(mContext!!)
+        //alertBuilder.setTitle(R.string.error)
+        alertBuilder.setMessage(R.string.no_internet)
+        if (isExit) {
+            // alertBuilder.setPositiveButton(R.string.exit) { dialog: DialogInterface, _: Int -> context!!.finish() }
+        } else {
+            alertBuilder.setPositiveButton(R.string.dismiss) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
+        }
+        if (!mContext!!.isFinishing){
+            alertBuilder.show()
+        }
+    }
+    private fun initRVAdapter() {
+        val layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+        days_duration_rv.layoutManager = layoutManager
+        workingHoursAddapter = WorkingDatesAdapter(mContext!!,workingHoursList)
+        days_duration_rv.adapter = workingHoursAddapter
+    }
+
+    
 }

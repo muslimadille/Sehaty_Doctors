@@ -211,5 +211,12 @@
     <string name="laboratory_name_english">laboratory name (english)</string>
     <string name="pharmacy_name_arabic">اسم الصيدلية(عربي)</string>
     <string name="pharmacy_name_english">(english)اسم الصيدلية</string>
+    <string name="clinic_address">عنوان العيادة</string>
+    <string name="details">التفاصيل</string>
+    <string name="sub_speciality">التخصص الفرعي</string>
+    <string name="speciality">التخصص</string>
+    <string name="reservations_managment">إدارة المواعيد</string>
+    <string name="Clinic_opening_times">مواعيد عمل العيادة</string>
+    <string name="vacation_dates">مواعيد الاجازات</string>
 
 </resources>

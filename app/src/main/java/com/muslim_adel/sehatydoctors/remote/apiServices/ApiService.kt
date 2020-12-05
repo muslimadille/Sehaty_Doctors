@@ -4,6 +4,7 @@ import com.muslim_adel.sehatydoctors.remote.objects.*
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DaysModel
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.WorkingDatesModel
 import com.muslim_adel.sehatydoctors.utiles.Q
 import retrofit2.Call
 import retrofit2.http.*
@@ -192,6 +193,9 @@ interface ApiService {
     fun doctorOffersSubServices(@Url url: String): Call<BaseResponce<List<OfferServicesModel>>>
     @GET
     fun doctorOfferUnits(@Url url: String): Call<BaseResponce<List<OfferUnitsModel>>>
+
+    @GET(Q.DOC_WORKING_DATES_API)
+    fun doctorWorkingDates(): Call<BaseResponce<List<WorkingDatesModel>>>
 
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)
