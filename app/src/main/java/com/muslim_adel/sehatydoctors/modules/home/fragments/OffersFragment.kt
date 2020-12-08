@@ -16,6 +16,7 @@ import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.modules.offers.AddDpctorOfferActivity
 import com.muslim_adel.sehatydoctors.modules.offers.AddNewOfferActivity
+import com.muslim_adel.sehatydoctors.modules.offers.NewDoctorAddOfferActivity
 import com.muslim_adel.sehatydoctors.modules.offers.OffersListAdapter
 import com.muslim_adel.sehatydoctors.modules.pharmacyOffers.PharmacyOffersAdapter
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
@@ -224,7 +225,7 @@ class OffersFragment : Fragment() {
     }
     private fun onAddDocOfferPressed(){
         add_offer_btn.setOnClickListener {
-            mContext!!.intent= Intent(mContext, AddDpctorOfferActivity::class.java)
+            mContext!!.intent= Intent(mContext, NewDoctorAddOfferActivity::class.java)
             mContext!!.startActivity(mContext!!.intent)
         }
     }

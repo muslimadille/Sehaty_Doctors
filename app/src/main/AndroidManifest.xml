@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modules.home.schedual.AllReservationsActivity"></activity>
+        <activity android:name=".modules.offers.NewDoctorAddOfferActivity"></activity>
+        <activity android:name=".modules.home.schedual.AllReservationsActivity" />
         <activity android:name=".modules.home.schedual.EditWorkingDaysActivity" />
         <activity android:name=".modules.profile.doctor.ClinicAddressInfoActivity" />
         <activity android:name=".modules.profile.pharmacy.PharmacyEditProfileActivity" />

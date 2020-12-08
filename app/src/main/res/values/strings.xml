@@ -221,6 +221,14 @@
 
     <string name="min">minute</string>
     <string name="dates_list">Reservations List</string>
-
+    <string name="add_doc_offer_title1">1. Describe your offer by selecting Category, Subcategory, Service</string>
+    <string name="offer_title2_sevice">2. Choose the type of service and sub-service</string>
+    <string name="setion_title">3. Choose the session and number of units</string>
+    <string name="device_name_title">4. Add the device name</string>
+    <string name="offfer_title">5. Add your display title</string>
+    <string name="offer_discription">6. Add an offer description</string>
+    <string name="price_title">7. Add the price</string>
+    <string name="start_date_title">8- Add the start and end date of the presentation</string>
+    <string name="images_title">9. Add photo</string>
 
 </resources>
