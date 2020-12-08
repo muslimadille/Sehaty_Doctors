@@ -1,10 +1,7 @@
 package com.muslim_adel.sehatydoctors.remote.apiServices
 
 import com.muslim_adel.sehatydoctors.remote.objects.*
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.DaysModel
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.WorkingDatesModel
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.*
 import com.muslim_adel.sehatydoctors.utiles.Q
 import retrofit2.Call
 import retrofit2.http.*
@@ -196,6 +193,8 @@ interface ApiService {
 
     @GET(Q.DOC_WORKING_DATES_API)
     fun doctorWorkingDates(): Call<BaseResponce<List<WorkingDatesModel>>>
+    @GET(Q.DOC_VACANCIES_DATES_API)
+    fun doctorVacanciesDates(): Call<BaseResponce<List<VacancyModel>>>
 
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)

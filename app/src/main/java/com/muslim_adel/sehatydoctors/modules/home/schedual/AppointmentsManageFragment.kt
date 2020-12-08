@@ -3,6 +3,7 @@ package com.muslim_adel.sehatydoctors.modules.home.schedual
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,10 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.profile.doctor.VacationDatesAdapter
 import com.muslim_adel.sehatydoctors.modules.profile.doctor.WorkingDatesAdapter
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.VacancyModel
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.WorkingDatesModel
 import kotlinx.android.synthetic.main.fragment_appointments.*
 import kotlinx.android.synthetic.main.fragment_appointments.all_days_rv
@@ -30,6 +33,10 @@ import retrofit2.Response
 class AppointmentsManageFragment : Fragment() {
     private var workingHoursList: MutableList<WorkingDatesModel> = ArrayList()
     private var workingHoursAddapter: WorkingDatesAdapter? = null
+
+    private var vacationsList: MutableList<VacancyModel> = ArrayList()
+    private var vacationsAddapter: VacationDatesAdapter? = null
+
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
 
@@ -42,7 +49,9 @@ class AppointmentsManageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         workingDatesObserver()
+        vacationDatesObserver()
         initRVAdapter()
+        onEditWorkingDates()
     }
 
     override fun onCreateView(
@@ -99,6 +108,49 @@ class AppointmentsManageFragment : Fragment() {
 
             })
     }
+    private fun vacationDatesObserver() {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).doctorVacanciesDates()
+            .enqueue(object : Callback<BaseResponce<List<VacancyModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    response: Response<BaseResponce<List<VacancyModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date:VacancyModel->
+                                            vacationsList.add(date)
+                                    }
+                                    vacationsAddapter!!.notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
     var mContext: MainActivity? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -128,7 +180,18 @@ class AppointmentsManageFragment : Fragment() {
         days_duration_rv.layoutManager = layoutManager
         workingHoursAddapter = WorkingDatesAdapter(mContext!!,workingHoursList)
         days_duration_rv.adapter = workingHoursAddapter
+
+        val layoutManager2 = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+        vacations_rv.layoutManager = layoutManager2
+        vacationsAddapter = VacationDatesAdapter(mContext!!,vacationsList)
+        vacations_rv.adapter = vacationsAddapter
     }
+   private  fun onEditWorkingDates(){
+       edit_working_dates_btn.setOnClickListener {
+           mContext!!.intent= Intent(mContext,EditWorkingDaysActivity::class.java)
+           mContext!!.startActivity(mContext!!.intent)
+       }
+   }
 
     
 }

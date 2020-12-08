@@ -218,5 +218,10 @@
     <string name="reservations_managment">إدارة المواعيد</string>
     <string name="Clinic_opening_times">مواعيد عمل العيادة</string>
     <string name="vacation_dates">مواعيد الاجازات</string>
+    <string name="edit_working_dates">تعديل مواعيد العمل</string>
+    <string name="working_dates">مواعيد عمل العيادة</string>
+
+    <string name="min">دقيقة</string>
+
 
 </resources>
