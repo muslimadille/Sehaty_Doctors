@@ -1,20 +1,16 @@
 package com.muslim_adel.sehatydoctors.modules.home.schedual
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
 import com.muslim_adel.sehatydoctors.modules.home.schedual.addReservation.RservationDatesActivity
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
@@ -30,8 +26,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-class AppointmentsFragment : Fragment() {
+class AllReservationsActivity : BaseActivity() {
     var currentDate=""
     var currentyear=0
     var currentmonth=0
@@ -51,25 +46,10 @@ class AppointmentsFragment : Fragment() {
     private var allRecervationsAddapter: AllRecervationsAdapter? = null
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appointments, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        when(mContext!!.preferences!!.getString(Q.USER_TYPE,"")){
+        setContentView(R.layout.activity_all_reservations)
+        when(preferences!!.getString(Q.USER_TYPE,"")){
             Q.USER_DOCTOR->{
                 appointmentsObserver()
                 onAddNewResrvationClicked()
@@ -86,12 +66,11 @@ class AppointmentsFragment : Fragment() {
         initRVAdapter()
         pickDate()
     }
-
     private fun appointmentsObserver() {
         apiClient = ApiClient()
-        sessionManager = SessionManager(mContext!!)
+        sessionManager = SessionManager(this)
         onObserveStart()
-        apiClient.getApiService(mContext!!).fitchAllReservationsList()
+        apiClient.getApiService(this).fitchAllReservationsList()
             .enqueue(object : Callback<BaseResponce<List<ReservationModel>>> {
                 override fun onFailure(call: Call<BaseResponce<List<ReservationModel>>>, t: Throwable) {
                     alertNetwork(true)
@@ -142,9 +121,9 @@ class AppointmentsFragment : Fragment() {
     }
     private fun labAppointmentsObserver() {
         apiClient = ApiClient()
-        sessionManager = SessionManager(mContext!!)
+        sessionManager = SessionManager(this)
         onObserveStart()
-        apiClient.getApiService(mContext!!).fitchAllLabReservationsList()
+        apiClient.getApiService(this).fitchAllLabReservationsList()
             .enqueue(object : Callback<BaseResponce<List<ReservationModel>>> {
                 override fun onFailure(call: Call<BaseResponce<List<ReservationModel>>>, t: Throwable) {
                     alertNetwork(true)
@@ -195,9 +174,9 @@ class AppointmentsFragment : Fragment() {
     }
 
     private fun initRVAdapter() {
-        val layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
+        val layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         all_days_rv.layoutManager = layoutManager
-        allRecervationsAddapter = AllRecervationsAdapter(mContext!!,filteredReservationsList)
+        allRecervationsAddapter = AllRecervationsAdapter(this,filteredReservationsList)
         all_days_rv.adapter = allRecervationsAddapter
     }
 
@@ -224,31 +203,6 @@ class AppointmentsFragment : Fragment() {
 
     }
 
-    fun alertNetwork(isExit: Boolean = true) {
-        val alertBuilder = AlertDialog.Builder(mContext!!)
-        //alertBuilder.setTitle(R.string.error)
-        alertBuilder.setMessage(R.string.no_internet)
-        if (isExit) {
-            // alertBuilder.setPositiveButton(R.string.exit) { dialog: DialogInterface, _: Int -> context!!.finish() }
-        } else {
-            alertBuilder.setPositiveButton(R.string.dismiss) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
-        }
-        if (!mContext!!.isFinishing){
-            alertBuilder.show()
-        }
-    }
-
-    var mContext: MainActivity? = null
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mContext = context as MainActivity
-    }
-
-    override fun onAttach(activity: Activity) {
-        super.onAttach(activity)
-        mContext = activity as MainActivity
-
-    }
     private fun calenderHandeler(){
 
 
@@ -259,20 +213,20 @@ class AppointmentsFragment : Fragment() {
         currentday = dayformat.format(Date()).toInt()
         var dayName=""
         when (calendar.get(Calendar.DAY_OF_WEEK)){
-            1->{dayName=mContext!!.getString(R.string.sun)}
-            2->{dayName=mContext!!.getString(R.string.mon)}
-            3->{dayName=mContext!!.getString(R.string.tus)}
-            4->{dayName=mContext!!.getString(R.string.wed)}
-            5->{dayName=mContext!!.getString(R.string.thu)}
-            6->{dayName=mContext!!.getString(R.string.fri)}
-            7->{dayName=mContext!!.getString(R.string.sat)}
+            1->{dayName=this.getString(R.string.sun)}
+            2->{dayName=this.getString(R.string.mon)}
+            3->{dayName=this.getString(R.string.tus)}
+            4->{dayName=this.getString(R.string.wed)}
+            5->{dayName=this.getString(R.string.thu)}
+            6->{dayName=this.getString(R.string.fri)}
+            7->{dayName=this.getString(R.string.sat)}
         }
         dates_page_date_txt.text="$dayName ${currentDate.split(" ")[0]}"
 
     }
     private fun pickDate(){
         date_picker_btn.setOnClickListener {
-            val dpd= DatePickerDialog(mContext!!,
+            val dpd= DatePickerDialog(this,
                 DatePickerDialog.OnDateSetListener { view, myear, mMonth, mdayOfMonth ->
                     filteredReservationsList.clear()
 
@@ -315,12 +269,10 @@ class AppointmentsFragment : Fragment() {
     }
     private fun onAddNewResrvationClicked(){
         add_date_btn.setOnClickListener{
-            val intent = Intent(mContext, RservationDatesActivity::class.java)
-            intent.putExtra("doc_id",mContext!!.preferences!!.getInteger(Q.USER_ID,0))
-            mContext!!.startActivity(intent)
+            val intent = Intent(this, RservationDatesActivity::class.java)
+            intent.putExtra("doc_id",this.preferences!!.getInteger(Q.USER_ID,0))
+            this.startActivity(intent)
 
         }
     }
-
 }
-

@@ -10,7 +10,7 @@
     <string name="settings_title">الإعدادات</string>
     <string name="appoint_now_txt">أحجز الآن</string>
     <string name="register_txt">تسجيل الدخول</string>
-    <string name="search_item">مواعيدي</string>
+    <string name="search_item">جدول المواعيد</string>
     <string name="appointments_manage">إدارة المواعيد</string>
 
     <string name="offers_item">العروض</string>
@@ -58,7 +58,7 @@
     <string name="change_language">تغيير اللغة</string>
     <string name="change_password">تعديل كلمة المرور</string>
     <string name="edit_profile">تعديل بيانات الحساب</string>
-    <string name="appointments">مواعيدي</string>
+    <string name="appointments">ملخص المواعيد</string>
     <string name="favorites">المفضلة</string>
 
     <string name="no_offers">لا يوجد لديك عروض</string>
@@ -222,6 +222,7 @@
     <string name="working_dates">مواعيد عمل العيادة</string>
 
     <string name="min">دقيقة</string>
+    <string name="dates_list">قائمة المواعيد</string>
 
 
 </resources>

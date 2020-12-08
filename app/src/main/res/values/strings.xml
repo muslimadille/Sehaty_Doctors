@@ -16,7 +16,7 @@
     <string name="settings_title">settings</string>
     <string name="appoint_now_txt">book now</string>
     <string name="register_txt">log in</string>
-    <string name="search_item">Sechual</string>
+    <string name="search_item">schedule</string>
     <string name="offers_item">offers</string>
     <string name="date_item">appointments</string>
     <string name="appointments_manage">Manage Dates</string>
@@ -54,7 +54,7 @@
     <string name="change_language">change language</string>
     <string name="change_password">Edit your password</string>
     <string name="edit_profile">Edit profile</string>
-    <string name="appointments">Dates</string>
+    <string name="appointments">schedule</string>
     <string name="favorites">favorites</string>
     <string name="fav_doc">Doctors</string>
     <string name="fav_offers">Offers</string>
@@ -220,7 +220,7 @@
     <string name="working_dates">Working Dates</string>
 
     <string name="min">minute</string>
-
+    <string name="dates_list">Reservations List</string>
 
 
 </resources>

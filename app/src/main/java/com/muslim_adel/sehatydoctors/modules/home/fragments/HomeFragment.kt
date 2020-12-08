@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.CustomTabLayout
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.muslim_adel.sehatydoctors.modules.home.schedual.AllDaysFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsManageFragment
 import com.muslim_adel.sehatydoctors.modules.home.schedual.TabsAdapter
@@ -60,7 +61,7 @@ class HomeFragment : Fragment() {
     }
 
     fun addFragment() {
-        listFragments.add(AppointmentsFragment())
+        listFragments.add(AllDaysFragment())
         listFragments.add(AppointmentsManageFragment())
 
     }

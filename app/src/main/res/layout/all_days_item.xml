@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
    <LinearLayout
+       android:background="@color/white"
        android:id="@+id/day_item_lay"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -38,14 +39,14 @@
                android:id="@+id/appointments_num_txt"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
-               android:text="@string/show_dates_hint"
                android:gravity="center"/>
        </LinearLayout>
        <ImageView
+           android:id="@+id/disable_btn"
            android:layout_margin="10dp"
            android:layout_width="40dp"
-           android:layout_height="match_parent"
-           android:src="@drawable/ic_add"
+           android:layout_height="40dp"
+           android:src="@drawable/airplanede"
            />
    </LinearLayout>
     <LinearLayout

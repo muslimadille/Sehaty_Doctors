@@ -1,30 +1,30 @@
 package com.muslim_adel.sehatydoctors.modules.home.schedual
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.DaysModel
+import com.muslim_adel.sehatydoctors.remote.objects.doctor.DayItemModel
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
 import kotlinx.android.synthetic.main.all_days_item.view.*
-import kotlinx.android.synthetic.main.all_days_item.view.day_name_txt
 import kotlinx.android.synthetic.main.appointment_list_item.view.*
-
+import kotlinx.android.synthetic.main.appointment_list_item.view.appointment_item_patient_name
 
 class AllDaysAdapter(
     private val mContext: MainActivity,
-    private val list: MutableList<ReservationModel>) : RecyclerView.Adapter<AllDaysAdapter.ViewHolder>() {
+    private val list: MutableList<DayItemModel>) : RecyclerView.Adapter<AllDaysAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val convertView = inflater.inflate(R.layout.appointment_list_item, parent, false)
+        val convertView = inflater.inflate(R.layout.all_days_item, parent, false)
         return ViewHolder(convertView)
 
     }
@@ -37,41 +37,27 @@ class AllDaysAdapter(
         val reservation = list[position]
 
 
-            holder.appointment_item_patient_name.text=reservation.name
-            if(reservation.time.split(":")[0].toInt()>12){
-                holder.appointment_item_patient_time.text="${(reservation.time.split(":")[0].toInt())-12}:${reservation.time.split(":")[1]} ${mContext.getString(R.string.pm)}"
-            }else{
-                holder.appointment_item_patient_time.text="${(reservation.time.split(":")[0].toInt())}:${reservation.time.split(":")[1]} ${mContext.getString(R.string.am)}"
-            }
+        holder.day_name_txt.text=reservation.dayName
+        holder.moth_day_txt.text=reservation.dayOfMonth
 
-        holder.reservation_item_lay.setOnClickListener {
-
+        holder.disable_btn.setOnClickListener {
+            holder.disable_btn.setImageResource(R.drawable.airplane)
+        }
+        holder.day_item_lay.setOnClickListener {
+          mContext.intent= Intent(mContext,AllReservationsActivity::class.java)
+            mContext.intent.putExtra("date",reservation.date)
+            mContext.startActivity(mContext.intent)
         }
 
-        /* holder.book_btn.setOnClickListener {
-             val intent = Intent(mContext, DatesActivity::class.java)
-             intent.putExtra("date_id", date.id)
-             intent.putExtra("firstName_ar", mContext.firstName_ar)
-             intent.putExtra("firstName_en", mContext.firstName_en)
-             intent.putExtra("lastName_ar", mContext.lastName_ar)
-             intent.putExtra("lastName_en", mContext.lastName_en)
-             intent.putExtra("featured", mContext.featured)
-             intent.putExtra("doctor_id", mContext.id)
-             intent.putExtra("phonenumber", mContext.phonenumber)
-             intent.putExtra("price", mContext.price)
-             intent.putExtra("profissionalTitle_ar", mContext.profissionalTitle_ar)
-             intent.putExtra("profissionalTitle_en", mContext.profissionalTitle_en)
-             intent.putExtra("streetName_ar", mContext.streetName_ar)
-             intent.putExtra("streetName_en", mContext.streetName_en)
-             mContext.startActivity(intent)
-         }*/
+
 
 
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val appointment_item_patient_name: TextView = view.appointment_item_patient_name
-        val appointment_item_patient_time: TextView = view.appointment_item_patient_time
-        val reservation_item_lay: CardView = view.reservation_item_lay
+        val day_name_txt: TextView = view.day_name_txt
+        val moth_day_txt: TextView = view.moth_day_txt
+        val disable_btn: ImageView = view.disable_btn
+        val day_item_lay: LinearLayout =view.day_item_lay
     }
 }
