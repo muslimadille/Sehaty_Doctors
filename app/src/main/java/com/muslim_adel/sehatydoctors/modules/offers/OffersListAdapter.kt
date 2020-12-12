@@ -52,12 +52,10 @@ class OffersListAdapter(
         if (preferences!!.getString("language","")=="Arabic"){
             holder.descound_txt!!.text=" خصم ${offer.discount.toString()}"+"%"
 /*
-            holder.doc_data_txt!!.text=docGendar+" "+offer.doctor.firstName_ar +" "+ offer.doctor.lastName_ar +"-"+offer.doctor.streetName_ar
 */
             holder.offer_title_txt!!.text=offer.title_ar
             holder.offer_subtitle_txt!!.text=offer.device_name_ar
 /*
-            holder.offer_ratingBar!!.rating=offer.rating.toFloat()
 */
             holder.initial_cost!!.paintFlags = holder.initial_cost!!.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             holder.initial_cost!!.text=offer.price.toString()+" "+mContext.getString(R.string.derham)
@@ -65,12 +63,10 @@ class OffersListAdapter(
         }else{
             holder.descound_txt!!.text=" ${mContext.getString(R.string.discount)} ${offer.discount.toString()}"+"%"
 /*
-            holder.doc_data_txt!!.text=docGendar+" "+offer.doctor.firstName_en +" "+ offer.doctor.lastName_en +"-"+offer.doctor.streetName_en
 */
             holder.offer_title_txt!!.text=offer.title_en
             holder.offer_subtitle_txt!!.text=offer.device_name_en
 /*
-            holder.offer_ratingBar!!.rating=offer.rating.toFloat()
 */
             holder.initial_cost!!.paintFlags = holder.initial_cost!!.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             holder.initial_cost!!.text=offer.price.toString()+" "+mContext.getString(R.string.derham)
@@ -99,11 +95,11 @@ class OffersListAdapter(
             .load(offer.doctor.featured)
             .centerCrop()
             .into(holder.doc_img!!)*/
-        holder.booking_btb!!.setOnClickListener {
+        /*holder.booking_btb!!.setOnClickListener {
             val intent= Intent(mContext,OfferDetailsActivity::class.java)
             intent.putExtra("offer_id",offer.id)
             mContext.startActivity(intent)
-        }
+        }*/
 
     }
 

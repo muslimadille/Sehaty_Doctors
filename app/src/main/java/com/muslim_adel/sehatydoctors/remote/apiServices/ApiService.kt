@@ -204,11 +204,12 @@ interface ApiService {
     fun fitchPharmacyById(@Url url: String): Call<BaseResponce<PharmacyOffer>>
 
     @POST(Q.POST_PHARM_OFFER_API)
+    @FormUrlEncoded
     fun addPharmOffer(
-        @Query("title_ar") title_ar: String,
-        @Query("title_en") title_en: String,
-        @Query("price") price: String,
-        @Query("featured") featured: String
+        @Field("title_ar") title_ar: String,
+        @Field("title_en") title_en: String,
+        @Field("price") price: String,
+        @Field("featured") featured: String
     ): Call<BaseResponce<PharmAddOfferModel>>
 
     /**---------------------------------------------labs----------------------------------------------------*/

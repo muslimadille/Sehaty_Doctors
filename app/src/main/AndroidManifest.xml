@@ -2,9 +2,37 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.muslim_adel.sehatydoctors">
 
+
+
+
+    <permission
+        android:name="com.muslim_adel.sehatydoctors.READ_DATABASE"
+        android:label="read_database"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.muslim_adel.sehatydoctors.WRITE_DATABASE"
+        android:label="write_database"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
 
     <application
         android:name=".modules.base.App"
@@ -15,6 +43,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".modules.offers.NewDoctorAddOfferActivity"></activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
+
         <activity android:name=".modules.home.schedual.AllReservationsActivity" />
         <activity android:name=".modules.home.schedual.EditWorkingDaysActivity" />
         <activity android:name=".modules.profile.doctor.ClinicAddressInfoActivity" />

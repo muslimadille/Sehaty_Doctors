@@ -11,14 +11,19 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.SpinnerAdapter
 import android.widget.Toast
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
+import com.muslim_adel.sehatydoctors.modules.base.GlideObject
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.remote.objects.*
 import com.muslim_adel.sehatydoctors.utiles.Q
 import com.muslim_adel.sehatydoctors.utiles.SpinnerAdapterCustomFont
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_add_dpctor_offer.*
 import kotlinx.android.synthetic.main.activity_add_dpctor_offer.add_offer_btn
 import kotlinx.android.synthetic.main.activity_add_dpctor_offer.offer_img
@@ -29,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_add_new_offer.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class AddDpctorOfferActivity : BaseActivity() {
     private var selectedCategoryIndex=0
@@ -36,6 +42,8 @@ class AddDpctorOfferActivity : BaseActivity() {
     private var selectedServiceIndex=0
     private var selectedSubServiceIndex=0
     private var selectedUnitIndex=0
+    private var selectedImage: File? = null
+
 
 
     private lateinit var categoriesSpinnerAdapter: SpinnerAdapterCustomFont
@@ -167,17 +175,14 @@ class AddDpctorOfferActivity : BaseActivity() {
                 Q.USER_LAB -> {
                 }
                 Q.USER_PHARM -> {
-                    addPharmOfferObserver()
 
                 }
 
             }
 
-
-
         }
     }
-    private fun addPharmOfferObserver() {
+    private fun addDocOfferObserver() {
         var title_ar=title_ar_txt.text.toString()
         var title_en=offer_title_en_txt.text.toString()
         var price=offer_price_txt.text.toString()
@@ -229,55 +234,52 @@ class AddDpctorOfferActivity : BaseActivity() {
         }else{
             Toast.makeText(this, "الرجاء أدخل بيانات صحيحة", Toast.LENGTH_SHORT).show()
         }
-
     }
     private fun onSelectIMageClicked(){
         offer_img.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, PERMISSION_CODE)
-                } else{
-                    chooseImageGallery();
-                }
-            }else{
-                chooseImageGallery();
-            }
+            selectImage()
         }
     }
-    private fun chooseImageGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_CHOOSE)
-    }
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when(requestCode){
-            PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    chooseImageGallery()
-                }else{
-                    Toast.makeText(this,"Permission denied", Toast.LENGTH_SHORT).show()
+    fun selectImage() {
+        TedPermission.with(this)
+            .setPermissionListener(object : PermissionListener {
+                override fun onPermissionGranted() {
+                    CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setCropShape(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) CropImageView.CropShape.RECTANGLE else CropImageView.CropShape.OVAL)
+                        .setAllowFlipping(false)
+                        .setAllowRotation(false)
+                        .setCropMenuCropButtonIcon(R.drawable.ic_add)
+                        .setAspectRatio(1, 1)
+                        .start(this@AddDpctorOfferActivity)
                 }
-            }
-        }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                    Toast.makeText(this@AddDpctorOfferActivity,
+                        "getString(R.string.permissionDenied)", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+            .setPermissions(Manifest.permission.CAMERA)
+            .check()
+    }
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            offer_img.setImageURI(data?.data)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            var result: CropImage.ActivityResult? = null
+            data?.let { result = CropImage.getActivityResult(data) }
+            if (resultCode == RESULT_OK) {
+                result?.let {
+                    selectedImage = File(result!!.uri!!.path!!)
+
+                    GlideObject.GlideProfilePic(this, selectedImage!!.path, offer_img)
+//                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
+                }
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                result!!.error!!.printStackTrace()
+            }
         }
     }
-    // companion object
-    companion object {
-        private val IMAGE_CHOOSE = 1000;
-        private val PERMISSION_CODE = 1001;
-    }
-
     private fun OfferCategoriesObserver() {
 
 
@@ -563,8 +565,6 @@ class AddDpctorOfferActivity : BaseActivity() {
         }
 
     }
-    private fun validator(){
 
-    }
 
 }

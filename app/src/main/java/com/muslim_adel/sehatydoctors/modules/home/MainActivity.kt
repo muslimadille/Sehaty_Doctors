@@ -84,6 +84,7 @@ class MainActivity : BaseActivity() {
             }
             false
         }
+        bottomNavigationView.labelVisibilityMode= LabelVisibilityMode.LABEL_VISIBILITY_LABELED
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         when (navK) {

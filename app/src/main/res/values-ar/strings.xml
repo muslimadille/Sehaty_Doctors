@@ -104,7 +104,7 @@
     <string name="thanks">شكراً</string>
     <string name="done">تم حجزك بنجاح</string>
     <string name="derham">دينار</string>
-    <string name="price">سعرالكشف</string>
+    <string name="price">سعر العرض</string>
 
     <string name="building_num">مبنى رقم:</string>
     <string name="Apartment_num">شقة رقم:</string>
@@ -201,7 +201,7 @@
     <string name="first_name_english">الأسم الأول(english)</string>
     <string name="last_name_arabic"> الأسم الأخير(arabic)</string>
     <string name="last_name_english">الأسم الأخير(english)</string>
-    <string name="number_of_days">عدد الأيام</string>
+    <string name="number_of_days">عدد أيام العمل</string>
     <string name="about_doctor_arabic">عن الطبيب(arabic)</string>
     <string name="about_doctor_english">عن الطبيب(english)</string>
     <string name="profional_title_arabic">اسم التخصص(arabic)</string>
