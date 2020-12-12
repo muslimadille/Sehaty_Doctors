@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.SpinnerAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.muslim_adel.sehatydoctors.R
@@ -35,6 +36,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AddDpctorOfferActivity : BaseActivity() {
     private var selectedCategoryIndex=0
@@ -66,7 +69,6 @@ class AddDpctorOfferActivity : BaseActivity() {
 
 
 
-    private  val REQUEST_CODE = 13
 
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
@@ -235,6 +237,7 @@ class AddDpctorOfferActivity : BaseActivity() {
             Toast.makeText(this, "الرجاء أدخل بيانات صحيحة", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun onSelectIMageClicked(){
         offer_img.setOnClickListener {
             selectImage()
@@ -279,6 +282,12 @@ class AddDpctorOfferActivity : BaseActivity() {
                 result!!.error!!.printStackTrace()
             }
         }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun toBase64(filePath: String): String{
+        val bytes = File(filePath).readBytes()
+        val base64 = Base64.getEncoder().encodeToString(bytes)
+        return base64
     }
     private fun OfferCategoriesObserver() {
 

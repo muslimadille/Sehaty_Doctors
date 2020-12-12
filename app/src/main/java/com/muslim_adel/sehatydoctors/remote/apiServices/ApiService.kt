@@ -196,6 +196,33 @@ interface ApiService {
     @GET(Q.DOC_VACANCIES_DATES_API)
     fun doctorVacanciesDates(): Call<BaseResponce<List<VacancyModel>>>
 
+    @POST(Q.DOC_ADD_OFFER_API)
+    @FormUrlEncoded
+    fun addDocOffer(
+        @Field("featured1") featured1: String,
+        @Field("category_id") category_id: String,
+        @Field("sub_category_id") sub_category_id: String,
+        @Field("service_id") service_id: String,
+        @Field("sub_service_id") sub_service_id: String,
+        @Field("device_name_en") device_name_en: String,
+        @Field("unit_id") unit_id: String,
+        @Field("unit_number") unit_number: String,
+        @Field("title_en") title_en: String,
+        @Field("title_ar") title_ar: String,
+        @Field("description_en") description_en: String,
+        @Field("description_ar") description_ar: String,
+        @Field("price") price: String,
+        @Field("discount") discount: String,
+        @Field("date_from") date_from: String,
+        @Field("date_to") date_to: String,
+        @Field("device_name_ar")device_name_ar: String,
+        @Field("featured2")featured2: String,
+        @Field("featured3")featured3: String,
+        @Field("featured4")featured4: String,
+
+
+        ): Call<BaseResponce<DocOffer>>
+
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)
     fun fitchPharmacyOffersList(): Call<BaseResponce<List<PharmacyOffer>>>

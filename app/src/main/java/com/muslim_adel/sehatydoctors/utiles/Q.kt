@@ -48,6 +48,7 @@ object Q {
     const val DOC_OFFER_UNITS_API="doctor/dashboard/offer/unit/"
     const val DOC_WORKING_DATES_API="doctor/dashboard/working-hours"
     const val DOC_VACANCIES_DATES_API="doctor/dashboard/vacations"
+    const val DOC_ADD_OFFER_API="doctor/dashboard/offer/add"
 
 
 

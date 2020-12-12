@@ -2,6 +2,7 @@ package com.muslim_adel.sehatydoctors.modules.offers
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -10,19 +11,24 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import com.muslim_adel.sehatydoctors.R
 import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
+import com.muslim_adel.sehatydoctors.modules.base.GlideObject
 import com.muslim_adel.sehatydoctors.modules.home.MainActivity
 import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
 import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
 import com.muslim_adel.sehatydoctors.remote.objects.*
+import com.muslim_adel.sehatydoctors.utiles.IOUtile
 import com.muslim_adel.sehatydoctors.utiles.Q
 import com.muslim_adel.sehatydoctors.utiles.SpinnerAdapterCustomFont
-import kotlinx.android.synthetic.main.activity_add_dpctor_offer.*
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.*
-import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_img
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_price_txt
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_title_en_txt
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.services_spinner
@@ -32,8 +38,23 @@ import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.unit_spinner
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class NewDoctorAddOfferActivity : BaseActivity() {
+    private var selectedImage: File? = null
+    private var validator=validator("","","","","","","","","","","","","","","","","","","","")
+
+    val calendar= Calendar.getInstance()
+    val yearformat = SimpleDateFormat("yyyy", Locale.ENGLISH)
+    val monthformat = SimpleDateFormat("MM", Locale.ENGLISH)
+    val dayformat = SimpleDateFormat("dd", Locale.ENGLISH)
+    val year=yearformat.format(calendar.get(Calendar.YEAR)).toInt()
+    val month=monthformat.format(calendar.get(Calendar.MONTH)).toInt()
+    val day=dayformat.format(calendar.get(Calendar.DAY_OF_MONTH)).toInt()
+
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
     private var categoriesList: MutableList<OffersCategory> = ArrayList()
@@ -66,12 +87,12 @@ class NewDoctorAddOfferActivity : BaseActivity() {
 
 
 
-    private  val REQUEST_CODE = 13
 
 
     var selectedCtegory=-1
     var selectedSubCtegory=-1
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_doctor_add_offer)
@@ -82,6 +103,8 @@ class NewDoctorAddOfferActivity : BaseActivity() {
         implementListeners()
         onAddOfferClicked()
         onSelectIMageClicked()
+        setStartDate()
+        setEndDate()
 
     }
     private fun initRVAdapter() {
@@ -232,6 +255,7 @@ class NewDoctorAddOfferActivity : BaseActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 selectedServiceIndex=position-1
                 if(offerServicesList.isNotEmpty()&&position!=0){
+                    validator.service_id=offerServicesList[selectedCategoryIndex].id.toString()
                     OfferUnitsObserver(offerServicesList[selectedCategoryIndex].id.toInt())
                     OfferSubServicesObserver(offerServicesList[selectedCategoryIndex].id.toInt())
                 }
@@ -241,24 +265,57 @@ class NewDoctorAddOfferActivity : BaseActivity() {
             }
         }
         /********************************************************************************/
+        unit_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (position>0){
+                    validator.unit_id=offerUnitsList[position-1].id.toString()
+
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+        /********************************************************************************/
         sub_survices_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                selectedSubServiceIndex=position-1
+                if(position>0){
+                    selectedSubServiceIndex=position-1
+                    validator.sub_service_id=offerSubServicesList[position-1].id.toString()
+                }
+
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun onAddOfferClicked(){
-        add_new_offer_btn.setOnClickListener {
+        doc_add_new_offer_btn.setOnClickListener {
+
             when(preferences!!.getString(Q.USER_TYPE, "")){
                 Q.USER_DOCTOR -> {
+                    validator.category_id=categoriesList[selectedCtegory].id.toString()
+                    validator.sub_category_id=offerSubcategoryList[selectedSubCtegory].id.toString()
+                    validator.unit_number=offer_unit_num_txt.text.toString()
+                    validator.device_name_ar=devicename_ar_txt.text.toString()
+                    validator.device_name_en=devicename_title_en_txt.text.toString()
+                    validator.title_ar=title_ar_txt.text.toString()
+                    validator.title_en=offer_title_en_txt.text.toString()
+                    validator.description_ar=description_ar_txt.text.toString()
+                    validator.description_en=description_en_txt.text.toString()
+                    validator.price=offer_price_txt.text.toString()
+                    validator.discount=offer_discount_txt.text.toString()
+                    if (selectedImage != null) {
+                        val fileInBytes = IOUtile.readFileAsByteArray(selectedImage!!)
+                        validator.featured1 = "data:image/${selectedImage!!.extension};base64,"+toBase64(selectedImage.toString())
+                    }
+                    addDocOfferObserver()
+
                 }
                 Q.USER_LAB -> {
                 }
                 Q.USER_PHARM -> {
-                    addPharmOfferObserver()
 
                 }
 
@@ -268,7 +325,7 @@ class NewDoctorAddOfferActivity : BaseActivity() {
 
         }
     }
-    private fun addPharmOfferObserver() {
+    private fun addDocOfferObserver() {
         var title_ar=title_ar_txt.text.toString()
         var title_en=offer_title_en_txt.text.toString()
         var price=offer_price_txt.text.toString()
@@ -277,18 +334,21 @@ class NewDoctorAddOfferActivity : BaseActivity() {
         if(title_ar.isNotEmpty()&&title_en.isNotEmpty()&&price.isNotEmpty()){
             apiClient = ApiClient()
             sessionManager = SessionManager(this)
-            apiClient.getApiService(this).addPharmOffer(title_ar, title_en, price, img)
-                .enqueue(object : Callback<BaseResponce<PharmAddOfferModel>> {
+            apiClient.getApiService(this).addDocOffer(validator.featured1,validator.category_id,validator.sub_category_id,
+            validator.service_id,validator.sub_service_id,validator.device_name_en,validator.unit_id,validator.unit_number,validator.title_en,
+            validator.title_ar,validator.description_en,validator.description_ar,validator.price,validator.discount,validator.date_from,validator.date_to,
+            validator.device_name_ar,validator.featured2,validator.featured3,validator.featured4)
+                .enqueue(object : Callback<BaseResponce<DocOffer>> {
                     override fun onFailure(
-                        call: Call<BaseResponce<PharmAddOfferModel>>,
+                        call: Call<BaseResponce<DocOffer>>,
                         t: Throwable
                     ) {
                         alertNetwork(true)
                     }
 
                     override fun onResponse(
-                        call: Call<BaseResponce<PharmAddOfferModel>>,
-                        response: Response<BaseResponce<PharmAddOfferModel>>
+                        call: Call<BaseResponce<DocOffer>>,
+                        response: Response<BaseResponce<DocOffer>>
                     ) {
                         if (response!!.isSuccessful) {
                             if (response.body()!!.success) {
@@ -315,58 +375,62 @@ class NewDoctorAddOfferActivity : BaseActivity() {
 
                     }
 
-
                 })
         }else{
             Toast.makeText(this, "الرجاء أدخل بيانات صحيحة", Toast.LENGTH_SHORT).show()
         }
-
     }
+
     private fun onSelectIMageClicked(){
-        offer_img.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, PERMISSION_CODE)
-                } else{
-                    chooseImageGallery();
-                }
-            }else{
-                chooseImageGallery();
-            }
+        doc_offer_img.setOnClickListener {
+            selectImage()
         }
     }
-    private fun chooseImageGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_CHOOSE)
-    }
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when(requestCode){
-            PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    chooseImageGallery()
-                }else{
-                    Toast.makeText(this,"Permission denied", Toast.LENGTH_SHORT).show()
+    fun selectImage() {
+        TedPermission.with(this)
+            .setPermissionListener(object : PermissionListener {
+                override fun onPermissionGranted() {
+                    CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setCropShape(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) CropImageView.CropShape.RECTANGLE else CropImageView.CropShape.OVAL)
+                        .setAllowFlipping(false)
+                        .setAllowRotation(false)
+                        .setCropMenuCropButtonIcon(R.drawable.ic_add)
+                        .setAspectRatio(1, 1)
+                        .start(this@NewDoctorAddOfferActivity)
                 }
-            }
-        }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                    Toast.makeText(this@NewDoctorAddOfferActivity,
+                        "getString(R.string.permissionDenied)", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+            .setPermissions(Manifest.permission.CAMERA)
+            .check()
+    }
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            offer_img.setImageURI(data?.data)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            var result: CropImage.ActivityResult? = null
+            data?.let { result = CropImage.getActivityResult(data) }
+            if (resultCode == RESULT_OK) {
+                result?.let {
+                    selectedImage = File(result!!.uri!!.path!!)
+
+                    GlideObject.GlideProfilePic(this, selectedImage!!.path, doc_offer_img)
+//                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
+                }
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                result!!.error!!.printStackTrace()
+            }
         }
     }
-    // companion object
-    companion object {
-        private val IMAGE_CHOOSE = 1000;
-        private val PERMISSION_CODE = 1001;
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun toBase64(filePath: String): String{
+        val bytes = File(filePath).readBytes()
+        val base64 = Base64.getEncoder().encodeToString(bytes)
+        return base64
     }
 
 
@@ -542,7 +606,88 @@ class NewDoctorAddOfferActivity : BaseActivity() {
         }
 
     }
-    private fun validator(){
 
+    private fun setStartDate(){
+
+        offer_date_from_txt.setOnClickListener {
+            val dpd= DatePickerDialog(this,
+                DatePickerDialog.OnDateSetListener { view, myear, mMonth, mdayOfMonth ->
+
+                    var month = ""
+                    var day = ""
+                    if (mMonth < 10) {
+                        month = "0${mMonth+1}"
+                    } else {
+                        month = "${mMonth+1}"
+                    }
+                    if (mdayOfMonth < 10) {
+                        day = "0$mdayOfMonth"
+                    } else {
+                        day = "$mdayOfMonth"
+                    }
+                    var selectedDate = "$myear-$month-$day"
+                    val selectedate = SimpleDateFormat("yyyy-MM-dd").parse(selectedDate)
+                    var dayname=SimpleDateFormat("EEEE").format(selectedate)
+                    validator!!.date_from=selectedate.toString()
+                    offer_date_from_txt.text="$dayname ${selectedDate}"
+
+                }, year, month, day
+            )
+            dpd.show()
+
+        }
+    }
+    private fun setEndDate(){
+        offer_date_to_txt.setOnClickListener {
+            val dpd= DatePickerDialog(this,
+                DatePickerDialog.OnDateSetListener { view, myear, mMonth, mdayOfMonth ->
+
+                    var month = ""
+                    var day = ""
+                    if (mMonth < 10) {
+                        month = "0${mMonth+1}"
+                    } else {
+                        month = "${mMonth+1}"
+                    }
+                    if (mdayOfMonth < 10) {
+                        day = "0$mdayOfMonth"
+                    } else {
+                        day = "$mdayOfMonth"
+                    }
+                    var selectedDate = "$myear-$month-$day"
+                    val selectedate = SimpleDateFormat("yyyy-MM-dd").parse(selectedDate)
+                    var dayname=SimpleDateFormat("EEEE").format(selectedate)
+                    validator!!.date_to=selectedate.toString()
+                    offer_date_to_txt.text="$dayname ${selectedDate}"
+
+                }, year, month, day
+            )
+            dpd.show()
+
+        }
     }
 }
+data class validator(
+      var category_id:String,
+     var sub_category_id:String,
+             var service_id:String,
+             var sub_service_id:String,
+             var device_name_en:String,
+             var device_name_ar:String,
+             var unit_id:String,
+             var unit_number:String,
+             var title_en:String,
+             var title_ar:String,
+             var description_en:String,
+             var description_ar:String,
+             var price:String,
+             var discount:String,
+             var date_from:String,
+             var date_to:String,
+             var featured1:String,
+      var featured2:String,
+      var featured3:String,
+      var featured4:String,
+
+
+      )
