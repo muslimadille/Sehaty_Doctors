@@ -1,7 +1,7 @@
-package com.muslim_adel.sehatydoctors.remote.apiServices
+package com.seha_khanah_doctors.remote.apiServices
 import android.content.Context
 import android.content.SharedPreferences
-import com.muslim_adel.sehatydoctors.R
+import com.seha_khanah_doctors.R
 
 class SessionManager (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)

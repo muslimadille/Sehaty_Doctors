@@ -1,8 +1,8 @@
-package com.muslim_adel.sehatydoctors.modules.base
+package com.seha_khanah_doctors.modules.base
 
 import android.app.Application
-import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.utiles.ComplexPreferences
+import com.seha_khanah_doctors.utiles.Q
 import java.util.*
 
 class App : Application() {

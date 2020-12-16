@@ -1,8 +1,8 @@
-package com.muslim_adel.sehatydoctors.remote.apiServices
+package com.seha_khanah_doctors.remote.apiServices
 
-import com.muslim_adel.sehatydoctors.remote.objects.*
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.*
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.remote.objects.*
+import com.seha_khanah_doctors.remote.objects.doctor.*
+import com.seha_khanah_doctors.utiles.Q
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -222,13 +222,40 @@ interface ApiService {
 
 
         ): Call<BaseResponce<DocOffer>>
+    @GET(Q.DOC_PROFISSIONAL_DETAILS_API)
+    fun doctorProfissionalDetails(): Call<BaseResponce<List<DaysModel>>>
+    @GET(Q.DOC_SUB_SPIC_API)
+    fun doctorSubSpic(): Call<BaseResponce<List<SubSpiecialityModel>>>
+
+    @POST(Q.DOC_UPDATE_PROFILE_API)
+    @FormUrlEncoded
+    fun editDocProfile(
+        @Field("gender_id") gender_id:String,
+        @Field("featured") featured: String,
+        @Field("firstName_en") firstName_en: String,
+        @Field("firstName_ar") firstName_ar: String,
+        @Field("lastName_en") lastName_en: String,
+        @Field("lastName_ar") lastName_ar: String,
+        @Field("subSpecialties_id[]")subSpecialties_id: ArrayList<String> ,
+        @Field("prefix_title_id") prefix_title_id: String,
+        @Field("profissionalDetails_id") profissionalDetails_id: String,
+        @Field("profissionalTitle_en") profissionalTitle_en: String,
+        @Field("profissionalTitle_ar") profissionalTitle_ar: String,
+        @Field("aboutDoctor_ar") aboutDoctor_ar: String,
+        @Field("aboutDoctor_en") aboutDoctor_en: String,
+        @Field("practiceLicenseID")practiceLicenseID: String,
+        @Field("profissionalTitleID")profissionalTitleID: String,
+        @Field("price")price: String,
+        @Field("waiting_time")waiting_time: String,
+        @Field("num_of_day")num_of_day: String,
+        ): Call<BaseResponce<DoctorProfileModel>>
 
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)
     fun fitchPharmacyOffersList(): Call<BaseResponce<List<PharmacyOffer>>>
 
     @GET
-    fun fitchPharmacyById(@Url url: String): Call<BaseResponce<PharmacyOffer>>
+    fun fitchPharmacyById(@Url url: String): Call<BaseResponce<Pharmacy>>
 
     @POST(Q.POST_PHARM_OFFER_API)
     @FormUrlEncoded
@@ -238,6 +265,27 @@ interface ApiService {
         @Field("price") price: String,
         @Field("featured") featured: String
     ): Call<BaseResponce<PharmAddOfferModel>>
+    @GET(Q.POST_PHARM_PROFILE_API)
+    fun fitchPharmProfile(): Call<BaseResponce<Pharmacy>>
+
+    @POST(Q.PHARM_UPDATE_PROFILE_API)
+    @FormUrlEncoded
+    fun editPharmProfile(
+        @Field("gender_id") gender_id:String,
+        @Field("featured") featured: String,
+        @Field("pharmacy_name_ar") pharmacy_name_ar: String,
+        @Field("pharmacy_name_en") pharmacy_name_en: String,
+        @Field("firstName_en") firstName_en: String,
+        @Field("firstName_ar") firstName_ar: String,
+        @Field("lastName_en") lastName_en: String,
+        @Field("lastName_ar") lastName_ar: String,
+        @Field("about_ar") about_ar: String,
+        @Field("about_en") about_en: String,
+        @Field("practiceLicenseID")practiceLicenseID: String,
+        @Field("profissionalTitleID")profissionalTitleID: String,
+        @Field("shift")shift: String,
+    ): Call<BaseResponce<Pharmacy>>
+
 
     /**---------------------------------------------labs----------------------------------------------------*/
     @GET(Q.GET_ALL_LAB_RESERVATIONS_API)
@@ -245,6 +293,23 @@ interface ApiService {
 
     @GET(Q.GET_LAB_PROFILE_API)
     fun fitchLabProfile(): Call<BaseResponce<Laboratory>>
+    @POST(Q.LAB_UPDATE_PROFILE_API)
+    @FormUrlEncoded
+    fun editLabProfile(
+        @Field("gender_id") gender_id:String,
+        @Field("featured") featured: String,
+        @Field("laboratory_name_ar") laboratory_name_ar: String,
+        @Field("laboratory_name_en") laboratory_name_en: String,
+        @Field("firstName_en") firstName_en: String,
+        @Field("firstName_ar") firstName_ar: String,
+        @Field("lastName_en") lastName_en: String,
+        @Field("lastName_ar") lastName_ar: String,
+        @Field("about_ar") about_ar: String,
+        @Field("about_en") about_en: String,
+        @Field("practiceLicenseID")practiceLicenseID: String,
+        @Field("profissionalTitleID")profissionalTitleID: String,
+        @Field("num_of_day")num_of_day: String,
+    ): Call<BaseResponce<Laboratory>>
 
 
 }

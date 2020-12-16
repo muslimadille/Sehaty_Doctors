@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile.pharmacy
+package com.seha_khanah_doctors.modules.profile.pharmacy
 
 import android.app.Activity
 import android.content.Context
@@ -14,13 +14,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.PharmacyOffer
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.Pharmacy
+import com.seha_khanah_doctors.remote.objects.PharmacyOffer
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_pharmacy_profile.*
 import kotlinx.android.synthetic.main.fragment_pharmacy_profile.lab_location_btn
 import kotlinx.android.synthetic.main.fragment_pharmacy_profile.pharm_details_lay
@@ -70,17 +71,17 @@ class PharmacyProfileFragment : Fragment() {
         mContext = activity as MainActivity
     }
 
-    private fun setPageData(pharm: PharmacyOffer){
+    private fun setPageData(pharm: Pharmacy){
         if (mContext!!.preferences!!.getString("language","")=="Arabic"){
-            pharm_title_txt!!.text=pharm.pharmacy.pharmacy_name_ar
-            address!!.text=pharm.pharmacy.buildingNum_ar+"-"+pharm.pharmacy.streetName_ar
-            pharm_info_txt.text=pharm.pharmacy.about_ar
-            pharm_doc_name.text=pharm.pharmacy.firstName_ar+" "+pharm.pharmacy.lastName_ar
+            pharm_title_txt!!.text=pharm.pharmacy_name_ar
+            address!!.text=pharm.buildingNum_ar+"-"+pharm.streetName_ar
+            pharm_info_txt.text=pharm.about_ar
+            pharm_doc_name.text=pharm.firstName_ar+" "+pharm.lastName_ar
         }else{
-            pharm_title_txt!!.text=pharm.pharmacy.pharmacy_name_en
-            address!!.text=pharm.pharmacy.buildingNum_en+"-"+pharm.pharmacy.streetName_en
-            pharm_info_txt.text=pharm.pharmacy.about_en
-            pharm_doc_name.text=pharm.pharmacy.firstName_en+" "+pharm.pharmacy.lastName_en
+            pharm_title_txt!!.text=pharm.pharmacy_name_en
+            address!!.text=pharm.buildingNum_en+"-"+pharm.streetName_en
+            pharm_info_txt.text=pharm.about_en
+            pharm_doc_name.text=pharm.firstName_en+" "+pharm.lastName_en
 
         }
 
@@ -102,22 +103,22 @@ class PharmacyProfileFragment : Fragment() {
         val url = Q.GET_PHARM_BY_ID_API +"/${id}"
         apiClient = ApiClient()
         sessionManager = SessionManager(mContext!!)
-        apiClient.getApiService(mContext!!).fitchPharmacyById(url)
-            .enqueue(object : Callback<BaseResponce<PharmacyOffer>> {
-                override fun onFailure(call: Call<BaseResponce<PharmacyOffer>>, t: Throwable) {
+        apiClient.getApiService(mContext!!).fitchPharmProfile()
+            .enqueue(object : Callback<BaseResponce<Pharmacy>> {
+                override fun onFailure(call: Call<BaseResponce<Pharmacy>>, t: Throwable) {
                     alertNetwork(true)
                 }
 
                 override fun onResponse(
-                    call: Call<BaseResponce<PharmacyOffer>>,
-                    response: Response<BaseResponce<PharmacyOffer>>
+                    call: Call<BaseResponce<Pharmacy>>,
+                    response: Response<BaseResponce<Pharmacy>>
                 ) {
                     if (response!!.isSuccessful) {
                         if (response.body()!!.success) {
                             response.body()!!.data!!.let {
-                                lat=it.pharmacy.lat
-                                lng=it.pharmacy.lng
-                                labName=it.pharmacy.pharmacy_name_ar
+                                lat=it.lat
+                                lng=it.lng
+                                labName=it.pharmacy_name_ar
                                 Glide.with(mContext!!).applyDefaultRequestOptions(
                                     RequestOptions()
                                         .placeholder(R.drawable.person_ic)

@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile.doctor
+package com.seha_khanah_doctors.modules.profile.doctor
 
 import android.app.Activity
 import android.content.Context
@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.profile.doctor.DoctorInfoDetailsActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.profile.doctor.DoctorInfoDetailsActivity
 import kotlinx.android.synthetic.main.fragment_doctor_info.*
 
 // TODO: Rename parameter arguments, choose names that match

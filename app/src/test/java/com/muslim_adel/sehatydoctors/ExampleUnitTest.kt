@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors
+package com.seha_khanah_doctors
 
 import org.junit.Test
 

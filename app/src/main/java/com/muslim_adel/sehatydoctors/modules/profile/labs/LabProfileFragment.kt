@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile.labs
+package com.seha_khanah_doctors.modules.profile.labs
 
 import android.app.Activity
 import android.content.Context
@@ -14,13 +14,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.Laboratory
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.Laboratory
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_lab_profile.*
 import kotlinx.android.synthetic.main.fragment_pharmacy_profile.*
 import kotlinx.android.synthetic.main.fragment_pharmacy_profile.lab_location_btn

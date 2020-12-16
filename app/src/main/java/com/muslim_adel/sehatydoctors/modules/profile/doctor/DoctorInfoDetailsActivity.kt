@@ -1,11 +1,11 @@
-package com.muslim_adel.sehatydoctors.modules.profile.doctor
+package com.seha_khanah_doctors.modules.profile.doctor
 
 import androidx.appcompat.app. AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.SubSpiecialityModel
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.remote.objects.doctor.SubSpiecialityModel
 import kotlinx.android.synthetic.main.activity_doctor_info_details.*
 
 class DoctorInfoDetailsActivity : BaseActivity() {

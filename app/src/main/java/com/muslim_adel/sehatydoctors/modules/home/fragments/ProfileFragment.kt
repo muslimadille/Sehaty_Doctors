@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.fragments
+package com.seha_khanah_doctors.modules.home.fragments
 
 import android.app.Activity
 import android.content.Context
@@ -16,17 +16,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.CustomTabLayout
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.home.schedual.TabsAdapter
-import com.muslim_adel.sehatydoctors.modules.profile.doctor.ClinicInfoFragment
-import com.muslim_adel.sehatydoctors.modules.profile.doctor.DoctorEditProfileActivity
-import com.muslim_adel.sehatydoctors.modules.profile.doctor.DoctorInfoFragment
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.CustomTabLayout
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.home.schedual.TabsAdapter
+import com.seha_khanah_doctors.modules.profile.doctor.ClinicInfoFragment
+import com.seha_khanah_doctors.modules.profile.doctor.DoctorEditProfileActivity
+import com.seha_khanah_doctors.modules.profile.doctor.DoctorInfoFragment
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.doctor.DoctorProfileModel
 import kotlinx.android.synthetic.main.fragment_profile.*
 import retrofit2.Call
 import retrofit2.Callback

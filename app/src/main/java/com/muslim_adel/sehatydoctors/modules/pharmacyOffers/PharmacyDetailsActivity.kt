@@ -1,9 +1,9 @@
-package com.muslim_adel.sehatydoctors.modules.pharmacyOffers
+package com.seha_khanah_doctors.modules.pharmacyOffers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
 
 class PharmacyDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

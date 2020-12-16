@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual
+package com.seha_khanah_doctors.modules.home.schedual
 
 import android.app.DatePickerDialog
 import android.content.DialogInterface
@@ -9,14 +9,14 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.modules.home.schedual.addReservation.RservationDatesActivity
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.modules.home.schedual.addReservation.RservationDatesActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.doctor.ReservationModel
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_appointments.*
 import kotlinx.android.synthetic.main.no_search_layout.*
 import retrofit2.Call

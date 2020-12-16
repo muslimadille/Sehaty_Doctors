@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.utiles
+package com.seha_khanah_doctors.utiles
 
 import java.util.*
 
@@ -49,6 +49,13 @@ object Q {
     const val DOC_WORKING_DATES_API="doctor/dashboard/working-hours"
     const val DOC_VACANCIES_DATES_API="doctor/dashboard/vacations"
     const val DOC_ADD_OFFER_API="doctor/dashboard/offer/add"
+    const val DOC_PROFISSIONAL_DETAILS_API="profissionalDetails"
+    const val DOC_SUB_SPIC_API="subSpecialties"
+    const val DOC_UPDATE_PROFILE_API="doctor/dashboard/update"
+
+
+
+
 
 
 
@@ -60,11 +67,16 @@ object Q {
     const val GET_PHARMACY_OFFERS_API="pharmacy/dashboard/offers"
     const val GET_PHARM_BY_ID_API="pharmacy/offer/show"
     const val POST_PHARM_OFFER_API="pharmacy/dashboard/offer/add"
+    const val POST_PHARM_PROFILE_API="pharmacy/dashboard/profile"
+    const val PHARM_UPDATE_PROFILE_API="pharmacy/dashboard/update"
+
 
     /**------------------labs---------------------------------*/
     const val GET_ALL_LAB_RESERVATIONS_API="laboratory/dashboard/reservations"
     const val SEND_LAB_RESERVATIONS_API="laboratory/dashboard/reservations/add"
     const val GET_LAB_PROFILE_API="laboratory/dashboard/profile"
+    const val LAB_UPDATE_PROFILE_API="laboratory/dashboard/update"
+
 
 
 

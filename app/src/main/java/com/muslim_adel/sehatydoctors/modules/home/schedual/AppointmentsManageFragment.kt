@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual
+package com.seha_khanah_doctors.modules.home.schedual
 
 import android.app.Activity
 import android.content.Context
@@ -13,15 +13,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.profile.doctor.VacationDatesAdapter
-import com.muslim_adel.sehatydoctors.modules.profile.doctor.WorkingDatesAdapter
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.VacancyModel
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.WorkingDatesModel
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.profile.doctor.VacationDatesAdapter
+import com.seha_khanah_doctors.modules.profile.doctor.WorkingDatesAdapter
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.doctor.VacancyModel
+import com.seha_khanah_doctors.remote.objects.doctor.WorkingDatesModel
 import kotlinx.android.synthetic.main.fragment_appointments.*
 import kotlinx.android.synthetic.main.fragment_appointments.all_days_rv
 import kotlinx.android.synthetic.main.fragment_appointments_manage.*

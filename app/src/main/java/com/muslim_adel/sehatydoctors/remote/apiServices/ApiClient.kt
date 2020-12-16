@@ -1,7 +1,7 @@
-package com.muslim_adel.sehatydoctors.remote.apiServices
+package com.seha_khanah_doctors.remote.apiServices
 
 import android.content.Context
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.utiles.Q
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,7 +12,7 @@ class ApiClient {
 
     fun getApiService(context: Context): ApiService {
 
-        // Initialize com.muslim_adel.sehatydoctors.remote.apiServices.ApiService if not initialized yet
+        // Initialize com.seha_khanah_doctors.remote.apiServices.ApiService if not initialized yet
         if (!::apiService.isInitialized) {
             val retrofit = Retrofit.Builder()
                 .baseUrl(Q.BASE_URL)

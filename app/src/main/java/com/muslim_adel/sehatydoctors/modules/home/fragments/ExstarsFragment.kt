@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.fragments
+package com.seha_khanah_doctors.modules.home.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.settings.ChangeLanguageActivity
-import com.muslim_adel.sehatydoctors.modules.settings.ContactUsActivity
-import com.muslim_adel.sehatydoctors.modules.splash.SplashActivity
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.settings.ChangeLanguageActivity
+import com.seha_khanah_doctors.modules.settings.ContactUsActivity
+import com.seha_khanah_doctors.modules.splash.SplashActivity
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.extras_fragment.*
 
 

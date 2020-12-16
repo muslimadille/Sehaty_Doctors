@@ -1,17 +1,17 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual.addReservation
+package com.seha_khanah_doctors.modules.home.schedual.addReservation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.BaseResponce
-import com.muslim_adel.sehatydoctors.remote.objects.Booking
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.Booking
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_add_new_reservation.*
 import org.koin.ext.isInt
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.introwizerd
+package com.seha_khanah_doctors.modules.introwizerd
 
 import android.content.Intent
 import android.os.Build
@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.modules.introwizerd.adapters.IntroPagerAdapter
-import com.muslim_adel.sehatydoctors.modules.introwizerd.fragments.Intro1Fragment
-import com.muslim_adel.sehatydoctors.modules.introwizerd.fragments.Intro2Fragment
-import com.muslim_adel.sehatydoctors.modules.introwizerd.fragments.Intro3Fragment
-import com.muslim_adel.sehatydoctors.modules.registration.LoginActivity
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.modules.introwizerd.adapters.IntroPagerAdapter
+import com.seha_khanah_doctors.modules.introwizerd.fragments.Intro1Fragment
+import com.seha_khanah_doctors.modules.introwizerd.fragments.Intro2Fragment
+import com.seha_khanah_doctors.modules.introwizerd.fragments.Intro3Fragment
+import com.seha_khanah_doctors.modules.registration.LoginActivity
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_intro_wizard.*
 import java.util.*
 import kotlin.collections.ArrayList

@@ -1,10 +1,10 @@
-package com.muslim_adel.sehatydoctors.remote.objects
+package com.seha_khanah_doctors.remote.objects
 
 import com.google.gson.annotations.SerializedName
 
 data class Message(
-    @SerializedName("phonenumber")
-    var phone_number: ArrayList<String>,
+    @SerializedName("subSpecialties_id")
+    var subSpecialties_id: ArrayList<String>,
     @SerializedName("doctor_id")
     var doctor_id:  ArrayList<String>,
     @SerializedName("checkbox")
@@ -18,5 +18,6 @@ data class Message(
     @SerializedName("gender_id")
     var gender_id: ArrayList<String>,
     @SerializedName("speciality_id")
-    var speciality_id: ArrayList<String>
+    var speciality_id: ArrayList<String>,
+
 )

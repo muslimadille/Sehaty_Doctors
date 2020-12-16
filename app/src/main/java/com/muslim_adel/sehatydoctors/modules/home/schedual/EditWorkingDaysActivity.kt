@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual
+package com.seha_khanah_doctors.modules.home.schedual
 
 import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TimePicker
 import android.widget.Toast
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.remote.objects.OffersSubGategory
-import com.muslim_adel.sehatydoctors.utiles.SpinnerAdapterCustomFont
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.remote.objects.OffersSubGategory
+import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
 import kotlinx.android.synthetic.main.activity_add_dpctor_offer.*
 import kotlinx.android.synthetic.main.activity_edit_working_days.*
 import java.util.*

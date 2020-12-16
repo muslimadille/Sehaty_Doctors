@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.base
+package com.seha_khanah_doctors.modules.base
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

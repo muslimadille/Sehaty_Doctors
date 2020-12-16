@@ -20,25 +20,46 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
+        android:id="@+id/offer_lay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/gray_light">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical">
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_contacts"
+                    android:textSize="14sp" />
 
+            </LinearLayout>
             <androidx.cardview.widget.CardView
-                android:padding="10dp"
+                android:visibility="gone"
+                app:cardCornerRadius="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp">
-
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,27 +71,6 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="15dp"
-                                app:srcCompat="@drawable/doctor_ic"
-                                tools:ignore="VectorDrawableCompat" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:background="@color/gray"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
-                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -79,29 +79,27 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
+                                android:layout_marginBottom="10dp"
+                                android:orientation="horizontal">
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/name_input_layout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
+                                    android:backgroundTint="@color/white">
 
                                     <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/first_name_ar_txt"
-                                        android:inputType="text"
+                                        android:id="@+id/edit_email_txt"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_centerHorizontal="true"
                                         android:layout_centerVertical="true"
+                                        android:backgroundTint="@color/white"
                                         android:ems="10"
-                                        android:hint="@string/first_name_arabic" />
+                                        android:hint="@string/e_mail"
+                                        android:inputType="text" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,203 +108,29 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
+                                android:layout_marginBottom="10dp"
+                                android:orientation="horizontal">
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/phone_input_layout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
+                                    android:backgroundTint="@color/white">
 
                                     <EditText
+                                        android:id="@+id/edit_phone_txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
                                         android:backgroundTint="@color/white"
-                                        android:id="@+id/first_name_en_txt"
+                                        android:hint="@string/phone_number"
                                         android:maxEms="10"
-                                        android:minEms="10"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:hint="@string/first_name_english" />
+                                        android:minEms="10" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
-
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
-
-                                    <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/last_name_ar_txt"
-                                        android:inputType="text"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:ems="10"
-                                        android:hint="@string/last_name_arabic" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
-
-                                    <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/last_name_en_txt"
-                                        android:inputType="text"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:ems="10"
-                                        android:hint="@string/last_name_english" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                            </LinearLayout>
-
-
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="15dp"
-                                app:srcCompat="@drawable/doctor_ic"
-                                tools:ignore="VectorDrawableCompat" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:background="@color/gray"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
-
-                                    <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/email_txt"
-                                        android:inputType="text"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:ems="10"
-                                        android:hint="@string/e_mail" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
-
-                                    <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/phone_num_txt"
-                                        android:maxEms="10"
-                                        android:minEms="10"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:hint="@string/phone_number" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
 
                             </LinearLayout>
 
@@ -315,141 +139,155 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_name"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
             <androidx.cardview.widget.CardView
-                android:padding="10dp"
+                app:cardCornerRadius="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp">
-
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="15dp"
-                                app:srcCompat="@drawable/doctor_ic"
-                                tools:ignore="VectorDrawableCompat" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:background="@color/gray"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="vertical">
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
+                                android:layout_marginBottom="10dp"
+                                android:orientation="horizontal">
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
+                                    android:backgroundTint="@color/white">
 
                                     <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/price_txt"
-                                        android:inputType="text"
+                                        android:id="@+id/edit_fna_txt"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_centerHorizontal="true"
                                         android:layout_centerVertical="true"
+                                        android:backgroundTint="@color/white"
                                         android:ems="10"
-                                        android:hint="@string/price" />
+                                        android:hint="@string/f_name_ar"
+                                        android:inputType="text" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
-
-                                    <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/num_of_days"
-                                        android:maxEms="10"
-                                        android:minEms="10"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:hint="@string/number_of_days" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
 
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
+                                android:layout_marginBottom="10dp"
+                                android:orientation="horizontal">
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
+                                    android:backgroundTint="@color/white">
 
                                     <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/waiting_time_txt"
-                                        android:maxEms="10"
-                                        android:minEms="10"
+                                        android:id="@+id/edit_fne_txt"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_centerHorizontal="true"
                                         android:layout_centerVertical="true"
-                                        android:hint="@string/waiting_time" />
+                                        android:backgroundTint="@color/white"
+                                        android:hint="@string/f_name_en"
+                                        android:maxEms="10"
+                                        android:minEms="10" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:backgroundTint="@color/white">
+
+                                    <EditText
+                                        android:id="@+id/edit_lna_txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:backgroundTint="@color/white"
+                                        android:ems="10"
+                                        android:hint="@string/l_name_ar"
+                                        android:inputType="text" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:backgroundTint="@color/white">
+
+                                    <EditText
+                                        android:id="@+id/edit_lne_txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:backgroundTint="@color/white"
+                                        android:hint="@string/f_name_en"
+                                        android:maxEms="10"
+                                        android:minEms="10" />
+
+                                </com.google.android.material.textfield.TextInputLayout>
 
                             </LinearLayout>
 
@@ -458,15 +296,196 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_price"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
             <androidx.cardview.widget.CardView
-                android:padding="10dp"
+                app:cardCornerRadius="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white">
+
+                            <EditText
+                                android:id="@+id/edit_price_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:inputType="numberDecimal"
+                                android:backgroundTint="@color/white"
+                                android:hint="@string/cost_amount"
+                                android:maxEms="10"
+                                android:minEms="10" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_reservation_days_num"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white">
+
+                            <EditText
+                                android:id="@+id/edit_num_of_days_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:backgroundTint="@color/white"
+                                android:hint="@string/number_of_days"
+                                android:inputType="numberDecimal"
+                                android:maxEms="10"
+                                android:minEms="10" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_reagon"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/waiting_time_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_about_doctor"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -478,32 +497,10 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="15dp"
-                                app:srcCompat="@drawable/doctor_ic"
-                                tools:ignore="VectorDrawableCompat" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:background="@color/gray"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
-                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="vertical">
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -521,7 +518,7 @@
 
                                     <EditText
                                         android:backgroundTint="@color/white"
-                                        android:id="@+id/about_doc_ar_txt"
+                                        android:id="@+id/edit_about_doc_ar_txt"
                                         android:inputType="text"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -533,7 +530,6 @@
                                 </com.google.android.material.textfield.TextInputLayout>
 
                             </LinearLayout>
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -551,321 +547,207 @@
 
                                     <EditText
                                         android:backgroundTint="@color/white"
-                                        android:id="@+id/about_doc_en_txt"
-                                        android:maxEms="10"
-                                        android:minEms="10"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:hint="@string/about_doctor_english" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="15dp"
-                                app:srcCompat="@drawable/doctor_ic"
-                                tools:ignore="VectorDrawableCompat" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:background="@color/gray"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
-
-                                    <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/profitional_title_ar_txt"
+                                        android:id="@+id/edit_about_doc_en_txt"
                                         android:inputType="text"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_centerHorizontal="true"
                                         android:layout_centerVertical="true"
                                         android:ems="10"
-                                        android:hint="@string/profional_title_arabic" />
+                                        android:hint="@string/about_doctor_english" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
                             </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@color/white"
-                                    android:backgroundTint="@color/white"
-                                    >
-
-                                    <EditText
-                                        android:backgroundTint="@color/white"
-                                        android:id="@+id/professional_title_en_txt"
-                                        android:maxEms="10"
-                                        android:minEms="10"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:hint="@string/professional_title_english" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-
-                            </LinearLayout>
-
-
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_grade"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
             <androidx.cardview.widget.CardView
-                android:visibility="gone"
-                android:padding="10dp"
+                app:cardCornerRadius="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:padding="10dp">
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp">
 
-                    <LinearLayout
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/prof_details__spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="15dp"
-                                app:srcCompat="@drawable/doctor_ic"
-                                tools:ignore="VectorDrawableCompat" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:background="@color/gray"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:padding="10dp">
-
-                                    <androidx.appcompat.widget.AppCompatSpinner
-                                        android:id="@+id/category_spinner"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" />
-
-                                </RelativeLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="10dp">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_vertical"
-                                    android:padding="10dp">
-
-                                    <androidx.appcompat.widget.AppCompatSpinner
-                                        android:id="@+id/sub_category_spinner"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" />
-
-                                </RelativeLayout>
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:padding="10dp"
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/edit_profile_image"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
+                    android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <androidx.cardview.widget.CardView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="15dp"
-                                app:srcCompat="@drawable/ic_add"
-                                tools:ignore="VectorDrawableCompat" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:background="@color/gray"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:cardCornerRadius="8dp"
+                            android:padding="2dp"
+                            app:cardElevation="3dp">
+                            <ImageView
+                                android:id="@+id/edit_doc_profile_img"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:src="@drawable/ic__no_image_24"/>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+
+                android:id="@+id/edit_address_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="5dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_location"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@color/red"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_marginBottom="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/profile_image"/>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="8dp"
-                                android:padding="2dp"
-                                app:cardElevation="3dp">
-                                <ImageView
-                                    android:id="@+id/offer_img"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:src="@drawable/ic__no_image_24"/>
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
+                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_height="match_parent"
+                            android:text="@string/edit_address"
+                            android:textSize="14sp"
+                            />
+                        <TextView
+                            android:id="@+id/clinic_address_txt"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_height="match_parent"
+                            android:textSize="14sp"
+                            />
                     </LinearLayout>
+                    <ImageView
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        tools:replace="android:supportsRtl"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/arrow"/>
+
+
 
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
-
-
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-    <LinearLayout
+    </ScrollView>
+    <include
+        android:id="@+id/progrss_lay"
+        layout="@layout/progress_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/save_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/blue"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/save_profile"/>
-    </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/doc_updat_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/save_btn"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+
 </LinearLayout>

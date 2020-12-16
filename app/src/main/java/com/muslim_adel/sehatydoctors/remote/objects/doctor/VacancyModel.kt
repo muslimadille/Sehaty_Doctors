@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.remote.objects.doctor
+package com.seha_khanah_doctors.remote.objects.doctor
 
 import com.google.gson.annotations.SerializedName
 

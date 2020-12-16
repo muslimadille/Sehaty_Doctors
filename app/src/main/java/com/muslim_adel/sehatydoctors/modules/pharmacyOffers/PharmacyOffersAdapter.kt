@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.pharmacyOffers
+package com.seha_khanah_doctors.modules.pharmacyOffers
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,13 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.offers.OfferDetailsActivity
-import com.muslim_adel.sehatydoctors.remote.objects.Offer
-import com.muslim_adel.sehatydoctors.remote.objects.PharmacyOffer
-import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.offers.OfferDetailsActivity
+import com.seha_khanah_doctors.remote.objects.Offer
+import com.seha_khanah_doctors.remote.objects.PharmacyOffer
+import com.seha_khanah_doctors.utiles.ComplexPreferences
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.offer_item.view.*
 import kotlinx.android.synthetic.main.offer_item.view.final_cost
 import kotlinx.android.synthetic.main.offer_item.view.offer_img

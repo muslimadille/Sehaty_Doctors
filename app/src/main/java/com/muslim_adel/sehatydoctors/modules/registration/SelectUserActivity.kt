@@ -1,10 +1,10 @@
-package com.muslim_adel.sehatydoctors.modules.registration
+package com.seha_khanah_doctors.modules.registration
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_select_user.*
 
 class SelectUserActivity : BaseActivity() {

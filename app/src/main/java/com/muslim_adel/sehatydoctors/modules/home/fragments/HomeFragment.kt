@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.fragments
+package com.seha_khanah_doctors.modules.home.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -9,15 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.CustomTabLayout
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.home.schedual.AllDaysFragment
-import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsFragment
-import com.muslim_adel.sehatydoctors.modules.home.schedual.AppointmentsManageFragment
-import com.muslim_adel.sehatydoctors.modules.home.schedual.TabsAdapter
-import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.CustomTabLayout
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.home.schedual.AllDaysFragment
+import com.seha_khanah_doctors.modules.home.schedual.AppointmentsFragment
+import com.seha_khanah_doctors.modules.home.schedual.AppointmentsManageFragment
+import com.seha_khanah_doctors.modules.home.schedual.TabsAdapter
+import com.seha_khanah_doctors.utiles.ComplexPreferences
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.home_fragment.*
 
 

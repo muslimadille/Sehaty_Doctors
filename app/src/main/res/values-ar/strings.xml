@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">sehaty</string>
+    <string name="app_name">صحة خانة للأطباء</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="contact_us">إتصل بنا</string>
@@ -204,6 +204,8 @@
     <string name="number_of_days">عدد أيام العمل</string>
     <string name="about_doctor_arabic">عن الطبيب(arabic)</string>
     <string name="about_doctor_english">عن الطبيب(english)</string>
+    <string name="about_lab_english">عن المختبر (english)</string>
+    <string name="about_lab_arabic">عن المختبر (arabic)</string>
     <string name="profional_title_arabic">اسم التخصص(arabic)</string>
     <string name="professional_title_english"> اسم التخصص(english)</string>
     <string name="profile_image">الصورة الشخصية</string>
@@ -232,6 +234,41 @@
     <string name="price_title">7.قم بإضافة السعر</string>
     <string name="start_date_title">8.قم بإضافة تاريخ بداية وإنتهائ العرض</string>
     <string name="images_title">9.أضف الصور</string>
+    <string name="edit_contacts">تعديل وسائل الإتصال</string>
+    <string name="edit_name">تعديل الأسم</string>
+    <string name="f_name_ar">الاسم الاول(عربي)</string>
+    <string name="f_name_en">الاسم الاول (انجليزي)</string>
+    <string name="l_name_ar">الاسم الثاني(عربي)</string>
+    <string name="l_name_en">الاسم الثاني (انجليزي)</string>
+    <string name="edit_price">تعديل سعر الكشف</string>
+    <string name="edit_waiting_time">تعديل مدة الإنتظار</string>
+    <string name="edit_reservation_days_num">تعديل عدد ايام الحجز</string>
+    <string name="edit_about_doctor">تعديل معلومات الطبيب</string>
+    <string name="edit_profile_image">تعديل الصورة</string>
+    <string name="edit_grade">تعديل الدرجة</string>
+    <string name="edit_address">تعديل بيانات العنوان</string>
+    <string name="street_name_ar">أسم الشارع (عربي)</string>
+    <string name="edit_street_name">تعديل اسم الشارع</string>
+    <string name="english">أسم الشارع (english)</string>
+    <string name="edit_building_info">تعديل بيانات العقار</string>
+    <string name="role_num">دور رقم:</string>
+    <string name="apartment_num">شقة رقم:</string>
+    <string name="landmark_edit">تعديل المعلم</string>
+    <string name="landmark_ar">معلم معروف (عربي)</string>
+    <string name="landmark_en">معلم معروف(english)</string>
+    <string name="edit_loc">تعديل عنوان الخريطة</string>
+    <string name="location">الموقع</string>
+    <string name="edit_reagon">تعديل المنطقة</string>
+    <string name="edit_about_lab">تعديل معلومات المختبر</string>
+    <string name="edit_lab_name">تعديل أسم المختبر</string>
+    <string name="lab_name_ar">اسم الختبر (عربي)</string>
+    <string name="lab_name_english">اسم المختبر (English)</string>
+    <string name="pharm_name_ar">اسم الصيدلية(عربي)</string>
+    <string name="pharm_name_en">اسم الصيدلية (English)</string>
+    <string name="edit_about_pharm">تعديل معلومات عن الصيدلية</string>
+    <string name="edit_shift">تعديل الخافرة</string>
+    <string name="about_pharmacy_arabic">عن الصيدلية(عربي)</string>
+    <string name="about_pharmacy_english">عن الصيدلية (English)</string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual
+package com.seha_khanah_doctors.modules.home.schedual
 
 import android.app.Activity
 import android.content.Context
@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.DayItemModel
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.WorkingDatesModel
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.objects.doctor.DayItemModel
+import com.seha_khanah_doctors.remote.objects.doctor.WorkingDatesModel
 import kotlinx.android.synthetic.main.fragment_all_days.*
 import kotlinx.android.synthetic.main.fragment_appointments.*
 import kotlinx.android.synthetic.main.fragment_appointments.all_days_rv

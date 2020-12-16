@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.offers
+package com.seha_khanah_doctors.modules.offers
 
 import android.content.Context
 import android.os.Build
@@ -12,9 +12,9 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.remote.objects.OffersCategory
-import com.muslim_adel.sehatydoctors.remote.objects.OffersSubGategory
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.remote.objects.OffersCategory
+import com.seha_khanah_doctors.remote.objects.OffersSubGategory
 import kotlinx.android.synthetic.main.offer_category_frist_item.view.*
 import kotlinx.android.synthetic.main.offers_second_item.view.*
 import kotlinx.android.synthetic.main.sub_category_item.view.*

@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.introwizerd.adapters
+package com.seha_khanah_doctors.modules.introwizerd.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

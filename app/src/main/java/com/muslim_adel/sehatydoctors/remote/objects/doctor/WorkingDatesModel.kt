@@ -1,7 +1,7 @@
-package com.muslim_adel.sehatydoctors.remote.objects.doctor
+package com.seha_khanah_doctors.remote.objects.doctor
 
 import com.google.gson.annotations.SerializedName
-import com.muslim_adel.sehatydoctors.remote.objects.Times
+import com.seha_khanah_doctors.remote.objects.Times
 
 data class WorkingDatesModel (
     @SerializedName("id")

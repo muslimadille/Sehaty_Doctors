@@ -1,18 +1,18 @@
-package com.muslim_adel.sehatydoctors.modules.registration
+package com.seha_khanah_doctors.modules.registration
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.LaboratoryLoginResponce
-import com.muslim_adel.sehatydoctors.remote.objects.LoginResponce
-import com.muslim_adel.sehatydoctors.remote.objects.PharmacyLoginResponce
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.LaboratoryLoginResponce
+import com.seha_khanah_doctors.remote.objects.LoginResponce
+import com.seha_khanah_doctors.remote.objects.PharmacyLoginResponce
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +28,6 @@ class LoginActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         onregisterclicked()
         onloginclicked()
     }
@@ -60,8 +59,8 @@ class LoginActivity : BaseActivity() {
     }
     private fun onregisterclicked(){
         registration_btn.setOnClickListener {
-            val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
-            startActivity(intent)
+           /* val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
+            startActivity(intent)*/
 
         }
     }

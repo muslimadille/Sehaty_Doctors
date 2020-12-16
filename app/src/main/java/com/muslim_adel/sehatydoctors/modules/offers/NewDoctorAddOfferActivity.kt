@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.offers
+package com.seha_khanah_doctors.modules.offers
 
 import android.Manifest
 import android.app.Activity
@@ -16,16 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.modules.base.GlideObject
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.apiServices.ApiClient
-import com.muslim_adel.sehatydoctors.remote.apiServices.SessionManager
-import com.muslim_adel.sehatydoctors.remote.objects.*
-import com.muslim_adel.sehatydoctors.utiles.IOUtile
-import com.muslim_adel.sehatydoctors.utiles.Q
-import com.muslim_adel.sehatydoctors.utiles.SpinnerAdapterCustomFont
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.modules.base.GlideObject
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.*
+import com.seha_khanah_doctors.utiles.IOUtile
+import com.seha_khanah_doctors.utiles.Q
+import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.*

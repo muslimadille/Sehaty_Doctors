@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile.doctor
+package com.seha_khanah_doctors.modules.profile.doctor
 
 import android.app.Activity
 import android.content.Context
@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.map.EditLocationActivity
 import kotlinx.android.synthetic.main.fragment_clinic_info.*
 import kotlinx.android.synthetic.main.fragment_doctor_info.*
 import kotlinx.android.synthetic.main.fragment_pharmacy_profile.*
@@ -73,6 +74,7 @@ class ClinicInfoFragment : Fragment() {
     }
     private fun onClinicAddressClicked(){
         clinic_address_btn.setOnClickListener {
+
             val zoom=40
             var lable=mContext!!.doctorProfileModel!!.aboutDoctor_ar
             mContext!!.intent= Intent(Intent.ACTION_VIEW)

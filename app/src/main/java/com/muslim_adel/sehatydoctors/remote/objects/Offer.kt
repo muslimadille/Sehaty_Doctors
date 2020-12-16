@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.remote.objects
+package com.seha_khanah_doctors.remote.objects
 
 import com.google.gson.annotations.SerializedName
 
@@ -42,14 +42,14 @@ data class Offer (
     @SerializedName("doctor_id")
     var doctor_id: Long,
     @SerializedName("active")
-    var active: Int
+    var active: Int,
     /*@SerializedName("doctor")
     var doctor:Doctor,
     @SerializedName("rating")
-    var rating:Int,
+    var rating:Int,*/
     @SerializedName("images")
     var images:  List<OfferImage>,
-    @SerializedName("dates")
+    /*@SerializedName("dates")
     var dates:  List<Date>,
     @SerializedName("ratings")
     var ratings:  List<Rates>*/

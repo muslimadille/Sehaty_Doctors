@@ -1,15 +1,15 @@
-package com.muslim_adel.sehatydoctors.modules.splash
+package com.seha_khanah_doctors.modules.splash
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.modules.introwizerd.IntroWizardActivity
-import com.muslim_adel.sehatydoctors.modules.registration.LoginActivity
-import com.muslim_adel.sehatydoctors.modules.registration.SelectUserActivity
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.introwizerd.IntroWizardActivity
+import com.seha_khanah_doctors.modules.registration.LoginActivity
+import com.seha_khanah_doctors.modules.registration.SelectUserActivity
+import com.seha_khanah_doctors.utiles.Q
 import java.util.*
 
 class SplashActivity : BaseActivity() {

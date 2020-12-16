@@ -1,8 +1,8 @@
-package com.muslim_adel.sehatydoctors.modules.settings
+package com.seha_khanah_doctors.modules.settings
 
 import android.os.Bundle
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
 
 class ContactUsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

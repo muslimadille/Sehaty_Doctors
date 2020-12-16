@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual.addReservation
+package com.seha_khanah_doctors.modules.home.schedual.addReservation
 
 import android.content.Context
 import android.content.Intent
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.remote.objects.Times
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.remote.objects.Times
 import kotlinx.android.synthetic.main.time_item.view.*
 
 class ReservationTimesAdapter(

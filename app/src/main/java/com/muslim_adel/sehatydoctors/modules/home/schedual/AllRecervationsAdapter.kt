@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual
+package com.seha_khanah_doctors.modules.home.schedual
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.objects.doctor.ReservationModel
 import kotlinx.android.synthetic.main.appointment_list_item.view.*
 
 

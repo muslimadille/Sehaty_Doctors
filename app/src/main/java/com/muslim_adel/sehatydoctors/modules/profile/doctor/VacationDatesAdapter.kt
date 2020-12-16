@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.profile.doctor
+package com.seha_khanah_doctors.modules.profile.doctor
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.VacancyModel
-import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.objects.doctor.VacancyModel
+import com.seha_khanah_doctors.utiles.ComplexPreferences
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.vacation_dates_item.view.*
 
 

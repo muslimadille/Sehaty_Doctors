@@ -1,20 +1,20 @@
-package com.muslim_adel.sehatydoctors.modules.home
+package com.seha_khanah_doctors.modules.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.get
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.modules.home.fragments.ExstarsFragment
-import com.muslim_adel.sehatydoctors.modules.home.fragments.HomeFragment
-import com.muslim_adel.sehatydoctors.modules.home.fragments.OffersFragment
-import com.muslim_adel.sehatydoctors.modules.home.fragments.ProfileFragment
-import com.muslim_adel.sehatydoctors.modules.profile.labs.LabProfileFragment
-import com.muslim_adel.sehatydoctors.modules.profile.pharmacy.PharmacyProfileFragment
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorProfileModel
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.modules.home.fragments.ExstarsFragment
+import com.seha_khanah_doctors.modules.home.fragments.HomeFragment
+import com.seha_khanah_doctors.modules.home.fragments.OffersFragment
+import com.seha_khanah_doctors.modules.home.fragments.ProfileFragment
+import com.seha_khanah_doctors.modules.profile.labs.LabProfileFragment
+import com.seha_khanah_doctors.modules.profile.pharmacy.PharmacyProfileFragment
+import com.seha_khanah_doctors.remote.objects.doctor.DoctorProfileModel
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

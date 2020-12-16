@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">seha khanah doctors</string>
+    <string name="app_name">صحة خانة للأطباء</string>
     <string name="settings">settings</string>
     <string name="edite_password">Edit Password</string>
     <string name="contact_us">contact us</string>
@@ -202,6 +202,10 @@
     <string name="number_of_days">number of working days</string>
     <string name="about_doctor_arabic">about doctor (arabic)</string>
     <string name="about_doctor_english">about doctor (english)</string>
+    <string name="about_lab_english">about Lab (english)</string>
+    <string name="about_lab_arabic">about Lab (arabic)</string>
+
+
     <string name="profional_title_arabic">professional title (arabic)</string>
     <string name="professional_title_english">professional title (english)</string>
     <string name="profile_image">profile image</string>
@@ -230,5 +234,41 @@
     <string name="price_title">7. Add the price</string>
     <string name="start_date_title">8- Add the start and end date of the presentation</string>
     <string name="images_title">9. Add photo</string>
+    <string name="edit_contacts">Modify contact information</string>
+    <string name="edit_name">Name editing</string>
+    <string name="f_name_ar">First name (Arabic)</string>
+    <string name="f_name_en">First name (English)</string>
+    <string name="l_name_ar">Last name (Arabic)</string>
+    <string name="l_name_en">Last name (English)</string>
+    <string name="edit_price">Edit Price</string>
+    <string name="edit_waiting_time">Edit Waiting Time</string>
+    <string name="edit_reservation_days_num">Edit Reservation Days Number</string>
+    <string name="edit_about_doctor">Edit About Doctor</string>
+    <string name="edit_profile_image">Edit Profile Image</string>
+    <string name="edit_grade">Edit Grade</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="edit_address">Edit address Information</string>
+    <string name="street_name_ar">Street Name(Arabic)</string>
+    <string name="edit_street_name">Edit Street Name</string>
+    <string name="english">Street Name (english)</string>
+    <string name="edit_building_info">Edit Building Information</string>
+    <string name="role_num">Role:</string>
+    <string name="apartment_num">Apartment Number:</string>
+    <string name="landmark_edit">Landmark Edit</string>
+    <string name="landmark_ar">Landmark (Arabic)</string>
+    <string name="landmark_en"> Landmark (english)</string>
+    <string name="edit_loc">Edit Location</string>
+    <string name="location">Location</string>
+    <string name="edit_reagon">Edit Region</string>
+    <string name="edit_about_lab">Edit About Lab</string>
+    <string name="edit_lab_name">Edit Lab Name</string>
+    <string name="lab_name_ar"> Lab Name (Arabic)</string>
+    <string name="lab_name_english"> Lab Name (English)</string>
+    <string name="pharm_name_ar"> Pharmacy Name(Arabic)</string>
+    <string name="pharm_name_en">Pharmacy Name(English)</string>
+    <string name="edit_about_pharm">Edit About Pharmacy</string>
+    <string name="edit_shift">Edit shift</string>
+    <string name="about_pharmacy_arabic">About Pharmacy (Arabic)</string>
+    <string name="about_pharmacy_english">About Pharmacy (English)</string>
 
 </resources>

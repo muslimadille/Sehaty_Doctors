@@ -1,10 +1,10 @@
-package com.muslim_adel.sehatydoctors.modules.settings
+package com.seha_khanah_doctors.modules.settings
 
 import android.content.Intent
 import android.os.Bundle
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.base.BaseActivity
-import com.muslim_adel.sehatydoctors.modules.splash.SplashActivity
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.base.BaseActivity
+import com.seha_khanah_doctors.modules.splash.SplashActivity
 import kotlinx.android.synthetic.main.activity_change_language.*
 
 class ChangeLanguageActivity : BaseActivity() {

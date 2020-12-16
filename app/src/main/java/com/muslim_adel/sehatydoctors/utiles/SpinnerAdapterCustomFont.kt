@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.utiles
+package com.seha_khanah_doctors.utiles
 
 import android.content.Context
 import android.util.TypedValue
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
-import com.muslim_adel.sehatydoctors.R
+import com.seha_khanah_doctors.R
 
 class SpinnerAdapterCustomFont (context: Context, resource: Int, internal var list: ArrayList<String>) : ArrayAdapter<String>(context, resource, list) {
     // Initialise custom font, for example:

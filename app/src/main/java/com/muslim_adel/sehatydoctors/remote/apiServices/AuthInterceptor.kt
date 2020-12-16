@@ -1,8 +1,8 @@
-package com.muslim_adel.sehatydoctors.remote.apiServices
+package com.seha_khanah_doctors.remote.apiServices
 
 import android.content.Context
-import com.muslim_adel.sehatydoctors.utiles.ComplexPreferences
-import com.muslim_adel.sehatydoctors.utiles.Q
+import com.seha_khanah_doctors.utiles.ComplexPreferences
+import com.seha_khanah_doctors.utiles.Q
 import okhttp3.Interceptor
 import okhttp3.Response
 

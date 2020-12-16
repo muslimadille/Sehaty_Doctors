@@ -1,10 +1,10 @@
-package com.muslim_adel.sehatydoctors.utiles
+package com.seha_khanah_doctors.utiles
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
+import com.seha_khanah_doctors.modules.home.MainActivity
 
 class ComplexPreferences @SuppressLint("CommitPrefEdits") constructor(context: Context, namePreferences: String?, mode: Int) {
 

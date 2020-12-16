@@ -1,4 +1,4 @@
-package com.muslim_adel.sehatydoctors.modules.home.schedual
+package com.seha_khanah_doctors.modules.home.schedual
 
 import android.content.Context
 import android.content.Intent
@@ -10,10 +10,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.muslim_adel.sehatydoctors.R
-import com.muslim_adel.sehatydoctors.modules.home.MainActivity
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.DayItemModel
-import com.muslim_adel.sehatydoctors.remote.objects.doctor.ReservationModel
+import com.seha_khanah_doctors.R
+import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.objects.doctor.DayItemModel
+import com.seha_khanah_doctors.remote.objects.doctor.ReservationModel
 import kotlinx.android.synthetic.main.all_days_item.view.*
 import kotlinx.android.synthetic.main.appointment_list_item.view.*
 import kotlinx.android.synthetic.main.appointment_list_item.view.appointment_item_patient_name
