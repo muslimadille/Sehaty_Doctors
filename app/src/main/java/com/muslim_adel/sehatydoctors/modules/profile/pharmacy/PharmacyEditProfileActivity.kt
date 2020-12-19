@@ -13,6 +13,7 @@ import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
 import com.seha_khanah_doctors.modules.map.EditLocationActivity
+import com.seha_khanah_doctors.modules.map.MapsActivity
 import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.BaseResponce
@@ -210,7 +211,7 @@ class PharmacyEditProfileActivity : BaseActivity() {
     }
     private fun onEditAddressClicked(){
         edit_address_btn.setOnClickListener {
-            intent= Intent(this, EditLocationActivity::class.java)
+            intent= Intent(this, MapsActivity::class.java)
             startActivity(intent)
         }
     }

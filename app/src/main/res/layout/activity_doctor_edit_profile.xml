@@ -283,7 +283,7 @@
                                         android:layout_centerHorizontal="true"
                                         android:layout_centerVertical="true"
                                         android:backgroundTint="@color/white"
-                                        android:hint="@string/f_name_en"
+                                        android:hint="@string/l_name_en"
                                         android:maxEms="10"
                                         android:minEms="10" />
 
