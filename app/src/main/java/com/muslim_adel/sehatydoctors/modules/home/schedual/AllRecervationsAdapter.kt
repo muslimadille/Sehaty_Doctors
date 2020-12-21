@@ -56,8 +56,8 @@ class AllRecervationsAdapter(
              intent.putExtra("price", mContext.price)
              intent.putExtra("profissionalTitle_ar", mContext.profissionalTitle_ar)
              intent.putExtra("profissionalTitle_en", mContext.profissionalTitle_en)
-             intent.putExtra("streetName_ar", mContext.streetName_ar)
-             intent.putExtra("streetName_en", mContext.streetName_en)
+             intent.putExtra("address_ar", mContext.address_ar)
+             intent.putExtra("address_en", mContext.address_en)
              mContext.startActivity(intent)
          }*/
 

@@ -43,9 +43,9 @@ class ClinicInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         clinic_price_txt.text=mContext!!.doctorProfileModel!!.price.toString()+" "+mContext!!.getString(R.string.derham)
         if (mContext!!.preferences!!.getString("language","")=="Arabic"){
-            clinic_address_txt.text=mContext!!.doctorProfileModel!!.buildingNum_ar+","+mContext!!.doctorProfileModel!!.streetName_ar
+            clinic_address_txt.text=mContext!!.doctorProfileModel!!.address_ar
         }else{
-            clinic_address_txt.text=mContext!!.doctorProfileModel!!.buildingNum_en+","+mContext!!.doctorProfileModel!!.streetName_en
+            clinic_address_txt.text=mContext!!.doctorProfileModel!!.address_en
 
         }
         onClinicAddressClicked()

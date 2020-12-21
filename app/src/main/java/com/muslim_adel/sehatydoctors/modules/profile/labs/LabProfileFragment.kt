@@ -74,13 +74,13 @@ class LabProfileFragment : Fragment() {
     private fun setPageData(lab: Laboratory){
         if (mContext!!.preferences!!.getString("language","")=="Arabic"){
             lab_title_txt!!.text=lab.laboratory_name_ar
-            lab_address_txt!!.text=lab.buildingNum_ar+"-"+lab.streetName_ar
+            lab_address_txt!!.text=lab.address_ar
             lab_phone_num_txt.text=lab.phonenumber
             lab_email_txt.text=lab.email
         }else{
 
             lab_title_txt!!.text=lab.laboratory_name_en
-            lab_address_txt!!.text=lab.buildingNum_en+"-"+lab.streetName_en
+            lab_address_txt!!.text=lab.address_en
             lab_phone_num_txt.text=lab.phonenumber
             lab_email_txt.text=lab.email
 

@@ -52,15 +52,7 @@ object Q {
     const val DOC_PROFISSIONAL_DETAILS_API="profissionalDetails"
     const val DOC_SUB_SPIC_API="subSpecialties"
     const val DOC_UPDATE_PROFILE_API="doctor/dashboard/update"
-
-
-
-
-
-
-
-
-
+    const val DOC_UPDATE_ADDRESS_API="doctor/dashboard/address/update"
 
 
     /**------------------pharmacy---------------------------------*/
@@ -69,6 +61,8 @@ object Q {
     const val POST_PHARM_OFFER_API="pharmacy/dashboard/offer/add"
     const val POST_PHARM_PROFILE_API="pharmacy/dashboard/profile"
     const val PHARM_UPDATE_PROFILE_API="pharmacy/dashboard/update"
+    const val PHARM_UPDATE_ADDRESS_API="pharmacy/dashboard/address/update"
+
 
 
     /**------------------labs---------------------------------*/
@@ -76,6 +70,8 @@ object Q {
     const val SEND_LAB_RESERVATIONS_API="laboratory/dashboard/reservations/add"
     const val GET_LAB_PROFILE_API="laboratory/dashboard/profile"
     const val LAB_UPDATE_PROFILE_API="laboratory/dashboard/update"
+    const val LAB_UPDATE_ADDRESS_API="laboratory/dashboard/address/update"
+
 
 
 

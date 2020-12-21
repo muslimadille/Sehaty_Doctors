@@ -72,8 +72,8 @@ class DoctorInfoFragment : Fragment() {
             intent.putExtra("lat",mContext!!.doctorProfileModel!!.lat.toString())
             intent.putExtra("lng",mContext!!.doctorProfileModel!!.lng.toString())
             intent.putExtra("title",mContext!!.getString(R.string.doc_contacts_title))
-            intent.putExtra("address_ar", "${ mContext!!.doctorProfileModel!!.buildingNum_ar},${ mContext!!.doctorProfileModel!!.streetName_ar}")
-            intent.putExtra("address_en", "${ mContext!!.doctorProfileModel!!.buildingNum_en},${ mContext!!.doctorProfileModel!!.streetName_en}")
+            intent.putExtra("address_ar", "${ mContext!!.doctorProfileModel!!.address_ar}")
+            intent.putExtra("address_en", "${ mContext!!.doctorProfileModel!!.address_en}")
             intent.putExtra("key",2)
             mContext!!.startActivity(intent)
         }

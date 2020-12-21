@@ -25,16 +25,11 @@ class Laboratory (
     var laboratory_name_en: String,
     @SerializedName("laboratory_name_ar")
     var laboratory_name_ar: String,
-    @SerializedName("streetName_en")
-    var streetName_en: String,
-    @SerializedName("streetName_ar")
-    var streetName_ar: String,
-    @SerializedName("buildingNum_en")
-    var buildingNum_en: String,
-    @SerializedName("buildingNum_ar")
-    var buildingNum_ar: String,
-    @SerializedName("role")
-    var role: String,
+    @SerializedName("address_en")
+    var address_en: String,
+    @SerializedName("address_ar")
+    var address_ar: String,
+
     @SerializedName("apartmentNum_en")
     var apartmentNum_en: String,
     @SerializedName("apartmentNum_ar")
@@ -61,10 +56,6 @@ class Laboratory (
     var laboratory_services: ArrayList<LaboratoryServices>,
     @SerializedName("rating")
     var rating: Int,
-    @SerializedName("address_en")
-    var address_en: String,
-    @SerializedName("address_ar")
-    var address_ar: String,
     @SerializedName("dates")
     var dates: ArrayList<Date>,
     @SerializedName("visitor_num")

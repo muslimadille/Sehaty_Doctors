@@ -250,6 +250,18 @@ interface ApiService {
         @Field("num_of_day")num_of_day: String,
         ): Call<BaseResponce<DoctorProfileModel>>
 
+    @POST(Q.DOC_UPDATE_ADDRESS_API)
+    @FormUrlEncoded
+    fun editDocAddress(
+        @Field("address_en") address_en:String,
+        @Field("address_ar") address_ar: String,
+        @Field("landmark_en") landmark_en: String,
+        @Field("landmark_ar") landmark_ar: String,
+        @Field("area_id") area_id: String,
+        @Field("lng") lng: String,
+        @Field("lat")lat: String ,
+    ): Call<BaseResponce<DoctorProfileModel>>
+
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)
     fun fitchPharmacyOffersList(): Call<BaseResponce<List<PharmacyOffer>>>
@@ -286,6 +298,18 @@ interface ApiService {
         @Field("shift")shift: String,
     ): Call<BaseResponce<Pharmacy>>
 
+    @POST(Q.PHARM_UPDATE_ADDRESS_API)
+    @FormUrlEncoded
+    fun editPharmAddress(
+        @Field("address_en") address_en:String,
+        @Field("address_ar") address_ar: String,
+        @Field("landmark_en") landmark_en: String,
+        @Field("landmark_ar") landmark_ar: String,
+        @Field("area_id") area_id: String,
+        @Field("lng") lng: String,
+        @Field("lat")lat: String ,
+    ): Call<BaseResponce<Pharmacy>>
+
 
     /**---------------------------------------------labs----------------------------------------------------*/
     @GET(Q.GET_ALL_LAB_RESERVATIONS_API)
@@ -309,6 +333,17 @@ interface ApiService {
         @Field("practiceLicenseID")practiceLicenseID: String,
         @Field("profissionalTitleID")profissionalTitleID: String,
         @Field("num_of_day")num_of_day: String,
+    ): Call<BaseResponce<Laboratory>>
+    @POST(Q.LAB_UPDATE_ADDRESS_API)
+    @FormUrlEncoded
+    fun editLabAddress(
+        @Field("address_en") address_en:String,
+        @Field("address_ar") address_ar: String,
+        @Field("landmark_en") landmark_en: String,
+        @Field("landmark_ar") landmark_ar: String,
+        @Field("area_id") area_id: String,
+        @Field("lng") lng: String,
+        @Field("lat")lat: String ,
     ): Call<BaseResponce<Laboratory>>
 
 

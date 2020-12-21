@@ -270,5 +270,8 @@
     <string name="edit_shift">Edit shift</string>
     <string name="about_pharmacy_arabic">About Pharmacy (Arabic)</string>
     <string name="about_pharmacy_english">About Pharmacy (English)</string>
+    <string name="address_ar">address (عربي)</string>
+    <string name="editr_address">edit address</string>
+    <string name="address_en">address(English)</string>
 
 </resources>

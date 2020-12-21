@@ -199,7 +199,6 @@ class PharmacyEditProfileActivity : BaseActivity() {
         progrss_lay?.visibility = View.VISIBLE
         offer_lay?.visibility = View.GONE
     }
-
     private fun onObserveSuccess() {
         progrss_lay?.visibility = View.GONE
         offer_lay?.visibility = View.VISIBLE

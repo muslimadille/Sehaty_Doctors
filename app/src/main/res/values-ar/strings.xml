@@ -269,6 +269,9 @@
     <string name="edit_shift">تعديل الخافرة</string>
     <string name="about_pharmacy_arabic">عن الصيدلية(عربي)</string>
     <string name="about_pharmacy_english">عن الصيدلية (English)</string>
+    <string name="address_ar">العنوان (عربي)</string>
+    <string name="editr_address">تعديل العنوان</string>
+    <string name="address_en">العنوان(English)</string>
 
 
 </resources>

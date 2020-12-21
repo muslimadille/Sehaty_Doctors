@@ -74,12 +74,12 @@ class PharmacyProfileFragment : Fragment() {
     private fun setPageData(pharm: Pharmacy){
         if (mContext!!.preferences!!.getString("language","")=="Arabic"){
             pharm_title_txt!!.text=pharm.pharmacy_name_ar
-            address!!.text=pharm.buildingNum_ar+"-"+pharm.streetName_ar
+            address!!.text=pharm.address_ar
             pharm_info_txt.text=pharm.about_ar
             pharm_doc_name.text=pharm.firstName_ar+" "+pharm.lastName_ar
         }else{
             pharm_title_txt!!.text=pharm.pharmacy_name_en
-            address!!.text=pharm.buildingNum_en+"-"+pharm.streetName_en
+            address!!.text=pharm.address_en
             pharm_info_txt.text=pharm.about_en
             pharm_doc_name.text=pharm.firstName_en+" "+pharm.lastName_en
 

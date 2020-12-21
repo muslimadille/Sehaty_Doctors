@@ -30,7 +30,8 @@ class MainActivity : BaseActivity() {
                     .commit()
             }
             initBottomNavigation()
-        }else if (preferences!!.getString(Q.USER_TYPE,"")==Q.USER_PHARM){
+        }
+        else if (preferences!!.getString(Q.USER_TYPE,"")==Q.USER_PHARM){
             setContentView(R.layout.activity_main2)
             if (savedInstanceState == null) {
                 val fragment = HomeFragment()
