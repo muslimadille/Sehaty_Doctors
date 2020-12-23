@@ -216,7 +216,7 @@
     <string name="clinic_address">Clinic Address</string>
     <string name="details">Details</string>
     <string name="sub_speciality">sub speciality</string>
-    <string name="speciality">التخصص</string>
+    <string name="speciality">speciality</string>
     <string name="reservations_managment">Appointment management</string>
     <string name="Clinic_opening_times">Clinic opening times</string>
     <string name="vacation_dates">Vacation dates</string>
@@ -273,5 +273,15 @@
     <string name="address_ar">address (عربي)</string>
     <string name="editr_address">edit address</string>
     <string name="address_en">address(English)</string>
+    <string name="re_name_info">name information</string>
+    <string name="re_num_of_days">number of days</string>
+    <string name="_relogin_information">login information</string>
+    <string name="city">city</string>
+    <string name="re_region">region</string>
+    <string name="profional_details">professional details</string>
+    <string name="landmark">landmark</string>
+    <string name="about_doctor">about doctor</string>
+    <string name="register">register</string>
+    <string name="title">title</string>
 
 </resources>

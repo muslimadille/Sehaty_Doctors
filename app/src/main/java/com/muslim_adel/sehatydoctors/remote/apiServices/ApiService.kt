@@ -262,6 +262,45 @@ interface ApiService {
         @Field("lat")lat: String ,
     ): Call<BaseResponce<DoctorProfileModel>>
 
+    @GET
+    fun fitchSubSpecialitiesList(@Url url: String): Call<BaseResponce<List<SubSpiecialityModel>>>
+    @GET
+    fun fitchPerfixList(@Url url: String): Call<BaseResponce<List<SubSpiecialityModel>>>
+    @POST(Q.DOC_REGISTER_API)
+    @FormUrlEncoded
+    fun DocRegistration(
+        @Field("password") password:String,
+        @Field("phonenumber") phonenumber:String,
+        @Field("email") email:String,
+        @Field("gender_id") gender_id:String,
+        @Field("featured") featured: String,
+        @Field("firstName_en") firstName_en: String,
+        @Field("firstName_ar") firstName_ar: String,
+        @Field("lastName_en") lastName_en: String,
+        @Field("lastName_ar") lastName_ar: String,
+        @Field("specialty_id") specialty_id: String,
+        @Field("subSpecialties_id[]")subSpecialties_id: ArrayList<String> ,
+        @Field("prefix_title_id") prefix_title_id: String,
+        @Field("profissionalDetails_id") profissionalDetails_id: String,
+        @Field("profissionalTitle_en") profissionalTitle_en: String,
+        @Field("profissionalTitle_ar") profissionalTitle_ar: String,
+        @Field("aboutDoctor_ar") aboutDoctor_ar: String,
+        @Field("aboutDoctor_en") aboutDoctor_en: String,
+        @Field("practiceLicenseID")practiceLicenseID: String,
+        @Field("profissionalTitleID")profissionalTitleID: String,
+        @Field("area_id")area_id: String,
+        @Field("price")price: String,
+        @Field("waiting_time")waiting_time: String,
+        @Field("num_of_day")num_of_day: String,
+        @Field("address_en")address_en: String,
+        @Field("address_ar")address_ar: String,
+        @Field("landmark_en")landmark_en: String,
+        @Field("landmark_ar")landmark_ar: String,
+        @Field("lng")lng: String,
+        @Field("lat")lat: String,
+
+        ): Call<BaseResponce<LoginData>>
+
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)
     fun fitchPharmacyOffersList(): Call<BaseResponce<List<PharmacyOffer>>>

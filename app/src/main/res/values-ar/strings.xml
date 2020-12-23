@@ -257,7 +257,7 @@
     <string name="landmark_ar">معلم معروف (عربي)</string>
     <string name="landmark_en">معلم معروف(english)</string>
     <string name="edit_loc">تعديل عنوان الخريطة</string>
-    <string name="location">الموقع</string>
+    <string name="location">الموقع علي الخريطة</string>
     <string name="edit_reagon">تعديل المنطقة</string>
     <string name="edit_about_lab">تعديل معلومات المختبر</string>
     <string name="edit_lab_name">تعديل أسم المختبر</string>
@@ -272,6 +272,16 @@
     <string name="address_ar">العنوان (عربي)</string>
     <string name="editr_address">تعديل العنوان</string>
     <string name="address_en">العنوان(English)</string>
+    <string name="re_name_info">أدخل معلومات الاسم</string>
+    <string name="re_num_of_days">عدد ايام العمل</string>
+    <string name="_relogin_information">معلومات التسجيل</string>
+    <string name="city">city</string>
+    <string name="re_region">المنطقة</string>
+    <string name="profional_details">التفاصيل المهنية</string>
+    <string name="landmark">معلم معروف</string>
+    <string name="about_doctor">معلومات عن الطبيب</string>
+    <string name="register">تسجيل</string>
+    <string name="title">اللقب</string>
 
 
 </resources>

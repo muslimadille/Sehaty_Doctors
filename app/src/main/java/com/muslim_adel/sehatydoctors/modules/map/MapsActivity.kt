@@ -41,8 +41,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
     var docProfileModel: DoctorProfileModel? =null
     var pharmProfileModel:Pharmacy ? =null
     var labProfileModel: Laboratory? =null
-
-
     private lateinit var mMap: GoogleMap
     var fusedLocationProviderClient:FusedLocationProviderClient?=null
     var currentLocation:Location?=null
@@ -54,10 +52,6 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var regionsSpinnerAdapter: SpinnerAdapterCustomFont
     private var selectedRegionId=0
-
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -228,6 +222,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
             })
     }
+
     private fun ObserveDocProfile(){
         apiClient = ApiClient()
         sessionManager = SessionManager(this)

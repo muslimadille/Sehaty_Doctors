@@ -59,8 +59,8 @@ class LoginActivity : BaseActivity() {
     }
     private fun onregisterclicked(){
         registration_btn.setOnClickListener {
-           /* val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
-            startActivity(intent)*/
+            val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
+            startActivity(intent)
 
         }
     }
