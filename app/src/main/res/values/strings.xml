@@ -100,6 +100,8 @@
     <string name="done">Success</string>
     <string name="derham">IQD</string>
     <string name="price">price</string>
+    <string name="book_price">Price</string>
+
 
     <string name="building_num">Building num:</string>
     <string name="Apartment_num">Apartment num:</string>
@@ -283,5 +285,7 @@
     <string name="about_doctor">about doctor</string>
     <string name="register">register</string>
     <string name="title">title</string>
+    <string name="hide">Hide</string>
+    <string name="add_vacation">Add Vacation</string>
 
 </resources>

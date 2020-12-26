@@ -12,9 +12,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import com.muslim_adel.sehatydoctors.modules.profile.edit_password.EditPasswordActivity
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
+import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.modules.map.EditLocationActivity
 import com.seha_khanah_doctors.modules.map.MapsActivity
 import com.seha_khanah_doctors.remote.apiServices.ApiClient
@@ -63,6 +65,7 @@ class DoctorEditProfileActivity : BaseActivity() {
         ObserveDoctorProfile()
         onSaveClicked()
         onEditAddressClicked()
+        onEditPasswordClicked()
     }
     private fun profDetailsObserver() {
         if(true){
@@ -253,7 +256,9 @@ class DoctorEditProfileActivity : BaseActivity() {
 
     }
     private  fun setProfileData(profileModel:DoctorProfileModel){
-
+        intent=Intent(this,MainActivity::class.java)
+        intent.putExtra("key",1)
+        startActivity(intent)
     }
     private fun ObserveDoctorProfile(){
         apiClient = ApiClient()
@@ -272,7 +277,6 @@ class DoctorEditProfileActivity : BaseActivity() {
                         if (response.body()!!.success) {
                             response.body()!!.data!!.let {
                                 doctorProfileModel=it
-                                setProfileData(it)
                             }
                         } else {
                         }
@@ -374,4 +378,10 @@ class DoctorEditProfileActivity : BaseActivity() {
            startActivity(intent)
        }
    }
+    private fun onEditPasswordClicked(){
+        edit_password_btn.setOnClickListener {
+            intent= Intent(this,EditPasswordActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }

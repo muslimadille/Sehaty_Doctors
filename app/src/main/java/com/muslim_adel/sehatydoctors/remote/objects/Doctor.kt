@@ -1,6 +1,7 @@
 package com.seha_khanah_doctors.remote.objects
 
 import com.google.gson.annotations.SerializedName
+import com.seha_khanah_doctors.remote.objects.doctor.SubSpiecialityModel
 
 data class Doctor(
     @SerializedName("id")
@@ -66,7 +67,6 @@ data class Doctor(
     @SerializedName("profissionalTitleID")
     var profissionalTitleID: String,
     @SerializedName("sub_specialties")
-    var sub_specialties: String,
-
+    var sub_specialties: ArrayList<SubSpiecialityModel>,
 
 )

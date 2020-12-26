@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.muslim_adel.sehatydoctors.modules.home.schedual.EditVaciationsActivity
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.modules.profile.doctor.VacationDatesAdapter
@@ -52,6 +53,7 @@ class AppointmentsManageFragment : Fragment() {
         vacationDatesObserver()
         initRVAdapter()
         onEditWorkingDates()
+        onEditVacationsClicked()
     }
 
     override fun onCreateView(
@@ -192,6 +194,12 @@ class AppointmentsManageFragment : Fragment() {
            mContext!!.startActivity(mContext!!.intent)
        }
    }
+    private fun onEditVacationsClicked(){
+        edit_vacation_btn.setOnClickListener {
+            mContext!!.intent=Intent(mContext,EditVaciationsActivity::class.java)
+            mContext!!.startActivity(mContext!!.intent)
+        }
+    }
 
     
 }

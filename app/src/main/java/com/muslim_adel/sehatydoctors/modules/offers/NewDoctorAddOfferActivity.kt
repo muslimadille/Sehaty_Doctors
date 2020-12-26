@@ -84,6 +84,8 @@ class NewDoctorAddOfferActivity : BaseActivity() {
     private var offerServicesNameList = ArrayList<String>()
     private var offerSubServicesNameList = ArrayList<String>()
     private var offerUnitsNameList = ArrayList<String>()
+    lateinit var dpd: DatePickerDialog
+
 
 
 
@@ -608,9 +610,13 @@ class NewDoctorAddOfferActivity : BaseActivity() {
     }
 
     private fun setStartDate(){
+        var calendar= Calendar.getInstance()
 
+        var year=calendar.get(Calendar.YEAR)
+        var month=calendar.get(Calendar.MONTH)
+        var day=calendar.get(Calendar.DAY_OF_MONTH)
         offer_date_from_txt.setOnClickListener {
-            val dpd= DatePickerDialog(this,
+             dpd= DatePickerDialog(this,
                 DatePickerDialog.OnDateSetListener { view, myear, mMonth, mdayOfMonth ->
 
                     var month = ""

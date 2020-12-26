@@ -54,8 +54,11 @@ object Q {
     const val DOC_UPDATE_PROFILE_API="doctor/dashboard/update"
     const val DOC_UPDATE_ADDRESS_API="doctor/dashboard/address/update"
     const val DOC_PERFIX_TITLE_BY_SPIC_ID_API="doctor/dashboard/prefix-titles/"
-    const val DOC_SUB_SICIALITY_BY_SPIC_ID_API="api/doctor/dashboard/subSpecialties/"
-    const val DOC_REGISTER_API="api/doctor/register"
+    const val DOC_SUB_SICIALITY_BY_SPIC_ID_API="doctor/dashboard/subSpecialties/"
+    const val DOC_REGISTER_API="doctor/register"
+    const val DOC_ADD_VACATION_API="doctor/dashboard/vacation/add"
+
+
 
 
 

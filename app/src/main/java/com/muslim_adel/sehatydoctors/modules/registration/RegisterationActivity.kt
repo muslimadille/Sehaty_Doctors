@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import android.content.pm.PackageManager
+import android.icu.text.IDNA
 import android.location.Geocoder
 import android.location.Location
 import android.os.Build
@@ -29,6 +30,7 @@ import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
+import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.remote.objects.*
 import com.seha_khanah_doctors.remote.objects.doctor.DaysModel
 import com.seha_khanah_doctors.remote.objects.doctor.DoctorProfileModel
@@ -38,16 +40,25 @@ import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_doctor_edit_profile.*
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.new_registration_layout.*
 import kotlinx.android.synthetic.main.new_registration_layout.edit_about_doc_ar_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_about_doc_en_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_doc_profile_img
 import kotlinx.android.synthetic.main.new_registration_layout.edit_fna_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_fne_txt
+import kotlinx.android.synthetic.main.new_registration_layout.edit_lm_ar_txt
+import kotlinx.android.synthetic.main.new_registration_layout.edit_lm_en_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_lna_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_lne_txt
+import kotlinx.android.synthetic.main.new_registration_layout.edit_location_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_num_of_days_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_price_txt
+import kotlinx.android.synthetic.main.new_registration_layout.edit_sn_en_txt
+import kotlinx.android.synthetic.main.new_registration_layout.edit_sn_txt
+import kotlinx.android.synthetic.main.new_registration_layout.hid_map_btn
+import kotlinx.android.synthetic.main.new_registration_layout.map_lay
 import kotlinx.android.synthetic.main.new_registration_layout.progrss_lay
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,6 +71,12 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
     var lat="3.000"
     var lng="2.000"
 
+    var is_practiceLicenseID_clecked=false
+    var is_profissionalTitleID_clecked=false
+    var is_profile_img_clecked=false
+
+
+
     private lateinit var mMap: GoogleMap
     var fusedLocationProviderClient: FusedLocationProviderClient?=null
     var currentLocation: Location?=null
@@ -67,6 +84,9 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
     var key=0
 
     private var selectedImage: File? = null
+    private var selectedpracticeLicenseIDImage: File? = null
+    private var selectedprofissionalTitleIDImage: File? = null
+
 
 
     private var regionsList = ArrayList<Reagons>()
@@ -132,11 +152,14 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         regonObserver()
         handelRdioStates()
         onSelectIMageClicked()
+        onprofissionalTitleIDImageClicked()
+        onpracticeLicenseIDImageClicked()
         onSelectLocationClicked()
         profDetailsObserver()
         spiecObserver()
         SubSpiecObserver()
         onRegisterClicked()
+        onHideMapClicked()
     }
 
 //LOCATION
@@ -204,9 +227,14 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
 
     }
     private  fun getAddress(lat:Double,lng:Double):String{
-        val getCoder= Geocoder(this,Locale.getDefault())
-        val address=getCoder.getFromLocation(lat,lng,1)
-        return address[0].getAddressLine(0).toString()
+        return try {
+            val getCoder= Geocoder(this,Locale.getDefault())
+            val address=getCoder.let { it.getFromLocation(lat,lng,1) }
+            address[0].getAddressLine(0).toString()
+        }catch (e:Error){
+            ""
+        }
+
     }
 
     //SPINNERS
@@ -233,7 +261,6 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         regionsSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, regionsNameList)
         regionsSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         regionsSpinnerAdapter.textSize = 12
-        regionsSpinnerAdapter.add(getString(R.string.select_reagon))
         re_regions_spinner.adapter = regionsSpinnerAdapter
         regionsSpinnerAdapter.notifyDataSetChanged()
 
@@ -291,6 +318,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         re_sub_speciality__spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if(subSpicList.isNotEmpty()){
+                    selectedSubSpic.clear()
                     selectedSubSpic.add(subSpicList[position].id.toString())
                     doctorValidator!!.subSpecialties_id=selectedSubSpic
                 }
@@ -359,10 +387,32 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
     }
     private fun onSelectIMageClicked(){
         edit_doc_profile_img.setOnClickListener {
-            selectImage()
+            is_profile_img_clecked=true
+            is_practiceLicenseID_clecked=false
+            is_profissionalTitleID_clecked=false
+            selectProfileImage()
+
         }
     }
-    fun selectImage() {
+    private fun onpracticeLicenseIDImageClicked(){
+        edit_practiceLicenseIDImage_img.setOnClickListener {
+            is_profile_img_clecked=false
+            is_practiceLicenseID_clecked=true
+            is_profissionalTitleID_clecked=false
+            selectProfileImage()
+
+        }
+    }
+    private fun onprofissionalTitleIDImageClicked(){
+        edit_profissionalTitleID_img.setOnClickListener {
+            is_profile_img_clecked=false
+            is_practiceLicenseID_clecked=false
+            is_profissionalTitleID_clecked=true
+            selectProfileImage()
+
+        }
+    }
+    fun selectProfileImage() {
         TedPermission.with(this)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
@@ -385,6 +435,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             .setPermissions(Manifest.permission.CAMERA)
             .check()
     }
+
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -392,9 +443,27 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             data?.let { result = CropImage.getActivityResult(data) }
             if (resultCode == RESULT_OK) {
                 result?.let {
-                    selectedImage = File(result!!.uri!!.path!!)
+                    if(is_profile_img_clecked){
+                        selectedImage = File(result!!.uri!!.path!!)
+                        GlideObject.GlideProfilePic(this, selectedImage!!.path, edit_doc_profile_img)
+                        is_profile_img_clecked=false
 
-                    GlideObject.GlideProfilePic(this, selectedImage!!.path, edit_doc_profile_img)
+                    }
+                    if(is_practiceLicenseID_clecked){
+                        selectedpracticeLicenseIDImage = File(result!!.uri!!.path!!)
+                        GlideObject.GlideProfilePic(this, selectedpracticeLicenseIDImage!!.path, edit_practiceLicenseIDImage_img)
+                        is_practiceLicenseID_clecked=false
+                    }
+                    if(is_profissionalTitleID_clecked){
+                        selectedprofissionalTitleIDImage = File(result!!.uri!!.path!!)
+                        GlideObject.GlideProfilePic(this, selectedprofissionalTitleIDImage!!.path, edit_profissionalTitleID_img)
+                        is_profissionalTitleID_clecked=false
+                    }
+
+
+
+
+
 //                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
                 }
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -422,7 +491,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         progrss_lay?.visibility = View.GONE
     }
     private fun onObservefaled() {
-        progrss_lay?.visibility = View.VISIBLE
+        progrss_lay?.visibility = View.GONE
         Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show()
     }
 
@@ -719,8 +788,8 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             doctorValidator!!.profissionalTitle_ar,
             doctorValidator!!.aboutDoctor_ar,
             doctorValidator!!.aboutDoctor_en,
-            "",
-            "",
+            doctorValidator!!.practiceLicenseID,
+            doctorValidator!!.profissionalTitleID,
             doctorValidator!!.area_id,
             doctorValidator!!.price,
             doctorValidator!!.waiting_time,
@@ -732,20 +801,36 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             doctorValidator!!.lng,
             doctorValidator!!.lat,
             )
-            .enqueue(object : Callback<BaseResponce<LoginData>> {
-                override fun onFailure(call: Call<BaseResponce<LoginData>>, t: Throwable) {
+            .enqueue(object : Callback<LoginResponce> {
+                override fun onFailure(call: Call<LoginResponce>, t: Throwable) {
                     alertNetwork(false)
                 }
 
                 override fun onResponse(
-                    call: Call<BaseResponce<LoginData>>,
-                    response: Response<BaseResponce<LoginData>>
+                    call: Call<LoginResponce>,
+                    response: Response<LoginResponce>
                 ) {
+                    val loginResponse = response.body()
                     if (response!!.isSuccessful) {
-                        if (response.body()!!.success) {
+                        if (loginResponse!!.success) {
                             onObserveSuccess()
-                            response.body()!!.data!!.let {
+                            if (loginResponse?.data!!.status == 200 && loginResponse!!.data!!.user != null) {
+                                sessionManager.saveAuthToken(loginResponse!!.data!!.token)
+                                preferences!!.putString("tok",loginResponse!!.data!!.token.toString())
+                                preferences!!.putBoolean(Q.IS_FIRST_TIME, false)
+                                preferences!!.putBoolean(Q.IS_LOGIN, true)
+                                preferences!!.putString(Q.USER_TYPE,Q.USER_DOCTOR)
+                                preferences!!.putInteger(
+                                    Q.USER_ID,
+                                    loginResponse!!.data!!.user.id.toInt()
+                                )
 
+                                preferences!!.commit()
+                                onObserveSuccess()
+                                val intent =
+                                    Intent(this@RegisterationActivity, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
                             }
                         } else {
 
@@ -772,7 +857,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         doctorValidator!!.lastName_en=edit_lne_txt.text.toString()
         doctorValidator!!.email=email.text.toString()
         doctorValidator!!.password=password.text.toString()
-        doctorValidator!!.phonenumber=phon_num.text.toString()
+        doctorValidator!!.phonenumber="+"+phon_num.text.toString()
         doctorValidator!!.price=edit_price_txt.text.toString()
         doctorValidator!!.num_of_day=edit_num_of_days_txt.text.toString()
         doctorValidator!!.waiting_time="00:30:00"
@@ -789,12 +874,27 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             img = "data:image/${selectedImage!!.extension};base64,"+toBase64(selectedImage.toString())
         }
         doctorValidator!!.featured=img
+        var img2=""
+        if (selectedpracticeLicenseIDImage != null) {
+            img2 = "data:image/${selectedpracticeLicenseIDImage!!.extension};base64,"+toBase64(selectedpracticeLicenseIDImage.toString())
+        }
+        doctorValidator!!.practiceLicenseID=img2
+        var img3=""
+        if (selectedprofissionalTitleIDImage != null) {
+            img3 = "data:image/${selectedprofissionalTitleIDImage!!.extension};base64,"+toBase64(selectedprofissionalTitleIDImage.toString())
+        }
+        doctorValidator!!.profissionalTitleID=img3
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun onRegisterClicked(){
         register_btn_btn.setOnClickListener {
             fillData()
             upDateDoctorProfile()
+        }
+    }
+    private fun onHideMapClicked(){
+        hid_map_btn.setOnClickListener {
+            map_lay.visibility=View.GONE
         }
     }
 

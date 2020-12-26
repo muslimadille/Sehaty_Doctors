@@ -105,6 +105,8 @@
     <string name="done">تم حجزك بنجاح</string>
     <string name="derham">دينار</string>
     <string name="price">سعر العرض</string>
+    <string name="book_price">سعر الكشف</string>
+
 
     <string name="building_num">مبنى رقم:</string>
     <string name="Apartment_num">شقة رقم:</string>
@@ -282,6 +284,8 @@
     <string name="about_doctor">معلومات عن الطبيب</string>
     <string name="register">تسجيل</string>
     <string name="title">اللقب</string>
+    <string name="hide">إخفاء</string>
+    <string name="add_vacation">إضافة أجازة</string>
 
 
 </resources>

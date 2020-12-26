@@ -31,16 +31,18 @@ class AllReservationsActivity : BaseActivity() {
     var currentyear=0
     var currentmonth=0
     var currentday=0
-    val calendar= Calendar.getInstance()
+    var calendar= Calendar.getInstance()
     val yearformat = SimpleDateFormat("yyyy", Locale.ENGLISH)
     val allformat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
     val monthformat = SimpleDateFormat("MM", Locale.ENGLISH)
     val dayformat = SimpleDateFormat("dd", Locale.ENGLISH)
-    val year=yearformat.format(calendar.get(Calendar.YEAR)).toInt()
-    val month=monthformat.format(calendar.get(Calendar.MONTH)).toInt()
-    val day=dayformat.format(calendar.get(Calendar.DAY_OF_MONTH)).toInt()
+    var year=yearformat.format(calendar.get(Calendar.YEAR)).toInt()
+    var month=monthformat.format(calendar.get(Calendar.MONTH)).toInt()
+    var day=dayformat.format(calendar.get(Calendar.DAY_OF_MONTH)).toInt()
     private var allReservationsList: MutableList<ReservationModel> = ArrayList()
     private var filteredReservationsList: MutableList<ReservationModel> = ArrayList()
+    lateinit var dpd: DatePickerDialog
+
 
 
     private var allRecervationsAddapter: AllRecervationsAdapter? = null
@@ -225,9 +227,14 @@ class AllReservationsActivity : BaseActivity() {
 
     }
     private fun pickDate(){
+        var calendar= Calendar.getInstance()
+
+        var year=calendar.get(Calendar.YEAR)
+        var month=calendar.get(Calendar.MONTH)
+        var day=calendar.get(Calendar.DAY_OF_MONTH)
         date_picker_btn.setOnClickListener {
-            val dpd= DatePickerDialog(this,
-                DatePickerDialog.OnDateSetListener { view, myear, mMonth, mdayOfMonth ->
+            dpd= DatePickerDialog(this,
+                { view, myear, mMonth, mdayOfMonth ->
                     filteredReservationsList.clear()
 
                     var month = ""

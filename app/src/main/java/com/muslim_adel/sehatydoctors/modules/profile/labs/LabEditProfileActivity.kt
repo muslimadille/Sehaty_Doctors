@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import com.muslim_adel.sehatydoctors.modules.profile.edit_password.EditPasswordActivity
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
@@ -21,7 +22,20 @@ import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.Laboratory
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.android.synthetic.main.activity_doctor_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_lab_profile_edit.*
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.doc_updat_btn
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_about_doc_ar_txt
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_about_doc_en_txt
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_address_btn
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_doc_profile_img
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_fna_txt
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_fne_txt
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_lna_txt
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_lne_txt
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_password_btn
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.offer_lay
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.progrss_lay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,6 +57,7 @@ class LabEditProfileActivity : BaseActivity() {
         ObserveDoctorProfile()
         onEditAddressClicked()
         onSaveClicked()
+        onEditPasswordClicked()
     }
 
     private fun onSelectIMageClicked(){
@@ -211,6 +226,12 @@ class LabEditProfileActivity : BaseActivity() {
     private fun onEditAddressClicked(){
         edit_address_btn.setOnClickListener {
             intent= Intent(this, MapsActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    private fun onEditPasswordClicked(){
+        edit_password_btn.setOnClickListener {
+            intent= Intent(this, EditPasswordActivity::class.java)
             startActivity(intent)
         }
     }

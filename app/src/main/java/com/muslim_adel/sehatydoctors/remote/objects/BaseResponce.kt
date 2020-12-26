@@ -5,6 +5,6 @@ import java.io.Serializable
 
 class BaseResponce<T> : Serializable{
     var success: Boolean =false
-    var message: Message? = null
+    //var message: Message? = null
     var data: T? = null
 }

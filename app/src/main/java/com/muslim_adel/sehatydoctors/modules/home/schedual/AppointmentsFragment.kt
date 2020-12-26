@@ -46,6 +46,8 @@ class AppointmentsFragment : Fragment() {
     val day=dayformat.format(calendar.get(Calendar.DAY_OF_MONTH)).toInt()
     private var allReservationsList: MutableList<ReservationModel> = ArrayList()
     private var filteredReservationsList: MutableList<ReservationModel> = ArrayList()
+    lateinit var dpd: DatePickerDialog
+
 
 
     private var allRecervationsAddapter: AllRecervationsAdapter? = null
@@ -271,9 +273,14 @@ class AppointmentsFragment : Fragment() {
 
     }
     private fun pickDate(){
+        var calendar= Calendar.getInstance()
+
+        var year=calendar.get(Calendar.YEAR)
+        var month=calendar.get(Calendar.MONTH)
+        var day=calendar.get(Calendar.DAY_OF_MONTH)
         date_picker_btn.setOnClickListener {
-            val dpd= DatePickerDialog(mContext!!,
-                DatePickerDialog.OnDateSetListener { view, myear, mMonth, mdayOfMonth ->
+             dpd= DatePickerDialog(mContext!!,
+                { view, myear, mMonth, mdayOfMonth ->
                     filteredReservationsList.clear()
 
                     var month = ""

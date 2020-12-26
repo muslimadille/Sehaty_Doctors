@@ -79,7 +79,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         tools:replace="android:supportsRtl"
-                        android:layout_width="20dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:src="@drawable/edit_blue"/>
 
@@ -150,11 +150,13 @@
                         android:text="@string/vacation_dates"
                         android:textSize="14sp"
                         />
+
                     <ImageView
+                        android:id="@+id/edit_vacation_btn"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="5dp"
                         tools:replace="android:supportsRtl"
-                        android:layout_width="20dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:src="@drawable/edit_blue"/>
 

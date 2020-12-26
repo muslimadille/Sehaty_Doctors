@@ -79,6 +79,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
         implementListeners()
         initSpinners()
         regonObserver()
+        onHideMapClicked()
+        onSelectLocationClicked()
     }
 
     private fun fetchLocation(){
@@ -436,5 +438,15 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
             })
     }
+    private fun onHideMapClicked(){
+        hid_map_btn.setOnClickListener {
+            map_lay.visibility=View.GONE
+        }
+    }
 
+    private fun onSelectLocationClicked(){
+        select_location_btn.setOnClickListener {
+            map_lay.visibility=View.VISIBLE
+        }
+    }
 }

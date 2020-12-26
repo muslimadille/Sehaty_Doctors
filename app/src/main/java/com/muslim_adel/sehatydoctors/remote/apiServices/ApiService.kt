@@ -266,6 +266,7 @@ interface ApiService {
     fun fitchSubSpecialitiesList(@Url url: String): Call<BaseResponce<List<SubSpiecialityModel>>>
     @GET
     fun fitchPerfixList(@Url url: String): Call<BaseResponce<List<SubSpiecialityModel>>>
+
     @POST(Q.DOC_REGISTER_API)
     @FormUrlEncoded
     fun DocRegistration(
@@ -299,7 +300,13 @@ interface ApiService {
         @Field("lng")lng: String,
         @Field("lat")lat: String,
 
-        ): Call<BaseResponce<LoginData>>
+        ): Call<LoginResponce>
+    @POST(Q.DOC_ADD_VACATION_API)
+    @FormUrlEncoded
+    fun addDocVacation(
+        @Field("start_date") start_date:String,
+        @Field("end_date") end_date: String,
+    ): Call<BaseResponce<VacancyModel>>
 
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)

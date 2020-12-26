@@ -22,6 +22,7 @@ class MainActivity : BaseActivity() {
     var navK=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        navK=intent.let { it.getIntExtra("key",0) }
         if(preferences!!.getString(Q.USER_TYPE,"")==Q.USER_DOCTOR){
             setContentView(R.layout.activity_main)
             if (savedInstanceState == null) {
