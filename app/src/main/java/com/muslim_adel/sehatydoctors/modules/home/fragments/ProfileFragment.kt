@@ -10,12 +10,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.muslim_adel.sehatydoctors.remote.objects.VisitorsNumber
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.CustomTabLayout
 import com.seha_khanah_doctors.modules.home.MainActivity
@@ -27,6 +29,8 @@ import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.doctor.DoctorProfileModel
+import com.seha_khanah_doctors.remote.objects.doctor.SubSpiecialityModel
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_profile.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -118,7 +122,7 @@ class ProfileFragment : Fragment() {
             .load(if (profileModel.featured!=null)profileModel.featured else "")
             .centerCrop()
             .into(img!!)
-
+        visitorsNumObserver(profileModel.id.toInt())
 
     }
     private fun ObserveDoctorProfile(){
@@ -194,5 +198,51 @@ class ProfileFragment : Fragment() {
             mContext!!.intent= Intent(mContext,DoctorEditProfileActivity::class.java)
             mContext!!.startActivity(mContext!!.intent)
         }
+    }
+    private fun visitorsNumObserver(id:Int) {
+        if(true){
+            var url= Q.DOC_VISITORS_API+"$id"
+            apiClient = ApiClient()
+            sessionManager = SessionManager(mContext!!)
+            apiClient.getApiService(mContext!!).fitchDocVisitor(url)
+                .enqueue(object : Callback<VisitorsNumber> {
+                    override fun onFailure(
+                        call: Call<VisitorsNumber>,
+                        t: Throwable
+                    ) {
+                        alertNetwork(true)
+                    }
+
+                    override fun onResponse(
+                        call: Call<VisitorsNumber>,
+                        response: Response<VisitorsNumber>
+                    ) {
+                        if (response!!.isSuccessful) {
+                            if (response.body()!!.success) {
+                                onObserveSuccess()
+                                response.body()!!.data.let {
+                                    if(it!=null){ visitors_num_txt.text=it.toString()}
+                                }
+
+                            } else {
+                                Toast.makeText(
+                                    mContext!!,
+                                    "faild",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                        } else {
+                            Toast.makeText(mContext!!, "faild", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                    }
+
+
+                })
+        }else{
+        }
+
     }
 }

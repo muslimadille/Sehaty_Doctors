@@ -57,6 +57,8 @@ object Q {
     const val DOC_SUB_SICIALITY_BY_SPIC_ID_API="doctor/dashboard/subSpecialties/"
     const val DOC_REGISTER_API="doctor/register"
     const val DOC_ADD_VACATION_API="doctor/dashboard/vacation/add"
+    const val DOC_VISITORS_API="visitorNum/"
+
 
 
 

@@ -1,5 +1,6 @@
 package com.seha_khanah_doctors.remote.apiServices
 
+import com.muslim_adel.sehatydoctors.remote.objects.VisitorsNumber
 import com.seha_khanah_doctors.remote.objects.*
 import com.seha_khanah_doctors.remote.objects.doctor.*
 import com.seha_khanah_doctors.utiles.Q
@@ -307,6 +308,8 @@ interface ApiService {
         @Field("start_date") start_date:String,
         @Field("end_date") end_date: String,
     ): Call<BaseResponce<VacancyModel>>
+    @GET
+    fun fitchDocVisitor(@Url url: String): Call<VisitorsNumber>
 
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)

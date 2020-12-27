@@ -323,9 +323,8 @@ class DoctorEditProfileActivity : BaseActivity() {
             if(edit_about_doc_en_txt.text.isNotEmpty())edit_about_doc_en_txt.text.toString() else doctorProfileModel!!.aboutDoctor_en,
             "",
             "",
-            "123",
-            "01:03:00",
-            "12",
+            if(edit_price_txt.text.isNotEmpty())edit_price_txt.text.toString() else doctorProfileModel!!.price.toString(),            "01:03:00",
+            if(edit_num_of_days_txt.text.isNotEmpty())edit_num_of_days_txt.text.toString() else doctorProfileModel!!.num_of_day.toString(),
 
             )
             .enqueue(object : Callback<BaseResponce<DoctorProfileModel>> {
