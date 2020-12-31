@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.muslim_adel.sehatydoctors.modules.registration.LabRegistrationActivity
+import com.muslim_adel.sehatydoctors.modules.registration.PharmRegistrationActivity
 import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
@@ -58,9 +60,23 @@ class LoginActivity : BaseActivity() {
         }
     }
     private fun onregisterclicked(){
+
         registration_btn.setOnClickListener {
-            val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
-            startActivity(intent)
+            when(key){
+                1->{
+                    val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
+                    startActivity(intent)
+                }
+                2->{
+                    val intent = Intent(this@LoginActivity, LabRegistrationActivity::class.java)
+                    startActivity(intent)
+                }
+                3->{
+                    val intent = Intent(this@LoginActivity, PharmRegistrationActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+
 
         }
     }

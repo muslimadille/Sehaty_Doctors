@@ -74,6 +74,8 @@ object Q {
     const val POST_PHARM_PROFILE_API="pharmacy/dashboard/profile"
     const val PHARM_UPDATE_PROFILE_API="pharmacy/dashboard/update"
     const val PHARM_UPDATE_ADDRESS_API="pharmacy/dashboard/address/update"
+    const val PHARM_REGISTRATION_API="pharmacy/register"
+
 
 
 

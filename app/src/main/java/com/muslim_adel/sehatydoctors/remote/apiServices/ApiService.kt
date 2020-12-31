@@ -359,6 +359,35 @@ interface ApiService {
         @Field("lat")lat: String ,
     ): Call<BaseResponce<Pharmacy>>
 
+    @POST(Q.PHARM_REGISTRATION_API)
+    @FormUrlEncoded
+    fun pharmRegistration(
+        @Field("password") password:String,
+        @Field("phonenumber") phonenumber:String,
+        @Field("email") email:String,
+        @Field("gender_id") gender_id:String,
+        @Field("featured") featured: String,
+        @Field("firstName_en") firstName_en: String,
+        @Field("firstName_ar") firstName_ar: String,
+        @Field("lastName_en") lastName_en: String,
+        @Field("lastName_ar") lastName_ar: String,
+        @Field("pharmacy_name_ar")pharmacy_name_ar: String,
+        @Field("pharmacy_name_en")pharmacy_name_en: String,
+        @Field("about_ar") about_ar: String,
+        @Field("about_en") about_en: String,
+        @Field("practiceLicenseID")practiceLicenseID: String,
+        @Field("profissionalTitleID")profissionalTitleID: String,
+        @Field("area_id")area_id: String,
+        @Field("num_of_day")num_of_day: String,
+        @Field("address_en")address_en: String,
+        @Field("address_ar")address_ar: String,
+        @Field("landmark_en")landmark_en: String,
+        @Field("landmark_ar")landmark_ar: String,
+        @Field("lng")lng: String,
+        @Field("lat")lat: String,
+        @Field("shift")shift: String,
+        ): Call<PharmacyLoginResponce>
+
 
     /**---------------------------------------------labs----------------------------------------------------*/
     @GET(Q.GET_ALL_LAB_RESERVATIONS_API)
@@ -394,6 +423,7 @@ interface ApiService {
         @Field("lng") lng: String,
         @Field("lat")lat: String ,
     ): Call<BaseResponce<Laboratory>>
+
 
 
 }

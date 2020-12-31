@@ -31,7 +31,7 @@
     <string name="flag_txt">We care about your health</string>
 
 
-    <string name="mobile_number">mobile number</string>
+    <string name="mobile_number">mobile number..10 digits</string>
     <string name="e_mail">e-mail</string>
     <string name="password">password</string>
     <string name="date_of_birth">date of birth</string>
@@ -287,5 +287,6 @@
     <string name="title">title</string>
     <string name="hide">Hide</string>
     <string name="add_vacation">Add Vacation</string>
+    <string name="shift_title">shift</string>
 
 </resources>

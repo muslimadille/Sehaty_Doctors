@@ -65,6 +65,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.util.*
+import kotlin.collections.ArrayList
 
 class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
     var name=""
@@ -857,7 +858,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         doctorValidator!!.lastName_en=edit_lne_txt.text.toString()
         doctorValidator!!.email=email.text.toString()
         doctorValidator!!.password=password.text.toString()
-        doctorValidator!!.phonenumber="+"+phon_num.text.toString()
+        doctorValidator!!.phonenumber="+964"+phon_num.text.toString()
         doctorValidator!!.price=edit_price_txt.text.toString()
         doctorValidator!!.num_of_day=edit_num_of_days_txt.text.toString()
         doctorValidator!!.waiting_time="00:30:00"
@@ -896,6 +897,34 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         hid_map_btn.setOnClickListener {
             map_lay.visibility=View.GONE
         }
+    }
+    private fun watingTimeList(){
+        var l=ArrayList<String>()
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+        l.add("00:05:00")
+
+
     }
 
 

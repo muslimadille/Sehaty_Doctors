@@ -47,7 +47,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.muslim_adel.sehatydoctors.modules.profile.edit_password.EditPasswordActivity"></activity>
+        <activity android:name="com.muslim_adel.sehatydoctors.modules.registration.PharmRegistrationActivity"></activity>
+        <activity android:name="com.muslim_adel.sehatydoctors.modules.registration.LabRegistrationActivity" />
+        <activity android:name="com.muslim_adel.sehatydoctors.modules.profile.edit_password.EditPasswordActivity" />
         <activity android:name="com.muslim_adel.sehatydoctors.modules.home.schedual.EditVaciationsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

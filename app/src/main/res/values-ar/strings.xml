@@ -33,7 +33,7 @@
     <string name="full_name">الأسم بالكامل</string>
     <string name="add_message">أضف رسالة</string>
 
-    <string name="mobile_number">رقم الجوال</string>
+    <string name="mobile_number">رقم الجوال..10 أرقام</string>
     <string name="e_mail">البريد الإلكتروني</string>
     <string name="e_mail_or_mobile"> البريد الإلكتروني أو رقم الجوال</string>
 
@@ -256,8 +256,8 @@
     <string name="role_num">دور رقم:</string>
     <string name="apartment_num">شقة رقم:</string>
     <string name="landmark_edit">تعديل المعلم</string>
-    <string name="landmark_ar">معلم معروف (عربي)</string>
-    <string name="landmark_en">معلم معروف(english)</string>
+    <string name="landmark_ar">نقطة دالة (عربي)</string>
+    <string name="landmark_en">نقطة دالة (english)</string>
     <string name="edit_loc">تعديل عنوان الخريطة</string>
     <string name="location">الموقع علي الخريطة</string>
     <string name="edit_reagon">تعديل المنطقة</string>
@@ -280,12 +280,13 @@
     <string name="city">city</string>
     <string name="re_region">المنطقة</string>
     <string name="profional_details">التفاصيل المهنية</string>
-    <string name="landmark">معلم معروف</string>
+    <string name="landmark">نقطة دالة</string>
     <string name="about_doctor">معلومات عن الطبيب</string>
     <string name="register">تسجيل</string>
     <string name="title">اللقب</string>
     <string name="hide">إخفاء</string>
     <string name="add_vacation">إضافة أجازة</string>
+    <string name="shift_title">الخافرة</string>
 
 
 </resources>
