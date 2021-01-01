@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import com.muslim_adel.sehatydoctors.modules.registration.VerivicationActivity
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorRigistrationValidator
 import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.R
@@ -829,7 +830,9 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
                                 preferences!!.commit()
                                 onObserveSuccess()
                                 val intent =
-                                    Intent(this@RegisterationActivity, MainActivity::class.java)
+                                    Intent(this@RegisterationActivity, VerivicationActivity::class.java)
+                                intent.putExtra("phone",loginResponse!!.data!!.user.phonenumber.toString())
+                                intent.putExtra("type","client")
                                 startActivity(intent)
                                 finish()
                             }

@@ -430,7 +430,9 @@ class PharmRegistrationActivity : BaseActivity() , OnMapReadyCallback {
                                 preferences!!.commit()
                                 onObserveSuccess()
                                 val intent =
-                                    Intent(this@PharmRegistrationActivity, MainActivity::class.java)
+                                    Intent(this@PharmRegistrationActivity, VerivicationActivity::class.java)
+                                intent.putExtra("phone",loginResponse!!.data!!.user.phonenumber.toString())
+                                intent.putExtra("type","pharmacy")
                                 startActivity(intent)
                                 finish()
                             }

@@ -44,5 +44,7 @@ data class Pharmacy (
     @SerializedName("lng")
     var lng: Double,
     @SerializedName("shift")
-    var shift: Int
+    var shift: Int,
+    @SerializedName("phonenumber")
+    var phonenumber: String
 )

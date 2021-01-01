@@ -430,7 +430,9 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
                                 preferences!!.commit()
                                 onObserveSuccess()
                                 val intent =
-                                    Intent(this@LabRegistrationActivity, MainActivity::class.java)
+                                    Intent(this@LabRegistrationActivity, VerivicationActivity::class.java)
+                                intent.putExtra("phone",loginResponse!!.data!!.user.phonenumber.toString())
+                                intent.putExtra("type","laboratory")
                                 startActivity(intent)
                                 finish()
                             }

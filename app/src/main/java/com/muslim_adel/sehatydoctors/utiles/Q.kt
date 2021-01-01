@@ -92,6 +92,11 @@ object Q {
     const val LAB_REGISTRATION_API="laboratory/register"
 
 
+    const val SEND_CODE_API="verify-user"
+    const val VERIFICATION_API="send-message"
+
+
+
 
 
 

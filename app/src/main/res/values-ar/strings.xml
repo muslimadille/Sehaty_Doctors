@@ -288,6 +288,12 @@
     <string name="add_vacation">إضافة أجازة</string>
     <string name="shift_title">الخافرة</string>
     <string name="visitor">زائر</string>
+    <string name="verivication">تفعيل الحساب</string>
+    <string name="ver_hint">سيتم ارسال رمز التأكيد في رسالة قصيرة</string>
+    <string name="not_recieved">لم يتم إستلام الرسالة</string>
+    <string name="try_again">أعد المحاولة</string>
+
+
 
 
 </resources>

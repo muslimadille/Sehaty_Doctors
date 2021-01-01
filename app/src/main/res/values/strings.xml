@@ -248,7 +248,7 @@
     <string name="edit_about_doctor">Edit About Doctor</string>
     <string name="edit_profile_image">Edit Profile Image</string>
     <string name="edit_grade">Edit Grade</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
     <string name="edit_address">Edit address Information</string>
     <string name="street_name_ar">Street Name(Arabic)</string>
     <string name="edit_street_name">Edit Street Name</string>
@@ -289,5 +289,8 @@
     <string name="add_vacation">Add Vacation</string>
     <string name="shift_title">shift</string>
     <string name="visitor">زائر</string>
-
+    <string name="verivication">Verification</string>
+    <string name="ver_hint">A confirmation code will be sent in an SMS </string>
+    <string name="not_recieved">The message was not received? </string>
+    <string name="try_again">Try Again</string>
 </resources>

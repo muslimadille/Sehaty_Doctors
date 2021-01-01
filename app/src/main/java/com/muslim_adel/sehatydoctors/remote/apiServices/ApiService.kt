@@ -1,5 +1,6 @@
 package com.seha_khanah_doctors.remote.apiServices
 
+import com.muslim_adel.sehatydoctors.remote.objects.Verification
 import com.muslim_adel.sehatydoctors.remote.objects.VisitorsNumber
 import com.seha_khanah_doctors.remote.objects.*
 import com.seha_khanah_doctors.remote.objects.doctor.*
@@ -455,6 +456,16 @@ interface ApiService {
         @Field("lng")lng: String,
         @Field("lat")lat: String,
     ): Call<LaboratoryLoginResponce>
+
+    @POST(Q.SEND_CODE_API)
+    fun sendVerificationNum(@Query("phonenumber") phonenumber:String,
+                            @Query("user_type") user_type:String,
+                            @Query("code") code:String): Call<BaseResponce<Verification>>
+    @POST(Q.VERIFICATION_API)
+    @FormUrlEncoded
+    fun userVerification(
+        @Field("phonenumber") phonenumber:String,
+        @Field("user_type") user_type:String): Call<BaseResponce<Verification>>
 
 
 

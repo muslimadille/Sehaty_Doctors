@@ -669,7 +669,7 @@
                                                 android:layout_centerVertical="true"
                                                 android:backgroundTint="@color/white"
                                                 android:ems="10"
-                                                android:hint="@string/about_pharmacy_arabic"
+                                                android:hint="@string/about_lab_arabic"
                                                 android:inputType="text" />
 
                                         </com.google.android.material.textfield.TextInputLayout>
@@ -698,7 +698,7 @@
                                                 android:layout_centerVertical="true"
                                                 android:backgroundTint="@color/white"
                                                 android:ems="10"
-                                                android:hint="@string/about_pharmacy_english"
+                                                android:hint="@string/about_lab_english"
                                                 android:inputType="text" />
 
                                         </com.google.android.material.textfield.TextInputLayout>
