@@ -89,6 +89,8 @@ object Q {
     const val GET_LAB_PROFILE_API="laboratory/dashboard/profile"
     const val LAB_UPDATE_PROFILE_API="laboratory/dashboard/update"
     const val LAB_UPDATE_ADDRESS_API="laboratory/dashboard/address/update"
+    const val LAB_REGISTRATION_API="laboratory/register"
+
 
 
 
