@@ -310,6 +310,11 @@ interface ApiService {
     ): Call<BaseResponce<VacancyModel>>
     @GET
     fun fitchDocVisitor(@Url url: String): Call<VisitorsNumber>
+    @GET
+    fun goToClinc(@Url url: String): Call<BaseResponce<ReservationModel>>
+    @GET
+    fun cancelReservation(@Url url: String): Call<BaseResponce<ReservationModel>>
+
 
     /**---------------------------------------------pharmacy----------------------------------------------------*/
     @GET(Q.GET_PHARMACY_OFFERS_API)

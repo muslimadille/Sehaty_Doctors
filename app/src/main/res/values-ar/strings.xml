@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">صحة خانة للأطباء</string>
+    <string name="app_name">صحة خانه للأطباء</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="contact_us">إتصل بنا</string>
@@ -287,6 +287,7 @@
     <string name="hide">إخفاء</string>
     <string name="add_vacation">إضافة أجازة</string>
     <string name="shift_title">الخافرة</string>
+    <string name="visitor">زائر</string>
 
 
 </resources>

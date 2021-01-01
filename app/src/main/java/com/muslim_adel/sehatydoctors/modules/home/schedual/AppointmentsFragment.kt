@@ -50,7 +50,7 @@ class AppointmentsFragment : Fragment() {
 
 
 
-    private var allRecervationsAddapter: AllRecervationsAdapter? = null
+    //private var allRecervationsAddapter: AllRecervationsAdapter? = null
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
 
@@ -199,8 +199,8 @@ class AppointmentsFragment : Fragment() {
     private fun initRVAdapter() {
         val layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
         all_days_rv.layoutManager = layoutManager
-        allRecervationsAddapter = AllRecervationsAdapter(mContext!!,filteredReservationsList)
-        all_days_rv.adapter = allRecervationsAddapter
+        //allRecervationsAddapter = AllRecervationsAdapter(mContext!!,filteredReservationsList)
+       // all_days_rv.adapter = allRecervationsAddapter
     }
 
     private fun onObserveStart() {
@@ -311,7 +311,7 @@ class AppointmentsFragment : Fragment() {
                     }else{
                         onObserveSuccess()
                     }
-                    allRecervationsAddapter!!.notifyDataSetChanged()
+                   // allRecervationsAddapter!!.notifyDataSetChanged()
 
 
                 }, year, month, day

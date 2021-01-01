@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">صحة خانة للأطباء</string>
+    <string name="app_name">صحة خانه للأطباء</string>
     <string name="settings">settings</string>
     <string name="edite_password">Edit Password</string>
     <string name="contact_us">contact us</string>
@@ -288,5 +288,6 @@
     <string name="hide">Hide</string>
     <string name="add_vacation">Add Vacation</string>
     <string name="shift_title">shift</string>
+    <string name="visitor">زائر</string>
 
 </resources>

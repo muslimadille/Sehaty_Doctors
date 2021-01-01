@@ -58,6 +58,10 @@ object Q {
     const val DOC_REGISTER_API="doctor/register"
     const val DOC_ADD_VACATION_API="doctor/dashboard/vacation/add"
     const val DOC_VISITORS_API="visitorNum/"
+    const val VISITED_API="doctor/dashboard/reservations/visited/"
+    const val CANCEL_VISIT_API="doctor/dashboard/reservations/cancel/"
+
+
 
 
 

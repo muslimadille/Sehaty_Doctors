@@ -6,9 +6,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.muslim_adel.sehatydoctors.remote.objects.VisitorsNumber
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.home.schedual.addReservation.RservationDatesActivity
@@ -18,6 +20,7 @@ import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.doctor.ReservationModel
 import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_appointments.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.no_search_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -281,5 +284,98 @@ class AllReservationsActivity : BaseActivity() {
             this.startActivity(intent)
 
         }
+    }
+     fun changeReservationState(state:Int,id:Int){
+         if(state==1){
+             visitedObserver(id)
+
+         }else if(state==2){
+             cancelReservationObserver(id)
+         }
+
+    }
+    private fun visitedObserver(id:Int) {
+            var url= Q.VISITED_API+"$id"
+            apiClient = ApiClient()
+            sessionManager = SessionManager(this)
+            apiClient.getApiService(this).goToClinc(url)
+                .enqueue(object : Callback<BaseResponce<ReservationModel>> {
+                    override fun onFailure(
+                        call: Call<BaseResponce<ReservationModel>>,
+                        t: Throwable
+                    ) {
+                        alertNetwork(true)
+                    }
+
+                    override fun onResponse(
+                        call: Call<BaseResponce<ReservationModel>>,
+                        response: Response<BaseResponce<ReservationModel>>
+                    ) {
+                        if (response!!.isSuccessful) {
+                            if (response.body()!!.success) {
+                                onObserveSuccess()
+                                filteredReservationsList.forEach {
+                                    if(it.id==id){
+                                        it.status_id=3
+                                    }
+                                    allRecervationsAddapter!!.notifyDataSetChanged()
+                                }
+                            } else {
+                                Toast.makeText(
+                                    this@AllReservationsActivity!!,
+                                    "faild",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                        } else {
+                            Toast.makeText(this@AllReservationsActivity, "faild", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+                })
+    }
+    private fun cancelReservationObserver(id:Int) {
+        var url= Q.CANCEL_VISIT_API+"$id"
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).cancelReservation(url)
+            .enqueue(object : Callback<BaseResponce<ReservationModel>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<ReservationModel>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<ReservationModel>>,
+                    response: Response<BaseResponce<ReservationModel>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            onObserveSuccess()
+                            filteredReservationsList.forEach {
+                                if(it.id==id){
+                                    it.status_id=3
+                                }
+                                allRecervationsAddapter!!.notifyDataSetChanged()
+                            }
+                        } else {
+                            Toast.makeText(
+                                this@AllReservationsActivity!!,
+                                "faild",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    } else {
+                        Toast.makeText(this@AllReservationsActivity, "faild", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+            })
     }
 }
