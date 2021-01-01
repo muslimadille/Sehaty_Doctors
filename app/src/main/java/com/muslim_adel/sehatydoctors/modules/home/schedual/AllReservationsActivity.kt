@@ -46,8 +46,6 @@ class AllReservationsActivity : BaseActivity() {
     private var filteredReservationsList: MutableList<ReservationModel> = ArrayList()
     lateinit var dpd: DatePickerDialog
 
-
-
     private var allRecervationsAddapter: AllRecervationsAdapter? = null
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
@@ -91,15 +89,17 @@ class AllReservationsActivity : BaseActivity() {
                                 if (it.isNotEmpty()) {
                                     onObserveSuccess()
                                     allReservationsList.addAll(it)
-                                    var cd="$currentyear-$currentmonth-$currentday"
+                                    var incomeDate=intent.getStringExtra("date").toString()
+                                    currentDate = "${incomeDate.split("-")[0].toString()}-${incomeDate.split("-")[1].toString()}-${incomeDate.split("-")[2].toString()}"
                                     it.forEach { reservation:ReservationModel->
-                                        if(reservation.booking_date.contains(cd)){
+                                        if(reservation.booking_date.contains(currentDate)){
                                             reservation.date=reservation.booking_date.split(" ")[0]
                                             reservation.time=reservation.booking_date.split(" ")[1]
                                             filteredReservationsList.add(reservation)
                                         }
 
                                     }
+                                    allRecervationsAddapter!!.notifyDataSetChanged()
                                     if(filteredReservationsList.isEmpty()){
                                         onObservefaled()
                                     }else{
@@ -144,15 +144,17 @@ class AllReservationsActivity : BaseActivity() {
                                 if (it.isNotEmpty()) {
                                     onObserveSuccess()
                                     allReservationsList.addAll(it)
-                                    var cd="$currentyear-$currentmonth-$currentday"
+                                    var incomeDate=intent.getStringExtra("date").toString()
+                                    currentDate = "${incomeDate.split("-")[0].toString()}-${incomeDate.split("-")[1].toString()}-${incomeDate.split("-")[2].toString()}"
                                     it.forEach { reservation:ReservationModel->
-                                        if(reservation.booking_date.contains(cd)){
+                                        if(reservation.booking_date.contains(currentDate)){
                                             reservation.date=reservation.booking_date.split(" ")[0]
                                             reservation.time=reservation.booking_date.split(" ")[1]
                                             filteredReservationsList.add(reservation)
                                         }
 
                                     }
+                                    allRecervationsAddapter!!.notifyDataSetChanged()
                                     if(filteredReservationsList.isEmpty()){
                                         onObservefaled()
                                     }else{
@@ -212,12 +214,13 @@ class AllReservationsActivity : BaseActivity() {
 
 
 
-        currentDate = allformat.format(Date()).toString()
-        currentyear = yearformat.format(Date()).toInt()
-        currentmonth = monthformat.format(Date()).toInt()
-        currentday = dayformat.format(Date()).toInt()
+        var incomeDate=intent.getStringExtra("date").toString()
+        currentDate = "${incomeDate.split("-")[0].toString()}-${incomeDate.split("-")[1].toString()}-${incomeDate.split("-")[2].toString()}"
+        currentyear = incomeDate.split("-")[0].toInt()
+        currentmonth =  incomeDate.split("-")[1].toInt()
+        currentday =  incomeDate.split("-")[2].toInt()
         var dayName=""
-        when (calendar.get(Calendar.DAY_OF_WEEK)){
+        when (incomeDate.split("-")[3].toInt()){
             1->{dayName=this.getString(R.string.sun)}
             2->{dayName=this.getString(R.string.mon)}
             3->{dayName=this.getString(R.string.tus)}

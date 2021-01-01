@@ -221,7 +221,7 @@ class ProfileFragment : Fragment() {
                             if (response.body()!!.success) {
                                 onObserveSuccess()
                                 response.body()!!.data.let {
-                                    if(it!=null){ visitors_num_txt.text=it.toString()}
+                                    if(it!=null){ visitors_num_txt?.text=it.toString()}
                                 }
 
                             } else {

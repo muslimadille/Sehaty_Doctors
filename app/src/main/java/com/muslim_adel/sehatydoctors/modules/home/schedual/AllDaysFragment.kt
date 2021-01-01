@@ -16,6 +16,7 @@ import com.seha_khanah_doctors.remote.objects.doctor.WorkingDatesModel
 import kotlinx.android.synthetic.main.fragment_all_days.*
 import kotlinx.android.synthetic.main.fragment_appointments.*
 import kotlinx.android.synthetic.main.fragment_appointments.all_days_rv
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -47,9 +48,16 @@ class AllDaysFragment : Fragment() {
     }
 
 private fun generatDaysList(){
+    val allformat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
 for(i in 0..20){
     var dayItemModel= DayItemModel("","","")
-    dayItemModel!!.date=getNextDays(i).time.toString()
+
+    val date = Date()
+    val cal = Calendar.getInstance()
+    cal.time = date
+    cal.add(Calendar.DAY_OF_MONTH, i)
+    val datePlusOneDay: Date = cal.time
+    dayItemModel!!.date=allformat.format(datePlusOneDay).toString()+"-${getNextDays(i).get(Calendar.DAY_OF_WEEK)}"
     dayItemModel!!.dayOfMonth=getNextDays(i).time.toString().split(" ")[1]+" "+getNextDays(i).time.toString().split(" ")[2]
     var dayName=""
     when (getNextDays(i).get(Calendar.DAY_OF_WEEK)){
