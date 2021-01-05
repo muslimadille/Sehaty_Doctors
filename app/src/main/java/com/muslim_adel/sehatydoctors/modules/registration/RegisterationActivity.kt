@@ -832,7 +832,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
                                 val intent =
                                     Intent(this@RegisterationActivity, VerivicationActivity::class.java)
                                 intent.putExtra("phone",loginResponse!!.data!!.user.phonenumber.toString())
-                                intent.putExtra("type","client")
+                                intent.putExtra("type","doctor")
                                 startActivity(intent)
                                 finish()
                             }

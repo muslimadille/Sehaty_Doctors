@@ -26,7 +26,7 @@ class VerivicationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verivication)
-        phone=intent.getStringExtra("phone")!!
+        phone="+"+intent.getStringExtra("phone")!!
         type=intent.getStringExtra("type")!!
         sendVerOrder()
         onSendClicked()
@@ -78,7 +78,7 @@ class VerivicationActivity : BaseActivity() {
 
     }
     private  fun sendNumber(){
-        if (message_tf.text.isNotEmpty()&&message_tf.text.length==4){
+        if (message_tf.text.isNotEmpty()){
             onObserveStart()
             apiClient = ApiClient()
             sessionManager = SessionManager(this)

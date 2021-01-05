@@ -491,7 +491,7 @@
                            android:layout_margin="5dp"
                            android:layout_weight="1"
                            android:gravity="start"
-                           android:text="@string/price"
+                           android:text="@string/doc_price"
                            android:textSize="14sp" />
 
                    </LinearLayout>

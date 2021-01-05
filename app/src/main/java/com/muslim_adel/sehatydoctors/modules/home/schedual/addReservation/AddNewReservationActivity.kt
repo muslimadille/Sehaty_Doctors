@@ -73,7 +73,7 @@ class AddNewReservationActivity : BaseActivity() {
         var phone=phone_num.text.toString()
         var email=mail_txt.text.toString()
 
-        if(!name.isInt()&&name.isNotEmpty()&&phone.isInt()&&phone.length==10){
+        if(!name.isInt()&&name.isNotEmpty()&&phone.length==10){
             apiClient = ApiClient()
             sessionManager = SessionManager(this)
             apiClient.getApiService(this).sendBook(name,email,phone,booking_date)

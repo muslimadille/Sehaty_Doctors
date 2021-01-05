@@ -31,7 +31,7 @@
     <string name="flag_txt">We care about your health</string>
 
 
-    <string name="mobile_number">mobile number..10 digits</string>
+    <string name="mobile_number">mobile number without..0</string>
     <string name="e_mail">e-mail</string>
     <string name="password">password</string>
     <string name="date_of_birth">date of birth</string>
@@ -293,4 +293,6 @@
     <string name="ver_hint">A confirmation code will be sent in an SMS </string>
     <string name="not_recieved">The message was not received? </string>
     <string name="try_again">Try Again</string>
+    <string name="doc_price">price</string>
+
 </resources>

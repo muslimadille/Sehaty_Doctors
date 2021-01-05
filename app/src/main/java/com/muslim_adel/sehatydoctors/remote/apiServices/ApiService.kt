@@ -458,9 +458,10 @@ interface ApiService {
     ): Call<LaboratoryLoginResponce>
 
     @POST(Q.SEND_CODE_API)
-    fun sendVerificationNum(@Query("phonenumber") phonenumber:String,
-                            @Query("user_type") user_type:String,
-                            @Query("code") code:String): Call<BaseResponce<Verification>>
+    @FormUrlEncoded
+    fun sendVerificationNum(@Field("phonenumber") phonenumber:String,
+                            @Field("user_type") user_type:String,
+                            @Field("code") code:String): Call<BaseResponce<Verification>>
     @POST(Q.VERIFICATION_API)
     @FormUrlEncoded
     fun userVerification(
