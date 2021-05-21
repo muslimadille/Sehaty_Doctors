@@ -106,6 +106,9 @@ class LoginActivity : BaseActivity() {
                                 preferences!!.putBoolean(Q.IS_FIRST_TIME, false)
                                 preferences!!.putBoolean(Q.IS_LOGIN, true)
                                 preferences!!.putString(Q.USER_TYPE,Q.USER_DOCTOR)
+                                preferences!!.putString(Q.USER_NAME,loginResponse.data.user.firstName_ar)
+                                preferences!!.putString(Q.USER_EMAIL,"doctor@seha.com")
+                                preferences!!.putString(Q.USER_PHONE,loginResponse.data.user.phonenumber.toString())
 
                                 preferences!!.putInteger(
                                     Q.USER_ID,
@@ -161,6 +164,10 @@ class LoginActivity : BaseActivity() {
                                 preferences!!.putBoolean(Q.IS_FIRST_TIME, false)
                                 preferences!!.putBoolean(Q.IS_LOGIN, true)
                                 preferences!!.putString(Q.USER_TYPE,Q.USER_LAB)
+                                preferences!!.putString(Q.USER_NAME,loginResponse.data.user.firstName_ar)
+                                preferences!!.putString(Q.USER_EMAIL,"doctor@seha.com")
+                                preferences!!.putString(Q.USER_PHONE,loginResponse.data.user.phonenumber.toString())
+
                                 preferences!!.putInteger(
                                     Q.USER_ID,
                                     loginResponse.data.user.id.toInt()
@@ -217,6 +224,10 @@ class LoginActivity : BaseActivity() {
                                 preferences!!.putBoolean(Q.IS_LOGIN, true)
                                 preferences!!.putString(Q.USER_TYPE,Q.USER_PHARM)
                                 preferences!!.putInteger(Q.USER_ID, loginResponse.data.user.id.toInt())
+                                preferences!!.putString(Q.USER_NAME,loginResponse.data.user.firstName_ar)
+                                preferences!!.putString(Q.USER_EMAIL,"doctor@seha.com")
+                                preferences!!.putString(Q.USER_PHONE,loginResponse.data.user.phonenumber.toString())
+
                                 preferences!!.commit()
                                 onObserveSuccess()
                                 val intent =

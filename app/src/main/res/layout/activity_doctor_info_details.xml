@@ -163,6 +163,7 @@
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:visibility="gone"
         android:id="@+id/bottomNavigationView14"
         app:labelVisibilityMode="unlabeled"
         android:layout_width="match_parent"

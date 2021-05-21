@@ -467,6 +467,12 @@ interface ApiService {
     fun userVerification(
         @Field("phonenumber") phonenumber:String,
         @Field("user_type") user_type:String): Call<BaseResponce<Verification>>
+    @POST(Q.CONTACT_US)
+    @FormUrlEncoded
+    fun sendContactUs(@Field("name") name:String,
+                      @Field("phone") phone:String,
+                      @Field("email") email:String,
+                      @Field("comments") comments:String): Call<BaseResponce<Any>>
 
 
 

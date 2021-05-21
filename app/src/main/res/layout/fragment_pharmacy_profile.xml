@@ -69,10 +69,8 @@
                         android:layout_marginTop="16dp"
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/descound_txt"
                         app:layout_constraintHorizontal_bias="0.05"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/descound_txt"
                         app:layout_constraintVertical_bias="1.0">
 
                         <androidx.cardview.widget.CardView

@@ -117,6 +117,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+
         val lat_long=LatLng(currentLocation?.latitude!!,currentLocation?.longitude!!)
         drawMarker(lat_long)
         mMap.setOnMarkerDragListener(object :GoogleMap.OnMarkerDragListener{
@@ -132,6 +133,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
                     currentMrker?.remove()
                     var newLatLng=LatLng(p0?.position!!.latitude,p0.position.longitude)
                     drawMarker(newLatLng)
+
 
                 }
             }
