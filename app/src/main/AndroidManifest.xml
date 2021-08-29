@@ -47,7 +47,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.muslim_adel.sehatydoctors.modules.registration.VerivicationActivity"></activity>
+        <activity android:name="com.muslim_adel.sehatydoctors.modules.splash.NoActivity"></activity>
+        <activity android:name="com.muslim_adel.sehatydoctors.modules.registration.VerivicationActivity" />
         <activity android:name="com.muslim_adel.sehatydoctors.modules.registration.PharmRegistrationActivity" />
         <activity android:name="com.muslim_adel.sehatydoctors.modules.registration.LabRegistrationActivity" />
         <activity android:name="com.muslim_adel.sehatydoctors.modules.profile.edit_password.EditPasswordActivity" />

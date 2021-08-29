@@ -1,0 +1,101 @@
+{
+  "project_info": {
+    "project_number": "457426184618",
+    "firebase_url": "https://osta-82ef0-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "osta-82ef0",
+    "storage_bucket": "osta-82ef0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457426184618:android:20490d2facaf0b9e7e23d3",
+        "android_client_info": {
+          "package_name": "com.ostah_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457426184618-nmt7lumco0ideqdp8g4mjls6ac10g461.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ostah_app",
+            "certificate_hash": "eba47f85563510e5fb199bdacd88d995e3dfbe15"
+          }
+        },
+        {
+          "client_id": "457426184618-frpq1k21k23moo47dt1fv590j0fmp1f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnK8jFzbesolEC5ZEwkqj5pcbQZlOp3nE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457426184618-frpq1k21k23moo47dt1fv590j0fmp1f7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "457426184618-dmcdnbvv8q4klpmgm9kqr3vkbe8lht48.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.usta.ustaApp",
+                "app_store_id": "400400"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457426184618:android:d514e256f5a0540f7e23d3",
+        "android_client_info": {
+          "package_name": "com.seha_khanah_doctors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457426184618-8p8hbfgfj8gipdphptr00bdml1omeea6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.seha_khanah_doctors",
+            "certificate_hash": "eba47f85563510e5fb199bdacd88d995e3dfbe15"
+          }
+        },
+        {
+          "client_id": "457426184618-frpq1k21k23moo47dt1fv590j0fmp1f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnK8jFzbesolEC5ZEwkqj5pcbQZlOp3nE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457426184618-frpq1k21k23moo47dt1fv590j0fmp1f7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "457426184618-dmcdnbvv8q4klpmgm9kqr3vkbe8lht48.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.usta.ustaApp",
+                "app_store_id": "400400"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

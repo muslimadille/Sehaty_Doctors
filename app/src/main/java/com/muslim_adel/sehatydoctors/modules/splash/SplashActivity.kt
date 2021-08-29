@@ -3,6 +3,10 @@ package com.seha_khanah_doctors.modules.splash
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.muslim_adel.sehatydoctors.modules.splash.NoActivity
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.home.MainActivity
@@ -16,17 +20,20 @@ class SplashActivity : BaseActivity() {
     private var change=""
     private var isLogin=false
     var isFristTime=true
+    private lateinit var referance: DatabaseReference
+    private lateinit var database: FirebaseDatabase
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        database = FirebaseDatabase.getInstance()
+        referance=database.getReference("state")
         isLogin=preferences!!.getBoolean(Q.IS_LOGIN,false)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME,true)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME, Q.FIRST_TIME)
-        
-        setLocalization()
-        handelSpalash()
+        getState()
+
 
     }
     private fun setLocalization(){
@@ -63,5 +70,20 @@ class SplashActivity : BaseActivity() {
             }
         }, 2000)
 
+    }
+    private fun getState(){
+        referance.get().addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+            if(it.value=="2291848"){
+                setLocalization()
+                handelSpalash()
+            }else{
+                val intent=Intent(this, NoActivity::class.java)
+                startActivity(intent)
+            }
+
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
     }
 }
