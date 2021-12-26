@@ -148,6 +148,8 @@ object Q {
     var USER_DOCTOR="user_doctor"
     var USER_LAB="user_lab"
     var USER_PHARM="user_pharm"
+    //CONTRY VALUES
+    var PHONE_KEY="+964"
 
 
 

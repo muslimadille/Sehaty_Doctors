@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.muslim_adel.sehatydoctors.modules.newRegistration.doctor.DoctorRegistrationScreen
 import com.muslim_adel.sehatydoctors.modules.registration.LabRegistrationActivity
 import com.muslim_adel.sehatydoctors.modules.registration.PharmRegistrationActivity
 import com.seha_khanah_doctors.modules.home.MainActivity
@@ -64,7 +65,7 @@ class LoginActivity : BaseActivity() {
         registration_btn.setOnClickListener {
             when(key){
                 1->{
-                    val intent = Intent(this@LoginActivity, RegisterationActivity::class.java)
+                    val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
                     startActivity(intent)
                 }
                 2->{
