@@ -1,5 +1,6 @@
 package com.seha_khanah_doctors.modules.splash
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +15,7 @@ import com.seha_khanah_doctors.modules.introwizerd.IntroWizardActivity
 import com.seha_khanah_doctors.modules.registration.LoginActivity
 import com.seha_khanah_doctors.modules.registration.SelectUserActivity
 import com.seha_khanah_doctors.utiles.Q
+import java.io.StringWriter
 import java.util.*
 
 class SplashActivity : BaseActivity() {
@@ -40,10 +42,13 @@ class SplashActivity : BaseActivity() {
         val language = preferences!!.getString("language", "en")
         if (language =="Arabic") {
             change="ar"
+            Q.CURRENT_LANG="ar"
         } else if (language=="English" ) {
             change = "en"
-        }else {
-            change =""
+            Q.CURRENT_LANG="en"
+        }else if(language=="Kurdish") {
+            change ="ku"
+            Q.CURRENT_LANG="ku"
         }
         dLocale = Locale(change) //set any locale you want here
 
@@ -85,5 +90,9 @@ class SplashActivity : BaseActivity() {
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
         }
+    }
+    private  fun getCuntryData(){
+        Q.PHONE_KEY="+964"
+        Q.CURNCY_NAME_AR="دينار"
     }
 }

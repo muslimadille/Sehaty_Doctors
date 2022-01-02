@@ -861,7 +861,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         doctorValidator!!.lastName_en=edit_lne_txt.text.toString()
         doctorValidator!!.email=email.text.toString()
         doctorValidator!!.password=password.text.toString()
-        doctorValidator!!.phonenumber="+964"+phon_num.text.toString()
+        doctorValidator!!.phonenumber=Q.PHONE_KEY+phon_num.text.toString()
         doctorValidator!!.price=edit_price_txt.text.toString()
         doctorValidator!!.num_of_day=edit_num_of_days_txt.text.toString()
         doctorValidator!!.waiting_time="00:30:00"

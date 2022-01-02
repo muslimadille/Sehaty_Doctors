@@ -52,11 +52,11 @@ class PharmacyOffersAdapter(
         val offer = list[position]
         if (preferences!!.getString("language","")=="Arabic"){
             holder.offer_title_txt!!.text=mContext.getString(R.string.type)+offer.title_ar
-            holder.final_cost!!.text=mContext.getString(R.string.price)+" :"+offer.price.toString()+" "+ mContext.getString(R.string.derham)
+            holder.final_cost!!.text=mContext.getString(R.string.price)+" :"+offer.price.toString()+" "+ Q.CURNCY_NAME_AR
         }else{
 //            holder.doc_data_txt!!.text=mContext.getString(R.string.pharmacy)+offer.pharmacy.pharmacy_name_en
             holder.offer_title_txt!!.text=mContext.getString(R.string.type)+offer.title_en
-            holder.final_cost!!.text=mContext.getString(R.string.price)+" :"+offer.price.toString()+" "+ mContext.getString(R.string.derham)
+            holder.final_cost!!.text=mContext.getString(R.string.price)+" :"+offer.price.toString()+" "+Q.CURNCY_NAME_EN
         }
 
 

@@ -148,8 +148,12 @@ object Q {
     var USER_DOCTOR="user_doctor"
     var USER_LAB="user_lab"
     var USER_PHARM="user_pharm"
+    var CURRENT_LANG=""
     //CONTRY VALUES
     var PHONE_KEY="+964"
+    var CURNCY_NAME_AR="دينار"
+    var CURNCY_NAME_EN="IQD"
+
 
 
 
