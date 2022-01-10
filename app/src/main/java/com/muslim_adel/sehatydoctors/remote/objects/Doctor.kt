@@ -68,5 +68,7 @@ data class Doctor(
     var profissionalTitleID: String,
     @SerializedName("sub_specialties")
     var sub_specialties: ArrayList<SubSpiecialityModel>,
+    @SerializedName("country_id")
+    var country_id: Int,
 
 )

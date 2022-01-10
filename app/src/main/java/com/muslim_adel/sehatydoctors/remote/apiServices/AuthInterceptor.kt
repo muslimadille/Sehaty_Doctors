@@ -20,10 +20,14 @@ class AuthInterceptor(context: Context) : Interceptor {
 
         if(sessionManager.fetchAuthToken()==null){
             var token=preferences!!.getString("tok","")
+            var countryId=2
             requestBuilder.addHeader("Authorization", "Bearer $token")
+            requestBuilder.addHeader("Country-id","$countryId")
         }else{
             sessionManager.fetchAuthToken()?.let {
                 requestBuilder.addHeader("Authorization", "Bearer $it")
+                var countryId=1
+                requestBuilder.addHeader("Country-id","$countryId")
             }
         }
         // If token has been saved, add it to the request

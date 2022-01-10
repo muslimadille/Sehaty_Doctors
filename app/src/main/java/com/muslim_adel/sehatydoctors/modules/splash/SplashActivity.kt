@@ -34,7 +34,8 @@ class SplashActivity : BaseActivity() {
         isLogin=preferences!!.getBoolean(Q.IS_LOGIN,false)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME,true)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME, Q.FIRST_TIME)
-        getState()
+        setLocalization()
+        handelSpalash()
 
 
     }
@@ -80,8 +81,7 @@ class SplashActivity : BaseActivity() {
         referance.get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")
             if(it.value=="2291848"){
-                setLocalization()
-                handelSpalash()
+
             }else{
                 val intent=Intent(this, NoActivity::class.java)
                 startActivity(intent)

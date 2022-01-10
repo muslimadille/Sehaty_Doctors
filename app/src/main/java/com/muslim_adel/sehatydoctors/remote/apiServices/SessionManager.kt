@@ -8,14 +8,16 @@ class SessionManager (context: Context) {
 
     companion object {
         const val USER_TOKEN = "user_token"
+        const val COUNTRY_ID = "COUNTRY_ID"
     }
 
     /**
      * Function to save auth token
      */
-    fun saveAuthToken(token: String) {
+    fun saveAuthToken(token: String,countryId:Int) {
         val editor = prefs.edit()
         editor.putString(USER_TOKEN, token)
+        editor.putInt(COUNTRY_ID,countryId)
         editor.apply()
     }
 

@@ -3,7 +3,7 @@ package com.muslim_adel.sehatydoctors.modules.newRegistration.doctor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.muslim_adel.sehatydoctors.modules.newRegistration.doctor.fragments.RegistrationDataFragment
+import com.muslim_adel.sehatydoctors.modules.newRegistration.doctor.fragments.*
 import com.muslim_adel.sehatydoctors.remote.objects.doctor.DoctorRigistrationValidator
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
@@ -18,6 +18,11 @@ class DoctorRegistrationScreen : BaseActivity() {
     var doctorRegistrationModel: DoctorRigistrationValidator? = null
     private val fragmentList = ArrayList<Fragment>()
     private val  adapter=IntroPagerAdapter(this)
+    private val fragment1=RegistrationFragment1()
+    private val fragment2= RegistrationFragment2()
+    private val fragment3= RegistrationFragment3()
+    private val fragment4= RegistrationFragment4()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,9 +57,10 @@ class DoctorRegistrationScreen : BaseActivity() {
     private fun initPagerAdapter() {
         doctor_registration_pager.adapter = adapter
         fragmentList.addAll(listOf(
-            RegistrationDataFragment(), Intro2Fragment(), Intro3Fragment()
+            fragment1, fragment2, fragment3,fragment4
         ))
         adapter.setFragmentList(fragmentList)
+        doctor_registration_pager.setUserInputEnabled(false)
     }
     private fun onNextClicked(){
         doctor_registration_next_btn.setOnClickListener {

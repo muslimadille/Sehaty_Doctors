@@ -64,5 +64,7 @@ class Laboratory (
     var phonenumber:  String,
     @SerializedName("email")
     var email:String,
+    @SerializedName("country_id")
+    var country_id: Int,
 
 )

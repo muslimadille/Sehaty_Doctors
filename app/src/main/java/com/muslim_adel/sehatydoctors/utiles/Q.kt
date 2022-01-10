@@ -154,15 +154,6 @@ object Q {
     var CURNCY_NAME_AR="دينار"
     var CURNCY_NAME_EN="IQD"
 
-
-
-
-
-
-
-
-
-
     const val FIRST_TIME_PREF = "ADW_first_time"
 
 }
