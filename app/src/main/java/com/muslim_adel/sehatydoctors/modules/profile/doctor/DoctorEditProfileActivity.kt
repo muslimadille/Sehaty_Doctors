@@ -5,11 +5,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.muslim_adel.sehatydoctors.modules.profile.edit_password.EditPasswordActivity
@@ -17,16 +14,13 @@ import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
 import com.seha_khanah_doctors.modules.home.MainActivity
-import com.seha_khanah_doctors.modules.map.EditLocationActivity
 import com.seha_khanah_doctors.modules.map.MapsActivity
 import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.*
-import com.seha_khanah_doctors.remote.objects.Date
 import com.seha_khanah_doctors.remote.objects.doctor.DaysModel
 import com.seha_khanah_doctors.remote.objects.doctor.DoctorProfileModel
 import com.seha_khanah_doctors.remote.objects.doctor.SubSpiecialityModel
-import com.seha_khanah_doctors.utiles.IOUtile
 import com.seha_khanah_doctors.utiles.Q
 import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
 import com.theartofdev.edmodo.cropper.CropImage
@@ -277,6 +271,7 @@ class DoctorEditProfileActivity : BaseActivity() {
                         if (response.body()!!.success) {
                             response.body()!!.data!!.let {
                                 doctorProfileModel=it
+                                fillProfileData()
                             }
                         } else {
                         }
@@ -308,6 +303,7 @@ class DoctorEditProfileActivity : BaseActivity() {
         
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).editDocProfile(
+            Q.selectedCountry.id.toString(),
             "1",
             img,
             if(edit_fne_txt.text.isNotEmpty())edit_fne_txt.text.toString() else doctorProfileModel!!.firstName_en,
@@ -383,4 +379,25 @@ class DoctorEditProfileActivity : BaseActivity() {
             startActivity(intent)
         }
     }
+   private fun fillProfileData(){
+       edit_fna_txt.setText(doctorProfileModel!!.firstName_ar)
+       edit_fne_txt.setText(doctorProfileModel!!.firstName_en)
+       edit_lna_txt.setText(doctorProfileModel!!.lastName_ar)
+       edit_lne_txt.setText(doctorProfileModel!!.lastName_ar)
+       edit_price_txt.setText(doctorProfileModel!!.price.toString())
+       edit_num_of_days_txt.setText(doctorProfileModel!!.num_of_day.toString())
+       waiting_time_spinner.setSelection(4)
+       edit_about_doc_ar_txt.setText(doctorProfileModel!!.aboutDoctor_ar.toString())
+       edit_about_doc_en_txt.setText(doctorProfileModel!!.aboutDoctor_en.toString())
+       prof_details__spinner.setSelection(profDetailsList.indexOf(doctorProfileModel!!.profissionalDetails_id.toString()))
+       GlideObject.GlideProfilePic(this, doctorProfileModel!!.featured, edit_doc_profile_img)
+
+
+
+
+
+
+
+   }
+
 }

@@ -48,8 +48,8 @@ class SplashActivity : BaseActivity() {
             change = "en"
             Q.CURRENT_LANG="en"
         }else if(language=="Kurdish") {
-            change ="ku"
-            Q.CURRENT_LANG="ku"
+            change ="ur"
+            Q.CURRENT_LANG="ur"
         }
         dLocale = Locale(change) //set any locale you want here
 

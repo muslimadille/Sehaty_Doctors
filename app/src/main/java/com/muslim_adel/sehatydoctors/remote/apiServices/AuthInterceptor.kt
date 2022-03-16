@@ -15,24 +15,27 @@ class AuthInterceptor(context: Context) : Interceptor {
     private val sessionManager = SessionManager(context)
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        preferences = ComplexPreferences.getComplexPreferences(mcontext!!, Q.PREF_FILE, Q.MODE_PRIVATE)
+        preferences = ComplexPreferences.getComplexPreferences(mcontext, Q.PREF_FILE, Q.MODE_PRIVATE)
         val requestBuilder = chain.request().newBuilder()
 
         if(sessionManager.fetchAuthToken()==null){
             var token=preferences!!.getString("tok","")
-            var countryId=2
             requestBuilder.addHeader("Authorization", "Bearer $token")
-            requestBuilder.addHeader("Country-id","$countryId")
         }else{
             sessionManager.fetchAuthToken()?.let {
                 requestBuilder.addHeader("Authorization", "Bearer $it")
-                var countryId=1
-                requestBuilder.addHeader("Country-id","$countryId")
+            }
+
+            //handle country id
+            if(sessionManager.fetchCountryId()==null){
+                var countryId=preferences!!.getInteger("COUNTRY_ID",1)
+                requestBuilder.addHeader("Country-id", countryId.toString())
+            }else{
+                sessionManager.fetchCountryId()?.let {
+                    requestBuilder.addHeader("Country-id",it.toString())
+                }
             }
         }
-        // If token has been saved, add it to the request
-
-
         return chain.proceed(requestBuilder.build())
     }
 }

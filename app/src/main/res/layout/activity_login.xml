@@ -44,23 +44,25 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="80dp"
                     android:id="@+id/imageView"
-                    android:layout_width="120dp"
+                    android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:src="@drawable/logo" />
+                    android:layout_marginBottom="50dp"
+                    android:src="@drawable/new_logo_dark" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/name_input_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        app:startIconTint="@color/colorAccent"
                         app:startIconDrawable="@drawable/phone_blue_ic">
 
                         <EditText
@@ -69,11 +71,12 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:backgroundTint="@color/gray_light"
+                            app:startIconTint="@color/colorAccent"
+                            android:backgroundTint="#00E6E7ED"
                             android:ems="10"
                             android:textSize="14sp"
-                            android:hint="@string/e_mail_or_mobile"
-                            android:inputType="text" />
+                            android:hint="@string/mobile_number"
+                            android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,6 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true"
+                        app:startIconTint="@color/colorAccent"
                         app:startIconDrawable="@drawable/password_ic">
 
                         <EditText
@@ -101,7 +105,7 @@
                             android:layout_centerHorizontal="true"
                             android:textSize="14sp"
                             android:layout_centerVertical="true"
-                            android:backgroundTint="@color/gray_light"
+                            android:backgroundTint="#00E6E7ED"
                             android:hint="@string/password"
                             android:inputType="textPassword" />
 
@@ -144,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/new_acount"
+                        android:text="@string/register_from_here"
                         android:textColor="@color/blue"
                         android:textSize="14sp"
                          />
@@ -242,28 +246,6 @@
                     </androidx.cardview.widget.CardView>
 
 
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/terms_header"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="@string/rouls_conditions"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_appointment"
         android:enabled="true"
-        android:icon="@drawable/bottom_nav_offers"
+        android:icon="@drawable/ic_offer_green"
         android:title="@string/offers_item" />
     <item
         android:id="@+id/navigation_extras"

@@ -1,15 +1,11 @@
 package com.seha_khanah_doctors.modules.offers
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.gun0912.tedpermission.PermissionListener
@@ -276,7 +272,7 @@ class AddDpctorOfferActivity : BaseActivity() {
                 result?.let {
                     selectedImage = File(result!!.uri!!.path!!)
 
-                    GlideObject.GlideProfilePic(this, selectedImage!!.path, offer_img)
+                    GlideObject.GlideProfilePic(this@AddDpctorOfferActivity, selectedImage!!.path, offer_img)
 //                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
                 }
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {

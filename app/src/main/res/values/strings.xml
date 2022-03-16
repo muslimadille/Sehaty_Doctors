@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">صحة خانه للأطباء</string>
+    <string name="app_name">عناية للأطباء</string>
     <string name="settings">settings</string>
     <string name="edite_password">Edit Password</string>
     <string name="contact_us">contact us</string>
@@ -235,7 +235,7 @@
     <string name="offer_discription">6. Add an offer description</string>
     <string name="price_title">7. Add the price</string>
     <string name="start_date_title">8- Add the start and end date of the presentation</string>
-    <string name="images_title">9. Add photo</string>
+    <string name="images_title">Add Offer photo</string>
     <string name="edit_contacts">Modify contact information</string>
     <string name="edit_name">Name editing</string>
     <string name="f_name_ar">First name (Arabic)</string>
@@ -277,7 +277,7 @@
     <string name="address_en">address(English)</string>
     <string name="re_name_info">name information</string>
     <string name="re_num_of_days">number of days</string>
-    <string name="_relogin_information">login information</string>
+    <string name="_relogin_information">Login Information</string>
     <string name="city">city</string>
     <string name="re_region">region</string>
     <string name="profional_details">professional details</string>
@@ -294,5 +294,19 @@
     <string name="not_recieved">The message was not received? </string>
     <string name="try_again">Try Again</string>
     <string name="doc_price">price</string>
+    <string name="next">next</string>
+    <string name="register_from_here">Register here</string>
+    <string name="التسجيل">register</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_country">Select Country</string>
+    <string name="profile_info">Profile Info</string>
+    <string name="personal_imag">personal picture</string>
+    <string name="practicing_certificate">Practicing Certificate</string>
+    <string name="license_photo">license photo</string>
+    <string name="offer_title">Offer Title</string>
+    <string name="offer_sub_title">Subtitle</string>
+    <string name="profile_info_title">مغلومات الحساب</string>
+    <string name="lab_register_title">المختبرات-التسجيل</string>
+    <string name="contenu_register">متابعة التسجيل</string>
 
 </resources>

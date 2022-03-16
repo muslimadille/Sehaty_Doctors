@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/new_bg_dark"
     tools:context=".modules.registration.SelectUserActivity">
     <ScrollView
         android:layout_width="match_parent"
@@ -29,136 +29,109 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/doctor_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:background="#fff"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
-                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
                             android:src="@drawable/doctor_ic" />
 
                         <TextView
 
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:gravity="center"
                             android:text="@string/doctor_type"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/gray"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:src="@drawable/solid_arrow" />
-
-
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/lab_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:background="#fff"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
-                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
                             android:src="@drawable/lab_ic" />
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:gravity="center"
                             android:text="@string/lab_type"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/gray"
                             android:textSize="14sp"
-                            android:textStyle="bold"
-
-                            />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:src="@drawable/solid_arrow" />
-
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/pharmacy_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:background="#fff"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
                             android:src="@drawable/pharmaci_ic" />
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:gravity="center"
                             android:text="@string/pharm_type"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/gray"
                             android:textSize="14sp"
-                            android:textStyle="bold"
-
-                            />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:src="@drawable/solid_arrow" />
-
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -168,12 +141,12 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="140dp"
-                android:src="@drawable/logo"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/new_logo_white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

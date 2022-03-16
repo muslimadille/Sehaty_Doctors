@@ -6,180 +6,135 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".modules.profile.doctor.ClinicInfoFragment">
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/about_doc_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="3dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="vertical">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+       android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/green_border_bg"
+        >
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
             >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_info"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@color/red"/>
-            </LinearLayout>
-            <TextView
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:layout_height="match_parent"
-                android:text="@string/abuot_doc"
-                android:textSize="14sp"
-                />
             <ImageView
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                tools:replace="android:supportsRtl"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/arrow"/>
-
-
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_info"/>
 
         </LinearLayout>
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:text="@string/abuot_doc"
+            android:textSize="14sp"
+            />
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            tools:replace="android:supportsRtl"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/arrow"/>
 
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
+
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/contacts_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="3dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="vertical">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/green_border_bg"
+        >
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
             >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_check_list_24"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@color/red"/>
-            </LinearLayout>
-            <TextView
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:layout_height="match_parent"
-                android:text="@string/contacts"
-                android:textSize="14sp"
-                />
             <ImageView
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                tools:replace="android:supportsRtl"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/arrow"/>
-
-
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_check_list_24"/>
 
         </LinearLayout>
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:text="@string/contacts"
+            android:textSize="14sp"
+            />
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            tools:replace="android:supportsRtl"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/arrow"/>
 
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
+
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/sp_info_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="3dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="vertical">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/green_border_bg"
+        >
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
             >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_baseline_school_24"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@color/red"/>
-            </LinearLayout>
-            <TextView
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:layout_height="match_parent"
-                android:text="@string/spiciality_info"
-                android:textSize="14sp"
-                />
             <ImageView
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                tools:replace="android:supportsRtl"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/arrow"/>
-
-
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_baseline_school_24"/>
 
         </LinearLayout>
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:text="@string/spiciality_info"
+            android:textSize="14sp"
+            />
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            tools:replace="android:supportsRtl"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/arrow"/>
 
-    </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
 
 
 

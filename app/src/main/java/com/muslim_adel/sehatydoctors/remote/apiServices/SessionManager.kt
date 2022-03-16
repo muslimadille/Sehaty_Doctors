@@ -7,7 +7,7 @@ class SessionManager (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
 
     companion object {
-        const val USER_TOKEN = "user_token"
+        const val USER_TOKEN = "tok"
         const val COUNTRY_ID = "COUNTRY_ID"
     }
 
@@ -26,5 +26,8 @@ class SessionManager (context: Context) {
      */
     fun fetchAuthToken(): String? {
         return prefs.getString(USER_TOKEN, null)
+    }
+    fun fetchCountryId(): Int {
+        return prefs.getInt(COUNTRY_ID, 1)
     }
 }

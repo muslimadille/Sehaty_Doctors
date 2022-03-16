@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">صحة خانه للأطباء</string>
+    <string name="app_name">عناية للأطباء</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="contact_us">إتصل بنا</string>
@@ -235,11 +235,11 @@
     <string name="offer_discription">6.قم بإضافة وصف العرض</string>
     <string name="price_title">7.قم بإضافة السعر</string>
     <string name="start_date_title">8.قم بإضافة تاريخ بداية وإنتهائ العرض</string>
-    <string name="images_title">9.أضف الصور</string>
+    <string name="images_title">أضف صورة العرض</string>
     <string name="edit_contacts">تعديل وسائل الإتصال</string>
     <string name="edit_name">تعديل الأسم</string>
-    <string name="f_name_ar">الاسم الاول(عربي)</string>
-    <string name="f_name_en">الاسم الاول (انجليزي)</string>
+    <string name="f_name_ar">الاسم واللقب(عربي)</string>
+    <string name="f_name_en">الاسم واللقب (انجليزي)</string>
     <string name="l_name_ar">الاسم الثاني(عربي)</string>
     <string name="l_name_en">الاسم الثاني (انجليزي)</string>
     <string name="edit_price">تعديل سعر الكشف</string>
@@ -293,9 +293,20 @@
     <string name="not_recieved">لم يتم إستلام الرسالة</string>
     <string name="try_again">أعد المحاولة</string>
     <string name="doc_price">سعر الكشف</string>
-
-
-
+    <string name="next">التالي</string>
+    <string name="register_from_here">سجل من هنا</string>
+    <string name="التسجيل">register</string>
+    <string name="select_language">حدد اللغة</string>
+    <string name="select_country">حدد الدولة</string>
+    <string name="profile_info">معلومات الحساب</string>
+    <string name="personal_imag">الصورة الشخصية</string>
+    <string name="practicing_certificate">شهادة المزاولة</string>
+    <string name="license_photo">صورة الرخصة</string>
+    <string name="offer_title">عنوان العرض</string>
+    <string name="offer_sub_title">العنوان الفرعي</string>
+    <string name="profile_info_title">مغلومات الحساب</string>
+    <string name="lab_register_title">المختبرات-التسجيل</string>
+    <string name="contenu_register">متابعة التسجيل</string>
 
 
 </resources>

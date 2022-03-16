@@ -19,6 +19,7 @@ import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.Pharmacy
+import com.seha_khanah_doctors.utiles.Q
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_doctor_edit_profile.*
@@ -164,6 +165,7 @@ class PharmacyEditProfileActivity : BaseActivity() {
 
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).editPharmProfile(
+            Q.selectedCountry.id.toString(),
             "1",
             img,
             if(edit_p_name_ar_txt.text.isNotEmpty())edit_p_name_ar_txt.text.toString() else doctorProfileModel!!.pharmacy_name_ar,

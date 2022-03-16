@@ -1,5 +1,6 @@
 package com.seha_khanah_doctors.remote.apiServices
 
+import com.muslim_adel.sehatydoctors.remote.objects.CountryModel
 import com.muslim_adel.sehatydoctors.remote.objects.Verification
 import com.muslim_adel.sehatydoctors.remote.objects.VisitorsNumber
 import com.seha_khanah_doctors.remote.objects.*
@@ -9,6 +10,41 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
+    @GET(Q.COUNTRIES_API)
+    fun getAllCountriesList(): Call<BaseResponce<List<CountryModel>>>
+
+
+    @POST(Q.DOCTOR_PHONE_VALIDATOR_API)
+    fun doctorPhoneValidator(
+        @Query("phonenumber") phonenumber: String,
+    ): Call<BaseResponce<Any>>
+    @POST(Q.DOCTOR_EMAIL_VALIDATOR_API)
+    fun doctorEmailValidator(
+        @Query("email") email: String,
+    ): Call<BaseResponce<Any>>
+    @POST(Q.LAB_PHONE_VALIDATOR_API)
+    fun labPhoneValidator(
+        @Query("phonenumber") phonenumber: String,
+    ): Call<BaseResponce<Any>>
+    @POST(Q.LAB_EMAIL_VALIDATOR_API)
+    fun labEmailValidator(
+        @Query("email") email: String,
+    ): Call<BaseResponce<Any>>
+    @POST(Q.PHARM_PHONE_VALIDATOR_API)
+    fun pharmPhoneValidator(
+        @Query("phonenumber") phonenumber: String,
+    ): Call<BaseResponce<Any>>
+    @POST(Q.PHARM_EMAIL_VALIDATOR_API)
+    fun pharmEmailValidator(
+        @Query("email") email: String,
+    ): Call<BaseResponce<Any>>
+
+
+
+
+
+
+
     @POST(Q.LOGIN_API)
     fun login(
         @Query("email") email: String,
@@ -232,6 +268,7 @@ interface ApiService {
     @POST(Q.DOC_UPDATE_PROFILE_API)
     @FormUrlEncoded
     fun editDocProfile(
+        @Field("country_id") country_id:String,
         @Field("gender_id") gender_id:String,
         @Field("featured") featured: String,
         @Field("firstName_en") firstName_en: String,
@@ -272,6 +309,7 @@ interface ApiService {
     @POST(Q.DOC_REGISTER_API)
     @FormUrlEncoded
     fun DocRegistration(
+        @Field("country_id") country_id:String,
         @Field("password") password:String,
         @Field("phonenumber") phonenumber:String,
         @Field("email") email:String,
@@ -338,6 +376,7 @@ interface ApiService {
     @POST(Q.PHARM_UPDATE_PROFILE_API)
     @FormUrlEncoded
     fun editPharmProfile(
+        @Field("country_id") country_id:String,
         @Field("gender_id") gender_id:String,
         @Field("featured") featured: String,
         @Field("pharmacy_name_ar") pharmacy_name_ar: String,
@@ -368,6 +407,7 @@ interface ApiService {
     @POST(Q.PHARM_REGISTRATION_API)
     @FormUrlEncoded
     fun pharmRegistration(
+        @Field("country_id") country_id:String,
         @Field("password") password:String,
         @Field("phonenumber") phonenumber:String,
         @Field("email") email:String,
@@ -404,6 +444,7 @@ interface ApiService {
     @POST(Q.LAB_UPDATE_PROFILE_API)
     @FormUrlEncoded
     fun editLabProfile(
+        @Field("country_id") country_id:String,
         @Field("gender_id") gender_id:String,
         @Field("featured") featured: String,
         @Field("laboratory_name_ar") laboratory_name_ar: String,
@@ -432,6 +473,7 @@ interface ApiService {
     @POST(Q.LAB_REGISTRATION_API)
     @FormUrlEncoded
     fun labRegistration(
+        @Field("country_id") country_id:String,
         @Field("password") password:String,
         @Field("phonenumber") phonenumber:String,
         @Field("email") email:String,

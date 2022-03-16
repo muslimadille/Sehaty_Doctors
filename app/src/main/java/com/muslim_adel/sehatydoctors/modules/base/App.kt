@@ -18,8 +18,8 @@ class App : Application() {
             change="ar"
         } else if (language=="English" ) {
             change = "en"
-        }else {
-            change =""
+        }else if(language=="Kurdish") {
+            change ="ur"
         }
 
         BaseActivity.dLocale = Locale(change) //set any locale you want here

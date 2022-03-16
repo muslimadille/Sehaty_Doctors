@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import android.content.pm.PackageManager
-import android.icu.text.IDNA
 import android.location.Geocoder
 import android.location.Location
 import android.os.Build
@@ -14,6 +13,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -31,10 +31,8 @@ import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
-import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.remote.objects.*
 import com.seha_khanah_doctors.remote.objects.doctor.DaysModel
-import com.seha_khanah_doctors.remote.objects.doctor.DoctorProfileModel
 import com.seha_khanah_doctors.remote.objects.doctor.SubSpiecialityModel
 import com.seha_khanah_doctors.utiles.Q
 import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
@@ -143,6 +141,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             "",
             "","","","","","","","","",
             "","","",
+            1
         )
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this)
         progrss_lay.setOnClickListener {
@@ -447,17 +446,21 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
                 result?.let {
                     if(is_profile_img_clecked){
                         selectedImage = File(result!!.uri!!.path!!)
+                        edit_doc_profile_img.setImageURI(selectedImage!!.toUri())
+
                         GlideObject.GlideProfilePic(this, selectedImage!!.path, edit_doc_profile_img)
                         is_profile_img_clecked=false
 
                     }
                     if(is_practiceLicenseID_clecked){
                         selectedpracticeLicenseIDImage = File(result!!.uri!!.path!!)
+                        edit_practiceLicenseIDImage_img.setImageURI(selectedpracticeLicenseIDImage!!.toUri())
                         GlideObject.GlideProfilePic(this, selectedpracticeLicenseIDImage!!.path, edit_practiceLicenseIDImage_img)
                         is_practiceLicenseID_clecked=false
                     }
                     if(is_profissionalTitleID_clecked){
                         selectedprofissionalTitleIDImage = File(result!!.uri!!.path!!)
+                        edit_profissionalTitleID_img.setImageURI(selectedprofissionalTitleIDImage!!.toUri())
                         GlideObject.GlideProfilePic(this, selectedprofissionalTitleIDImage!!.path, edit_profissionalTitleID_img)
                         is_profissionalTitleID_clecked=false
                     }
@@ -773,6 +776,7 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).DocRegistration(
+            Q.selectedCountry.id.toString(),
             doctorValidator!!.password,
             doctorValidator!!.phonenumber,
             doctorValidator!!.email,

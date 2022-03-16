@@ -7,24 +7,7 @@
     android:gravity="center"
     tools:context="com.muslim_adel.sehatydoctors.modules.newRegistration.doctor.fragments.RegistrationDataFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:gravity="start"
-            android:textColor="@color/white"
-            android:text="@string/_relogin_information"
-            android:textSize="14sp" />
-
-    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -36,124 +19,160 @@
         android:padding="10dp"
         app:cardCornerRadius="8dp">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@string/_relogin_information"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="2dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@color/colorAccent"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/phone_input_layout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:backgroundTint="@color/white"
-                            app:startIconDrawable="@drawable/phone_blue_ic">
-
-                            <EditText
-                                android:id="@+id/phon_num"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:backgroundTint="@color/white"
-                                android:hint="@string/mobile_number"
-                                android:inputType="number"
-                                android:maxLength="10"
-                                android:maxEms="11"
-                                android:minEms="11"
-                                android:textSize="14sp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/email_input_layout"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:backgroundTint="@color/white"
-                            app:startIconDrawable="@drawable/email_ic">
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/email"
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/phone_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
+                                android:background="@color/white"
                                 android:backgroundTint="@color/white"
-                                android:ems="10"
-                                android:hint="@string/e_mail"
-                                android:inputType="textEmailAddress"
-                                android:textSize="14sp" />
+                                app:startIconDrawable="@drawable/ic_phone_green"
+                                app:startIconTint="@color/colorPrimary"
+                                >
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                <EditText
+                                    android:id="@+id/phon_num"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:backgroundTint="@color/white"
+                                    android:hint="@string/mobile_number"
+                                    android:inputType="number"
+                                    android:maxLength="10"
+                                    android:maxEms="11"
+                                    android:minEms="11"
+                                    android:textSize="12sp" />
 
-                    </LinearLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                        </LinearLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/password_input_layout"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:backgroundTint="@color/white"
-                            app:passwordToggleEnabled="true"
-                            app:startIconDrawable="@drawable/password_ic">
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/password"
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/email_input_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:backgroundTint="@color/white"
-                                android:ems="10"
-                                android:hint="@string/password"
-                                android:inputType="textPassword"
-                                android:textSize="14sp" />
+                                android:background="@color/white"
+                                app:startIconDrawable="@drawable/ic_email_green"
+                                app:startIconTint="@color/colorPrimary"
+                                >
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                <EditText
+                                    android:id="@+id/email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:backgroundTint="@color/white"
+                                    android:ems="10"
+                                    android:hint="@string/e_mail"
+                                    android:inputType="textEmailAddress"
+                                    android:textSize="12sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/password_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:backgroundTint="@color/white"
+                                app:passwordToggleEnabled="true"
+                                app:startIconDrawable="@drawable/password_ic"
+                                app:startIconTint="@color/colorPrimary"
+                                app:passwordToggleTint="@color/colorPrimary"
+                                >
+
+                                <EditText
+                                    android:id="@+id/password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:backgroundTint="@color/white"
+                                    android:ems="10"
+                                    android:hint="@string/password"
+                                    android:inputType="textPassword"
+                                    android:textSize="12sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
-
-
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

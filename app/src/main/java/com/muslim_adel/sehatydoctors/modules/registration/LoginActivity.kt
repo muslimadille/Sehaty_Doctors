@@ -2,11 +2,15 @@ package com.seha_khanah_doctors.modules.registration
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.INFO
 import android.view.View
 import android.widget.Toast
 import com.muslim_adel.sehatydoctors.modules.newRegistration.doctor.DoctorRegistrationScreen
+import com.muslim_adel.sehatydoctors.modules.newRegistration.labs.LabRegisterationActivity
 import com.muslim_adel.sehatydoctors.modules.registration.LabRegistrationActivity
 import com.muslim_adel.sehatydoctors.modules.registration.PharmRegistrationActivity
+import com.muslim_adel.sehatydoctors.modules.selectCuntry.SelectCountryActivity
 import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
@@ -63,18 +67,29 @@ class LoginActivity : BaseActivity() {
     private fun onregisterclicked(){
 
         registration_btn.setOnClickListener {
+
+
             when(key){
                 1->{
                     val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
+                    intent.putExtra("key",1)
                     startActivity(intent)
+                    /*val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
+                    startActivity(intent)*/
                 }
                 2->{
-                    val intent = Intent(this@LoginActivity, LabRegistrationActivity::class.java)
+                    val intent = Intent(this@LoginActivity, LabRegisterationActivity::class.java)
+                    intent.putExtra("key",2)
                     startActivity(intent)
+                   /* val intent = Intent(this@LoginActivity, LabRegistrationActivity::class.java)
+                    startActivity(intent)*/
                 }
                 3->{
-                    val intent = Intent(this@LoginActivity, PharmRegistrationActivity::class.java)
+                    val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
+                    intent.putExtra("key",3)
                     startActivity(intent)
+                    /*val intent = Intent(this@LoginActivity, PharmRegistrationActivity::class.java)
+                    startActivity(intent)*/
                 }
             }
 
@@ -86,8 +101,12 @@ class LoginActivity : BaseActivity() {
             onObserveStart()
             apiClient = ApiClient()
             sessionManager = SessionManager(this)
+            Log.d("APIS","${
+                apiClient.getApiService(this)
+                    .login("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString()).request()
+            }")
             apiClient.getApiService(this)
-                .login(username.text.toString(), login_password.text.toString())
+                .login("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString())
                 .enqueue(object : Callback<LoginResponce> {
                     override fun onFailure(call: Call<LoginResponce>, t: Throwable) {
                         alertNetwork(true)
@@ -104,7 +123,7 @@ class LoginActivity : BaseActivity() {
                                 login_password.text.clear()
                                 sessionManager.saveAuthToken(loginResponse.data.token,loginResponse!!.data!!.user!!.country_id!!)
                                 preferences!!.putString("tok",loginResponse.data.token.toString())
-                                preferences!!.putInteger("COUNTRY_ID",loginResponse!!.data!!.user!!.country_id!!)
+                                preferences!!.putInteger("COUNTRY_ID", loginResponse.data.user.country_id!!)
                                 preferences!!.putBoolean(Q.IS_FIRST_TIME, false)
                                 preferences!!.putBoolean(Q.IS_LOGIN, true)
                                 preferences!!.putString(Q.USER_TYPE,Q.USER_DOCTOR)
@@ -147,7 +166,7 @@ class LoginActivity : BaseActivity() {
             apiClient = ApiClient()
             sessionManager = SessionManager(this)
             apiClient.getApiService(this)
-                .labLogin(username.text.toString(), login_password.text.toString())
+                .labLogin("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString())
                 .enqueue(object : Callback<LaboratoryLoginResponce> {
                     override fun onFailure(call: Call<LaboratoryLoginResponce>, t: Throwable) {
                         alertNetwork(true)
@@ -206,7 +225,7 @@ class LoginActivity : BaseActivity() {
             apiClient = ApiClient()
             sessionManager = SessionManager(this)
             apiClient.getApiService(this)
-                .pharmLogin(username.text.toString(), login_password.text.toString())
+                .pharmLogin("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString())
                 .enqueue(object : Callback<PharmacyLoginResponce> {
                     override fun onFailure(call: Call<PharmacyLoginResponce>, t: Throwable) {
                         alertNetwork(true)

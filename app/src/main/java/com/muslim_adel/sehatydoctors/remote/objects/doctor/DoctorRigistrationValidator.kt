@@ -30,6 +30,7 @@ data class DoctorRigistrationValidator (
     var num_of_day:String,
     var lng:String,
     var lat:String,
+    var countryId:Int
 
 
 

@@ -83,8 +83,8 @@ class OffersListAdapter(
         }
         Glide.with(mContext).applyDefaultRequestOptions(
             RequestOptions()
-                .placeholder(R.drawable.bottom_nav_offers)
-                .error(R.drawable.bottom_nav_offers))
+                .placeholder(R.drawable.ic_offer_green)
+                .error(R.drawable.ic_offer_green))
             .load(offerImage)
             .centerCrop()
             .into(holder.offer_img!!)

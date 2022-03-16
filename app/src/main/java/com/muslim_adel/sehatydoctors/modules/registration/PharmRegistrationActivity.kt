@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -27,7 +26,6 @@ import com.gun0912.tedpermission.TedPermission
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
-import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.*
@@ -378,6 +376,7 @@ class PharmRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).pharmRegistration(
+            Q.selectedCountry.id.toString(),
             doctorValidator!!.password,
             doctorValidator!!.phonenumber,
             doctorValidator!!.email,

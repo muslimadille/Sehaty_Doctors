@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -27,12 +26,10 @@ import com.gun0912.tedpermission.TedPermission
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.base.GlideObject
-import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.remote.apiServices.ApiClient
 import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.LaboratoryLoginResponce
-import com.seha_khanah_doctors.remote.objects.PharmacyLoginResponce
 import com.seha_khanah_doctors.remote.objects.Reagons
 import com.seha_khanah_doctors.utiles.Q
 import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
@@ -85,7 +82,6 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         progrss_lay.setOnClickListener {
 
         }
-        fetchLocation()
         implementListeners()
         initSpinners()
         regonObserver()
@@ -97,7 +93,7 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         onRegisterClicked()
         onHideMapClicked()
     }
-    private fun fetchLocation(){
+     fun fetchLocation(){
         if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
             && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
 
@@ -379,6 +375,7 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).labRegistration(
+            Q.selectedCountry.id.toString(),
             doctorValidator!!.password,
             doctorValidator!!.phonenumber,
             doctorValidator!!.email,

@@ -40,9 +40,9 @@ class AllDaysAdapter(
         holder.day_name_txt.text=reservation.dayName
         holder.moth_day_txt.text=reservation.dayOfMonth
 
-        holder.disable_btn.setOnClickListener {
+        /*holder.disable_btn.setOnClickListener {
             holder.disable_btn.setImageResource(R.drawable.airplane)
-        }
+        }*/
         holder.day_item_lay.setOnClickListener {
           mContext.intent= Intent(mContext,AllReservationsActivity::class.java)
             mContext.intent.putExtra("date",reservation.date)
@@ -57,7 +57,7 @@ class AllDaysAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val day_name_txt: TextView = view.day_name_txt
         val moth_day_txt: TextView = view.moth_day_txt
-        val disable_btn: ImageView = view.disable_btn
+        //val disable_btn: ImageView = view.disable_btn
         val day_item_lay: LinearLayout =view.day_item_lay
     }
 }
