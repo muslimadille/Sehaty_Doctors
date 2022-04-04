@@ -13,11 +13,15 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="android:fontFamily">@font/google</item>
+        <item name="android:timePickerStyle">@style/MyTimePickerTheme</item>
     </style>
     <!--rating bar-->
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/gray</item>
         <item name="colorControlActivated">@color/gold</item>
+    </style>
+    <style name="MyTimePickerTheme" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">clock</item>
     </style>
 
 </resources>

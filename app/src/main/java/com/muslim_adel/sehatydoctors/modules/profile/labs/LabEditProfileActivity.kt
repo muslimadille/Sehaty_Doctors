@@ -166,6 +166,7 @@ class LabEditProfileActivity : BaseActivity() {
 
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).editLabProfile(
+            Q.USER_EMAIL,
             Q.selectedCountry.id.toString(),
             "1",
             img,

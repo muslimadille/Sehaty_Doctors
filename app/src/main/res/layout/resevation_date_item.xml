@@ -29,7 +29,8 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/time"/>
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/ic_time"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginStart="5dp"

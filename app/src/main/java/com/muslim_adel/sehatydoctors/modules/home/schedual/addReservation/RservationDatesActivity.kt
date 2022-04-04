@@ -69,7 +69,7 @@ class RservationDatesActivity : BaseActivity() {
                             response.body()!!.data!!.dates.let {
                                 if (it.isNotEmpty()) {
                                     it.forEach {date:Date->
-                                        if(date.status==1){
+                                        if(date.status==1&&date.times.isNotEmpty()){
                                             doctorDatesList.add(date)
                                         }
                                     }

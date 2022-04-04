@@ -1,11 +1,14 @@
 package com.seha_khanah_doctors.modules.home.schedual
 
+import android.app.AlertDialog.THEME_HOLO_LIGHT
 import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.remote.objects.OffersSubGategory
@@ -124,7 +127,8 @@ class EditWorkingDaysActivity : BaseActivity() {
             val minute = mcurrentTime.get(Calendar.MINUTE)
             val d=mcurrentTime.get(Calendar.AM_PM)
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+
+            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT ,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     sat_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -140,7 +144,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     sat_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -155,11 +159,12 @@ class EditWorkingDaysActivity : BaseActivity() {
             val minute = mcurrentTime.get(Calendar.MINUTE)
             val d=mcurrentTime.get(Calendar.AM_PM)
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     sun_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
             }, hour, minute, true)
+
             mTimePicker.show()
         }
 
@@ -171,7 +176,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     sun_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -186,7 +191,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val minute = mcurrentTime.get(Calendar.MINUTE)
             val d=mcurrentTime.get(Calendar.AM_PM)
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     mon_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -202,7 +207,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     mon_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -217,7 +222,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val minute = mcurrentTime.get(Calendar.MINUTE)
             val d=mcurrentTime.get(Calendar.AM_PM)
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     tus_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -233,7 +238,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     tus_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -248,7 +253,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val minute = mcurrentTime.get(Calendar.MINUTE)
             val d=mcurrentTime.get(Calendar.AM_PM)
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     wed_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -264,7 +269,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     wed_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -279,7 +284,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val minute = mcurrentTime.get(Calendar.MINUTE)
             val d=mcurrentTime.get(Calendar.AM_PM)
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     thu_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -295,7 +300,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     thu_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -310,7 +315,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val minute = mcurrentTime.get(Calendar.MINUTE)
             val d=mcurrentTime.get(Calendar.AM_PM)
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     fri_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }
@@ -326,7 +331,7 @@ class EditWorkingDaysActivity : BaseActivity() {
             val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, object : TimePickerDialog.OnTimeSetListener {
+            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
                     fri_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
                 }

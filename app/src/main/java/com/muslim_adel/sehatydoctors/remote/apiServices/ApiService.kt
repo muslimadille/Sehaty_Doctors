@@ -268,6 +268,7 @@ interface ApiService {
     @POST(Q.DOC_UPDATE_PROFILE_API)
     @FormUrlEncoded
     fun editDocProfile(
+        @Field("email") email:String,
         @Field("country_id") country_id:String,
         @Field("gender_id") gender_id:String,
         @Field("featured") featured: String,
@@ -376,6 +377,7 @@ interface ApiService {
     @POST(Q.PHARM_UPDATE_PROFILE_API)
     @FormUrlEncoded
     fun editPharmProfile(
+        @Field("email") email:String,
         @Field("country_id") country_id:String,
         @Field("gender_id") gender_id:String,
         @Field("featured") featured: String,
@@ -444,6 +446,7 @@ interface ApiService {
     @POST(Q.LAB_UPDATE_PROFILE_API)
     @FormUrlEncoded
     fun editLabProfile(
+        @Field("email") email:String,
         @Field("country_id") country_id:String,
         @Field("gender_id") gender_id:String,
         @Field("featured") featured: String,

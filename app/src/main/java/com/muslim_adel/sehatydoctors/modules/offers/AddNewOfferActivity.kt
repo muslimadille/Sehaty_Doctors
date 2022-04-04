@@ -96,7 +96,7 @@ class AddNewOfferActivity : BaseActivity() {
                                 onObserveSuccess()
                                 Toast.makeText(
                                     this@AddNewOfferActivity,
-                                    "SUCCESS",
+                                    "تم إضافة العرض بنجاح",
                                     Toast.LENGTH_SHORT
                                 ).show()
 

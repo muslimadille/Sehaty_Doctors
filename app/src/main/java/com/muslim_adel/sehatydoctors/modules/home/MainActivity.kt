@@ -91,10 +91,10 @@ class MainActivity : BaseActivity() {
 
         when (navK) {
             0 -> {
-                bottomNavigationView.selectedItemId = R.id.navigation_home
+                bottomNavigationView.selectedItemId = R.id.navigation_offers
             }
             1 -> {
-                bottomNavigationView.selectedItemId = R.id.navigation_offers
+                bottomNavigationView.selectedItemId = R.id.navigation_home
             }
             2 -> {
                 bottomNavigationView.selectedItemId = R.id.navigation_appointment

@@ -33,13 +33,17 @@ class ReservationDatesAdapter(
         val date = list[position]
         if (date.status==1){
             if (mContext.preferences!!.getString("language","")=="Arabic"){
-                holder.res_item_day_name_txt.text=date.day_ar+"\n ${date.date}"
-                holder.res_from_itme_date_txt.text=date.times[0].time
-                holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
+               if(date.times.isNotEmpty()){
+                   holder.res_item_day_name_txt.text=date.day_ar+"\n ${date.date}"
+                   holder.res_from_itme_date_txt.text=date.times[0].time
+                   holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
+               }else return
             }else{
-                holder.res_item_day_name_txt.text=date.day_en+"\n ${date.date}"
-                holder.res_from_itme_date_txt.text=date.times[0].time
-                holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
+                if(date.times.isNotEmpty()){
+                    holder.res_item_day_name_txt.text=date.day_en+"\n ${date.date}"
+                    holder.res_from_itme_date_txt.text=date.times[0].time
+                    holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
+                }else return
             }
 
             holder.date_btn.setOnClickListener {

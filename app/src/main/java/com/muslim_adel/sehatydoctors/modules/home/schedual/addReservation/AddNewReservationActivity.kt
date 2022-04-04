@@ -88,7 +88,7 @@ class AddNewReservationActivity : BaseActivity() {
                     ) {
                         if (response!!.isSuccessful) {
                             if (response.body()!!.success) {
-                                Toast.makeText(this@AddNewReservationActivity, "SUCCESS", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@AddNewReservationActivity, "تم الحجز بنجاح", Toast.LENGTH_SHORT).show()
                                 intent= Intent(this@AddNewReservationActivity,MainActivity::class.java)
                                 startActivity(intent)
                             } else {
@@ -130,7 +130,7 @@ class AddNewReservationActivity : BaseActivity() {
                     ) {
                         if (response!!.isSuccessful) {
                             if (response.body()!!.success) {
-                                Toast.makeText(this@AddNewReservationActivity, "SUCCESS", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@AddNewReservationActivity, "تم الحجز بنجاح", Toast.LENGTH_SHORT).show()
                                 intent= Intent(this@AddNewReservationActivity,MainActivity::class.java)
                                 startActivity(intent)
                             } else {

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.muslim_adel.sehatydoctors.modules.settings.AboutUsActivity
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.modules.settings.ChangeLanguageActivity
@@ -29,8 +30,7 @@ class ExstarsFragment : Fragment() {
         onLogoutClicked()
         onChangeLanguageClicked()
         onContactUsClicked()
-
-
+        onAboutUsClicked()
     }
 
 
@@ -63,6 +63,12 @@ class ExstarsFragment : Fragment() {
     private  fun onChangeLanguageClicked(){
         stn_language_btn.setOnClickListener {
             val intent = Intent(mContext, ChangeLanguageActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    private  fun onAboutUsClicked(){
+        about_us_btn.setOnClickListener {
+            val intent = Intent(mContext, AboutUsActivity::class.java)
             startActivity(intent)
         }
     }

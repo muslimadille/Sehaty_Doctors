@@ -165,6 +165,7 @@ class PharmacyEditProfileActivity : BaseActivity() {
 
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).editPharmProfile(
+            Q.USER_EMAIL,
             Q.selectedCountry.id.toString(),
             "1",
             img,

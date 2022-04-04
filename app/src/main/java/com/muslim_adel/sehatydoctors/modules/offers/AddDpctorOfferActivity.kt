@@ -207,7 +207,7 @@ class AddDpctorOfferActivity : BaseActivity() {
                             if (response.body()!!.success) {
                                 Toast.makeText(
                                     this@AddDpctorOfferActivity,
-                                    "SUCCESS",
+                                    "تم إضافة العرض بنجاح",
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 intent = Intent(this@AddDpctorOfferActivity, MainActivity::class.java)

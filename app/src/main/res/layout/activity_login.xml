@@ -76,7 +76,7 @@
                             android:ems="10"
                             android:textSize="14sp"
                             android:hint="@string/mobile_number"
-                            android:inputType="number" />
+                            android:inputType="phone" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

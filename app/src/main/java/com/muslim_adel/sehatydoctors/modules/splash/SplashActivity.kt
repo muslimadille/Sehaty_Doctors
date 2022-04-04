@@ -5,16 +5,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.muslim_adel.sehatydoctors.modules.splash.NoActivity
+import com.muslim_adel.sehatydoctors.remote.objects.CountryModel
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
 import com.seha_khanah_doctors.modules.home.MainActivity
 import com.seha_khanah_doctors.modules.introwizerd.IntroWizardActivity
 import com.seha_khanah_doctors.modules.registration.LoginActivity
 import com.seha_khanah_doctors.modules.registration.SelectUserActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.utiles.Q
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.StringWriter
 import java.util.*
 
@@ -24,6 +32,8 @@ class SplashActivity : BaseActivity() {
     var isFristTime=true
     private lateinit var referance: DatabaseReference
     private lateinit var database: FirebaseDatabase
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +45,46 @@ class SplashActivity : BaseActivity() {
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME,true)
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME, Q.FIRST_TIME)
         setLocalization()
-        handelSpalash()
+        getCountries()
 
 
     }
+    fun getCountries(){
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this)
+            .getAllCountriesList()
+            .enqueue(object : Callback<BaseResponce<List<CountryModel>>> {
+                override fun onFailure(call: Call<BaseResponce<List<CountryModel>>>, t: Throwable) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<CountryModel>>>,
+                    response: Response<BaseResponce<List<CountryModel>>>
+                ) {
+                    val myResponse = response.body()
+                    if (myResponse!!.success) {
+                        Q.countriesList.clear()
+                        Q.countriesList.addAll(myResponse.data!!)
+                        Q.selectedCountry=Q.countriesList[0]
+                        handelSpalash()
+
+                    } else {
+
+                        Toast.makeText(
+                            this@SplashActivity,
+                            "Error:${myResponse.data}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+
+            })
+    }
+
     private fun setLocalization(){
         val language = preferences!!.getString("language", "en")
         if (language =="Arabic") {

@@ -303,6 +303,7 @@ class DoctorEditProfileActivity : BaseActivity() {
         
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).editDocProfile(
+            "",
             Q.selectedCountry.id.toString(),
             "1",
             img,
