@@ -40,10 +40,20 @@
     </androidx.cardview.widget.CardView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dates_list"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/no_dates_lay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:text="لا يوجد اوقات متاحة"
         />
 
 </LinearLayout>

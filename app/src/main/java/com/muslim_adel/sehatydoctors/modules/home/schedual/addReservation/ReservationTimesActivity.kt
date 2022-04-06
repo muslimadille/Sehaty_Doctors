@@ -2,6 +2,7 @@ package com.seha_khanah_doctors.modules.home.schedual.addReservation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -80,6 +81,14 @@ class ReservationTimesActivity : BaseActivity() {
                                                 if(time.status=="1"){
                                                     timesList.add(time)
                                                 }
+                                            }
+                                            if(date.times.isEmpty()){
+                                                dates_list.visibility= View.GONE
+                                                no_dates_lay.visibility=View.VISIBLE
+                                            }else{
+                                                dates_list.visibility= View.VISIBLE
+                                                no_dates_lay.visibility=View.GONE
+
                                             }
                                             doctorDatesListAddapter!!.notifyDataSetChanged()
                                         }
