@@ -1,401 +1,232 @@
 package com.seha_khanah_doctors.modules.home.schedual
 
-import android.app.AlertDialog.THEME_HOLO_LIGHT
-import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
-import android.view.View
-import android.widget.TimePicker
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.muslim_adel.sehatydoctors.modules.home.schedual.EditWorkDaysAdapter
+import com.muslim_adel.sehatydoctors.remote.objects.AllTimeModel
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.base.BaseActivity
-import com.seha_khanah_doctors.remote.objects.OffersSubGategory
-import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.doctor.DurationModel
+import com.seha_khanah_doctors.remote.objects.doctor.WorkingDatesModel
+import com.seha_khanah_doctors.remote.objects.doctor.workingTimeModel
 import kotlinx.android.synthetic.main.activity_add_dpctor_offer.*
+import kotlinx.android.synthetic.main.activity_contact_us.*
 import kotlinx.android.synthetic.main.activity_edit_working_days.*
+import kotlinx.android.synthetic.main.fragment_appointments.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class EditWorkingDaysActivity : BaseActivity() {
-    private var satselectedWairingTimeIndex=0
-    private lateinit var satwatingTimeSpinnerAdapter: SpinnerAdapterCustomFont
-    private var satwaitingTimeList = ArrayList<String>()
 
-    private var sunselectedWairingTimeIndex=0
-    private lateinit var sunwatingTimeSpinnerAdapter: SpinnerAdapterCustomFont
-    private var sunwaitingTimeList = ArrayList<String>()
+    /** to init an store active days*/
+    var workingHoursList: MutableList<WorkingDatesModel> = ArrayList()
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
+    private var editWorkDaysAdapter: EditWorkDaysAdapter? = null
+    var allTimesList: MutableList<workingTimeModel> = ArrayList()
+    var allDurationsList: MutableList<DurationModel> = ArrayList()
 
-    private var monselectedWairingTimeIndex=0
-    private lateinit var monwatingTimeSpinnerAdapter: SpinnerAdapterCustomFont
-    private var monwaitingTimeList = ArrayList<String>()
 
-    private var tusselectedWairingTimeIndex=0
-    private lateinit var tuswatingTimeSpinnerAdapter: SpinnerAdapterCustomFont
-    private var tuswaitingTimeList = ArrayList<String>()
-
-    private var wedselectedWairingTimeIndex=0
-    private lateinit var wedwatingTimeSpinnerAdapter: SpinnerAdapterCustomFont
-    private var wedwaitingTimeList = ArrayList<String>()
-
-    private var thuselectedWairingTimeIndex=0
-    private lateinit var thuwatingTimeSpinnerAdapter: SpinnerAdapterCustomFont
-    private var thuwaitingTimeList = ArrayList<String>()
-
-    private var friselectedWairingTimeIndex=0
-    private lateinit var friwatingTimeSpinnerAdapter: SpinnerAdapterCustomFont
-    private var friwaitingTimeList = ArrayList<String>()
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_working_days)
-        switchsHandeler()
-        pickTime()
-        fillSpinners()
-
+        initRVAdapter()
+        allTimesObserver()
+        allDurationObserver()
+        workingDatesObserver()
+        onSaveClicked()
     }
-    private  fun switchsHandeler(){
-        sat_sw.setOnClickListener {
-            if(sat_sw.isChecked){
-                sat_detals_lay.visibility=View.VISIBLE
-            }else{
-                sat_detals_lay.visibility=View.GONE
-
-            }
-        }
-        //----------------------------------------------
-        sun_sw.setOnClickListener {
-            if(sun_sw.isChecked){
-                sun_detals_lay.visibility=View.VISIBLE
-            }else{
-                sun_detals_lay.visibility=View.GONE
-
-            }
-        }
-        //--------------------------------------------
-        mon_sw.setOnClickListener {
-            if(mon_sw.isChecked){
-                mon_detals_lay.visibility=View.VISIBLE
-            }else{
-                mon_detals_lay.visibility=View.GONE
-
-            }
-        }
-        //----------------------------------------------
-        tus_sw.setOnClickListener {
-            if(tus_sw.isChecked){
-                tus_detals_lay.visibility=View.VISIBLE
-            }else{
-                tus_detals_lay.visibility=View.GONE
-
-            }
-        }
-        //----------------------------------------------
-        wed_sw.setOnClickListener {
-            if(wed_sw.isChecked){
-                wed_detals_lay.visibility=View.VISIBLE
-            }else{
-                wed_detals_lay.visibility=View.GONE
-
-            }
-        }
-        //----------------------------------------------
-        thu_sw.setOnClickListener {
-            if(thu_sw.isChecked){
-                thu_detals_lay.visibility=View.VISIBLE
-            }else{
-                thu_detals_lay.visibility=View.GONE
-
-            }
-        }
-        //----------------------------------------------
-        fri_sw.setOnClickListener {
-            if(fri_sw.isChecked){
-                fri_detals_lay.visibility=View.VISIBLE
-            }else{
-                fri_detals_lay.visibility=View.GONE
-            }
+    private fun onSaveClicked(){
+        edit_working_dates_save_btn.setOnClickListener {
+            updateTimes()
         }
     }
-    private fun pickTime(){
-        sat_start_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
 
-
-            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT ,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    sat_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
+    private fun workingDatesObserver() {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).doctorWorkingDates()
+            .enqueue(object : Callback<BaseResponce<List<WorkingDatesModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
                 }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
 
-        sat_end_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
+                override fun onResponse(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    response: Response<BaseResponce<List<WorkingDatesModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date: WorkingDatesModel ->
+                                            workingHoursList.add(date)
+                                    }
+                                    editWorkDaysAdapter!!.notifyDataSetChanged()
 
+                                } else {
+                                    Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                                }
 
-            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    sat_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
+                            }
+                        } else {
+                            Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-        //---------------------------------------------------------------------------------
-        sun_start_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    sun_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-
-            mTimePicker.show()
-        }
-
-        sun_end_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
 
 
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    sun_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-        //------------------------------------------------------------------------------------------------
-        mon_start_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    mon_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-
-        mon_end_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-
-            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    mon_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-        //------------------------------------------------------------------------------------------------
-        tus_start_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    tus_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-
-        tus_end_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    tus_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-        //------------------------------------------------------------------------------------------------
-        wed_start_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    wed_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-
-        wed_end_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    wed_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-        //------------------------------------------------------------------------------------------------
-        thu_start_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    thu_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-
-        thu_end_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    thu_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-        //------------------------------------------------------------------------------------------------
-        fri_start_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-            mTimePicker = TimePickerDialog(this,TimePickerDialog.THEME_HOLO_LIGHT, object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    fri_start_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
-
-        fri_end_time_txt.setOnClickListener {
-            val mTimePicker: TimePickerDialog
-            val mcurrentTime = Calendar.getInstance()
-            val hour = mcurrentTime.get(Calendar.HOUR_OF_DAY)
-            val minute = mcurrentTime.get(Calendar.MINUTE)
-            val d=mcurrentTime.get(Calendar.AM_PM)
-
-
-            mTimePicker = TimePickerDialog(this, TimePickerDialog.THEME_HOLO_LIGHT,object : TimePickerDialog.OnTimeSetListener {
-                override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    fri_end_time_txt.setText(String.format("%d : %d %d", hourOfDay, minute,d))
-                }
-            }, hour, minute, true)
-            mTimePicker.show()
-        }
+            })
     }
-    private  fun fillSpinners(){
-        satwaitingTimeList.add(getString(R.string.waiting_time))
-        satwaitingTimeList.add("5"+getString(R.string.min))
-        satwaitingTimeList.add("10"+getString(R.string.min))
-        satwaitingTimeList.add("15"+getString(R.string.min))
-        satwaitingTimeList.add("20"+getString(R.string.min))
-        satwaitingTimeList.add("25"+getString(R.string.min))
-        satwaitingTimeList.add("30"+getString(R.string.min))
-        satwaitingTimeList.add("35"+getString(R.string.min))
-        satwaitingTimeList.add("40"+getString(R.string.min))
-        satwaitingTimeList.add("45"+getString(R.string.min))
-        satwaitingTimeList.add("50"+getString(R.string.min))
-        satwaitingTimeList.add("55"+getString(R.string.min))
-        satwaitingTimeList.add("60"+getString(R.string.min))
+    private fun allTimesObserver() {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).fitchAllTimesList()
+            .enqueue(object : Callback<BaseResponce<List<workingTimeModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<workingTimeModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
+                }
 
-        satwatingTimeSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, satwaitingTimeList)
-        satwatingTimeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        satwatingTimeSpinnerAdapter.textSize = 12
-        sat_waiting_time_spinner.adapter = satwatingTimeSpinnerAdapter
-        satwatingTimeSpinnerAdapter.notifyDataSetChanged()
+                override fun onResponse(
+                    call: Call<BaseResponce<List<workingTimeModel>>>,
+                    response: Response<BaseResponce<List<workingTimeModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date: workingTimeModel ->
+                                        allTimesList.add(date)
+                                    }
+                                    editWorkDaysAdapter!!.notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
 
 
-        sunwatingTimeSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, satwaitingTimeList)
-        sunwatingTimeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        sunwatingTimeSpinnerAdapter.textSize = 12
-        sun_waiting_time_spinner.adapter = sunwatingTimeSpinnerAdapter
-        sunwatingTimeSpinnerAdapter.notifyDataSetChanged()
-
-
-        monwatingTimeSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, satwaitingTimeList)
-        monwatingTimeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        monwatingTimeSpinnerAdapter.textSize = 12
-        mon_waiting_time_spinner.adapter = monwatingTimeSpinnerAdapter
-        monwatingTimeSpinnerAdapter.notifyDataSetChanged()
-
-        tuswatingTimeSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, satwaitingTimeList)
-        tuswatingTimeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        tuswatingTimeSpinnerAdapter.textSize = 12
-        tus_waiting_time_spinner.adapter = tuswatingTimeSpinnerAdapter
-        tuswatingTimeSpinnerAdapter.notifyDataSetChanged()
-
-        wedwatingTimeSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, satwaitingTimeList)
-        wedwatingTimeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        wedwatingTimeSpinnerAdapter.textSize = 12
-        wed_waiting_time_spinner.adapter = wedwatingTimeSpinnerAdapter
-        wedwatingTimeSpinnerAdapter.notifyDataSetChanged()
-
-        thuwatingTimeSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, satwaitingTimeList)
-        thuwatingTimeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        thuwatingTimeSpinnerAdapter.textSize = 12
-        thu_waiting_time_spinner.adapter = thuwatingTimeSpinnerAdapter
-        thuwatingTimeSpinnerAdapter.notifyDataSetChanged()
-
-        friwatingTimeSpinnerAdapter = SpinnerAdapterCustomFont(this, android.R.layout.simple_spinner_item, satwaitingTimeList)
-        friwatingTimeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        friwatingTimeSpinnerAdapter.textSize = 12
-        fri_waiting_time_spinner.adapter = thuwatingTimeSpinnerAdapter
-        friwatingTimeSpinnerAdapter.notifyDataSetChanged()
+            })
     }
+    private fun allDurationObserver() {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).fitchDurationList()
+            .enqueue(object : Callback<BaseResponce<List<DurationModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<DurationModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<DurationModel>>>,
+                    response: Response<BaseResponce<List<DurationModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date: DurationModel ->
+                                        allDurationsList.add(date)
+                                    }
+                                    editWorkDaysAdapter!!.notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
+
+    private fun initRVAdapter() {
+        val layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        edit_work_days_rv.layoutManager = layoutManager
+        editWorkDaysAdapter = EditWorkDaysAdapter(this,workingHoursList,allTimesList,allDurationsList)
+        edit_work_days_rv.adapter = editWorkDaysAdapter
+    }
+    private fun updateTimes() {
+         var times: MutableMap<String, Int> = emptyMap<String,Int>().toMutableMap()
+        for(i in 0 until workingHoursList.size){
+            times["working_hour[${i}][day_id]"]=workingHoursList[i].day_id
+            times["working_hour[${i}][time_from_id]"]=workingHoursList[i].time_from_id
+            times["working_hour[${i}][time_to_id]"]=workingHoursList[i].time_to_id
+            times["working_hour[${i}][duration_id]"]=workingHoursList[i].duration_id
+            times["working_hour[${i}][status]"]=workingHoursList[i].status
+        }
+            apiClient = ApiClient()
+            sessionManager = SessionManager(this)
+        print("${apiClient.getApiService(this).docUpdateWorkingTime(times).request()}")
+            apiClient.getApiService(this).docUpdateWorkingTime(times)
+                .enqueue(object : Callback<BaseResponce<Any>> {
+                    override fun onFailure(call: Call<BaseResponce<Any>>, t: Throwable) {
+                        alertNetwork(true)
+                    }
+
+                    override fun onResponse(
+                        call: Call<BaseResponce<Any>>,
+                        response: Response<BaseResponce<Any>>
+                    ) {
+
+                        val registerResponse = response.body()
+                        if (registerResponse!!.success) {
+                            Toast.makeText(this@EditWorkingDaysActivity, "تم تعديل البيانات بنجاح", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                this@EditWorkingDaysActivity,
+                                "فشل العملية حاول مرة أخرى",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                })
+
+
+    }
+
+
 }

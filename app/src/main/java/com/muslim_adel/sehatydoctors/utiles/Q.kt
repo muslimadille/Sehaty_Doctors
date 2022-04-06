@@ -37,6 +37,9 @@ object Q {
     const val LABS_SEARCH_API = "laboratory/search"
     const val GET_LAB_BY_ID_API = "laboratory/show"
     const val COUNTRIES_API = "country"
+    const val DOC_UPDATE_TIMES_API = "doctor/dashboard/working-hours/update"
+
+
 
 
 
@@ -71,6 +74,10 @@ object Q {
     const val LAB_EMAIL_VALIDATOR_API = "laboratory/email/validator"
     const val PHARM_PHONE_VALIDATOR_API = "pharmacy/phonenumber/validator"
     const val PHARM_EMAIL_VALIDATOR_API = "pharmacy/email/validator"
+    const val ALL_TIMES_API = "doctor/dashboard/times"
+    const val ALL_DURATION_API = "doctor/dashboard/durations"
+
+
 
 
 

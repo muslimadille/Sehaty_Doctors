@@ -1,5 +1,6 @@
 package com.seha_khanah_doctors.remote.apiServices
 
+import com.muslim_adel.sehatydoctors.remote.objects.AllTimeModel
 import com.muslim_adel.sehatydoctors.remote.objects.CountryModel
 import com.muslim_adel.sehatydoctors.remote.objects.Verification
 import com.muslim_adel.sehatydoctors.remote.objects.VisitorsNumber
@@ -85,6 +86,11 @@ interface ApiService {
         @Query("specialty_id") specialty_id: Int,
         @Query("area_id") area_id: Int
     ): Call<BaseResponce<Search>>
+
+    @GET(Q.ALL_TIMES_API)
+    fun fitchAllTimesList(): Call<BaseResponce<List<workingTimeModel>>>
+    @GET(Q.ALL_DURATION_API)
+    fun fitchDurationList(): Call<BaseResponce<List<DurationModel>>>
 
     @GET(Q.DOCTORS_LIST_API)
     fun fitchDoctorsList(@Query("name") name: String): Call<BaseResponce<Search>>
@@ -519,6 +525,10 @@ interface ApiService {
                       @Field("email") email:String,
                       @Field("comments") comments:String): Call<BaseResponce<Any>>
 
-
+    @POST(Q.DOC_UPDATE_TIMES_API)
+    @FormUrlEncoded
+    fun docUpdateWorkingTime(
+        @FieldMap workingTimes: MutableMap<String,Int> ,
+    ): Call<BaseResponce<Any>>
 
 }

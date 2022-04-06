@@ -9,4 +9,5 @@
     <string name="profile_info_title">مغلومات الحساب</string>
     <string name="lab_register_title">المختبرات-التسجيل</string>
     <string name="contenu_register">متابعة التسجيل</string>
+    <string name="no_dates_available">لا يوجد مواعيد متاحة</string>
 </resources>

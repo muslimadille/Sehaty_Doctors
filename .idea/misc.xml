@@ -31,18 +31,23 @@
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_contact_us.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_doctor_edit_profile.xml" value="0.25" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_doctor_registration_screen.xml" value="0.1" />
+        <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_edit_working_days.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_intro_wizard.xml" value="0.1" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_lab_registeration.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_lab_registration.xml" value="0.15" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_new_doctor_add_offer.xml" value="0.12138157894736842" />
+        <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_rservation_dates.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_select_country.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_select_user.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_splash.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/all_days_item.xml" value="0.12138157894736842" />
+        <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/appointment_list_item.xml" value="0.12138157894736842" />
+        <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/edit_work_days_item.xml" value="0.18" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/extras_fragment.xml" value="0.18" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/fragment_appointments.xml" value="0.12138157894736842" />
+        <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/fragment_appointments_manage.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/fragment_clinic_info.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/fragment_doctor_info.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/fragment_lab_registeration1.xml" value="0.12138157894736842" />

@@ -305,8 +305,9 @@
     <string name="license_photo">license photo</string>
     <string name="offer_title">Offer Title</string>
     <string name="offer_sub_title">Subtitle</string>
-    <string name="profile_info_title">مغلومات الحساب</string>
-    <string name="lab_register_title">المختبرات-التسجيل</string>
-    <string name="contenu_register">متابعة التسجيل</string>
+    <string name="profile_info_title">profile info</string>
+    <string name="lab_register_title">Labs-Register</string>
+    <string name="contenu_register">continue</string>
+    <string name="no_dates_available">No appointments available</string>
 
 </resources>
