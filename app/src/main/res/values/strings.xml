@@ -309,5 +309,6 @@
     <string name="lab_register_title">Labs-Register</string>
     <string name="contenu_register">continue</string>
     <string name="no_dates_available">No appointments available</string>
+    <string name="edit_pharm_name">"تعديل اسم الصيدلية "</string>
 
 </resources>

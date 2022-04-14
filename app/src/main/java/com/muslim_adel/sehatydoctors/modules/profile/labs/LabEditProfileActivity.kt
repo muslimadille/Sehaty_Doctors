@@ -24,6 +24,7 @@ import com.seha_khanah_doctors.utiles.Q
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_doctor_edit_profile.*
+import kotlinx.android.synthetic.main.activity_pharmacy_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_lab_profile_edit.*
 import kotlinx.android.synthetic.main.fragment_lab_profile_edit.doc_updat_btn
 import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_about_doc_ar_txt
@@ -115,7 +116,15 @@ class LabEditProfileActivity : BaseActivity() {
 
    
     private  fun setProfileData(profileModel:Laboratory){
-
+        edit_lab_name_ar_txt.setText(doctorProfileModel!!.laboratory_name_ar)
+        edit_lab_name_en_txt.setText(doctorProfileModel!!.laboratory_name_en)
+        edit_fne_txt.setText(doctorProfileModel!!.firstName_en)
+        edit_fna_txt.setText(doctorProfileModel!!.firstName_ar)
+        edit_lne_txt.setText(doctorProfileModel!!.lastName_en)
+        edit_lna_txt.setText(doctorProfileModel!!.lastName_ar)
+        edit_about_doc_ar_txt.setText(doctorProfileModel!!.about_ar)
+        edit_about_doc_en_txt.setText(doctorProfileModel!!.about_en)
+        edit_lab_num_of_days_txt.setText(doctorProfileModel!!.num_of_day.toString())
     }
     private fun ObserveDoctorProfile(){
         apiClient = ApiClient()
@@ -166,7 +175,7 @@ class LabEditProfileActivity : BaseActivity() {
 
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).editLabProfile(
-            Q.USER_EMAIL,
+            "",
             Q.selectedCountry.id.toString(),
             "1",
             img,
@@ -196,7 +205,7 @@ class LabEditProfileActivity : BaseActivity() {
                             onObserveSuccess()
                             response.body()!!.data!!.let {
                                 doctorProfileModel=it
-                                setProfileData(it)
+                                ObserveDoctorProfile()
                             }
                         } else {
 

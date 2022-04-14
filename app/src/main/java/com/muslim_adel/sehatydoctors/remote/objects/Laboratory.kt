@@ -67,4 +67,10 @@ class Laboratory (
     @SerializedName("country_id")
     var country_id: Int,
 
+    @SerializedName("about_ar")
+    var about_ar: String,
+    @SerializedName("about_en")
+    var about_en: String,
+
+
 )

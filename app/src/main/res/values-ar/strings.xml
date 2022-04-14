@@ -308,6 +308,7 @@
     <string name="lab_register_title">المختبرات-التسجيل</string>
     <string name="contenu_register">متابعة التسجيل</string>
     <string name="no_dates_available">لا يوجد مواعيد متاحة</string>
+    <string name="edit_pharm_name">"تعديل اسم الصيدلية "</string>
 
 
 </resources>

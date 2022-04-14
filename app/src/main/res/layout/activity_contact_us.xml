@@ -104,13 +104,13 @@
                                     android:gravity="center"
                                     android:text="@string/formorcontact"/>
                                 <TextView
-                                    android:id="@+id/phone_num_btn"
+                                    android:id="@+id/contactus_phone_num_btn"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textColor="@color/blue"
                                     android:textStyle="bold"
-                                    android:text="16711"/>
+                                    android:text=""/>
                             </LinearLayout>
 
 

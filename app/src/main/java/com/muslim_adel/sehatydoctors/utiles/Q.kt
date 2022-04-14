@@ -104,6 +104,9 @@ object Q {
     const val SEND_CODE_API = "verify-user"
     const val VERIFICATION_API = "send-message"
     const val CONTACT_US = "sendemail/contactus"
+    const val CONTACT_US_Data = "admin/contactUs"
+
+
 
 
     const val AVATAR_PATH = "https://www.obank.itcomunity.com/"
@@ -137,7 +140,7 @@ object Q {
     var PHONE_KEY = "+964"
     var CURNCY_NAME_AR = "دينار"
     var CURNCY_NAME_EN = "IQD"
-
+    var CONTACT_US_PHONE:Long=0
     const val FIRST_TIME_PREF = "ADW_first_time"
     var countriesList=ArrayList<CountryModel>()
     lateinit var selectedCountry:CountryModel

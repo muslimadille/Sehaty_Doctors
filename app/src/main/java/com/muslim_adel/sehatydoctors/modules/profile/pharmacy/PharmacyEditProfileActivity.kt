@@ -110,7 +110,15 @@ class PharmacyEditProfileActivity : BaseActivity() {
 
 
     private  fun setProfileData(profileModel:Pharmacy){
-
+        edit_p_name_ar_txt.setText(doctorProfileModel!!.pharmacy_name_ar)
+        edit_pharm_name_en_txt.setText(doctorProfileModel!!.pharmacy_name_en)
+        edit_fne_txt.setText(doctorProfileModel!!.firstName_en)
+        edit_fna_txt.setText(doctorProfileModel!!.firstName_ar)
+        edit_lne_txt.setText(doctorProfileModel!!.lastName_en)
+        edit_lna_txt.setText(doctorProfileModel!!.lastName_ar)
+        edit_about_pharm_ar_txt.setText(doctorProfileModel!!.about_ar)
+        edit_about_pharm_en_txt.setText(doctorProfileModel!!.about_en)
+        shift_check.isChecked = doctorProfileModel!!.shift==1
     }
     private fun ObserveDoctorProfile(){
         apiClient = ApiClient()
@@ -152,8 +160,7 @@ class PharmacyEditProfileActivity : BaseActivity() {
     private fun upDateDoctorProfile(){
         onObserveStart()
         apiClient = ApiClient()
-        var ssList = ArrayList<String>()
-        ssList.add("1")
+
         var img=""
         if (selectedImage != null) {
             img = "data:image/${selectedImage!!.extension};base64,"+toBase64(selectedImage.toString())
@@ -165,7 +172,7 @@ class PharmacyEditProfileActivity : BaseActivity() {
 
         sessionManager = SessionManager(this)
         apiClient.getApiService(this).editPharmProfile(
-            Q.USER_EMAIL,
+            "",
             Q.selectedCountry.id.toString(),
             "1",
             img,

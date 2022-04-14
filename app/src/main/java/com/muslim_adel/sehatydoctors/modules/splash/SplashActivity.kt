@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.muslim_adel.sehatydoctors.modules.settings.ContactUsModel
 import com.muslim_adel.sehatydoctors.modules.splash.NoActivity
 import com.muslim_adel.sehatydoctors.remote.objects.CountryModel
 import com.seha_khanah_doctors.R
@@ -46,6 +47,7 @@ class SplashActivity : BaseActivity() {
         isFristTime=preferences!!.getBoolean(Q.IS_FIRST_TIME, Q.FIRST_TIME)
         setLocalization()
         getCountries()
+        getContactUsData()
 
 
     }
@@ -84,6 +86,38 @@ class SplashActivity : BaseActivity() {
 
             })
     }
+    fun getContactUsData(){
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this)
+            .contactUsData()
+            .enqueue(object : Callback<BaseResponce<List<ContactUsModel>>> {
+                override fun onFailure(call: Call<BaseResponce<List<ContactUsModel>>>, t: Throwable) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<ContactUsModel>>>,
+                    response: Response<BaseResponce<List<ContactUsModel>>>
+                ) {
+                    val myResponse = response.body()
+                    if (myResponse!!.success) {
+                        Q.CONTACT_US_PHONE=myResponse.data!![0].phonenum
+                    } else {
+
+                        Toast.makeText(
+                            this@SplashActivity,
+                            "Error:${myResponse.data}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+
+            })
+    }
+
 
     private fun setLocalization(){
         val language = preferences!!.getString("language", "en")

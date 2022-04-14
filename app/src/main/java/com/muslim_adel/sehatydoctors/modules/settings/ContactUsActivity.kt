@@ -26,6 +26,7 @@ class ContactUsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_us)
+        contactus_phone_num_btn.let {  it.setText(Q.CONTACT_US_PHONE.toString())}
         onSendClicked()
     }
     private fun messageSend() {

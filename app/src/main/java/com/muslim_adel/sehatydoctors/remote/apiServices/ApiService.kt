@@ -1,5 +1,6 @@
 package com.seha_khanah_doctors.remote.apiServices
 
+import com.muslim_adel.sehatydoctors.modules.settings.ContactUsModel
 import com.muslim_adel.sehatydoctors.remote.objects.AllTimeModel
 import com.muslim_adel.sehatydoctors.remote.objects.CountryModel
 import com.muslim_adel.sehatydoctors.remote.objects.Verification
@@ -530,5 +531,8 @@ interface ApiService {
     fun docUpdateWorkingTime(
         @FieldMap workingTimes: MutableMap<String,Int> ,
     ): Call<BaseResponce<Any>>
+
+    @GET(Q.CONTACT_US_Data)
+    fun contactUsData(): Call<BaseResponce<List<ContactUsModel>>>
 
 }
