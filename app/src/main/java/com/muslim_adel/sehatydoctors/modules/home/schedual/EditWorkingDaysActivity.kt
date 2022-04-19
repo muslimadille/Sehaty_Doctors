@@ -15,6 +15,7 @@ import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.doctor.DurationModel
 import com.seha_khanah_doctors.remote.objects.doctor.WorkingDatesModel
 import com.seha_khanah_doctors.remote.objects.doctor.workingTimeModel
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_add_dpctor_offer.*
 import kotlinx.android.synthetic.main.activity_contact_us.*
 import kotlinx.android.synthetic.main.activity_edit_working_days.*

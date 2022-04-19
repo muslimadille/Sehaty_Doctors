@@ -62,7 +62,7 @@ class EditWorkDaysAdapter(
         var durationNameList = ArrayList<String>()
 
         var startTimeIndex=allTimesList.indexOf(list[position].time_from)
-        var endTimeIndex=allTimesList.indexOf(list[position].time_from)
+        var endTimeIndex=allTimesList.indexOf(list[position].time_to)
         var durationIndex=allDurationsList.indexOf(list[position].duration)
 
 
@@ -90,10 +90,6 @@ class EditWorkDaysAdapter(
             }
         }
         //init data ==================================================================================
-        startNameList.add("وقت البدء")
-        endNameList.add("وقت الإنتهاء")
-        durationNameList.add("وقت الانتظار")
-
 
         for(i in 0 until allTimesList.size){
             if (preferences!!.getString("language","")=="Arabic"){
@@ -123,8 +119,8 @@ class EditWorkDaysAdapter(
         holder.start_time_spinner.setSelection(startTimeIndex)
         holder.start_time_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, spinnerPosition: Int, id: Long) {
-                if(spinnerPosition>0){
-                    mContext.workingHoursList[holder.getAdapterPosition()].time_from_id=allTimesList[spinnerPosition-1].id
+                if(true){
+                    mContext.workingHoursList[holder.getAdapterPosition()].time_from_id=allTimesList[spinnerPosition].id
                 }
 
             }
@@ -139,8 +135,8 @@ class EditWorkDaysAdapter(
         holder.end_time_spinner.setSelection(endTimeIndex)
         holder.end_time_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, spinnerPosition: Int, id: Long) {
-                if(spinnerPosition>0){
-                    mContext.workingHoursList[holder.getAdapterPosition()].time_to_id=allTimesList[spinnerPosition-1].id
+                if(true){
+                    mContext.workingHoursList[holder.getAdapterPosition()].time_to_id=allTimesList[spinnerPosition].id
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -155,8 +151,8 @@ class EditWorkDaysAdapter(
         holder.waiting_time_spinner.setSelection(durationIndex)
         holder.waiting_time_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, spinnerPosition: Int, id: Long) {
-                if(spinnerPosition>0){
-                    mContext.workingHoursList[holder.getAdapterPosition()].duration_id=allDurationsList[spinnerPosition-1].id
+                if(allDurationsList.isNotEmpty()&&mContext.workingHoursList.isNotEmpty()){
+                    mContext.workingHoursList[holder.getAdapterPosition()].duration_id=allDurationsList[spinnerPosition].id
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {

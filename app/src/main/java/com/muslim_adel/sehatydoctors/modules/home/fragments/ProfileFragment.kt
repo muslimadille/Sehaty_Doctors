@@ -106,23 +106,33 @@ class ProfileFragment : Fragment() {
 
     }
     private  fun setProfileData(profileModel:DoctorProfileModel){
-        var img= view?.findViewById<ImageView>(R.id.doctor_img)
-        if (mContext!!.preferences!!.getString("language","")=="Arabic"){
-            doctor_name_txt?.text= "${ profileModel.firstName_ar } ${profileModel.lastName_ar}"
-            doctor_spieciality_txt?.text=profileModel.profissionalTitle_ar
-        }else{
-            doctor_name_txt.text= "${ profileModel.firstName_en } ${profileModel.lastName_en}"
-            doctor_spieciality_txt.text=profileModel.profissionalTitle_en
+        try {
+            var img= view?.findViewById<ImageView>(R.id.doctor_img)
+
+            if (mContext!!.preferences!!.getString("language","")=="Arabic"){
+                doctor_name_txt?.text= "${ profileModel.firstName_ar } ${profileModel.lastName_ar}"
+                doctor_spieciality_txt?.text=profileModel.profissionalTitle_ar
+            }else{
+                doctor_name_txt.text= "${ profileModel.firstName_en } ${profileModel.lastName_en}"
+                doctor_spieciality_txt.text=profileModel.profissionalTitle_en
+            }
+            if(profileModel.featured!=""||profileModel.featured!=null){doctor_img?.setPadding(1,1,1,1)}
+            img.let {
+                if (img != null) {
+                    Glide.with(mContext!!).applyDefaultRequestOptions(
+                        RequestOptions()
+                            .placeholder(R.drawable.ic_camera_24)
+                            .error(R.drawable.ic_camera_24))
+                        .load(if (profileModel.featured!=null)profileModel.featured else "")
+                        .centerCrop()
+                        .into(img)
+                }
+            }
+
+            visitorsNumObserver(profileModel.id.toInt())
+        }catch (error:Error){
+
         }
-        if(profileModel.featured!=""||profileModel.featured!=null){doctor_img?.setPadding(1,1,1,1)}
-        Glide.with(mContext!!).applyDefaultRequestOptions(
-            RequestOptions()
-                .placeholder(R.drawable.ic_camera_24)
-                .error(R.drawable.ic_camera_24))
-            .load(if (profileModel.featured!=null)profileModel.featured else "")
-            .centerCrop()
-            .into(img!!)
-        visitorsNumObserver(profileModel.id.toInt())
 
     }
     private fun ObserveDoctorProfile(){

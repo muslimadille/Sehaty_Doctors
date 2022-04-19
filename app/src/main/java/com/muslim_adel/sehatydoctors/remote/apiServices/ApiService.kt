@@ -235,6 +235,8 @@ interface ApiService {
     fun doctorOffersSubServices(@Url url: String): Call<BaseResponce<List<OfferServicesModel>>>
     @GET
     fun doctorOfferUnits(@Url url: String): Call<BaseResponce<List<OfferUnitsModel>>>
+    @GET
+    fun deleteVacation(@Url url: String): Call<BaseResponce<Any>>
 
     @GET(Q.DOC_WORKING_DATES_API)
     fun doctorWorkingDates(): Call<BaseResponce<List<WorkingDatesModel>>>

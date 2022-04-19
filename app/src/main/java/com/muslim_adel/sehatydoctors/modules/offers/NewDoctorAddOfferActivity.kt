@@ -631,7 +631,7 @@ class NewDoctorAddOfferActivity : BaseActivity() {
                     var selectedDate = "$myear-$month-$day"
                     val selectedate = SimpleDateFormat("yyyy-MM-dd").parse(selectedDate)
                     var dayname=SimpleDateFormat("EEEE").format(selectedate)
-                    validator!!.date_from=selectedate.toString()
+                    validator!!.date_from=selectedDate
                     offer_date_from_txt.text="$dayname ${selectedDate}"
 
                 }, year, month, day
@@ -641,6 +641,10 @@ class NewDoctorAddOfferActivity : BaseActivity() {
         }
     }
     private fun setEndDate(){
+        var calendar= Calendar.getInstance()
+        var year=calendar.get(Calendar.YEAR)
+        var month=calendar.get(Calendar.MONTH)
+        var day=calendar.get(Calendar.DAY_OF_MONTH)
         offer_date_to_txt.setOnClickListener {
             val dpd= DatePickerDialog(this,
                 DatePickerDialog.OnDateSetListener { view, myear, mMonth, mdayOfMonth ->
@@ -660,7 +664,7 @@ class NewDoctorAddOfferActivity : BaseActivity() {
                     var selectedDate = "$myear-$month-$day"
                     val selectedate = SimpleDateFormat("yyyy-MM-dd").parse(selectedDate)
                     var dayname=SimpleDateFormat("EEEE").format(selectedate)
-                    validator!!.date_to=selectedate.toString()
+                    validator!!.date_to=selectedDate
                     offer_date_to_txt.text="$dayname ${selectedDate}"
 
                 }, year, month, day

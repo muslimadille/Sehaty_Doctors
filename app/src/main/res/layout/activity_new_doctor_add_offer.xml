@@ -406,6 +406,8 @@
                                         android:layout_centerVertical="true"
                                         android:backgroundTint="@color/white"
                                         android:hint="@string/device_name_english"
+                                        android:ems="10"
+                                        android:inputType="text"
                                         android:maxEms="10"
                                         android:minEms="10" />
 
@@ -514,6 +516,7 @@
                                         android:layout_centerVertical="true"
                                         android:backgroundTint="@color/white"
                                         android:hint="@string/offer_title_english"
+                                        android:inputType="text"
                                         android:maxEms="10"
                                         android:minEms="10" />
 

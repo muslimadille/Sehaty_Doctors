@@ -37,7 +37,7 @@
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_lab_registration.xml" value="0.15" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_new_doctor_add_offer.xml" value="0.12138157894736842" />
+        <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_new_doctor_add_offer.xml" value="0.18" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_pharmacy_edit_profile.xml" value="0.12" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_reservation_times.xml" value="0.12138157894736842" />
         <entry key="..\:/my files/flutter/SehatyDoctors/app/src/main/res/layout/activity_rservation_dates.xml" value="0.12138157894736842" />
@@ -75,7 +75,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

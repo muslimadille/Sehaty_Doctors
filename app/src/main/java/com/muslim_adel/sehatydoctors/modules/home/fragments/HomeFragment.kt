@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.home_fragment.*
 class HomeFragment : Fragment() {
     var preferences: ComplexPreferences? = null
     val listFragments = ArrayList<Fragment>()
+    val appointmentsManageFragment:AppointmentsManageFragment=AppointmentsManageFragment()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.home_fragment, container, false)
     override fun onActivityCreated(savedInstanceState: Bundle?) {

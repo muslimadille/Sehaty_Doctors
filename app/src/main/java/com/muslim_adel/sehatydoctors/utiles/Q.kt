@@ -1,6 +1,8 @@
 package com.seha_khanah_doctors.utiles
 
+import androidx.fragment.app.Fragment
 import com.muslim_adel.sehatydoctors.remote.objects.CountryModel
+import com.seha_khanah_doctors.modules.home.schedual.AppointmentsManageFragment
 import java.util.*
 
 object Q {
@@ -76,6 +78,8 @@ object Q {
     const val PHARM_EMAIL_VALIDATOR_API = "pharmacy/email/validator"
     const val ALL_TIMES_API = "doctor/dashboard/times"
     const val ALL_DURATION_API = "doctor/dashboard/durations"
+    const val DELETE_VACATION_API = "doctor/dashboard/vacation/delete"
+
 
 
 
@@ -144,5 +148,6 @@ object Q {
     const val FIRST_TIME_PREF = "ADW_first_time"
     var countriesList=ArrayList<CountryModel>()
     lateinit var selectedCountry:CountryModel
+
 
 }

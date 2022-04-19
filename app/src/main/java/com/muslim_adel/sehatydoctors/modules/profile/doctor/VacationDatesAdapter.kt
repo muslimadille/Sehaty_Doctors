@@ -4,15 +4,24 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.seha_khanah_doctors.R
 import com.seha_khanah_doctors.modules.home.MainActivity
+import com.seha_khanah_doctors.remote.apiServices.ApiClient
+import com.seha_khanah_doctors.remote.apiServices.SessionManager
+import com.seha_khanah_doctors.remote.objects.BaseResponce
+import com.seha_khanah_doctors.remote.objects.OfferUnitsModel
 import com.seha_khanah_doctors.remote.objects.doctor.VacancyModel
 import com.seha_khanah_doctors.utiles.ComplexPreferences
 import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.vacation_dates_item.view.*
-
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class VacationDatesAdapter(
@@ -39,16 +48,109 @@ class VacationDatesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val vacation = list[position]
 
-        holder.vacation_date_from_txt?.let { it.text=vacation.start_date?.let { it  }}
-        holder.vacation_date_to_txt?.let { it .text=vacation.end_date?.let { it}}
+        holder.vacation_date_from_txt?.let { it.text=vacation.start_date}
+        holder.vacation_date_to_txt?.let { it .text=vacation.end_date}
+        holder.vacation_delete_btn?.let{ it.setOnClickListener {
+            //cal delete item fun
+            deleteVacation(vacation.id)
+        }}
 
     }
+
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val vacation_date_from_txt: TextView? =view.vacation_date_from_txt
         val vacation_date_to_txt: TextView? =view.vacation_date_to_txt
+        val vacation_delete_btn:ImageView?=view.vacation_delete_btn
 
+    }
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
+    private fun deleteVacation(vacationId:Int) {
+
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext)
+        var url=Q.DELETE_VACATION_API+"/$vacationId"
+        apiClient.getApiService(mContext).deleteVacation(url)
+            .enqueue(object : Callback<BaseResponce<Any>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<Any>>,
+                    t: Throwable
+                ) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<Any>>,
+                    response: Response<BaseResponce<Any>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            vacationDatesObserver()
+                        } else {
+                            Toast.makeText(
+                                mContext,
+                                "faild",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                }
+
+
+            })
+    }
+    private fun vacationDatesObserver() {
+        list.clear()
+        notifyDataSetChanged()
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).doctorVacanciesDates()
+            .enqueue(object : Callback<BaseResponce<List<VacancyModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    t: Throwable
+                ) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    response: Response<BaseResponce<List<VacancyModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date:VacancyModel->
+                                        list.add(date)
+                                    }
+                                    notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
     }
 
 

@@ -42,6 +42,7 @@ class AppointmentsManageFragment : Fragment() {
     private lateinit var apiClient: ApiClient
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
@@ -54,6 +55,8 @@ class AppointmentsManageFragment : Fragment() {
         initRVAdapter()
         onEditWorkingDates()
         onEditVacationsClicked()
+        onRefreshWorkingTimes()
+        onRefreshVacanciesTimes()
     }
 
     override fun onCreateView(
@@ -63,8 +66,23 @@ class AppointmentsManageFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_appointments_manage, container, false)
     }
-    private fun workingDatesObserver() {
-        apiClient = ApiClient()
+    fun onRefreshWorkingTimes(){
+        refresh_working_btn.setOnClickListener {
+            workingDatesObserver()
+        }
+    }
+    fun onRefreshVacanciesTimes(){
+        refresh_vacation_btn.setOnClickListener {
+            vacationDatesObserver()
+        }
+    }
+      fun workingDatesObserver() {
+          workingHoursList.clear()
+          if(workingHoursAddapter!=null){
+              workingHoursAddapter.let { it!!.notifyDataSetChanged() }
+          }
+
+          apiClient = ApiClient()
         sessionManager = SessionManager(mContext!!)
         apiClient.getApiService(mContext!!).doctorWorkingDates()
             .enqueue(object : Callback<BaseResponce<List<WorkingDatesModel>>> {
@@ -111,6 +129,10 @@ class AppointmentsManageFragment : Fragment() {
             })
     }
     private fun vacationDatesObserver() {
+        vacationsList.clear()
+        if(vacationsAddapter!=null){
+            vacationsAddapter.let { it!!.notifyDataSetChanged() }
+        }
         apiClient = ApiClient()
         sessionManager = SessionManager(mContext!!)
         apiClient.getApiService(mContext!!).doctorVacanciesDates()
@@ -200,6 +222,7 @@ class AppointmentsManageFragment : Fragment() {
             mContext!!.startActivity(mContext!!.intent)
         }
     }
+
 
     
 }
