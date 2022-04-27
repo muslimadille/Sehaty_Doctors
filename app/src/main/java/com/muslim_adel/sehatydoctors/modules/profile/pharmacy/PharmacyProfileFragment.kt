@@ -73,26 +73,26 @@ class PharmacyProfileFragment : Fragment() {
 
     private fun setPageData(pharm: Pharmacy){
         if (mContext!!.preferences!!.getString("language","")=="Arabic"){
-            pharm_title_txt!!.text=pharm.pharmacy_name_ar
-            address!!.text=pharm.address_ar
-            pharm_info_txt.text=pharm.about_ar
-            pharm_doc_name.text=pharm.firstName_ar+" "+pharm.lastName_ar
+            pharm_title_txt?.text=pharm.pharmacy_name_ar
+            address?.text=pharm.address_ar
+            pharm_info_txt?.text=pharm.about_ar
+            pharm_doc_name?.text=pharm.firstName_ar+" "+pharm.lastName_ar
         }else{
-            pharm_title_txt!!.text=pharm.pharmacy_name_en
-            address!!.text=pharm.address_en
-            pharm_info_txt.text=pharm.about_en
-            pharm_doc_name.text=pharm.firstName_en+" "+pharm.lastName_en
+            pharm_title_txt?.text=pharm.pharmacy_name_en
+            address?.text=pharm.address_en
+            pharm_info_txt?.text=pharm.about_en
+            pharm_doc_name?.text=pharm.firstName_en+" "+pharm.lastName_en
 
         }
 
 
-        pharm_show_more_txt.setOnClickListener {
-            if(pharm_show_more_txt.text==getString(R.string.more)){
-                pharm_info_txt.maxLines=20
-                pharm_show_more_txt.text=getString(R.string.less)
+        pharm_show_more_txt?.setOnClickListener {
+            if(pharm_show_more_txt?.text==getString(R.string.more)){
+                pharm_info_txt?.maxLines=20
+                pharm_show_more_txt?.text=getString(R.string.less)
             }else{
-                pharm_info_txt.maxLines=5
-                pharm_show_more_txt.text=getString(R.string.more)
+                pharm_info_txt?.maxLines=5
+                pharm_show_more_txt?.text=getString(R.string.more)
 
             }
         }
@@ -119,13 +119,16 @@ class PharmacyProfileFragment : Fragment() {
                                 lat=it.lat
                                 lng=it.lng
                                 labName=it.pharmacy_name_ar
-                                Glide.with(mContext!!).applyDefaultRequestOptions(
-                                    RequestOptions()
-                                        .placeholder(R.drawable.person_ic)
-                                        .error(R.drawable.person_ic))
-                                    .load(it.featured)
-                                    .centerCrop()
-                                    .into(pharm_pager_Slider)
+                                pharm_pager_Slider?.let { image->
+                                    Glide.with(mContext!!).applyDefaultRequestOptions(
+                                        RequestOptions()
+                                            .placeholder(R.drawable.person_ic)
+                                            .error(R.drawable.person_ic))
+                                        .load(it.featured)
+                                        .centerCrop()
+                                        .into(image)
+                                }
+
                                 setPageData(it)
                                 onObserveSuccess()
                             }
@@ -145,12 +148,12 @@ class PharmacyProfileFragment : Fragment() {
             })
     }
     private fun onObserveStart(){
-        pharm_progrss_lay.visibility= View.VISIBLE
-        pharm_details_lay.visibility= View.GONE
+        pharm_progrss_lay?.visibility= View.VISIBLE
+        pharm_details_lay?.visibility= View.GONE
     }
     private fun onObserveSuccess(){
-        pharm_progrss_lay.visibility= View.GONE
-        pharm_details_lay.visibility= View.VISIBLE
+        pharm_progrss_lay?.visibility= View.GONE
+        pharm_details_lay?.visibility= View.VISIBLE
     }
 
 
@@ -158,7 +161,7 @@ class PharmacyProfileFragment : Fragment() {
         val zoom=40
         var lable=labName
         val intent= Intent(Intent.ACTION_VIEW)
-        lab_location_btn.setOnClickListener {
+        lab_location_btn?.setOnClickListener {
             intent.data= Uri.parse("geo:0,0?z=$zoom&q=$lat,$lng,$lable")
             if(intent.resolveActivity(mContext!!.packageManager)!=null){
                 mContext!!.startActivity(intent)

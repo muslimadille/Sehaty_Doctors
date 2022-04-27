@@ -38,7 +38,9 @@ class DoctorInfoDetailsActivity : BaseActivity() {
                 if (preferences!!.getString("language","")=="Arabic"){
                     page_title.text=intent.getStringExtra("title")!!
                     phone.text=intent.getStringExtra("phone")!!
-                    email.text=intent.getStringExtra("email")!!
+                    intent.getStringExtra("email").let {
+                        email.text=it
+                    }
                     //info_content.text=intent.getStringExtra("lat")!!
                     //info_content.text=intent.getStringExtra("lng")!!
                     address.text=intent.getStringExtra("address_ar")!!

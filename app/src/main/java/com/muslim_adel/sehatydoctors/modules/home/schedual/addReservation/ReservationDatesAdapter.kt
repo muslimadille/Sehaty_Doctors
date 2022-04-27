@@ -33,17 +33,47 @@ class ReservationDatesAdapter(
         val date = list[position]
         if (date.status==1){
             if (mContext.preferences!!.getString("language","")=="Arabic"){
-               if(date.times.isNotEmpty()){
                    holder.res_item_day_name_txt.text=date.day_ar+"\n ${date.date}"
-                   holder.res_from_itme_date_txt.text=date.times[0].time
-                   holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
-               }else return
+                if(date.times!=null){
+                    if (date.times.isNotEmpty()){
+                        holder.res_from_itme_date_txt.text=date.times[0].time
+                        if (date.times.size>1){
+                            holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
+                        }else{
+                            holder.res_to_itme_date_txt.text=""
+                        }
+
+                    }else{
+                        holder.res_from_itme_date_txt.text="00:00"
+                        holder.res_to_itme_date_txt.text="00:00"
+                    }
+
+                }else{
+                    holder.res_from_itme_date_txt.text="00:00"
+                    holder.res_to_itme_date_txt.text="00:00"
+                }
+
+
             }else{
-                if(date.times.isNotEmpty()){
-                    holder.res_item_day_name_txt.text=date.day_en+"\n ${date.date}"
-                    holder.res_from_itme_date_txt.text=date.times[0].time
-                    holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
-                }else return
+                holder.res_item_day_name_txt.text=date.day_en+"\n ${date.date}"
+                if(date.times!=null){
+                    if (date.times.isNotEmpty()){
+                        holder.res_from_itme_date_txt.text=date.times[0].time
+                        if (date.times.size>1){
+                            holder.res_to_itme_date_txt.text=date.times[date.times.size-1].time
+                        }else{
+                            holder.res_to_itme_date_txt.text="00:00"
+                        }
+
+                    }else{
+                        holder.res_from_itme_date_txt.text="00:00"
+                        holder.res_to_itme_date_txt.text="00:00"
+                    }
+
+                }else{
+                    holder.res_from_itme_date_txt.text="00:00"
+                    holder.res_to_itme_date_txt.text="00:00"
+                }
             }
 
             holder.date_btn.setOnClickListener {

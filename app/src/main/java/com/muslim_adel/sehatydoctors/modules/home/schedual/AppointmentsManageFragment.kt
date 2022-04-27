@@ -158,7 +158,7 @@ class AppointmentsManageFragment : Fragment() {
                                     vacationsAddapter!!.notifyDataSetChanged()
 
                                 } else {
-                                    Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                                    //Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
                                 }
 
                             }

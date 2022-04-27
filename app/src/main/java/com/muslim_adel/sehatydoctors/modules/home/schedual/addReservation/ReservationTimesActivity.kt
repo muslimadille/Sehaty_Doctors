@@ -82,12 +82,18 @@ class ReservationTimesActivity : BaseActivity() {
                                                     timesList.add(time)
                                                 }
                                             }
-                                            if(date.times.isEmpty()){
+                                            if(date.times==null){
                                                 dates_list.visibility= View.GONE
                                                 no_dates_lay.visibility=View.VISIBLE
                                             }else{
-                                                dates_list.visibility= View.VISIBLE
-                                                no_dates_lay.visibility=View.GONE
+                                                if(date.times.isNotEmpty()){
+                                                    dates_list.visibility= View.VISIBLE
+                                                    no_dates_lay.visibility=View.GONE
+                                                }else{
+                                                    dates_list.visibility= View.GONE
+                                                    no_dates_lay.visibility=View.VISIBLE
+                                                }
+
 
                                             }
                                             doctorDatesListAddapter!!.notifyDataSetChanged()
@@ -150,16 +156,32 @@ class ReservationTimesActivity : BaseActivity() {
                                             selecteddate=date.date
                                         }
 
-                                        date.times.forEach {time:Times->
-                                            if(time.status=="1"){
-                                                timesList.add(time)
+                                        if(date.times==null){
+                                            dates_list.visibility= View.GONE
+                                            no_dates_lay.visibility=View.VISIBLE
+                                        }else{
+                                            if(date.times.isNotEmpty()){
+                                                date.times.forEach {time:Times->
+                                                    if(time.status=="1"){
+                                                        timesList.add(time)
+                                                    }
+                                                }
+                                                dates_list.visibility= View.VISIBLE
+                                                no_dates_lay.visibility=View.GONE
+
+                                            }else{
+                                                dates_list.visibility= View.GONE
+                                                no_dates_lay.visibility=View.VISIBLE
                                             }
+
+
                                         }
+
                                         doctorDatesListAddapter!!.notifyDataSetChanged()
                                     }
                                 }
                                 doctorDatesListAddapter!!.notifyDataSetChanged()
-                                Toast.makeText(this@ReservationTimesActivity, "success", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(this@ReservationTimesActivity, "success", Toast.LENGTH_SHORT).show()
 
                             }
                         } else {

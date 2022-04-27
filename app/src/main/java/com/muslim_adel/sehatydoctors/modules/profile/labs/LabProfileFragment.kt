@@ -73,16 +73,21 @@ class LabProfileFragment : Fragment() {
 
     private fun setPageData(lab: Laboratory){
         if (mContext!!.preferences!!.getString("language","")=="Arabic"){
-            lab_title_txt!!.text=lab.laboratory_name_ar
-            lab_address_txt!!.text=lab.address_ar
-            lab_phone_num_txt.text=lab.phonenumber
-            lab_email_txt.text=lab.email
-        }else{
+            lab_title_txt?.let {
+                lab_title_txt!!.text=lab.laboratory_name_ar
+                lab_address_txt!!.text=lab.address_ar
+                lab_phone_num_txt.text=lab.phonenumber
+                lab_email_txt.text=lab.email
+            }
 
-            lab_title_txt!!.text=lab.laboratory_name_en
-            lab_address_txt!!.text=lab.address_en
-            lab_phone_num_txt.text=lab.phonenumber
-            lab_email_txt.text=lab.email
+        }else{
+            lab_title_txt?.let {
+                lab_title_txt!!.text=lab.laboratory_name_en
+                lab_address_txt!!.text=lab.address_en
+                lab_phone_num_txt.text=lab.phonenumber
+                lab_email_txt.text=lab.email
+            }
+
 
         }
 
@@ -110,13 +115,16 @@ class LabProfileFragment : Fragment() {
                                 lat=it.lat
                                 lng=it.lng
                                 labName=it.laboratory_name_ar
-                                Glide.with(mContext!!).applyDefaultRequestOptions(
-                                    RequestOptions()
-                                        .placeholder(R.drawable.person_ic)
-                                        .error(R.drawable.person_ic))
-                                    .load(it.featured)
-                                    .centerCrop()
-                                    .into(pharm_pager_Slider)
+                                pharm_pager_Slider?.let { value->
+                                    Glide.with(mContext!!).applyDefaultRequestOptions(
+                                        RequestOptions()
+                                            .placeholder(R.drawable.person_ic)
+                                            .error(R.drawable.person_ic))
+                                        .load(it.featured)
+                                        .centerCrop()
+                                        .into(value)
+                                }
+
                                 setPageData(it)
                                 onObserveSuccess()
                             }
@@ -136,12 +144,12 @@ class LabProfileFragment : Fragment() {
             })
     }
     private fun onObserveStart(){
-        pharm_progrss_lay.visibility= View.VISIBLE
-        pharm_details_lay.visibility= View.GONE
+        pharm_progrss_lay?.visibility= View.VISIBLE
+        pharm_details_lay?.visibility= View.GONE
     }
     private fun onObserveSuccess(){
-        pharm_progrss_lay.visibility= View.GONE
-        pharm_details_lay.visibility= View.VISIBLE
+        pharm_progrss_lay?.visibility= View.GONE
+        pharm_details_lay?.visibility= View.VISIBLE
     }
 
 
