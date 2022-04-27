@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
@@ -26,12 +27,15 @@ import com.seha_khanah_doctors.utiles.SpinnerAdapterCustomFont
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.*
+import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_lay
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_price_txt
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_title_en_txt
+import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.progrss_lay
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.services_spinner
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.sub_survices_spinner
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.title_ar_txt
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.unit_spinner
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -94,6 +98,12 @@ class NewDoctorAddOfferActivity : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Launches photo picker in single-select mode.
+// This means that the user can select one photo or video.
+        val intentGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        if (intentGallery.resolveActivity(this.packageManager) != null) {
+            // Launch the intent
+        }
         setContentView(R.layout.activity_new_doctor_add_offer)
         initRVAdapter()
         categoriesObserver()
@@ -288,6 +298,20 @@ class NewDoctorAddOfferActivity : BaseActivity() {
         }
 
     }
+    private fun onObserveStart() {
+        progrss_lay?.visibility = View.VISIBLE
+        offer_lay?.visibility = View.GONE
+    }
+
+    private fun onObserveSuccess() {
+        progrss_lay?.visibility = View.GONE
+        offer_lay?.visibility = View.VISIBLE
+    }
+    private fun onObservefaled() {
+        progrss_lay?.visibility = View.VISIBLE
+        offer_lay?.visibility = View.GONE
+        Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show()
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun onAddOfferClicked(){
         doc_add_new_offer_btn.setOnClickListener {
@@ -332,6 +356,7 @@ class NewDoctorAddOfferActivity : BaseActivity() {
 
         if(title_ar.isNotEmpty()&&title_en.isNotEmpty()&&price.isNotEmpty()){
             apiClient = ApiClient()
+            onObserveStart()
             sessionManager = SessionManager(this)
             apiClient.getApiService(this).addDocOffer(validator.featured1,validator.category_id,validator.sub_category_id,
             validator.service_id,validator.sub_service_id,validator.device_name_en,validator.unit_id,validator.unit_number,validator.title_en,
@@ -351,6 +376,7 @@ class NewDoctorAddOfferActivity : BaseActivity() {
                     ) {
                         if (response!!.isSuccessful) {
                             if (response.body()!!.success) {
+                                onObserveSuccess()
                                 Toast.makeText(
                                     this@NewDoctorAddOfferActivity,
                                     "تم إضافة العرض بنجاح",
@@ -359,6 +385,8 @@ class NewDoctorAddOfferActivity : BaseActivity() {
                                 intent = Intent(this@NewDoctorAddOfferActivity, MainActivity::class.java)
                                 startActivity(intent)
                             } else {
+                                onObservefaled()
+
                                 Toast.makeText(
                                     this@NewDoctorAddOfferActivity,
                                     "faild",
@@ -368,6 +396,7 @@ class NewDoctorAddOfferActivity : BaseActivity() {
 
 
                         } else {
+                            onObservefaled()
                             Toast.makeText(this@NewDoctorAddOfferActivity, "faild", Toast.LENGTH_SHORT)
                                 .show()
                         }

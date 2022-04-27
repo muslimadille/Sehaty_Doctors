@@ -39,6 +39,11 @@
         android:name="android.hardware.location.gps"
         android:required="true" />
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+        </intent>
+    </queries>
     <application
         android:name=".modules.base.App"
         android:allowBackup="true"
@@ -77,6 +82,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+
         <activity
             android:name=".modules.map.MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -106,7 +112,8 @@
         <activity android:name=".modules.registration.RegisterationActivity" />
         <activity android:name=".modules.registration.LoginActivity" />
         <activity android:name=".modules.introwizerd.IntroWizardActivity" />
-        <activity android:name=".modules.splash.SplashActivity">
+        <activity android:name=".modules.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

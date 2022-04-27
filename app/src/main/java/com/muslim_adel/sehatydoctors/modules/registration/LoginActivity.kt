@@ -109,7 +109,12 @@ class LoginActivity : BaseActivity() {
                 .login("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString())
                 .enqueue(object : Callback<LoginResponce> {
                     override fun onFailure(call: Call<LoginResponce>, t: Throwable) {
-                        alertNetwork(true)
+                        //alertNetwork(true)
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "كلمة المرور او البريد الالكتروني غير صحيح ",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     override fun onResponse(
@@ -169,7 +174,12 @@ class LoginActivity : BaseActivity() {
                 .labLogin("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString())
                 .enqueue(object : Callback<LaboratoryLoginResponce> {
                     override fun onFailure(call: Call<LaboratoryLoginResponce>, t: Throwable) {
-                        alertNetwork(true)
+                       // alertNetwork(true)
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "كلمة المرور او البريد الالكتروني غير صحيح ",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     override fun onResponse(
                         call: Call<LaboratoryLoginResponce>,
@@ -228,7 +238,12 @@ class LoginActivity : BaseActivity() {
                 .pharmLogin("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString())
                 .enqueue(object : Callback<PharmacyLoginResponce> {
                     override fun onFailure(call: Call<PharmacyLoginResponce>, t: Throwable) {
-                        alertNetwork(true)
+                        //alertNetwork(true)
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "كلمة المرور او البريد الالكتروني غير صحيح ",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     override fun onResponse(

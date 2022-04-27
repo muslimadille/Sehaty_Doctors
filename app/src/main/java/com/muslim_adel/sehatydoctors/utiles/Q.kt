@@ -40,6 +40,8 @@ object Q {
     const val GET_LAB_BY_ID_API = "laboratory/show"
     const val COUNTRIES_API = "country"
     const val DOC_UPDATE_TIMES_API = "doctor/dashboard/working-hours/update"
+    const val LAB_UPDATE_TIMES_API = "laboratory/dashboard/working-hours/update"
+
 
 
 
@@ -79,6 +81,10 @@ object Q {
     const val ALL_TIMES_API = "doctor/dashboard/times"
     const val ALL_DURATION_API = "doctor/dashboard/durations"
     const val DELETE_VACATION_API = "doctor/dashboard/vacation/delete"
+    const val LAB_ADD_VACATION_API = "laboratory/dashboard/vacation/add"
+    const val LAB_DELETE_VACATION_API = "laboratory/dashboard/vacation/delete"
+
+
 
 
 
@@ -103,6 +109,8 @@ object Q {
     const val LAB_UPDATE_PROFILE_API = "laboratory/dashboard/update"
     const val LAB_UPDATE_ADDRESS_API = "laboratory/dashboard/address/update"
     const val LAB_REGISTRATION_API = "laboratory/register"
+    const val LAB_WORKING_DATES_API = "laboratory/dashboard/working-hours"
+    const val LAB_VACANCIES_DATES_API = "laboratory/dashboard/vacations"
 
 
     const val SEND_CODE_API = "verify-user"

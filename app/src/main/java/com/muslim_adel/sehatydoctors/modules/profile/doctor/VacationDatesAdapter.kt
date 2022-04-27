@@ -52,7 +52,20 @@ class VacationDatesAdapter(
         holder.vacation_date_to_txt?.let { it .text=vacation.end_date}
         holder.vacation_delete_btn?.let{ it.setOnClickListener {
             //cal delete item fun
-            deleteVacation(vacation.id)
+
+            when(preferences!!.getString(Q.USER_TYPE, "")){
+                Q.USER_DOCTOR -> {
+                    deleteVacation(vacation.id)
+
+                }
+                Q.USER_LAB -> {
+                    labDeleteVacation(vacation.id)
+
+                }
+                Q.USER_PHARM -> {
+                }
+
+            }
         }}
 
     }
@@ -107,6 +120,47 @@ class VacationDatesAdapter(
 
             })
     }
+    private fun labDeleteVacation(vacationId:Int) {
+
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext)
+        var url=Q.LAB_DELETE_VACATION_API+"/$vacationId"
+        apiClient.getApiService(mContext).deleteVacation(url)
+            .enqueue(object : Callback<BaseResponce<Any>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<Any>>,
+                    t: Throwable
+                ) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<Any>>,
+                    response: Response<BaseResponce<Any>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            labVacationDatesObserver()
+                        } else {
+                            Toast.makeText(
+                                mContext,
+                                "faild",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                }
+
+
+            })
+    }
+
     private fun vacationDatesObserver() {
         list.clear()
         notifyDataSetChanged()
@@ -152,6 +206,52 @@ class VacationDatesAdapter(
 
             })
     }
+    private fun labVacationDatesObserver() {
+        list.clear()
+        notifyDataSetChanged()
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).labVacanciesDates()
+            .enqueue(object : Callback<BaseResponce<List<VacancyModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    t: Throwable
+                ) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    response: Response<BaseResponce<List<VacancyModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date:VacancyModel->
+                                        list.add(date)
+                                    }
+                                    notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
+
 
 
 }

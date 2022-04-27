@@ -2,6 +2,7 @@ package com.muslim_adel.sehatydoctors.modules.home.schedual
 
 import android.app.TimePickerDialog
 import android.content.Context
+import android.os.Handler
 
 import android.view.LayoutInflater
 import android.view.View
@@ -152,7 +153,14 @@ class EditWorkDaysAdapter(
         holder.waiting_time_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, spinnerPosition: Int, id: Long) {
                 if(allDurationsList.isNotEmpty()&&mContext.workingHoursList.isNotEmpty()){
-                    mContext.workingHoursList[holder.getAdapterPosition()].duration_id=allDurationsList[spinnerPosition].id
+                    try {
+                        Handler().postDelayed({
+                            mContext.workingHoursList[holder.getAdapterPosition()].duration_id=allDurationsList[spinnerPosition].id
+                        }, 20)
+
+                    }catch (e:Error){
+
+                    }
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {

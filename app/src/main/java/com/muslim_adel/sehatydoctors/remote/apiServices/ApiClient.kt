@@ -31,8 +31,8 @@ class ApiClient {
      */
     private fun okhttpClient(context: Context): OkHttpClient {
         return OkHttpClient.Builder()
-            .readTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
-            .connectTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(80, java.util.concurrent.TimeUnit.SECONDS)
+            .connectTimeout(80, java.util.concurrent.TimeUnit.SECONDS)
             .addInterceptor(AuthInterceptor(context))
             .build()
     }

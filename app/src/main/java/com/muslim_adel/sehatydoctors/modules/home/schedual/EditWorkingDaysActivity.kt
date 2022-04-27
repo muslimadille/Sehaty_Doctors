@@ -45,12 +45,32 @@ class EditWorkingDaysActivity : BaseActivity() {
         initRVAdapter()
         allTimesObserver()
         allDurationObserver()
-        workingDatesObserver()
+        when(preferences!!.getString(Q.USER_TYPE, "")){
+            Q.USER_DOCTOR -> {
+                workingDatesObserver()
+            }
+            Q.USER_LAB -> {
+                labWorkingDatesObserver()
+            }
+            Q.USER_PHARM -> {
+            }
+
+        }
         onSaveClicked()
     }
     private fun onSaveClicked(){
         edit_working_dates_save_btn.setOnClickListener {
-            updateTimes()
+            when(preferences!!.getString(Q.USER_TYPE, "")){
+                Q.USER_DOCTOR -> {
+                    updateTimes()
+                }
+                Q.USER_LAB -> {
+                    updateLabTimes()
+                }
+                Q.USER_PHARM -> {
+                }
+
+            }
         }
     }
 
@@ -97,6 +117,50 @@ class EditWorkingDaysActivity : BaseActivity() {
 
             })
     }
+    private fun labWorkingDatesObserver() {
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).labWorkingDates()
+            .enqueue(object : Callback<BaseResponce<List<WorkingDatesModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    response: Response<BaseResponce<List<WorkingDatesModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date: WorkingDatesModel ->
+                                        workingHoursList.add(date)
+                                    }
+                                    editWorkDaysAdapter!!.notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(this@EditWorkingDaysActivity, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
+
     private fun allTimesObserver() {
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
@@ -228,6 +292,45 @@ class EditWorkingDaysActivity : BaseActivity() {
 
 
     }
+    private fun updateLabTimes() {
+        var times: MutableMap<String, Int> = emptyMap<String,Int>().toMutableMap()
+        for(i in 0 until workingHoursList.size){
+            times["working_hour[${i}][day_id]"]=workingHoursList[i].day_id
+            times["working_hour[${i}][time_from_id]"]=workingHoursList[i].time_from_id
+            times["working_hour[${i}][time_to_id]"]=workingHoursList[i].time_to_id
+            times["working_hour[${i}][duration_id]"]=workingHoursList[i].duration_id
+            times["working_hour[${i}][status]"]=workingHoursList[i].status
+        }
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        print("${apiClient.getApiService(this).labUpdateWorkingTime(times).request()}")
+        apiClient.getApiService(this).labUpdateWorkingTime(times)
+            .enqueue(object : Callback<BaseResponce<Any>> {
+                override fun onFailure(call: Call<BaseResponce<Any>>, t: Throwable) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<Any>>,
+                    response: Response<BaseResponce<Any>>
+                ) {
+
+                    val registerResponse = response.body()
+                    if (registerResponse!!.success) {
+                        Toast.makeText(this@EditWorkingDaysActivity, "تم تعديل البيانات بنجاح", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this@EditWorkingDaysActivity,
+                            "فشل العملية حاول مرة أخرى",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            })
+
+
+    }
+
 
 
 }

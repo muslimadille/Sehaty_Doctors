@@ -15,6 +15,7 @@ import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.doctor.DoctorProfileModel
 import com.seha_khanah_doctors.remote.objects.doctor.VacancyModel
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.activity_edit_vaciations.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -152,9 +153,52 @@ class EditVaciationsActivity : BaseActivity() {
 
             })
     }
+    private fun addLabVacationObserver(){
+        onObserveStart()
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        apiClient.getApiService(this).addLabVacation(vacancyModel!!.start_date,vacancyModel!!.end_date)
+            .enqueue(object : Callback<BaseResponce<VacancyModel>> {
+                override fun onFailure(call: Call<BaseResponce<VacancyModel>>, t: Throwable) {
+                    alertNetwork(false)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<VacancyModel>>,
+                    response: Response<BaseResponce<VacancyModel>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            onObserveSuccess()
+                            finish()
+                        } else {
+
+                            onObservefaled()
+                        }
+
+                    } else {
+                        onObservefaled()
+                    }
+
+                }
+
+
+            })
+    }
+
     private fun onSaveClicked(){
         vacation_edit_btn.setOnClickListener {
-            adddocVacationObserver()
+            when(preferences!!.getString(Q.USER_TYPE, "")){
+                Q.USER_DOCTOR -> {
+                    adddocVacationObserver()
+                }
+                Q.USER_LAB -> {
+                    addLabVacationObserver()
+                }
+                Q.USER_PHARM -> {
+                }
+
+            }
         }
     }
 }

@@ -242,6 +242,13 @@ interface ApiService {
     fun doctorWorkingDates(): Call<BaseResponce<List<WorkingDatesModel>>>
     @GET(Q.DOC_VACANCIES_DATES_API)
     fun doctorVacanciesDates(): Call<BaseResponce<List<VacancyModel>>>
+    @GET(Q.LAB_WORKING_DATES_API)
+    fun labWorkingDates(): Call<BaseResponce<List<WorkingDatesModel>>>
+    @GET(Q.LAB_VACANCIES_DATES_API)
+    fun labVacanciesDates(): Call<BaseResponce<List<VacancyModel>>>
+    @GET
+    fun labDeleteVacation(@Url url: String): Call<BaseResponce<Any>>
+
 
     @POST(Q.DOC_ADD_OFFER_API)
     @FormUrlEncoded
@@ -354,6 +361,12 @@ interface ApiService {
     @POST(Q.DOC_ADD_VACATION_API)
     @FormUrlEncoded
     fun addDocVacation(
+        @Field("start_date") start_date:String,
+        @Field("end_date") end_date: String,
+    ): Call<BaseResponce<VacancyModel>>
+    @POST(Q.LAB_ADD_VACATION_API)
+    @FormUrlEncoded
+    fun addLabVacation(
         @Field("start_date") start_date:String,
         @Field("end_date") end_date: String,
     ): Call<BaseResponce<VacancyModel>>
@@ -531,6 +544,11 @@ interface ApiService {
     @POST(Q.DOC_UPDATE_TIMES_API)
     @FormUrlEncoded
     fun docUpdateWorkingTime(
+        @FieldMap workingTimes: MutableMap<String,Int> ,
+    ): Call<BaseResponce<Any>>
+    @POST(Q.LAB_UPDATE_TIMES_API)
+    @FormUrlEncoded
+    fun labUpdateWorkingTime(
         @FieldMap workingTimes: MutableMap<String,Int> ,
     ): Call<BaseResponce<Any>>
 

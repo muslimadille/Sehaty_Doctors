@@ -23,6 +23,7 @@ import com.seha_khanah_doctors.remote.apiServices.SessionManager
 import com.seha_khanah_doctors.remote.objects.BaseResponce
 import com.seha_khanah_doctors.remote.objects.doctor.VacancyModel
 import com.seha_khanah_doctors.remote.objects.doctor.WorkingDatesModel
+import com.seha_khanah_doctors.utiles.Q
 import kotlinx.android.synthetic.main.fragment_appointments.*
 import kotlinx.android.synthetic.main.fragment_appointments.all_days_rv
 import kotlinx.android.synthetic.main.fragment_appointments_manage.*
@@ -50,8 +51,21 @@ class AppointmentsManageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        workingDatesObserver()
-        vacationDatesObserver()
+        when(mContext!!.preferences!!.getString(Q.USER_TYPE, "")){
+            Q.USER_DOCTOR -> {
+                workingDatesObserver()
+                vacationDatesObserver()
+
+            }
+            Q.USER_LAB -> {
+                labWorkingDatesObserver()
+                labVacationDatesObserver()
+
+            }
+            Q.USER_PHARM -> {
+            }
+
+        }
         initRVAdapter()
         onEditWorkingDates()
         onEditVacationsClicked()
@@ -68,12 +82,34 @@ class AppointmentsManageFragment : Fragment() {
     }
     fun onRefreshWorkingTimes(){
         refresh_working_btn.setOnClickListener {
+            when(mContext!!.preferences!!.getString(Q.USER_TYPE, "")){
+                Q.USER_DOCTOR -> {
+                    workingDatesObserver()
+                }
+                Q.USER_LAB -> {
+                    labWorkingDatesObserver()
+                }
+                Q.USER_PHARM -> {
+                }
+
+            }
             workingDatesObserver()
         }
     }
     fun onRefreshVacanciesTimes(){
         refresh_vacation_btn.setOnClickListener {
-            vacationDatesObserver()
+            when(mContext!!.preferences!!.getString(Q.USER_TYPE, "")){
+                Q.USER_DOCTOR -> {
+                    vacationDatesObserver()
+
+                }
+                Q.USER_LAB -> {
+                    labVacationDatesObserver()
+                }
+                Q.USER_PHARM -> {
+                }
+
+            }
         }
     }
       fun workingDatesObserver() {
@@ -163,7 +199,107 @@ class AppointmentsManageFragment : Fragment() {
 
                             }
                         } else {
+                            //Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
+
+    fun labWorkingDatesObserver() {
+        workingHoursList.clear()
+        if(workingHoursAddapter!=null){
+            workingHoursAddapter.let { it!!.notifyDataSetChanged() }
+        }
+
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).labWorkingDates()
+            .enqueue(object : Callback<BaseResponce<List<WorkingDatesModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<WorkingDatesModel>>>,
+                    response: Response<BaseResponce<List<WorkingDatesModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date:WorkingDatesModel->
+                                        if(date.status==1){
+                                            workingHoursList.add(date)
+                                        }
+
+
+                                    }
+                                    workingHoursAddapter!!.notifyDataSetChanged()
+
+                                } else {
+                                    Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
                             Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } else {
+                        Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
+            })
+    }
+    private fun labVacationDatesObserver() {
+        vacationsList.clear()
+        if(vacationsAddapter!=null){
+            vacationsAddapter.let { it!!.notifyDataSetChanged() }
+        }
+        apiClient = ApiClient()
+        sessionManager = SessionManager(mContext!!)
+        apiClient.getApiService(mContext!!).labVacanciesDates()
+            .enqueue(object : Callback<BaseResponce<List<VacancyModel>>> {
+                override fun onFailure(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    t: Throwable
+                ) {
+                    alertNetwork(true)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponce<List<VacancyModel>>>,
+                    response: Response<BaseResponce<List<VacancyModel>>>
+                ) {
+                    if (response!!.isSuccessful) {
+                        if (response.body()!!.success) {
+                            response.body()!!.data!!.let {
+                                if (it.isNotEmpty()) {
+                                    it.forEach {date:VacancyModel->
+                                        vacationsList.add(date)
+                                    }
+                                    vacationsAddapter!!.notifyDataSetChanged()
+
+                                } else {
+                                    //Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+                        } else {
+                            //Toast.makeText(mContext, "faild", Toast.LENGTH_SHORT).show()
                         }
 
                     } else {
