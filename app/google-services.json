@@ -55,7 +55,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:457426184618:android:d514e256f5a0540f7e23d3",
         "android_client_info": {
-          "package_name": "com.seha_khanah_doctors"
+          "package_name": "com.muslim_adel.enaya_doctor"
         }
       },
       "oauth_client": [
@@ -63,7 +63,7 @@
           "client_id": "457426184618-8p8hbfgfj8gipdphptr00bdml1omeea6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.seha_khanah_doctors",
+            "package_name": "com.muslim_adel.enaya_doctor",
             "certificate_hash": "eba47f85563510e5fb199bdacd88d995e3dfbe15"
           }
         },

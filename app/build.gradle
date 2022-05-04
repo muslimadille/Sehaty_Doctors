@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.seha_khanah_doctors"
+        applicationId "com.muslim_adel.enaya_doctor"
         minSdkVersion 19
         targetSdkVersion 31
         versionCode 3

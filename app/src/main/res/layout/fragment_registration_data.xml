@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.muslim_adel.sehatydoctors.modules.newRegistration.doctor.fragments.RegistrationDataFragment">
+    tools:context="com.muslim_adel.enaya_doctor.modules.newRegistration.doctor.fragments.RegistrationDataFragment">
 
 
 

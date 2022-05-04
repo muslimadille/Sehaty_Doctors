@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    tools:context="com.muslim_adel.sehatydoctors.modules.newRegistration.labs.fragment.LabRegisterationFragment1">
+    tools:context="com.muslim_adel.enaya_doctor.modules.newRegistration.labs.fragment.LabRegisterationFragment1">
 
 
     <androidx.cardview.widget.CardView

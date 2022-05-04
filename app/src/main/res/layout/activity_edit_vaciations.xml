@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.muslim_adel.sehatydoctors.modules.home.schedual.EditVaciationsActivity">
+    tools:context="com.muslim_adel.enaya_doctor.modules.home.schedual.EditVaciationsActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

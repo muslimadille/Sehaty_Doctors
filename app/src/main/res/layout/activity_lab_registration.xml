@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.muslim_adel.sehatydoctors.modules.registration.LabRegistrationActivity">
+    tools:context="com.muslim_adel.enaya_doctor.modules.registration.LabRegistrationActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
