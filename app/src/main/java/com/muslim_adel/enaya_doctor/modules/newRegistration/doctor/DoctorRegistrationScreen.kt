@@ -1,22 +1,31 @@
 package com.muslim_adel.enaya_doctor.modules.newRegistration.doctor
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Build
+import android.os.Build.VERSION.SDK_INT
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.android.gms.location.*
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -31,25 +40,24 @@ import com.muslim_adel.enaya_doctor.remote.apiServices.SessionManager
 import com.muslim_adel.enaya_doctor.remote.objects.BaseResponce
 import com.muslim_adel.enaya_doctor.remote.objects.LoginResponce
 import com.muslim_adel.enaya_doctor.utiles.Q
-import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_doctor_registration_screen.*
 import kotlinx.android.synthetic.main.activity_intro_wizard.*
 import kotlinx.android.synthetic.main.fragment_registration2.*
 import kotlinx.android.synthetic.main.fragment_registration2.edit_doc_profile_img
 import kotlinx.android.synthetic.main.fragment_registration2.edit_practiceLicenseIDImage_img
 import kotlinx.android.synthetic.main.fragment_registration2.edit_profissionalTitleID_img
-import kotlinx.android.synthetic.main.fragment_registration5.*
 import kotlinx.android.synthetic.main.new_registration_layout.*
-import kotlinx.android.synthetic.main.new_registration_layout.edit_location_txt
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.util.*
+import java.util.function.Consumer
 import kotlin.collections.ArrayList
 
-class DoctorRegistrationScreen : BaseActivity(),OnMapReadyCallback {
+class DoctorRegistrationScreen : BaseActivity(),OnMapReadyCallback ,LocationListener{
     var doctorRegistrationModel: DoctorRigistrationValidator? = null
+    lateinit  var locationManager: LocationManager
     private val fragmentList = ArrayList<Fragment>()
     private val  adapter=IntroPagerAdapter(this)
     private val fragment1=RegistrationFragment1()
@@ -66,13 +74,11 @@ class DoctorRegistrationScreen : BaseActivity(),OnMapReadyCallback {
     var key=0
     var lat="3.000"
     var lng="2.000"
-
     var isMobileVerified:Boolean=false
     var isEmailVerified:Boolean=false
-
-
     var countryId:Int=1;
 
+    private lateinit var locationCallback2: LocationCallback
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -80,41 +86,75 @@ class DoctorRegistrationScreen : BaseActivity(),OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_registration_screen)
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this)
+        locationCallback2 = object : LocationCallback() {
+            override fun onLocationResult(p0: LocationResult) {
+                if(p0.lastLocation!=null&&currentLocation==null){
+                    currentLocation=p0.lastLocation
+                    val mapFragment = supportFragmentManager
+                        .findFragmentById(R.id.doc_reg_map_frag) as SupportMapFragment
+                    mapFragment.getMapAsync(this@DoctorRegistrationScreen)
+                }
+            }
+        }
+        fetchLocation()
         countryId=Q.selectedCountry.id!!
         initRegistrationModel()
         onNextClicked()
         initPagerAdapter()
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            var result: CropImage.ActivityResult? = null
-            data?.let { result = CropImage.getActivityResult(data) }
-            if (resultCode == AppCompatActivity.RESULT_OK) {
-                result?.let {
-                    if(fragment2.is_profile_img_clecked){
-                        fragment2.selectedImage = File(result!!.uri!!.path!!)
-                        edit_doc_profile_img.setImageURI(fragment2.selectedImage!!.toUri())
-                        fragment2.is_profile_img_clecked=false
+    fun initMapView(){
+        try {
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.doc_reg_map_frag) as SupportMapFragment
+            mapFragment.getMapAsync(this@DoctorRegistrationScreen)
 
-                    }
-                    if(fragment2.is_practiceLicenseID_clecked){
-                        fragment2. selectedpracticeLicenseIDImage = File(result!!.uri!!.path!!)
-                        edit_practiceLicenseIDImage_img.setImageURI(fragment2.selectedpracticeLicenseIDImage!!.toUri())
-                        fragment2.is_practiceLicenseID_clecked=false
-                    }
-                    if(fragment2.is_profissionalTitleID_clecked){
-                        fragment2.selectedprofissionalTitleIDImage = File(result!!.uri!!.path!!)
-                        edit_profissionalTitleID_img.setImageURI(fragment2.selectedprofissionalTitleIDImage!!.toUri())
-                        fragment2.is_profissionalTitleID_clecked=false
-                    }
-                }
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                result!!.error!!.printStackTrace()
-            }
+        }catch (e:Error){
+            Toast.makeText(this, "${e.message}", Toast.LENGTH_LONG).show()
         }
     }
+    fun showMap(){
+        map_lay_doc_reg.visibility=View.VISIBLE
+    }
 
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        mMap.uiSettings.isMyLocationButtonEnabled = true
+        var lat_long:LatLng
+        this.currentLocation.let {
+             lat_long= LatLng(it?.latitude!!,it.longitude)
+        }
+        drawMarker(lat_long)
+        mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener{
+            override fun onMarkerDragStart(p0: Marker) {
+            }
+
+            override fun onMarkerDrag(p0: Marker) {
+            }
+
+            override fun onMarkerDragEnd(p0: Marker) {
+
+                if(currentMrker!=null){
+                    currentMrker?.remove()
+                    var newLatLng= LatLng(p0.position.latitude,p0.position.longitude)
+                    drawMarker(newLatLng)
+
+                }
+            }
+        })
+
+    }
+    private fun drawMarker(lat_long: LatLng){
+        val markerOption= MarkerOptions().position(lat_long).draggable(true)
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(lat_long))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lat_long,15f))
+        currentMrker=mMap.addMarker(markerOption)
+        currentMrker?.showInfoWindow()
+        lat=lat_long.latitude.toString()
+        lng=lat_long.longitude.toString()
+        doctorRegistrationModel!!.lat=lat
+        doctorRegistrationModel!!.lng=lng
+
+    }
 
     private fun initRegistrationModel() {
         doctorRegistrationModel = DoctorRigistrationValidator(
@@ -178,7 +218,7 @@ class DoctorRegistrationScreen : BaseActivity(),OnMapReadyCallback {
                 }
                 3->{
                     if(fragment4.checkValidation()){
-                        //fragment4.validateInputData()
+                        fragment4.validateInputData()
                         if (doctor_registration_pager.currentItem <(fragmentList.size-1)) {
                             doctor_registration_pager.currentItem = doctor_registration_pager.currentItem +1
 
@@ -337,8 +377,7 @@ class DoctorRegistrationScreen : BaseActivity(),OnMapReadyCallback {
         onObserveStart()
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
-        apiClient.getApiService(this).doctorPhoneValidator(
-            Q.selectedCountry.phoneCode+doctorRegistrationModel!!.phonenumber)
+        apiClient.getApiService(this).doctorEmailValidator(doctorRegistrationModel!!.email)
 
             .enqueue(object : Callback<BaseResponce<Any>> {
                 override fun onFailure(call: Call<BaseResponce<Any>>, t: Throwable) {
@@ -383,59 +422,108 @@ class DoctorRegistrationScreen : BaseActivity(),OnMapReadyCallback {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){
             1000->{if(grantResults.size!=0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){
-               // fragment5.fetchLocation()
+               fetchLocation()
             }}
         }
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        val lat_long= LatLng(currentLocation?.latitude!!,currentLocation?.longitude!!)
-        drawMarker(lat_long)
-        mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener{
-            override fun onMarkerDragStart(p0: Marker?) {
-            }
 
-            override fun onMarkerDrag(p0: Marker?) {
-            }
 
-            override fun onMarkerDragEnd(p0: Marker?) {
+     fun fetchLocation(){
+        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1000)
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION),1000)
 
-                if(currentMrker!=null){
-                    currentMrker?.remove()
-                    var newLatLng= LatLng(p0?.position!!.latitude,p0.position.longitude)
-                    drawMarker(newLatLng)
+            return
+        }
 
-                }
-            }
-        })
+         if (SDK_INT >= Build.VERSION_CODES.R) {
+              locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,100L,10f,this@DoctorRegistrationScreen)
+         } else {
+
+             startLocationUpdates()
+
+         }
 
     }
-    private fun drawMarker(lat_long: LatLng){
-        val markerOption= MarkerOptions().position(lat_long).snippet(getAddress(lat_long.latitude,lat_long.latitude)).draggable(true)
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(lat_long))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lat_long,15f))
-        currentMrker=mMap.addMarker(markerOption)
-        currentMrker?.showInfoWindow()
-        fragment5.edit_location_txt.text=getAddress(lat_long.latitude,lat_long.longitude).toString()
-        lat=lat_long.latitude.toString()
-        lng=lat_long.longitude.toString()
+     val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+            if (resultCode == Activity.RESULT_OK) {
+                    if (resultCode == AppCompatActivity.RESULT_OK) {
+                        result.let {
+                            if(fragment2.is_profile_img_clecked){
+                                fragment2.selectedImage = File(result.data!!.data!!.path!!)
+                                edit_doc_profile_img.setImageURI(fragment2.selectedImage!!.toUri())
+                                fragment2.is_profile_img_clecked=false
 
+                            }
+                            if(fragment2.is_practiceLicenseID_clecked){
+                                fragment2. selectedpracticeLicenseIDImage = File(result.data!!.data!!.path!!)
+                                edit_practiceLicenseIDImage_img.setImageURI(fragment2.selectedpracticeLicenseIDImage!!.toUri())
+                                fragment2.is_practiceLicenseID_clecked=false
+                            }
+                            if(fragment2.is_profissionalTitleID_clecked){
+                                fragment2.selectedprofissionalTitleIDImage = File(result.data!!.data!!.path!!)
+                                edit_profissionalTitleID_img.setImageURI(fragment2.selectedprofissionalTitleIDImage!!.toUri())
+                                fragment2.is_profissionalTitleID_clecked=false
+                            }
+                        }
+                    }
+
+
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+    var locationRequest: LocationRequest= LocationRequest()
+    private fun startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            return
+        }
+        fusedLocationProviderClient!!.requestLocationUpdates(locationRequest,
+            locationCallback2,
+            Looper.getMainLooper())
     }
-    private  fun getAddress(lat:Double,lng:Double):String{
-        return try {
-            val getCoder= Geocoder(this, Locale.getDefault())
-            val address=getCoder.let { it.getFromLocation(lat,lng,1) }
-            address[0].getAddressLine(0).toString()
-        }catch (e:Error){
-            ""
+    override fun onPause() {
+        super.onPause()
+       stopLocationUpdates()
+    }
+
+    private fun stopLocationUpdates() {
+        fusedLocationProviderClient!!.removeLocationUpdates(locationCallback2)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    override fun onLocationChanged(p0: Location) {
+
+        if (null != p0&&currentLocation==null) {
+            this.currentLocation=p0
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.doc_reg_map_frag) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+
         }
 
     }
-
-
 
 
 }

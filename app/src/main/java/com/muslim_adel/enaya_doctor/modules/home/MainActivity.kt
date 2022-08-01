@@ -7,10 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.muslim_adel.enaya_doctor.R
 import com.muslim_adel.enaya_doctor.modules.base.BaseActivity
-import com.muslim_adel.enaya_doctor.modules.home.fragments.ExstarsFragment
-import com.muslim_adel.enaya_doctor.modules.home.fragments.HomeFragment
-import com.muslim_adel.enaya_doctor.modules.home.fragments.OffersFragment
-import com.muslim_adel.enaya_doctor.modules.home.fragments.ProfileFragment
+import com.muslim_adel.enaya_doctor.modules.home.fragments.*
 import com.muslim_adel.enaya_doctor.modules.profile.labs.LabProfileFragment
 import com.muslim_adel.enaya_doctor.modules.profile.pharmacy.PharmacyProfileFragment
 import com.muslim_adel.enaya_doctor.remote.objects.doctor.DoctorProfileModel
@@ -64,7 +61,7 @@ class MainActivity : BaseActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_offers -> {
-                    val fragment = ProfileFragment()
+                    val fragment = NewDoctorFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
                         .commit()
                     return@OnNavigationItemSelectedListener true

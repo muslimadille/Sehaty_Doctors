@@ -11,6 +11,11 @@ import com.muslim_adel.enaya_doctor.modules.newRegistration.labs.LabRegisteratio
 import com.muslim_adel.enaya_doctor.R
 import com.muslim_adel.enaya_doctor.utiles.Q
 import kotlinx.android.synthetic.main.fragment_lab_registeration1.*
+import kotlinx.android.synthetic.main.fragment_lab_registeration1.conf_password
+import kotlinx.android.synthetic.main.fragment_lab_registeration1.email
+import kotlinx.android.synthetic.main.fragment_lab_registeration1.password
+import kotlinx.android.synthetic.main.fragment_lab_registeration1.phon_num
+import kotlinx.android.synthetic.main.fragment_registration1.*
 
 
 class LabRegisterationFragment1 : Fragment() {
@@ -51,17 +56,14 @@ class LabRegisterationFragment1 : Fragment() {
             vlaidationText=vlaidationText+"أدخل رقم هاتف صحيح"+"\n"
 
         }
-        if(this.email.text.toString().isEmpty()){
-            value=false
-            vlaidationText=vlaidationText+"أدخل بريد إلكتروني صحيح"+"\n"
 
-        }
         if(this.password.text.toString().isEmpty()||this.password.text.toString().length<6){
             value=false
             vlaidationText=vlaidationText+"أدخل رمز دخول يتكون من 6 ارقام او حروف"
-
-
-
+        }
+        if(this.conf_password.text.toString().isEmpty()|| this.password.text.toString() != this.conf_password.text.toString()){
+            value=false
+            vlaidationText=vlaidationText+"رمز الدخول غير متطابق"
         }
         if(!value){
             Toast.makeText(

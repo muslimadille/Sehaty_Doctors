@@ -219,7 +219,7 @@
 
 
                     <androidx.cardview.widget.CardView
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -258,34 +258,6 @@
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/map_lay"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <fragment
-                            android:id="@+id/doc_reg_map"
-                            android:name="com.google.android.gms.maps.SupportMapFragment"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <Button
-                            android:layout_marginStart="10dp"
-                            android:id="@+id/hid_map_btn"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            android:backgroundTint="@color/white"
-                            android:text="@string/hide"
-                            android:textColor="@color/blue"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
             </ScrollView>

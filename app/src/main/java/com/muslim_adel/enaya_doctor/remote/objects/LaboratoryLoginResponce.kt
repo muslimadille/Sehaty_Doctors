@@ -6,7 +6,7 @@ data class LaboratoryLoginResponce (
     var success: Boolean,
 
     @SerializedName("message")
-    var message: Message,
+    var message: Any,
 
     @SerializedName("data")
     var data: LaboratoryLoginData

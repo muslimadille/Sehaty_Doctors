@@ -1,7 +1,9 @@
 package com.muslim_adel.enaya_doctor.modules.base
 
 import android.content.DialogInterface
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.os.Bundle
 import android.view.ContextThemeWrapper
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +34,11 @@ open class BaseActivity : AppCompatActivity() {
         val configuration = Configuration()
         configuration.setLocale(dLocale)
         wrapper.applyOverrideConfiguration(configuration)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        this.requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
     open fun alertNetwork(isExit: Boolean = false) {
         val alertBuilder = AlertDialog.Builder(this)

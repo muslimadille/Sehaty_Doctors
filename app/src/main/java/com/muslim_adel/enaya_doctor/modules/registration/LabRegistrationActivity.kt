@@ -1,17 +1,25 @@
 package com.muslim_adel.enaya_doctor.modules.registration
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -33,14 +41,21 @@ import com.muslim_adel.enaya_doctor.remote.objects.LaboratoryLoginResponce
 import com.muslim_adel.enaya_doctor.remote.objects.Reagons
 import com.muslim_adel.enaya_doctor.utiles.Q
 import com.muslim_adel.enaya_doctor.utiles.SpinnerAdapterCustomFont
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_lab_registration.*
+import kotlinx.android.synthetic.main.activity_lab_registration.edit_doc_profile_img
+import kotlinx.android.synthetic.main.activity_lab_registration.edit_lna_txt
+import kotlinx.android.synthetic.main.activity_lab_registration.edit_lne_txt
+import kotlinx.android.synthetic.main.activity_lab_registration.edit_practiceLicenseIDImage_img
+import kotlinx.android.synthetic.main.activity_lab_registration.edit_profissionalTitleID_img
+import kotlinx.android.synthetic.main.activity_lab_registration.gender_female
+import kotlinx.android.synthetic.main.activity_lab_registration.gender_male
+import kotlinx.android.synthetic.main.fragment_registration2.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.util.*
+import java.util.function.Consumer
 import kotlin.collections.ArrayList
 
 class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
@@ -93,28 +108,38 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         onRegisterClicked()
         onHideMapClicked()
     }
-     fun fetchLocation(){
+    fun fetchLocation(){
         if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
             && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1000)
+
             return
         }
-        val task=fusedLocationProviderClient?.lastLocation
-        task?.addOnSuccessListener { location->
-            if(location!=null){
-                this.currentLocation=location
-                val mapFragment = supportFragmentManager
-                    .findFragmentById(R.id.map) as SupportMapFragment
-                mapFragment.getMapAsync(this)
+
+        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, this.mainExecutor, locationCallback)
+
+        } else {
+
+            val task=fusedLocationProviderClient?.lastLocation
+            task?.addOnSuccessListener { location->
+                if(location!=null){
+                    this.currentLocation=location
+                    val mapFragment = supportFragmentManager
+                        .findFragmentById(R.id.lab_reg_map_frag) as SupportMapFragment
+                    mapFragment.getMapAsync(this)
+                }
             }
         }
+
     }
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){
             1000->{if(grantResults.size!=0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){
                 fetchLocation()
@@ -127,13 +152,13 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         val lat_long= LatLng(currentLocation?.latitude!!,currentLocation?.longitude!!)
         drawMarker(lat_long)
         mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener{
-            override fun onMarkerDragStart(p0: Marker?) {
+            override fun onMarkerDragStart(p0: Marker) {
             }
 
-            override fun onMarkerDrag(p0: Marker?) {
+            override fun onMarkerDrag(p0: Marker) {
             }
 
-            override fun onMarkerDragEnd(p0: Marker?) {
+            override fun onMarkerDragEnd(p0: Marker) {
 
                 if(currentMrker!=null){
                     currentMrker?.remove()
@@ -157,13 +182,13 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
 
     }
     private  fun getAddress(lat:Double,lng:Double):String{
-        return try {
+        return ""/*try {
             val getCoder= Geocoder(this, Locale.getDefault())
             val address=getCoder.let { it.getFromLocation(lat,lng,1) }
             address[0].getAddressLine(0).toString()
         }catch (e:Error){
             ""
-        }
+        }*/
 
     }
 
@@ -256,14 +281,12 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         TedPermission.with(this)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
-                    CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setCropShape(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) CropImageView.CropShape.RECTANGLE else CropImageView.CropShape.OVAL)
-                        .setAllowFlipping(false)
-                        .setAllowRotation(false)
-                        .setCropMenuCropButtonIcon(R.drawable.ic_add)
-                        .setAspectRatio(1, 1)
-                        .start(this@LabRegistrationActivity)
+                    ImagePicker.with(this@LabRegistrationActivity)
+                        .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                        .createIntent { intent ->
+                            startForProfileImageResult.launch(intent)
+                        }
                 }
 
                 override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
@@ -275,42 +298,40 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
             .setPermissions(Manifest.permission.CAMERA)
             .check()
     }
+    val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+            if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    result?.let {
+                        if(is_profile_img_clecked){
+                            selectedImage = File(result!!.data!!.data!!.path!!)
+                            GlideObject.GlideProfilePic(this, selectedImage!!.path, edit_doc_profile_img)
+                            is_profile_img_clecked=false
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            var result: CropImage.ActivityResult? = null
-            data?.let { result = CropImage.getActivityResult(data) }
-            if (resultCode == RESULT_OK) {
-                result?.let {
-                    if(is_profile_img_clecked){
-                        selectedImage = File(result!!.uri!!.path!!)
-                        GlideObject.GlideProfilePic(this, selectedImage!!.path, edit_doc_profile_img)
-                        is_profile_img_clecked=false
-
+                        }
+                        if(is_practiceLicenseID_clecked){
+                            selectedpracticeLicenseIDImage = File(result!!.data!!.data!!.path!!)
+                            GlideObject.GlideProfilePic(this, selectedpracticeLicenseIDImage!!.path, edit_practiceLicenseIDImage_img)
+                            is_practiceLicenseID_clecked=false
+                        }
+                        if(is_profissionalTitleID_clecked){
+                            selectedprofissionalTitleIDImage = File(result!!.data!!.data!!.path!!)
+                            GlideObject.GlideProfilePic(this, selectedprofissionalTitleIDImage!!.path, edit_profissionalTitleID_img)
+                            is_profissionalTitleID_clecked=false
+                        }
                     }
-                    if(is_practiceLicenseID_clecked){
-                        selectedpracticeLicenseIDImage = File(result!!.uri!!.path!!)
-                        GlideObject.GlideProfilePic(this, selectedpracticeLicenseIDImage!!.path, edit_practiceLicenseIDImage_img)
-                        is_practiceLicenseID_clecked=false
-                    }
-                    if(is_profissionalTitleID_clecked){
-                        selectedprofissionalTitleIDImage = File(result!!.uri!!.path!!)
-                        GlideObject.GlideProfilePic(this, selectedprofissionalTitleIDImage!!.path, edit_profissionalTitleID_img)
-                        is_profissionalTitleID_clecked=false
-                    }
-
-
-
-
-
-//                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
                 }
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                result!!.error!!.printStackTrace()
+
+
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun toBase64(filePath: String): String{
         val bytes = File(filePath).readBytes()
@@ -399,6 +420,11 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
             doctorValidator!!.landmark_ar,
             doctorValidator!!.lng,
             doctorValidator!!.lat,
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
         )
             .enqueue(object : Callback<LaboratoryLoginResponce> {
                 override fun onFailure(call: Call<LaboratoryLoginResponce>, t: Throwable) {
@@ -529,8 +555,15 @@ class LabRegistrationActivity : BaseActivity() , OnMapReadyCallback {
 
     }
 
-    
 
 
+    private val locationCallback = Consumer<Location> { location ->
+        if (null != location) {
+            this.currentLocation=location
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.lab_reg_map_frag) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+        }
+    }
 
 }

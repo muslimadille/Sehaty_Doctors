@@ -161,6 +161,7 @@ class RegistrationFragment3 : Fragment() {
                     mContext!!.doctorRegistrationModel!!.specialty_id=SpicList[position-1].id.toString()
                     perfixList.clear()
                     perfixNamesList.clear()
+                    perfixNamesList.add("اللقب")
                     perfixObserver(SpicList[position-1].id)
                     spicialityIndex=position
 

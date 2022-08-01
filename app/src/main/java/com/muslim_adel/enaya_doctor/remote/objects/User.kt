@@ -18,6 +18,11 @@ data class User (
     @SerializedName("created_at")
     var created_at: String,
     @SerializedName("updated_at")
-    var updated_at: String
+    var updated_at: String,
+    @SerializedName("code")
+    var code: Long,
+    @SerializedName("country_id")
+    var country_id: Int,
+
 
 )

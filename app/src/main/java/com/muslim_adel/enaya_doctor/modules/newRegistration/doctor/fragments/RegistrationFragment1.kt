@@ -51,17 +51,15 @@ class RegistrationFragment1 : Fragment() {
             vlaidationText=vlaidationText+"أدخل رقم هاتف صحيح"+"\n"
 
         }
-        if(this.email.text.toString().isEmpty()){
-            value=false
-            vlaidationText=vlaidationText+"أدخل بريد إلكتروني صحيح"+"\n"
 
-        }
         if(this.password.text.toString().isEmpty()||this.password.text.toString().length<6){
             value=false
             vlaidationText=vlaidationText+"أدخل رمز دخول يتكون من 6 ارقام او حروف"
 
-
-
+        }
+        if(this.conf_password.text.toString().isEmpty()|| this.password.text.toString() != this.conf_password.text.toString()){
+            value=false
+            vlaidationText=vlaidationText+"رمز الدخول غير متطابق"
         }
         if(!value){
             Toast.makeText(

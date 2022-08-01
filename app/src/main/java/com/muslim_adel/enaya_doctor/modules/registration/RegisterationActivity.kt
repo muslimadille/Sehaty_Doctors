@@ -1,19 +1,26 @@
 package com.muslim_adel.enaya_doctor.modules.registration
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import com.muslim_adel.enaya_doctor.remote.apiServices.SessionManager
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.net.toUri
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -36,11 +43,10 @@ import com.muslim_adel.enaya_doctor.remote.objects.doctor.DaysModel
 import com.muslim_adel.enaya_doctor.remote.objects.doctor.SubSpiecialityModel
 import com.muslim_adel.enaya_doctor.utiles.Q
 import com.muslim_adel.enaya_doctor.utiles.SpinnerAdapterCustomFont
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_doctor_edit_profile.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.fragment_registration2.*
 import kotlinx.android.synthetic.main.new_registration_layout.*
 import kotlinx.android.synthetic.main.new_registration_layout.edit_about_doc_ar_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_about_doc_en_txt
@@ -53,9 +59,13 @@ import kotlinx.android.synthetic.main.new_registration_layout.edit_lna_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_lne_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_location_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_num_of_days_txt
+import kotlinx.android.synthetic.main.new_registration_layout.edit_practiceLicenseIDImage_img
 import kotlinx.android.synthetic.main.new_registration_layout.edit_price_txt
+import kotlinx.android.synthetic.main.new_registration_layout.edit_profissionalTitleID_img
 import kotlinx.android.synthetic.main.new_registration_layout.edit_sn_en_txt
 import kotlinx.android.synthetic.main.new_registration_layout.edit_sn_txt
+import kotlinx.android.synthetic.main.new_registration_layout.gender_female
+import kotlinx.android.synthetic.main.new_registration_layout.gender_male
 import kotlinx.android.synthetic.main.new_registration_layout.hid_map_btn
 import kotlinx.android.synthetic.main.new_registration_layout.map_lay
 import kotlinx.android.synthetic.main.new_registration_layout.progrss_lay
@@ -64,6 +74,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.util.*
+import java.util.function.Consumer
 import kotlin.collections.ArrayList
 
 class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
@@ -165,12 +176,19 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
 
 //LOCATION
     private fun fetchLocation(){
-        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+    if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+        && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1000)
 
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1000)
-            return
-        }
+        return
+    }
+
+    if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+        val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, this.mainExecutor, locationCallback)
+
+    } else {
+
         val task=fusedLocationProviderClient?.lastLocation
         task?.addOnSuccessListener { location->
             if(location!=null){
@@ -181,11 +199,14 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             }
         }
     }
+
+}
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){
             1000->{if(grantResults.size!=0&&grantResults[0]== PackageManager.PERMISSION_GRANTED){
                 fetchLocation()
@@ -198,13 +219,13 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         val lat_long= LatLng(currentLocation?.latitude!!,currentLocation?.longitude!!)
         drawMarker(lat_long)
         mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener{
-            override fun onMarkerDragStart(p0: Marker?) {
+            override fun onMarkerDragStart(p0: Marker) {
             }
 
-            override fun onMarkerDrag(p0: Marker?) {
+            override fun onMarkerDrag(p0: Marker) {
             }
 
-            override fun onMarkerDragEnd(p0: Marker?) {
+            override fun onMarkerDragEnd(p0: Marker) {
 
                 if(currentMrker!=null){
                     currentMrker?.remove()
@@ -417,14 +438,12 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
         TedPermission.with(this)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
-                    CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setCropShape(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) CropImageView.CropShape.RECTANGLE else CropImageView.CropShape.OVAL)
-                        .setAllowFlipping(false)
-                        .setAllowRotation(false)
-                        .setCropMenuCropButtonIcon(R.drawable.ic_add)
-                        .setAspectRatio(1, 1)
-                        .start(this@RegisterationActivity)
+                    ImagePicker.with(this@RegisterationActivity)
+                        .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                        .createIntent { intent ->
+                            startForProfileImageResult.launch(intent)
+                        }
                 }
 
                 override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
@@ -436,46 +455,45 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
             .setPermissions(Manifest.permission.CAMERA)
             .check()
     }
+    val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+            if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    result?.let {
+                        if(is_profile_img_clecked){
+                            selectedImage = File(result!!.data!!.data!!.path!!)
+                            edit_doc_profile_img.setImageURI(selectedImage!!.toUri())
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            var result: CropImage.ActivityResult? = null
-            data?.let { result = CropImage.getActivityResult(data) }
-            if (resultCode == RESULT_OK) {
-                result?.let {
-                    if(is_profile_img_clecked){
-                        selectedImage = File(result!!.uri!!.path!!)
-                        edit_doc_profile_img.setImageURI(selectedImage!!.toUri())
+                            GlideObject.GlideProfilePic(this, selectedImage!!.path, edit_doc_profile_img)
+                            is_profile_img_clecked=false
 
-                        GlideObject.GlideProfilePic(this, selectedImage!!.path, edit_doc_profile_img)
-                        is_profile_img_clecked=false
+                        }
+                        if(is_practiceLicenseID_clecked){
+                            selectedpracticeLicenseIDImage = File(result!!.data!!.data!!.path!!)
+                            edit_practiceLicenseIDImage_img.setImageURI(selectedpracticeLicenseIDImage!!.toUri())
+                            GlideObject.GlideProfilePic(this, selectedpracticeLicenseIDImage!!.path, edit_practiceLicenseIDImage_img)
+                            is_practiceLicenseID_clecked=false
+                        }
+                        if(is_profissionalTitleID_clecked){
+                            selectedprofissionalTitleIDImage = File(result!!.data!!.data!!.path!!)
+                            edit_profissionalTitleID_img.setImageURI(selectedprofissionalTitleIDImage!!.toUri())
+                            GlideObject.GlideProfilePic(this, selectedprofissionalTitleIDImage!!.path, edit_profissionalTitleID_img)
+                            is_profissionalTitleID_clecked=false
+                        }
 
                     }
-                    if(is_practiceLicenseID_clecked){
-                        selectedpracticeLicenseIDImage = File(result!!.uri!!.path!!)
-                        edit_practiceLicenseIDImage_img.setImageURI(selectedpracticeLicenseIDImage!!.toUri())
-                        GlideObject.GlideProfilePic(this, selectedpracticeLicenseIDImage!!.path, edit_practiceLicenseIDImage_img)
-                        is_practiceLicenseID_clecked=false
-                    }
-                    if(is_profissionalTitleID_clecked){
-                        selectedprofissionalTitleIDImage = File(result!!.uri!!.path!!)
-                        edit_profissionalTitleID_img.setImageURI(selectedprofissionalTitleIDImage!!.toUri())
-                        GlideObject.GlideProfilePic(this, selectedprofissionalTitleIDImage!!.path, edit_profissionalTitleID_img)
-                        is_profissionalTitleID_clecked=false
-                    }
-
-
-
-
-
-//                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
                 }
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                result!!.error!!.printStackTrace()
+
+
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun toBase64(filePath: String): String{
         val bytes = File(filePath).readBytes()
@@ -940,5 +958,12 @@ class RegisterationActivity : BaseActivity(), OnMapReadyCallback {
 
 
 
-
+    private val locationCallback = Consumer<Location> { location ->
+        if (null != location) {
+            this.currentLocation=location
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+        }
+    }
 }

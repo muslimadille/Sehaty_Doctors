@@ -1,6 +1,7 @@
 package com.muslim_adel.enaya_doctor.modules.offers
 
 import android.Manifest
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
@@ -9,9 +10,14 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.muslim_adel.enaya_doctor.R
@@ -24,8 +30,6 @@ import com.muslim_adel.enaya_doctor.remote.objects.*
 import com.muslim_adel.enaya_doctor.utiles.IOUtile
 import com.muslim_adel.enaya_doctor.utiles.Q
 import com.muslim_adel.enaya_doctor.utiles.SpinnerAdapterCustomFont
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.*
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_lay
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.offer_price_txt
@@ -36,6 +40,8 @@ import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.sub_survices
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.title_ar_txt
 import kotlinx.android.synthetic.main.activity_new_doctor_add_offer.unit_spinner
 import kotlinx.android.synthetic.main.fragment_lab_profile_edit.*
+import kotlinx.android.synthetic.main.fragment_lab_profile_edit.edit_doc_profile_img
+import kotlinx.android.synthetic.main.fragment_registration2.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -418,14 +424,12 @@ class NewDoctorAddOfferActivity : BaseActivity() {
         TedPermission.with(this)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
-                    CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setCropShape(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) CropImageView.CropShape.RECTANGLE else CropImageView.CropShape.OVAL)
-                        .setAllowFlipping(false)
-                        .setAllowRotation(false)
-                        .setCropMenuCropButtonIcon(R.drawable.ic_add)
-                        .setAspectRatio(1, 1)
-                        .start(this@NewDoctorAddOfferActivity)
+                    ImagePicker.with(this@NewDoctorAddOfferActivity)
+                        .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                        .createIntent { intent ->
+                            startForProfileImageResult.launch(intent)
+                        }
                 }
 
                 override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
@@ -437,23 +441,26 @@ class NewDoctorAddOfferActivity : BaseActivity() {
             .setPermissions(Manifest.permission.CAMERA)
             .check()
     }
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            var result: CropImage.ActivityResult? = null
-            data?.let { result = CropImage.getActivityResult(data) }
-            if (resultCode == RESULT_OK) {
-                result?.let {
-                    selectedImage = File(result!!.uri!!.path!!)
-
-                    GlideObject.GlideProfilePic(this, selectedImage!!.path, doc_offer_img)
+    val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+            if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    result?.let {
+                        selectedImage = File(result.data!!.data!!.path!!)
+                        GlideObject.GlideProfilePic(this, selectedImage!!.path, doc_offer_img)
 //                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
+                    }
                 }
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                result!!.error!!.printStackTrace()
+
+
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-    }
     @RequiresApi(Build.VERSION_CODES.O)
     fun toBase64(filePath: String): String{
         val bytes = File(filePath).readBytes()

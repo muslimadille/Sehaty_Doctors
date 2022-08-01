@@ -71,7 +71,7 @@ class RegistrationFragment4 : Fragment() {
     fun validateInputData(){
         mContext!!.doctorRegistrationModel!!.price=edit_price_txt.text.toString()
         mContext!!.doctorRegistrationModel!!.num_of_day=edit_num_of_days_txt.text.toString()
-        mContext!!.doctorRegistrationModel!!.waiting_time=waitingTimeList[4]
+        mContext!!.doctorRegistrationModel!!.waiting_time="00:30:00"
 
     }
     fun checkValidation():Boolean{
@@ -82,7 +82,7 @@ class RegistrationFragment4 : Fragment() {
             vlaidationText=vlaidationText+"أدخل سعر الكشف"+"\n"
 
         }
-        if(this.edit_about_doc_en_txt.text.toString().isEmpty()){
+        if(this.edit_num_of_days_txt.text.toString().isEmpty()){
             value=false
             vlaidationText=vlaidationText+"أدخل عدد أيام العمل"+"\n"
 

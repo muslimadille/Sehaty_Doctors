@@ -2,4 +2,13 @@
 <resources>
     <string name="no_dates_available">لا يوجد مواعيد متاحة</string>
     <string name="edit_pharm_name">"تعديل اسم الصيدلية "</string>
+    <string name="lab_info_title">معلومات المختبر</string>
+    <string name="pharm_register_title">تسجيل-صيدلية</string>
+    <string name="conf_password">تأكيد رمز الدخول</string>
+    <string name="forget_pw">نسيت كلمة المرور</string>
+    <string name="work_info">معلومات مهنية</string>
+    <string name="address_info">معلومات العنوان</string>
+    <string name="pass_hint">كلمة المرور:*******</string>
+    <string name="position">الرتبة</string>
+
 </resources>

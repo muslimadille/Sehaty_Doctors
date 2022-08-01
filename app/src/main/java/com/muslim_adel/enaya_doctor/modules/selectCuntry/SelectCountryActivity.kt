@@ -95,6 +95,8 @@ class SelectCountryActivity : BaseActivity() {
                             Q.countriesList.clear()
                             Q.countriesList.addAll(myResponse.data!!)
                             Q.selectedCountry=Q.countriesList[0]
+                            preferences!!.putInteger("COUNTRY_ID",Q.selectedCountry.id!!)
+                            preferences!!.commit()
                             countriesSpinnerAdapter.notifyDataSetChanged()
                         } else {
                             onObservefaled()

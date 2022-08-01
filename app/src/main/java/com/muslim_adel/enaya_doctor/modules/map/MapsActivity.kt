@@ -1,16 +1,22 @@
 package com.muslim_adel.enaya_doctor.modules.map
 
+import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
@@ -30,8 +36,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import java.util.function.Consumer
 
-class MapsActivity : BaseActivity(), OnMapReadyCallback {
+class MapsActivity : BaseActivity(), OnMapReadyCallback, LocationListener {
     var name=""
     var lat="3.000"
     var lng="2.000"
@@ -52,6 +59,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var regionsSpinnerAdapter: SpinnerAdapterCustomFont
     private var selectedRegionId=0
+    private lateinit var locationCallback2: LocationCallback
+    lateinit  var locationManager: LocationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,65 +84,159 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
             }
               }
         fusedLocationProviderClient=LocationServices.getFusedLocationProviderClient(this)
-        fetchLocation()
+        locationCallback2 = object : LocationCallback() {
+            override fun onLocationResult(p0: LocationResult) {
+                if(p0.lastLocation!=null&&currentLocation==null){
+                    currentLocation=p0.lastLocation
+                    val mapFragment = supportFragmentManager
+                        .findFragmentById(R.id.map) as SupportMapFragment
+                    mapFragment.getMapAsync(this@MapsActivity)
+                    onObserveSuccess()
+                }
+            }
+        }
+        //fetchLocation()
         implementListeners()
         initSpinners()
         regonObserver()
         onHideMapClicked()
         onSelectLocationClicked()
     }
+    fun setAdrressData(){
 
-    private fun fetchLocation(){
-        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED
-            &&ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
-
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1000)
-            return
-        }
-        val task=fusedLocationProviderClient?.lastLocation
-        task?.addOnSuccessListener { location->
-            if(location!=null){
-                this.currentLocation=location
+        if(docProfileModel!=null){
+            edit_sn_en_txt.setText(docProfileModel!!.address_en)
+            edit_sn_txt.setText(docProfileModel!!.address_ar)
+            edit_lm_en_txt.setText(docProfileModel!!.landmark_en)
+            edit_lm_ar_txt.setText(docProfileModel!!.landmark_ar)
+            lat= docProfileModel!!.lat.toString()
+            lng=docProfileModel!!.lng.toString()
+            if(lat.isNotEmpty()&&lng.isNotEmpty()){
+                this.currentLocation= Location("")
+                this.currentLocation!!.latitude=lat.toDouble()
+                this.currentLocation!!.longitude=lng.toDouble()
                 val mapFragment = supportFragmentManager
                     .findFragmentById(R.id.map) as SupportMapFragment
                 mapFragment.getMapAsync(this)
+                onObserveSuccess()
+            }else{
+                fetchLocation()
             }
+        }
+        if(labProfileModel!=null){
+            edit_sn_en_txt.setText(labProfileModel!!.address_en)
+            edit_sn_txt.setText(labProfileModel!!.address_ar)
+            edit_lm_en_txt.setText(labProfileModel!!.landmark_en)
+            edit_lm_ar_txt.setText(labProfileModel!!.landmark_ar)
+            lat= labProfileModel!!.lat.toString()
+            lng=labProfileModel!!.lng.toString()
+            if(lat.isNotEmpty()&&lng.isNotEmpty()){
+                this.currentLocation= Location("")
+                this.currentLocation!!.latitude=lat.toDouble()
+                this.currentLocation!!.longitude=lng.toDouble()
+                val mapFragment = supportFragmentManager
+                    .findFragmentById(R.id.map) as SupportMapFragment
+                mapFragment.getMapAsync(this)
+                onObserveSuccess()
+            }else{
+                fetchLocation()
+            }
+            onObserveSuccess()
+        }
+        if(pharmProfileModel!=null){
+            edit_sn_en_txt.setText(pharmProfileModel!!.address_en)
+            edit_sn_txt.setText(pharmProfileModel!!.address_ar)
+            edit_lm_en_txt.setText(pharmProfileModel!!.landmark_en)
+            edit_lm_ar_txt.setText(pharmProfileModel!!.landmark_ar)
+            lat= pharmProfileModel!!.lat.toString()
+            lng=pharmProfileModel!!.lng.toString()
+            if(lat.isNotEmpty()&&lng.isNotEmpty()){
+                this.currentLocation= Location("")
+                this.currentLocation!!.latitude=lat.toDouble()
+                this.currentLocation!!.longitude=lng.toDouble()
+                val mapFragment = supportFragmentManager
+                    .findFragmentById(R.id.map) as SupportMapFragment
+                mapFragment.getMapAsync(this)
+                onObserveSuccess()
+            }else{
+                fetchLocation()
+            }
+
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when(requestCode){
-            1000->{if(grantResults.size!=0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                fetchLocation()
-            }}
+    var locationRequest: LocationRequest = LocationRequest()
+    private fun startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            return
         }
+        fusedLocationProviderClient!!.requestLocationUpdates(locationRequest,
+            locationCallback2,
+            Looper.getMainLooper())
     }
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdates()
+    }
+
+    private fun stopLocationUpdates() {
+        fusedLocationProviderClient!!.removeLocationUpdates(locationCallback2)
+    }
+
+    fun fetchLocation(){
+        onObserveStart()
+        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1000)
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION),1000)
+
+            return
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,100L,10f,this@MapsActivity)
+        } else {
+
+            startLocationUpdates()
+
+        }
+
+    }
+
+
 
 
 
     override fun onMapReady(googleMap: GoogleMap) {
+
+
         mMap = googleMap
 
         val lat_long=LatLng(currentLocation?.latitude!!,currentLocation?.longitude!!)
-        drawMarker(lat_long)
+            drawMarker(lat_long)
+
         mMap.setOnMarkerDragListener(object :GoogleMap.OnMarkerDragListener{
-            override fun onMarkerDragStart(p0: Marker?) {
+            override fun onMarkerDragStart(p0: Marker) {
             }
 
-            override fun onMarkerDrag(p0: Marker?) {
+            override fun onMarkerDrag(p0: Marker) {
             }
 
-            override fun onMarkerDragEnd(p0: Marker?) {
+            override fun onMarkerDragEnd(p0: Marker) {
 
                 if(currentMrker!=null){
                     currentMrker?.remove()
                     var newLatLng=LatLng(p0?.position!!.latitude,p0.position.longitude)
                     drawMarker(newLatLng)
-
 
                 }
             }
@@ -141,20 +244,14 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     }
     private fun drawMarker(lat_long:LatLng){
-       val markerOption= MarkerOptions().position(lat_long).snippet(getAddress(lat_long.latitude,lat_long.latitude)).draggable(true)
+       val markerOption= MarkerOptions().position(lat_long).draggable(true)
         mMap.animateCamera(CameraUpdateFactory.newLatLng(lat_long))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lat_long,15f))
         currentMrker=mMap.addMarker(markerOption)
         currentMrker?.showInfoWindow()
-        edit_location_txt.text=getAddress(lat_long.latitude,lat_long.longitude).toString()
         lat=lat_long.latitude.toString()
         lng=lat_long.longitude.toString()
 
-    }
-    private  fun getAddress(lat:Double,lng:Double):String{
-       val getCoder= Geocoder(this,Locale.getDefault())
-        val address=getCoder.getFromLocation(lat,lng,1)
-        return address[0].getAddressLine(0).toString()
     }
     private fun initSpinners(){
 
@@ -183,15 +280,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
     }
     private fun onObserveStart() {
         edite_add_progrss_lay?.visibility = View.VISIBLE
-        edit_address_lay?.visibility = View.GONE
     }
     private fun onObserveSuccess() {
         edite_add_progrss_lay?.visibility = View.GONE
-        edit_address_lay?.visibility = View.VISIBLE
     }
     private fun onObservefaled() {
-        edite_add_progrss_lay?.visibility = View.VISIBLE
-        edit_address_lay?.visibility = View.GONE
+        edite_add_progrss_lay?.visibility = View.GONE
         Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show()
     }
     private fun regonObserver(){
@@ -244,6 +338,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
                         if (response.body()!!.success) {
                             response.body()!!.data!!.let {
                                 docProfileModel=it
+                                setAdrressData()
                             }
                         } else {
                         }
@@ -273,6 +368,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
                         if (response.body()!!.success) {
                             response.body()!!.data!!.let {
                                 pharmProfileModel=it
+                                setAdrressData()
                             }
                         } else {
                         }
@@ -302,6 +398,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
                         if (response.body()!!.success) {
                             response.body()!!.data!!.let {
                                 labProfileModel=it
+                                setAdrressData()
+
                             }
                         } else {
                         }
@@ -339,9 +437,8 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
                     if (response!!.isSuccessful) {
                         if (response.body()!!.success) {
                             onObserveSuccess()
-                            response.body()!!.data!!.let {
-                                docProfileModel=it
-                            }
+                            finish()
+
                         } else {
 
                             onObservefaled()
@@ -381,9 +478,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
                     if (response!!.isSuccessful) {
                         if (response.body()!!.success) {
                             onObserveSuccess()
-                            response.body()!!.data!!.let {
-                                pharmProfileModel=it
-                            }
+                            finish()
                         } else {
 
                             onObservefaled()
@@ -423,9 +518,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
                     if (response!!.isSuccessful) {
                         if (response.body()!!.success) {
                             onObserveSuccess()
-                            response.body()!!.data!!.let {
-                                labProfileModel=it
-                            }
+                            finish()
                         } else {
 
                             onObservefaled()
@@ -449,6 +542,17 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
     private fun onSelectLocationClicked(){
         select_location_btn.setOnClickListener {
             map_lay.visibility=View.VISIBLE
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    override fun onLocationChanged(p0: Location) {
+        if (null != p0&&currentLocation==null) {
+            this.currentLocation=p0
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+            onObserveSuccess()
         }
     }
 }

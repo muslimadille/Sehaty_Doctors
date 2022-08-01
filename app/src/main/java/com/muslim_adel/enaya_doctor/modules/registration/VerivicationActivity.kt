@@ -60,6 +60,11 @@ class VerivicationActivity : BaseActivity() {
                         val loginResponse = response.body()
                         if (loginResponse!!.success) {
                             onObserveSuccess()
+                            Toast.makeText(
+                                this@VerivicationActivity,
+                                "تم إرسال الكود",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } else {
                             onObservefaled()
                             Toast.makeText(

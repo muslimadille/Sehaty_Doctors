@@ -165,6 +165,41 @@
                             </com.google.android.material.textfield.TextInputLayout>
 
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/conf_password_input_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:backgroundTint="@color/white"
+                                app:passwordToggleEnabled="true"
+                                app:startIconDrawable="@drawable/password_ic"
+                                app:startIconTint="@color/colorPrimary"
+                                app:passwordToggleTint="@color/colorPrimary"
+                                >
+
+                                <EditText
+                                    android:id="@+id/conf_password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:backgroundTint="@color/white"
+                                    android:ems="10"
+                                    android:hint="@string/conf_password"
+                                    android:inputType="textPassword"
+                                    android:textSize="12sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
 
 
                     </LinearLayout>

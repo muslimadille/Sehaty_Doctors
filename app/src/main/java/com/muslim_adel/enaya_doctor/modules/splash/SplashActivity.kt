@@ -1,9 +1,13 @@
 package com.muslim_adel.enaya_doctor.modules.splash
 
+import android.content.Context
 import android.content.Intent
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -32,6 +36,8 @@ class SplashActivity : BaseActivity() {
     private lateinit var apiClient: ApiClient
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -46,6 +52,9 @@ class SplashActivity : BaseActivity() {
 
 
     }
+
+
+
     fun getCountries(){
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
@@ -115,7 +124,7 @@ class SplashActivity : BaseActivity() {
 
 
     private fun setLocalization(){
-        val language = preferences!!.getString("language", "en")
+        val language = preferences!!.getString("language", "Arabic")
         if (language =="Arabic") {
             change="ar"
             Q.CURRENT_LANG="ar"

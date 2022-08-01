@@ -48,6 +48,11 @@ class AllRecervationsAdapter(
         if(reservation.status_id==2){
             holder.didnot_come_btn.setBackgroundColor(mContext.getColor(R.color.red))
         }
+        if(reservation.offer_id==0){
+            holder.appointment_item_patient_type.text=mContext.getString(R.string.examination)
+        }else{
+            holder.appointment_item_patient_type.text=mContext.getString(R.string.offer)
+        }
         holder.go_to_clinic_btn.setOnClickListener {
             if(reservation.status_id!=2){
                 mContext.changeReservationState(1,reservation.id)
@@ -94,6 +99,7 @@ class AllRecervationsAdapter(
         val reservation_item_lay: CardView = view.reservation_item_lay
         val go_to_clinic_btn: LinearLayout = view.go_to_clinic_btn
         val didnot_come_btn: LinearLayout = view.didnot_come_btn
+        val appointment_item_patient_type:TextView=view.appointment_item_patient_type
 
 
     }

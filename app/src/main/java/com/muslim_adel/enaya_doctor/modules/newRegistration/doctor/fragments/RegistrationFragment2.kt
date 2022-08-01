@@ -5,18 +5,18 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.muslim_adel.enaya_doctor.modules.newRegistration.doctor.DoctorRegistrationScreen
 import com.muslim_adel.enaya_doctor.R
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_registration2.*
 import kotlinx.android.synthetic.main.fragment_registration2.edit_doc_profile_img
 import kotlinx.android.synthetic.main.fragment_registration2.edit_practiceLicenseIDImage_img
@@ -37,6 +37,7 @@ class RegistrationFragment2 : Fragment() {
     var is_profissionalTitleID_clecked=false
     var is_profile_img_clecked=false
     var vlaidationText=""
+    var viewe: IBinder? =null
 
 
 
@@ -53,6 +54,7 @@ class RegistrationFragment2 : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewe=this.requireView().rootView.windowToken
         handelRdioStates()
         onpracticeLicenseIDImageClicked()
         onSelectIMageClicked()
@@ -97,6 +99,7 @@ class RegistrationFragment2 : Fragment() {
         mContext!!.doctorRegistrationModel!!.profissionalTitleID=img3
     }
     private fun onSelectIMageClicked(){
+
         edit_doc_profile_img.setOnClickListener {
             is_profile_img_clecked=true
             is_practiceLicenseID_clecked=false
@@ -127,14 +130,12 @@ class RegistrationFragment2 : Fragment() {
         TedPermission.with(mContext!!)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
-                    CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setCropShape(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) CropImageView.CropShape.RECTANGLE else CropImageView.CropShape.OVAL)
-                        .setAllowFlipping(false)
-                        .setAllowRotation(false)
-                        .setCropMenuCropButtonIcon(R.drawable.ic_add)
-                        .setAspectRatio(1, 1)
-                        .start(mContext!!)
+                    ImagePicker.with(mContext!!)
+                        .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                        .createIntent { intent ->
+                            mContext!!.startForProfileImageResult.launch(intent)
+                        }
                 }
 
                 override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {

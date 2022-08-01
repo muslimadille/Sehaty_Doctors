@@ -1,15 +1,20 @@
 package com.muslim_adel.enaya_doctor.modules.registration
 
+import android.content.Context
 import android.content.Intent
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.muslim_adel.enaya_doctor.modules.newRegistration.doctor.DoctorRegistrationScreen
 import com.muslim_adel.enaya_doctor.modules.newRegistration.labs.LabRegisterationActivity
 import com.muslim_adel.enaya_doctor.modules.home.MainActivity
 import com.muslim_adel.enaya_doctor.R
 import com.muslim_adel.enaya_doctor.modules.base.BaseActivity
+import com.muslim_adel.enaya_doctor.modules.newRegistration.pharmacies.PharmRegisterationActivity
 import com.muslim_adel.enaya_doctor.remote.apiServices.ApiClient
 import com.muslim_adel.enaya_doctor.remote.apiServices.SessionManager
 import com.muslim_adel.enaya_doctor.remote.objects.LaboratoryLoginResponce
@@ -26,6 +31,12 @@ class LoginActivity : BaseActivity() {
     private var key=0
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
+    private var isGPSopened:Boolean=false
+
+    private lateinit var context: Context
+    var intent1: Intent? = null
+    private lateinit var locationManager: LocationManager
+    var gpsStatus = false
     override fun onCreate(savedInstanceState: Bundle?) {
         key=intent.getIntExtra("key",0)
 
@@ -33,6 +44,42 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
         onregisterclicked()
         onloginclicked()
+        onForgetPWclicked()
+        context = applicationContext
+    }
+    private fun checkGpsStatus() {
+        locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        gpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        if (gpsStatus) {
+            when(key){
+                1->{
+                    val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
+                    intent.putExtra("key",1)
+                    startActivity(intent)
+                    /*val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
+                    startActivity(intent)*/
+                }
+                2->{
+                    val intent = Intent(this@LoginActivity, LabRegisterationActivity::class.java)
+                    intent.putExtra("key",2)
+                    startActivity(intent)
+                    /* val intent = Intent(this@LoginActivity, LabRegistrationActivity::class.java)
+                     startActivity(intent)*/
+                }
+                3->{
+                    val intent = Intent(this@LoginActivity, PharmRegisterationActivity::class.java)
+                    intent.putExtra("key",3)
+                    startActivity(intent)
+                    /*val intent = Intent(this@LoginActivity, PharmRegistrationActivity::class.java)
+                    startActivity(intent)*/
+                }
+            }
+        } else {
+            Toast.makeText(this,"الرجاء تفعيل تحديد الموقع للمتابعة", Toast.LENGTH_LONG).show()
+            intent1 = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent1)
+        }
+
     }
 
     private fun onObserveStart() {
@@ -45,6 +92,35 @@ class LoginActivity : BaseActivity() {
 
     private fun onObservefaled() {
         login_progrss_lay.visibility = View.GONE
+    }
+    private fun onForgetPWclicked(){
+        forget_pw_btn.setOnClickListener {
+
+
+                when(key){
+                    1->{
+                        val intent =
+                            Intent(this@LoginActivity, AddPhoneActivity::class.java)
+                        intent.putExtra("type","doctor")
+                        startActivity(intent)
+                    }
+                    2->{
+                        val intent =
+                            Intent(this@LoginActivity, AddPhoneActivity::class.java)
+                        intent.putExtra("type","laboratory")
+                        startActivity(intent)
+                    }
+                    3->{
+                        val intent =
+                            Intent(this@LoginActivity, AddPhoneActivity::class.java)
+                        intent.putExtra("type","pharmacy")
+
+                        startActivity(intent)
+                    }
+                }
+
+        }
+
     }
     private fun onloginclicked(){
         Login_btn.setOnClickListener {
@@ -64,30 +140,8 @@ class LoginActivity : BaseActivity() {
 
         registration_btn.setOnClickListener {
 
+            checkGpsStatus()
 
-            when(key){
-                1->{
-                    val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
-                    intent.putExtra("key",1)
-                    startActivity(intent)
-                    /*val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
-                    startActivity(intent)*/
-                }
-                2->{
-                    val intent = Intent(this@LoginActivity, LabRegisterationActivity::class.java)
-                    intent.putExtra("key",2)
-                    startActivity(intent)
-                   /* val intent = Intent(this@LoginActivity, LabRegistrationActivity::class.java)
-                    startActivity(intent)*/
-                }
-                3->{
-                    val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
-                    intent.putExtra("key",3)
-                    startActivity(intent)
-                    /*val intent = Intent(this@LoginActivity, PharmRegistrationActivity::class.java)
-                    startActivity(intent)*/
-                }
-            }
 
 
         }
@@ -97,10 +151,7 @@ class LoginActivity : BaseActivity() {
             onObserveStart()
             apiClient = ApiClient()
             sessionManager = SessionManager(this)
-            Log.d("APIS","${
-                apiClient.getApiService(this)
-                    .login("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString()).request()
-            }")
+
             apiClient.getApiService(this)
                 .login("${Q.selectedCountry.phoneCode}"+username.text.toString(), login_password.text.toString())
                 .enqueue(object : Callback<LoginResponce> {
@@ -145,14 +196,24 @@ class LoginActivity : BaseActivity() {
                                 finish()
                             }
                         } else {
-                            onObservefaled()
-                            username.text.clear()
-                            login_password.text.clear()
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "كلمة المرور او البريد الالكتروني غير صحيح ",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if(loginResponse.message.toString().contains("not verified")){
+                                val intent =
+                                    Intent(this@LoginActivity, VerivicationActivity::class.java)
+                                intent.putExtra("phone",Q.PHONE_KEY.replace("+","")+username.text)
+                                intent.putExtra("type","doctor")
+                                startActivity(intent)
+                                finish()
+                            }
+                            else{
+                                onObservefaled()
+                                username.text.clear()
+                                login_password.text.clear()
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "كلمة المرور او البريد الالكتروني غير صحيح ",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
 
                     }
@@ -209,14 +270,24 @@ class LoginActivity : BaseActivity() {
                                 finish()
                             }
                         } else {
-                            onObservefaled()
-                            username.text.clear()
-                            login_password.text.clear()
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "كلمة المرور او البريد الالكتروني غير صحيح ",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if(loginResponse.message.toString().contains("not verified")){
+                                val intent =
+                                    Intent(this@LoginActivity, VerivicationActivity::class.java)
+                                intent.putExtra("phone",Q.PHONE_KEY.replace("+","")+username.text)
+                                intent.putExtra("type","laboratory")
+                                startActivity(intent)
+                                finish()
+                            }else{
+                                onObservefaled()
+                                username.text.clear()
+                                login_password.text.clear()
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "كلمة المرور او البريد الالكتروني غير صحيح ",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
                         }
 
                     }
@@ -270,14 +341,24 @@ class LoginActivity : BaseActivity() {
                                 finish()
                             }
                         } else {
-                            onObservefaled()
-                            username.text.clear()
-                            login_password.text.clear()
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "كلمة المرور او البريد الالكتروني غير صحيح ",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if(loginResponse.message.toString().contains("not verified")){
+                                val intent =
+                                    Intent(this@LoginActivity, VerivicationActivity::class.java)
+                                intent.putExtra("phone",Q.PHONE_KEY.replace("+","")+username.text)
+                                intent.putExtra("type","pharmacy")
+                                startActivity(intent)
+                                finish()
+                            }else{
+                                onObservefaled()
+                                username.text.clear()
+                                login_password.text.clear()
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "كلمة المرور او البريد الالكتروني غير صحيح ",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
                         }
 
                     }

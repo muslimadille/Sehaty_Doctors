@@ -10,6 +10,7 @@ object Q {
     const val LOGIN_API = "doctor/login"
     const val PARMACY_LOGIN_API = "pharmacy/login"
     const val LAB_LOGIN_API = "laboratory/login"
+    const val GET_CODE="password/create"
 
     const val REGISTER_API = "register"
     const val SPECIALTY_LIST_API = "specialties"

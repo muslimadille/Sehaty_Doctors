@@ -314,9 +314,9 @@ class AllReservationsActivity : BaseActivity() {
                             if (response.body()!!.success) {
                                 onObserveSuccess()
                                 filteredReservationsList.forEach {
-                                    if(it.id==id){
+                                    /*if(it.id==id){
                                         it.status_id=3
-                                    }
+                                    }*/
                                     allRecervationsAddapter!!.notifyDataSetChanged()
                                 }
                             } else {
@@ -356,9 +356,9 @@ class AllReservationsActivity : BaseActivity() {
                         if (response.body()!!.success) {
                             onObserveSuccess()
                             filteredReservationsList.forEach {
-                                if(it.id==id){
+                                /*if(it.id==id){
                                     it.status_id=3
-                                }
+                                }*/
                                 allRecervationsAddapter!!.notifyDataSetChanged()
                             }
                         } else {

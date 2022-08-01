@@ -72,7 +72,7 @@ class EditLocationActivity : BaseActivity(), OnMapReadyCallback, PermissionListe
             givePermission()
         }
     }
-    override fun onMapReady(map: GoogleMap?) {
+    override fun onMapReady(map: GoogleMap) {
         googleMap = map?: return
         if (isPermissionGiven()){
             if (ActivityCompat.checkSelfPermission(
@@ -95,17 +95,17 @@ class EditLocationActivity : BaseActivity(), OnMapReadyCallback, PermissionListe
         }
         googleMap.setOnMarkerDragListener(this)
     }
-    override fun onMarkerDragEnd(p0: Marker?) {
+    override fun onMarkerDragEnd(p0: Marker) {
         if (p0 == startMarker){
             setStartLocation(p0.position.latitude, p0.position.longitude, "")
         } else if (p0 == finishMarker){
             setFinishLocation(p0.position.latitude, p0.position.longitude, "")
         }
     }
-    override fun onMarkerDragStart(p0: Marker?) {
+    override fun onMarkerDragStart(p0: Marker) {
         Toast.makeText(this, "Changing location", Toast.LENGTH_SHORT).show()
     }
-    override fun onMarkerDrag(p0: Marker?) {}
+    override fun onMarkerDrag(p0: Marker) {}
     private fun isPermissionGiven(): Boolean{
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
@@ -158,7 +158,7 @@ class EditLocationActivity : BaseActivity(), OnMapReadyCallback, PermissionListe
         result.addOnCompleteListener { task ->
             try {
                 val response = task.getResult(ApiException::class.java)
-                if (response!!.locationSettingsStates.isLocationPresent){
+                if (response!!.locationSettingsStates!!.isLocationPresent){
                     getLastLocation()
                 }
             } catch (exception: ApiException) {
@@ -230,7 +230,7 @@ class EditLocationActivity : BaseActivity(), OnMapReadyCallback, PermissionListe
                 .title("Start Location")
                 .snippet("Near $address")
                 .draggable(true)
-        )
+        )!!
         val cameraPosition = CameraPosition.Builder()
             .target(LatLng(lat, lng))
             .zoom(17f)
@@ -266,7 +266,7 @@ class EditLocationActivity : BaseActivity(), OnMapReadyCallback, PermissionListe
                 .title("Finish Location")
                 .snippet("Near $address")
                 .draggable(true)
-        )
+        )!!
         val cameraPosition = CameraPosition.Builder()
             .target(LatLng(lat, lng))
             .zoom(17f)
@@ -356,4 +356,6 @@ class EditLocationActivity : BaseActivity(), OnMapReadyCallback, PermissionListe
         marker.draw(canvas)
         return bitmap
     }
+
+
 }

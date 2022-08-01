@@ -2,6 +2,7 @@ package com.muslim_adel.enaya_doctor.remote.apiServices
 import android.content.Context
 import android.content.SharedPreferences
 import com.muslim_adel.enaya_doctor.R
+import com.muslim_adel.enaya_doctor.utiles.Q
 
 class SessionManager (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
@@ -17,7 +18,7 @@ class SessionManager (context: Context) {
     fun saveAuthToken(token: String,countryId:Int) {
         val editor = prefs.edit()
         editor.putString(USER_TOKEN, token)
-        editor.putInt(COUNTRY_ID,countryId)
+        editor.putInt(COUNTRY_ID, Q.selectedCountry.id!!)
         editor.apply()
     }
 

@@ -6,8 +6,8 @@ data class LoginResponce (
     @SerializedName("success")
     var success: Boolean,
 
-    //@SerializedName("message")
-    //var message: Message,
+    @SerializedName("message")
+    var message: Any,
 
     @SerializedName("data")
     var data: LoginData

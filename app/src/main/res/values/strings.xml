@@ -309,6 +309,18 @@
     <string name="lab_register_title">Labs-Register</string>
     <string name="contenu_register">continue</string>
     <string name="no_dates_available">No appointments available</string>
-    <string name="edit_pharm_name">"تعديل اسم الصيدلية "</string>
+    <string name="edit_pharm_name">"Edit pharmacy name "</string>
+    <string name="lab_info_title">Lab info</string>
+    <string name="pharm_register_title">Pharmacy-register</string>
+    <string name="offer">Offer</string>
+    <string name="conf_password">Confirm password</string>
+    <string name="forget_pw">forget password</string>
+    <string name="repass">Password Reset</string>
+    <string name="work_info">Work information</string>
+    <string name="address_info">Address Information</string>
+    <string name="pass_hint">password:*********</string>
+    <string name="position">professional title</string>
+
+
 
 </resources>

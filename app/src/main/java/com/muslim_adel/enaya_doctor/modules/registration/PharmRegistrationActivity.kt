@@ -1,10 +1,12 @@
 package com.muslim_adel.enaya_doctor.modules.registration
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -39,6 +41,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.util.*
+import java.util.function.Consumer
 import kotlin.collections.ArrayList
 
 class PharmRegistrationActivity : BaseActivity() , OnMapReadyCallback {
@@ -94,22 +97,31 @@ class PharmRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         handelShiftClick()
     }
     //LOCATION
-    private fun fetchLocation(){
+    fun fetchLocation(){
         if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
             && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1000)
+
             return
         }
-        val task=fusedLocationProviderClient?.lastLocation
-        task?.addOnSuccessListener { location->
-            if(location!=null){
-                this.currentLocation=location
-                val mapFragment = supportFragmentManager
-                    .findFragmentById(R.id.map) as SupportMapFragment
-                mapFragment.getMapAsync(this)
+
+        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, this.mainExecutor, locationCallback)
+
+        } else {
+
+            val task=fusedLocationProviderClient?.lastLocation
+            task?.addOnSuccessListener { location->
+                if(location!=null){
+                    this.currentLocation=location
+                    val mapFragment = supportFragmentManager
+                        .findFragmentById(R.id.pharm_reg_map_frag) as SupportMapFragment
+                    mapFragment.getMapAsync(this)
+                }
             }
         }
+
     }
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -128,13 +140,13 @@ class PharmRegistrationActivity : BaseActivity() , OnMapReadyCallback {
         val lat_long= LatLng(currentLocation?.latitude!!,currentLocation?.longitude!!)
         drawMarker(lat_long)
         mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener{
-            override fun onMarkerDragStart(p0: Marker?) {
+            override fun onMarkerDragStart(p0: Marker) {
             }
 
-            override fun onMarkerDrag(p0: Marker?) {
+            override fun onMarkerDrag(p0: Marker) {
             }
 
-            override fun onMarkerDragEnd(p0: Marker?) {
+            override fun onMarkerDragEnd(p0: Marker) {
 
                 if(currentMrker!=null){
                     currentMrker?.remove()
@@ -540,7 +552,14 @@ private fun handelShiftClick(){
         }
     }
 }
-
+    private val locationCallback = Consumer<Location> { location ->
+        if (null != location) {
+            this.currentLocation=location
+            val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.pharm_reg_map_frag) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+        }
+    }
 
 
 }

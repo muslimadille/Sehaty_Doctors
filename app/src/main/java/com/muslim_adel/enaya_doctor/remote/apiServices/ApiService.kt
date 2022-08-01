@@ -57,7 +57,10 @@ interface ApiService {
         @Query("email") email: String,
         @Query("password") password: String
     ): Call<LaboratoryLoginResponce>
-
+    @POST(Q.GET_CODE)
+    @FormUrlEncoded
+    fun createCode(@Field("phonenumber") phonenumber:String,
+                   @Field("user_type") user_type:String): Call<BaseResponce<CreateCodeModel>>
     @POST(Q.PARMACY_LOGIN_API)
     fun pharmLogin(
         @Query("email") email: String,
@@ -521,7 +524,14 @@ interface ApiService {
         @Field("landmark_ar")landmark_ar: String,
         @Field("lng")lng: String,
         @Field("lat")lat: String,
-    ): Call<LaboratoryLoginResponce>
+        @Field("buildingNum_en")buildingNum_en: String,
+        @Field("buildingNum_ar")buildingNum_ar: String,
+        @Field("role")role: String,
+        @Field("apartmentNum_en")apartmentNum_en: String,
+        @Field("apartmentNum_ar")apartmentNum_ar: String,
+
+
+        ): Call<LaboratoryLoginResponce>
 
     @POST(Q.SEND_CODE_API)
     @FormUrlEncoded

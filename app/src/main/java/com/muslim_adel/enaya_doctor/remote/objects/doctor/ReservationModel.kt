@@ -19,6 +19,10 @@ data class ReservationModel (
     var booking_date: String,
     @SerializedName("status_id")
     var status_id: Int,
+    @SerializedName("offer_id")
+    var offer_id:Int,
+    @SerializedName("by_doctor")
+    var by_doctor:Int,
     var date: String,
     var time: String
 )
