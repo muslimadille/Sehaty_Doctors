@@ -318,8 +318,11 @@
     <string name="address_info">معلومات العنوان</string>
     <string name="pass_hint">كلمة المرور:*******</string>
     <string name="position">الرتبة</string>
-
-
+    <string name="lab_services">خدمات المختبر</string>
+    <string name="edit_lab_services">تعديل خدمات المختبر</string>
+    <string name="add_service_name">اسم الخدمة</string>
+    <string name="add_service_name_ar">اسم الخدمة(عربي)</string>
+    <string name="add_service_name_en">اسم الخدمة (EN)</string>
 
 
 </resources>

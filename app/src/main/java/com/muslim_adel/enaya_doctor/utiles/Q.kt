@@ -116,6 +116,8 @@ object Q {
     const val VERIFICATION_API = "send-message"
     const val CONTACT_US = "sendemail/contactus"
     const val CONTACT_US_Data = "admin/contactUs"
+    const val ADD_LAB_SERVICES = "laboratory/dashboard/laboratory-services/update"
+
 
 
 

@@ -10,5 +10,10 @@
     <string name="address_info">معلومات العنوان</string>
     <string name="pass_hint">كلمة المرور:*******</string>
     <string name="position">الرتبة</string>
+    <string name="lab_services">Lab Services</string>
+    <string name="edit_lab_services">edit lab services</string>
+    <string name="add_service_name">add service name</string>
+    <string name="add_service_name_ar">add service name arabic</string>
+    <string name="add_service_name_en">add service name english</string>
 
 </resources>

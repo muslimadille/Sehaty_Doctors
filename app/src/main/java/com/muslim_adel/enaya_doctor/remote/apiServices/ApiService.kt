@@ -1,14 +1,13 @@
 package com.muslim_adel.enaya_doctor.remote.apiServices
 
 import com.muslim_adel.enaya_doctor.modules.settings.ContactUsModel
-import com.muslim_adel.enaya_doctor.remote.objects.CountryModel
-import com.muslim_adel.enaya_doctor.remote.objects.Verification
-import com.muslim_adel.enaya_doctor.remote.objects.VisitorsNumber
 import com.muslim_adel.enaya_doctor.remote.objects.*
 import com.muslim_adel.enaya_doctor.remote.objects.doctor.*
 import com.muslim_adel.enaya_doctor.utiles.Q
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
+
 
 interface ApiService {
     @GET(Q.COUNTRIES_API)
@@ -563,5 +562,12 @@ interface ApiService {
 
     @GET(Q.CONTACT_US_Data)
     fun contactUsData(): Call<BaseResponce<List<ContactUsModel>>>
+
+    @FormUrlEncoded
+    @POST(Q.ADD_LAB_SERVICES)
+    fun updateLabServices(
+        @Field("services_en[]") servicesEn: ArrayList<String?>,
+        @Field("services_ar[]") servicesAr: ArrayList<String?>,
+    ):Call<BaseResponce<Any>>
 
 }

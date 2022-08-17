@@ -121,7 +121,7 @@ class EditLocationActivity : BaseActivity(), OnMapReadyCallback, PermissionListe
         } else {
             Toast.makeText(this, "تحميل", Toast.LENGTH_LONG).show()
             if (!Places.isInitialized()) {
-                Places.initialize(applicationContext, "AIzaSyB_ZCzinW1sOwy9o_suPaIFwi9T9A_BTAY")
+                Places.initialize(applicationContext, "AIzaSyCSEmtUuIRNkSC3KTlikmboaQCTnUhw7s4")
             }
             val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
             val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(

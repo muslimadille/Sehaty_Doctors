@@ -39,6 +39,7 @@
 
     <queries>
         <package android:name="com.google.android.apps.maps" />
+
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
@@ -47,15 +48,15 @@
         </intent>
         <intent>
             <action android:name="android.intent.action.PICK" />
-            <data android:mimeType="image/*" />
 
+            <data android:mimeType="image/*" />
         </intent>
         <intent>
             <action android:name="android.intent.action.GET_CONTENT" />
+
             <data android:mimeType="image/*" />
         </intent>
     </queries>
-
 
     <application
         android:name=".modules.base.App"
@@ -66,6 +67,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".modules.profile.labs.editLabServices.EditLabServicesActivity"
+            android:exported="false" />
         <activity
             android:name=".modules.registration.AddPhoneActivity"
             android:exported="false" />
@@ -84,16 +88,15 @@
         <activity
             android:name=".modules.newRegistration.doctor.DoctorRegistrationScreen"
             android:exported="false"
-            android:windowSoftInputMode="stateHidden"
-            />
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".modules.splash.NoActivity" />
         <activity android:name=".modules.registration.VerivicationActivity" />
-        <activity android:name=".modules.registration.PharmRegistrationActivity"
-            android:windowSoftInputMode="stateHidden"
-            />
-        <activity android:name=".modules.registration.LabRegistrationActivity"
-            android:windowSoftInputMode="stateHidden"
-            />
+        <activity
+            android:name=".modules.registration.PharmRegistrationActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".modules.registration.LabRegistrationActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".modules.profile.edit_password.EditPasswordActivity" />
         <activity android:name=".modules.home.schedual.EditVaciationsActivity" />
         <!--
@@ -106,17 +109,14 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCTrKEYAfgINHcpE0UovBPymUYP3CziP2o" />
+            android:value="AIzaSyCSEmtUuIRNkSC3KTlikmboaQCTnUhw7s4" />
 
         <activity
             android:name=".modules.map.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".modules.map.EditLocationActivity" />
         <activity android:name=".modules.offers.NewDoctorAddOfferActivity" />
-        <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Base.Theme.AppCompat" />
+
         <activity android:name=".modules.home.schedual.AllReservationsActivity" />
         <activity android:name=".modules.home.schedual.EditWorkingDaysActivity" />
         <activity android:name=".modules.profile.doctor.ClinicAddressInfoActivity" />
@@ -142,10 +142,12 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".modules.home.MainActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.muslim_adel.enaya_doctor.provider"

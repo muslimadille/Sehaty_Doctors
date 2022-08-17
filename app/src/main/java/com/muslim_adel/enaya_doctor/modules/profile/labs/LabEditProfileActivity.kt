@@ -20,6 +20,7 @@ import com.muslim_adel.enaya_doctor.R
 import com.muslim_adel.enaya_doctor.modules.base.BaseActivity
 import com.muslim_adel.enaya_doctor.modules.base.GlideObject
 import com.muslim_adel.enaya_doctor.modules.map.MapsActivity
+import com.muslim_adel.enaya_doctor.modules.profile.labs.editLabServices.EditLabServicesActivity
 import com.muslim_adel.enaya_doctor.remote.apiServices.ApiClient
 import com.muslim_adel.enaya_doctor.remote.apiServices.SessionManager
 import com.muslim_adel.enaya_doctor.remote.objects.BaseResponce
@@ -63,6 +64,7 @@ class LabEditProfileActivity : BaseActivity() {
         onEditAddressClicked()
         onSaveClicked()
         onEditPasswordClicked()
+        onEditServicesClicked()
     }
 
     private fun onSelectIMageClicked(){
@@ -249,6 +251,13 @@ class LabEditProfileActivity : BaseActivity() {
     private fun onEditPasswordClicked(){
         edit_password_btn.setOnClickListener {
             intent= Intent(this, EditPasswordActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    private fun onEditServicesClicked(){
+        edit_lab_services_btn.setOnClickListener {
+            intent= Intent(this, EditLabServicesActivity::class.java)
+            intent.putExtra("labId",doctorProfileModel!!.id)
             startActivity(intent)
         }
     }
