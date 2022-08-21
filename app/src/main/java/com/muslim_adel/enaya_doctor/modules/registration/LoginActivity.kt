@@ -15,6 +15,7 @@ import com.muslim_adel.enaya_doctor.modules.home.MainActivity
 import com.muslim_adel.enaya_doctor.R
 import com.muslim_adel.enaya_doctor.modules.base.BaseActivity
 import com.muslim_adel.enaya_doctor.modules.newRegistration.pharmacies.PharmRegisterationActivity
+import com.muslim_adel.enaya_doctor.modules.webView.WebViewActivity
 import com.muslim_adel.enaya_doctor.remote.apiServices.ApiClient
 import com.muslim_adel.enaya_doctor.remote.apiServices.SessionManager
 import com.muslim_adel.enaya_doctor.remote.objects.LaboratoryLoginResponce
@@ -53,22 +54,22 @@ class LoginActivity : BaseActivity() {
         if (gpsStatus) {
             when(key){
                 1->{
-                    val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
-                    intent.putExtra("key",1)
+                    val intent = Intent(this@LoginActivity, WebViewActivity::class.java)
+                    intent.putExtra("key",0)
                     startActivity(intent)
                     /*val intent = Intent(this@LoginActivity, DoctorRegistrationScreen::class.java)
                     startActivity(intent)*/
                 }
                 2->{
-                    val intent = Intent(this@LoginActivity, LabRegisterationActivity::class.java)
-                    intent.putExtra("key",2)
+                    val intent = Intent(this@LoginActivity, WebViewActivity::class.java)
+                    intent.putExtra("key",1)
                     startActivity(intent)
                     /* val intent = Intent(this@LoginActivity, LabRegistrationActivity::class.java)
                      startActivity(intent)*/
                 }
                 3->{
-                    val intent = Intent(this@LoginActivity, PharmRegisterationActivity::class.java)
-                    intent.putExtra("key",3)
+                    val intent = Intent(this@LoginActivity, WebViewActivity::class.java)
+                    intent.putExtra("key",2)
                     startActivity(intent)
                     /*val intent = Intent(this@LoginActivity, PharmRegistrationActivity::class.java)
                     startActivity(intent)*/

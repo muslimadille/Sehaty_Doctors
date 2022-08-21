@@ -68,6 +68,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".modules.webView.WebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".modules.profile.labs.editLabServices.EditLabServicesActivity"
             android:exported="false" />
         <activity
@@ -116,7 +119,6 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".modules.map.EditLocationActivity" />
         <activity android:name=".modules.offers.NewDoctorAddOfferActivity" />
-
         <activity android:name=".modules.home.schedual.AllReservationsActivity" />
         <activity android:name=".modules.home.schedual.EditWorkingDaysActivity" />
         <activity android:name=".modules.profile.doctor.ClinicAddressInfoActivity" />
