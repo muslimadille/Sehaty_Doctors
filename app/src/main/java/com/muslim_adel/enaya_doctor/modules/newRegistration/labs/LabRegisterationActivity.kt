@@ -318,7 +318,7 @@ class LabRegisterationActivity : BaseActivity(), OnMapReadyCallback , LocationLi
                     if (loginResponse!!.success) {
                         onObserveSuccess()
                         if (loginResponse?.data!!.status == 200 && loginResponse!!.data!!.user != null) {
-                            sessionManager.saveAuthToken(loginResponse!!.data!!.token,loginResponse!!.data!!.user!!.country_id!!)
+                           /* sessionManager.saveAuthToken(loginResponse!!.data!!.token,loginResponse!!.data!!.user!!.country_id!!)
                             preferences!!.putString("tok",loginResponse!!.data!!.token.toString())
                             preferences!!.putInteger("COUNTRY_ID",loginResponse!!.data!!.user!!.country_id!!)
                             preferences!!.putBoolean(Q.IS_FIRST_TIME, false)
@@ -330,7 +330,7 @@ class LabRegisterationActivity : BaseActivity(), OnMapReadyCallback , LocationLi
                             )
 
                             preferences!!.commit()
-                            onObserveSuccess()
+                           */ onObserveSuccess()
                             val intent =
                                 Intent(this@LabRegisterationActivity, VerivicationActivity::class.java)
                             intent.putExtra("phone",loginResponse!!.data!!.user.phonenumber.toString())

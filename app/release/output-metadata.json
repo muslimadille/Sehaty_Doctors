@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.muslim_adel.enaya_doctor",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 11,
+      "versionName": "11",
+      "enabled": true,
+      "outputFile": "app-release.apk"
+    }
+  ]
+}

@@ -11,8 +11,8 @@ android {
         applicationId "com.muslim_adel.enaya_doctor"
         minSdkVersion 19
         targetSdkVersion 32
-        versionCode 9
-        versionName "9"
+        versionCode 11
+        versionName "11"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
