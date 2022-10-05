@@ -1,12 +1,17 @@
 package com.muslim_adel.enaya_doctor.modules.offers
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import com.muslim_adel.enaya_doctor.R
@@ -130,18 +135,37 @@ class AddNewOfferActivity : BaseActivity() {
            selectImage()
        }
    }
+
+    val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+            if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    result?.let {
+                        selectedImage = File(result!!.data!!.data!!.path!!)
+                        GlideObject.GlideProfilePic(this, selectedImage!!.path, offer_img)
+//                    Picasso.get().load(selectedImage!!)
+                    }
+                }
+
+
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
+        }
     fun selectImage() {
         TedPermission.with(this)
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
-                    CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setCropShape(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) CropImageView.CropShape.RECTANGLE else CropImageView.CropShape.OVAL)
-                        .setAllowFlipping(false)
-                        .setAllowRotation(false)
-                        .setCropMenuCropButtonIcon(R.drawable.ic_add)
-                        .setAspectRatio(1, 1)
-                        .start(this@AddNewOfferActivity)
+                    ImagePicker.with(this@AddNewOfferActivity)
+                        .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                        .createIntent { intent ->
+                            startForProfileImageResult.launch(intent)
+                        }
                 }
 
                 override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
@@ -152,23 +176,6 @@ class AddNewOfferActivity : BaseActivity() {
             })
             .setPermissions(Manifest.permission.CAMERA)
             .check()
-    }
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            var result: CropImage.ActivityResult? = null
-            data?.let { result = CropImage.getActivityResult(data) }
-            if (resultCode == RESULT_OK) {
-                result?.let {
-                    selectedImage = File(result!!.uri!!.path!!)
-
-                    GlideObject.GlideProfilePic(this, selectedImage!!.path, offer_img)
-//                    Picasso.get().load(selectedImage!!).fit().centerCrop().into(ivUserImage )
-                }
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                result!!.error!!.printStackTrace()
-            }
-        }
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun toBase64(filePath: String): String{

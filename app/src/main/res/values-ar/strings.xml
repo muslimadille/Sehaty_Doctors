@@ -323,6 +323,7 @@
     <string name="add_service_name">اسم الخدمة</string>
     <string name="add_service_name_ar">اسم الخدمة(عربي)</string>
     <string name="add_service_name_en">اسم الخدمة (EN)</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCSEmtUuIRNkSC3KTlikmboaQCTnUhw7s4</string>
 
 
 </resources>
